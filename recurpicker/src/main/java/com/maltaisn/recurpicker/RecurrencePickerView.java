@@ -77,7 +77,6 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     private boolean creatorShown;
     private int selectedOption;
     private Recurrence recurrence;
-    private Recurrence customRecurrence;
     private long startDate;
     private Calendar endDate;
     private int endCount;
@@ -639,7 +638,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
      * Can be used to hide the view while it rearranges its views
      * @param listener the listener
      */
-    public RecurrencePickerSettings setOnCreatorShownListener(OnCreatorShownListener listener) {
+    public RecurrencePickerSettings setOnCreatorShownListener(@Nullable OnCreatorShownListener listener) {
         creatorListener = listener;
         return this;
     }

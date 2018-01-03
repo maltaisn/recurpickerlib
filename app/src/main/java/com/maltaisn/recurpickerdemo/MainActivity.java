@@ -57,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         super.onCreate(state);
         setContentView(R.layout.activity_main);
 
-        Recurrence rec = new Recurrence(0, 0);
-
         startDate = Calendar.getInstance();
         recurrence = new Recurrence(startDate.getTimeInMillis(), Recurrence.NONE);  // Does not repeat
         recurrenceList = new ArrayList<>();

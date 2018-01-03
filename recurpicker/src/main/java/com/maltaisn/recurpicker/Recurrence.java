@@ -6,6 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import java.nio.ByteBuffer;
 import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -18,6 +19,9 @@ import java.util.Objects;
 public class Recurrence implements Parcelable {
 
     private static final String TAG = Recurrence.class.getSimpleName();
+
+    private static final int BYTE_ARRAY_LENGTH = 41;
+    private static final int BYTE_ARRAY_KEY = 100;
 
     public static final int NONE = -1;
     public static final int DAILY = 0;
@@ -39,7 +43,7 @@ public class Recurrence implements Parcelable {
     // If recurrence is default, it will have a simpler text format
     private boolean isDefault;
 
-    private final Calendar startDate;
+    private Calendar startDate;
     private int period;  // Daily, weekly, ...
     private int frequency;  // Repeat every x periods...
     private int daySetting;  // Extra setting, either day of week or day of month
@@ -88,6 +92,40 @@ public class Recurrence implements Parcelable {
             endDate.setTimeInMillis(r.endDate.getTimeInMillis());
         }
         endCount = r.endCount;
+    }
+
+    /**
+     * Create a recurrence from a byte array
+     * @param array byte array obtained with {@link Recurrence#}
+     * @param index recurrence object position in byte array
+     */
+    public Recurrence(byte[] array, int index) {
+        if (array.length < BYTE_ARRAY_LENGTH) {
+            throw new IllegalArgumentException("Byte array does not represent a Recurrence object");
+        } else if (index < 0 || index > array.length - BYTE_ARRAY_LENGTH) {
+            throw new IllegalArgumentException("Byte array index is invalid");
+        }
+
+        ByteBuffer bb = ByteBuffer.allocate(BYTE_ARRAY_LENGTH);
+        bb.put(array, index, BYTE_ARRAY_LENGTH);
+        bb.position(0);
+        if (bb.getInt() != BYTE_ARRAY_KEY) {
+            throw new IllegalArgumentException("Byte array does not represent a Recurrence object");
+        }
+
+        isDefault = bb.get() == 1;
+        startDate = Calendar.getInstance();
+        startDate.setTimeInMillis(bb.getLong());
+        period = bb.getInt();
+        frequency = bb.getInt();
+        daySetting = bb.getInt();
+        endType = bb.getInt();
+        endCount = bb.getInt();
+        long end = bb.getLong();
+        if (end != 0) {
+            endDate = Calendar.getInstance();
+            endDate.setTimeInMillis(end);
+        }
     }
 
     /**
@@ -580,6 +618,21 @@ public class Recurrence implements Parcelable {
         }
 
         return result;
+    }
+
+    public byte[] toByteArray() {
+        ByteBuffer bb = ByteBuffer.allocate(BYTE_ARRAY_LENGTH);
+        bb.putInt(BYTE_ARRAY_KEY);
+        bb.put(isDefault ? (byte) 1 : 0);
+        bb.putLong(startDate.getTimeInMillis());
+        bb.putInt(period);
+        bb.putInt(frequency);
+        bb.putInt(daySetting);
+        bb.putInt(endType);
+        bb.putInt(endCount);
+        bb.putLong(endDate == null ? 0 : endDate.getTimeInMillis());
+
+        return bb.array();
     }
 
     @Override
