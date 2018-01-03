@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <LinearLayout
+        android:id="@+id/week_button_row1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:visibility="gone"
+        >
+        <ToggleButton
+            android:id="@+id/week_btn_1"
+            style="?attr/weekButtonStyle"
+            />
+        <ToggleButton
+            android:id="@+id/week_btn_2"
+            style="?attr/weekButtonStyle"
+            />
+        <ToggleButton
+            android:id="@+id/week_btn_3"
+            style="?attr/weekButtonStyle"
+            />
+        <ToggleButton
+            android:id="@+id/week_btn_4"
+            style="?attr/weekButtonStyle"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/week_button_row2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:visibility="gone"
+        >
+        <ToggleButton
+            android:id="@+id/week_btn_5" 
+            style="?attr/weekButtonStyle"
+            />
+        <ToggleButton
+            android:id="@+id/week_btn_6" 
+            style="?attr/weekButtonStyle"
+            />
+        <ToggleButton
+            android:id="@+id/week_btn_7" 
+            style="?attr/weekButtonStyle"
+            />
+    </LinearLayout>
+
+</merge>

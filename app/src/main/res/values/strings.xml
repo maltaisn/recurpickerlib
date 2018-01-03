@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Recurrence Picker</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Picker settings</string>
+    <string name="label_start_date">Starting date:</string>
+    <string name="label_max_freq">Maximum frequency:</string>
+    <string name="label_max_end_count">Maximum end count:</string>
+    <string name="label_max_end_date">Maximum end date:</string>
+    <string name="max_end_date_none">None</string>
+    <string name="label_default_end_date">Default end date:</string>
+    <string name="default_end_date_use_period">Use selected period as unit</string>
+    <string name="default_end_date_periods">{0,choice,1#period|1&lt;periods}</string>
+    <string name="default_end_date_days">{0,choice,1#day|1&lt;days}</string>
+    <string name="default_end_count">Default end count:</string>
+    <string name="skip_option_list">Skip default options list</string>
+    <string name="show_header_option_list">Show header in default options list</string>
+    <string name="show_done_btn_option_list">Show done button in default options list</string>
+    <string name="show_cancel_btn">Show cancel button</string>
+
+    <!-- Dialog picker -->
+    <string name="dialog_picker_title">Dialog Picker</string>
+    <string name="dialog_picker_pick">Pick a recurrence</string>
+    <string name="dialog_picker_value">#{0} is on {1}</string>
+    <string name="dialog_picker_value_none">There are no recurrences</string>
+
+</resources>

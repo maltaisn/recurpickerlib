@@ -1,0 +1,4 @@
+- put on github + maven
+
+- fix max end date showing date twice in dialog
+- fix end date dialog closing on rotation

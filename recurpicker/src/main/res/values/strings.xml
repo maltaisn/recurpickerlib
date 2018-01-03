@@ -1,0 +1,106 @@
+<resources>
+
+    <string name="cancel">Cancel</string>
+    <string name="done">Done</string>
+
+    <string name="repeat_options">Repeat options</string>
+
+    <string-array name="recur_defaults">
+        <item>Does not repeat</item>
+        <item>Every day</item>
+        <item>Every week</item>
+        <item>Every month</item>
+        <item>Every year</item>
+        <item>Custom…</item>
+    </string-array>
+
+    <string-array name="recur_spinner">
+        <item>Repeat daily</item>
+        <item>Repeat weekly</item>
+        <item>Repeat monthly</item>
+        <item>Repeat yearly</item>
+    </string-array>
+
+    <string name="every">Every</string>
+
+    <string-array name="recur_units">
+        <item>{0,choice,1#day|1&lt;days}</item>
+        <item>{0,choice,1#week|1&lt;weeks}</item>
+        <item>{0,choice,1#month|1&lt;months}</item>
+        <item>{0,choice,1#year|1&lt;years}</item>
+    </string-array>
+
+    <string-array name="days_of_week_abbr">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+
+    <string-array name="days_of_week">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string name="repeat_monthly_same_day">on the same day each month</string>
+    <string name="repeat_monthly_same_week">on every {0} {1}</string> <!-- {0}=ordinal number ex: third, {1}=day of week -->
+    <string name="repeat_monthly_last_day">on every last day of the month</string>
+
+    <string-array name="end_type_spinner">
+        <item>Forever</item>
+        <item>Until a date</item>
+        <item>For a number of events</item>
+    </string-array>
+
+    <string-array name="end_type_spinner_selected">
+        <item>Forever</item>
+        <item>Until</item>
+        <item>For</item>
+    </string-array>
+
+    <string name="event">{0,choice,1#event|1&lt;events}</string>
+
+    <string-array name="ordinal_numbers">
+        <item>First</item>
+        <item>Second</item>
+        <item>Third</item>
+        <item>Fourth</item>
+        <item>Last</item>
+    </string-array>
+
+    <string-array name="recur_formats">
+        <item>Does not repeat</item>
+        <item>Repeats every {0,choice,1#day|1&lt;{0} days}</item> <!-- Daily, {0}=number of days -->
+        <item>Repeats every {0,choice,1#week|1&lt;{0} weeks}{1,choice,0#|1# on {2}}</item> <!-- Weekly, {0}=number of weeks, {1}=whether to show days list (yes=1), {2}=days of week list -->
+        <item>Repeats every {0,choice,1#month|1&lt;{0} months}{1,choice,0#|1# ({2})}</item> <!-- Monthly, {0}=number of months, {1}=whether to show extra setting (yes=1), {2}=repeat on same day of month/on every nth day of week -->
+        <item>Repeats every {0,choice,1#year|1&lt;{0} years}</item> <!-- Yearly, {0}=number of years -->
+    </string-array>
+
+    <string-array name="end_formats">
+        <item></item> <!-- Forever -->
+        <item>until {0}</item> <!-- Until a date -->
+        <item>for {0,choice,1#one event|1&lt;{0} events}</item> <!-- For a number of events -->
+        <item>until {0} or for {1,choice,1#one event|1&lt;{1} events}</item> <!-- Until a date or for a number of events, the one that comes first -->
+    </string-array>
+
+    <!-- Separator between each days of week when listing them
+         Ex: Sun, Tue, Fri, Sat
+         Use \u0020 for regular space, trailing whitespace get removed -->
+    <string name="days_of_week_list_sep">,\u0020</string>
+
+    <!-- Instead of listing all days when all of them are check, use this
+         This only happens if frequency > 1 otherwise it gets converted to a daily recurrence -->
+    <string name="days_of_week_list_all">every day of the week</string>
+
+    <!-- How to concatenate recurrence and end date/count when formatting -->
+    <string name="merge_format">{0}; {1}</string>
+
+</resources>

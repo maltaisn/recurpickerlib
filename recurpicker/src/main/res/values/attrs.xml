@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="recurrencePickerStyle" format="reference"/>
+
+    <declare-styleable name="RecurrencePickerView">
+        <attr name="colorPickerBackground" format="reference|color"/>
+        <attr name="colorHeaderBackground" format="reference|color"/>
+
+        <!-- List of option list attributes -->
+        <attr name="optionListTitleStyle" format="reference"/>
+        <attr name="optionItemStyle" format="reference"/>
+        <attr name="optionItemSelectedColor" format="reference|color"/>
+        <attr name="optionItemUnselectedColor" format="reference|color"/>
+        <attr name="optionCheckStyle" format="reference"/>
+
+        <!-- List of recurrence creator attributes -->
+        <attr name="labelTextAppearance" format="reference"/>
+        <attr name="freqSpinnerStyle" format="reference"/>
+        <attr name="freqSpinnerItemStyle" format="reference"/>
+        <attr name="endSpinnerStyle" format="reference"/>
+        <attr name="endSpinnerItemStyle" format="reference"/>
+        <attr name="weekButtonStyle" format="reference"/>
+        <attr name="cancelButtonStyle" format="reference"/>
+        <attr name="doneButtonStyle" format="reference"/>
+
+        <!-- Week button style -->
+        <attr name="colorWeekButtonChecked" format="reference|color"/>
+        <attr name="colorWeekButtonUnchecked" format="reference|color"/>
+        <attr name="colorWeekButtonStroke" format="reference|color"/>
+        <attr name="colorWeekButtonStrokeWidth" format="dimension"/>
+        <attr name="colorWeekButtonTextChecked" format="reference|color"/>
+        <attr name="colorWeekButtonTextUnchecked" format="reference|color"/>
+    </declare-styleable>
+
+</resources>

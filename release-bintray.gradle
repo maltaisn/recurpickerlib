@@ -1,0 +1,28 @@
+/**
+ * Bintray release configuration
+ * */
+ext {
+    bintrayRepo = 'recurrence-picker'
+    bintrayName = 'com.maltaisn.recurpickerlib:recurpicker'
+
+    publishedGroupId = 'com.maltaisn.recurpickerlib'
+    libraryName = 'recurrence-picker'
+    artifact = 'recurpicker'
+    packagingType = 'jar'
+
+    libraryDescription = 'Recurrence picker view and dialog for Android'
+
+    siteUrl = 'https://github.com/maltaisn/recurrence-picker'
+    gitUrl = 'https://github.com/maltaisn/recurrence-picker.git'
+
+    libraryVersion = '1.0'
+
+    developerId = 'maltaisn'
+
+    licenseName = 'LGPL-3.0'
+    licenseUrl = 'https://www.gnu.org/licenses/lgpl.txt'
+    allLicenses = ["LGPL-3.0"]
+}
+
+apply from: rootProject.file('jcenter/maven-install.gradle')
+apply from: rootProject.file('jcenter/bintray.gradle')

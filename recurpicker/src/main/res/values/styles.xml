@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RecurrencePickerStyle">
+        <item name="colorPickerBackground">@android:color/transparent</item>
+        <item name="colorHeaderBackground">?attr/colorPrimary</item>
+
+        <item name="optionListTitleStyle">@style/OptionListTitleStyle</item>
+        <item name="optionItemStyle">@style/OptionItemStyle</item>
+        <item name="optionItemSelectedColor">?attr/colorAccent</item>
+        <item name="optionItemUnselectedColor">?android:attr/textColorPrimary</item>
+        <item name="optionCheckStyle">@style/OptionCheckStyle</item>
+
+        <item name="labelTextAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+        <item name="freqSpinnerStyle">@style/FreqSpinnerStyle</item>
+        <item name="freqSpinnerItemStyle">@style/FreqSpinnerItemStyle</item>
+        <item name="endSpinnerStyle">@style/EndSpinnerStyle</item>
+        <item name="endSpinnerItemStyle">@style/EndSpinnerItemStyle</item>
+        <item name="weekButtonStyle">@style/WeekButtonStyle</item>
+        <item name="cancelButtonStyle">@style/CancelButtonStyle</item>
+        <item name="doneButtonStyle">@style/DoneButtonStyle</item>
+
+        <item name="colorWeekButtonChecked">?attr/colorAccent</item>
+        <item name="colorWeekButtonUnchecked">@android:color/transparent</item>
+        <item name="colorWeekButtonStroke">?attr/colorAccent</item>
+        <item name="colorWeekButtonStrokeWidth">2px</item>
+        <item name="colorWeekButtonTextChecked">?android:attr/textColorPrimaryInverse</item>
+        <item name="colorWeekButtonTextUnchecked">?android:attr/textColorPrimary</item>
+    </style>
+
+    <style name="OptionListTitleStyle">
+        <item name="android:paddingStart">5dp</item>
+        <item name="android:paddingEnd">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:text">@string/repeat_options</item>
+        <item name="android:textAppearance">?attr/labelTextAppearance</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="OptionItemStyle">
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:textAppearance">?attr/labelTextAppearance</item>
+    </style>
+
+    <style name="OptionCheckStyle">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:src">@drawable/ic_check</item>
+        <item name="android:tint">?attr/colorAccent</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+    </style>
+
+    <style name="FreqSpinnerStyle">
+        <item name="android:backgroundTint">?android:attr/textColorSecondaryInverse</item>
+    </style>
+
+    <style name="EndSpinnerStyle">
+        <!-- Nothing -->
+    </style>
+
+    <style name="FreqSpinnerItemStyle">
+        <item name="android:padding">10dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textAppearance">?attr/labelTextAppearance</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="EndSpinnerItemStyle">
+        <item name="android:padding">10dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textAppearance">?attr/labelTextAppearance</item>
+    </style>
+
+    <style name="WeekButtonStyle">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:background">@drawable/week_button_drawable</item>
+        <item name="android:textColor">@color/week_button_text_color</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+    
+    <style name="CancelButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:text">@string/cancel</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Widget.Button</item>
+    </style>
+
+    <style name="DoneButtonStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:text">@string/done</item>
+        <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Widget.Button</item>
+    </style>
+
+</resources>
