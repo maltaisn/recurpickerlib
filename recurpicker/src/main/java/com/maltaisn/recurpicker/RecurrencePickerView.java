@@ -146,11 +146,22 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
         // Get colors from theme
         final TypedArray ta = getContext().obtainStyledAttributes(R.styleable.RecurrencePickerView);
+        CharSequence[] optionListItemsText;
+        CharSequence[] periodSpinnerItemsText;
+        CharSequence[] endSpinnerItemsText;
+        CharSequence[] endSpinnerItemsTextAbbr;
+        CharSequence[] weekButtonsText;
         try {
             optionItemTextColor = new int[]{
                     ta.getColor(R.styleable.RecurrencePickerView_optionItemSelectedColor, 0),
                     ta.getColor(R.styleable.RecurrencePickerView_optionItemUnselectedColor, 0),
             };
+
+            optionListItemsText = ta.getTextArray(R.styleable.RecurrencePickerView_optionListItemsText);
+            periodSpinnerItemsText = ta.getTextArray(R.styleable.RecurrencePickerView_periodSpinnerItemsText);
+            endSpinnerItemsText = ta.getTextArray(R.styleable.RecurrencePickerView_endSpinnerItemsText);
+            endSpinnerItemsTextAbbr = ta.getTextArray(R.styleable.RecurrencePickerView_endSpinnerItemsTextAbbr);
+            weekButtonsText = ta.getTextArray(R.styleable.RecurrencePickerView_weekButtonsText);
         } finally {
             ta.recycle();
         }
@@ -185,11 +196,10 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
         // Create the recurrence list
         optionListItems = new LinearLayout[7];
-        String[] itemsLabel = getResources().getStringArray(R.array.recur_defaults);
         for (int i = 0; i < 7; i++) {
             optionListItems[i] = (LinearLayout) inflater.inflate(R.layout.item_option, null);
             optionListLayout.addView(optionListItems[i]);
-            if (i > 0) ((TextView) optionListItems[i].findViewById(R.id.text)).setText(itemsLabel[i-1]);
+            if (i > 0) ((TextView) optionListItems[i].findViewById(R.id.text)).setText(optionListItemsText[i-1]);
 
             final int j = i;
             optionListItems[i].setOnClickListener(new View.OnClickListener() {
@@ -230,9 +240,9 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         }
 
         // Set up recurrence type spinner
-        String[] recurPeriods = getResources().getStringArray(R.array.recur_spinner);
-        ArrayAdapter<String> recurPeriodAdapter = new ArrayAdapter<>(getContext(), R.layout.item_period, recurPeriods);
-        recurPeriodAdapter.setDropDownViewResource(R.layout.item_period);
+        CharSeqAdapter recurPeriodAdapter = new CharSeqAdapter(getContext(),
+                R.layout.item_period, R.layout.item_period_dropdown,
+                periodSpinnerItemsText, periodSpinnerItemsText);
         recurPeriodSpin.setAdapter(recurPeriodAdapter);
         recurPeriodSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -253,7 +263,6 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         });
 
         // Set up days of week list
-        String[] daysAbbr = getResources().getStringArray(R.array.days_of_week_abbr);
         weekButtons = new ToggleButton[7];
         int[] weekBtnId = new int[]{R.id.week_btn_1, R.id.week_btn_2, R.id.week_btn_3,
                 R.id.week_btn_4, R.id.week_btn_5, R.id.week_btn_6, R.id.week_btn_7};
@@ -266,17 +275,17 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
                 }
             });
 
-            String day = daysAbbr[i];
+            CharSequence day = weekButtonsText[i];
             weekButtons[i].setTextOn(day);
             weekButtons[i].setTextOff(day);
             weekButtons[i].setText(day);
         }
 
         // Set up end type spinner
-        String[] endTypes = getResources().getStringArray(R.array.end_type_spinner);
-        final String[] endTypesSel = getResources().getStringArray(R.array.end_type_spinner_selected);
-        final EndTypeAdapter endTypeAdapter = new EndTypeAdapter(getContext(), R.layout.item_end_type, endTypes, endTypesSel);
-        recurPeriodAdapter.setDropDownViewResource(R.layout.item_end_type);
+        CharSeqAdapter endTypeAdapter = new CharSeqAdapter(getContext(),
+                R.layout.item_end_type, R.layout.item_end_type_dropdown,
+                endSpinnerItemsText, endSpinnerItemsTextAbbr);
+        endTypeAdapter.setDropDownViewResource(R.layout.item_end_type);
         endTypeSpin.setAdapter(endTypeAdapter);
         endTypeSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -835,32 +844,37 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         void onCreatorShown();
     }
 
-    private class EndTypeAdapter extends ArrayAdapter<String>{
+    private class CharSeqAdapter extends ArrayAdapter<CharSequence>{
 
-        private final String[] selected;
+        private final CharSequence[] selected;
+        private int selectedResId;
+        private int dropdownResId;
 
-        EndTypeAdapter(Context context, int resId, String[] dropdown, String[] selected) {
-            super(context, resId, dropdown);
-            this.selected = selected;
-        }
-
-        @Override
-        public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
-            TextView tv = getCustomView(position, convertView, parent);
-            tv.setText(getItem(position));
-            return tv;
+        CharSeqAdapter(Context context, int selectedResId, int dropdownResId,
+                       CharSequence[] dropdownItems, CharSequence[] selectedItems) {
+            super(context, selectedResId, dropdownItems);
+            this.selectedResId = selectedResId;
+            this.dropdownResId = dropdownResId;
+            this.selected = selectedItems;
         }
 
         @NonNull
         @Override
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-            TextView tv = getCustomView(position, convertView, parent);
+            TextView tv = getCustomView(parent, selectedResId);
             tv.setText(selected[position]);
             return tv;
         }
 
-        TextView getCustomView(int position, View convertView, ViewGroup parent) {
-            return (TextView) LayoutInflater.from(getContext()).inflate(R.layout.item_end_type, parent, false);
+        @Override
+        public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
+            TextView tv = getCustomView(parent, dropdownResId);
+            tv.setText(getItem(position));
+            return tv;
+        }
+
+        TextView getCustomView(ViewGroup parent, int resId) {
+            return (TextView) LayoutInflater.from(getContext()).inflate(resId, parent, false);
         }
     }
 

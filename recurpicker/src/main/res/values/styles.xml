@@ -14,8 +14,10 @@
         <item name="labelTextAppearance">@style/TextAppearance.AppCompat.Subhead</item>
         <item name="periodSpinnerStyle">@style/PeriodSpinnerStyle</item>
         <item name="periodSpinnerItemStyle">@style/PeriodSpinnerItemStyle</item>
+        <item name="periodSpinnerDropdownItemStyle">@style/PeriodSpinnerDropdownItemStyle</item>
         <item name="endSpinnerStyle">@style/EndSpinnerStyle</item>
         <item name="endSpinnerItemStyle">@style/EndSpinnerItemStyle</item>
+        <item name="endSpinnerDropdownItemStyle">@style/EndSpinnerItemStyle</item>
         <item name="weekButtonStyle">@style/WeekButtonStyle</item>
         <item name="cancelButtonStyle">@style/CancelButtonStyle</item>
         <item name="doneButtonStyle">@style/DoneButtonStyle</item>
@@ -26,6 +28,12 @@
         <item name="colorWeekButtonStrokeWidth">2px</item>
         <item name="colorWeekButtonTextChecked">?android:attr/textColorPrimaryInverse</item>
         <item name="colorWeekButtonTextUnchecked">?android:attr/textColorPrimary</item>
+
+        <item name="optionListItemsText">@array/option_list_items</item>
+        <item name="periodSpinnerItemsText">@array/period_spinner_items</item>
+        <item name="endSpinnerItemsText">@array/end_spinner_items</item>
+        <item name="endSpinnerItemsTextAbbr">@array/end_spinner_items_abbr</item>
+        <item name="weekButtonsText">@array/days_of_week_abbr</item>
     </style>
 
     <style name="OptionListTitleStyle">
@@ -69,6 +77,10 @@
         <item name="android:textAppearance">?attr/labelTextAppearance</item>
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
         <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="PeriodSpinnerDropdownItemStyle" parent="@style/PeriodSpinnerItemStyle">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
     <style name="EndSpinnerItemStyle">

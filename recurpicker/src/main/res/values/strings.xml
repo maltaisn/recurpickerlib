@@ -5,7 +5,7 @@
 
     <string name="repeat_options">Repeat options</string>
 
-    <string-array name="recur_defaults">
+    <string-array name="option_list_items">
         <item>Does not repeat</item>
         <item>Every day</item>
         <item>Every week</item>
@@ -14,7 +14,7 @@
         <item>Custom…</item>
     </string-array>
 
-    <string-array name="recur_spinner">
+    <string-array name="period_spinner_items">
         <item>Repeat daily</item>
         <item>Repeat weekly</item>
         <item>Repeat monthly</item>
@@ -54,13 +54,13 @@
     <string name="repeat_monthly_same_week">on every {0} {1}</string> <!-- {0}=ordinal number ex: third, {1}=day of week -->
     <string name="repeat_monthly_last_day">on every last day of the month</string>
 
-    <string-array name="end_type_spinner">
+    <string-array name="end_spinner_items">
         <item>Forever</item>
         <item>Until a date</item>
         <item>For a number of events</item>
     </string-array>
 
-    <string-array name="end_type_spinner_selected">
+    <string-array name="end_spinner_items_abbr">
         <item>Forever</item>
         <item>Until</item>
         <item>For</item>

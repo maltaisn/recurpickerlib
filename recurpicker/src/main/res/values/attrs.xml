@@ -18,8 +18,10 @@
         <attr name="labelTextAppearance" format="reference"/>
         <attr name="periodSpinnerStyle" format="reference"/>
         <attr name="periodSpinnerItemStyle" format="reference"/>
+        <attr name="periodSpinnerDropdownItemStyle" format="reference"/>
         <attr name="endSpinnerStyle" format="reference"/>
         <attr name="endSpinnerItemStyle" format="reference"/>
+        <attr name="endSpinnerDropdownItemStyle" format="reference"/>
         <attr name="weekButtonStyle" format="reference"/>
         <attr name="cancelButtonStyle" format="reference"/>
         <attr name="doneButtonStyle" format="reference"/>
@@ -31,6 +33,13 @@
         <attr name="colorWeekButtonStrokeWidth" format="dimension"/>
         <attr name="colorWeekButtonTextChecked" format="reference|color"/>
         <attr name="colorWeekButtonTextUnchecked" format="reference|color"/>
+
+        <!-- Strings attributes -->
+        <attr name="optionListItemsText" format="reference"/>
+        <attr name="periodSpinnerItemsText" format="reference"/>
+        <attr name="endSpinnerItemsText" format="reference"/>
+        <attr name="endSpinnerItemsTextAbbr" format="reference"/>
+        <attr name="weekButtonsText" format="reference"/>
     </declare-styleable>
 
 </resources>
