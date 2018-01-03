@@ -19,3 +19,6 @@ Fully customizable recurrence view and dialog, compatible with API 21. Easy to s
 <img src="screenshots/settings1.gif" alt="Monthly recurrence" width="500px"/>
 
 <img src="screenshots/settings2.gif" alt="Monthly recurrence" width="500px"/>
+
+## Translations
+This library is only available in English for now. I invite you to share translations to make it better.
