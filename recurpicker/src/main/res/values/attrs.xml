@@ -16,8 +16,8 @@
 
         <!-- List of recurrence creator attributes -->
         <attr name="labelTextAppearance" format="reference"/>
-        <attr name="freqSpinnerStyle" format="reference"/>
-        <attr name="freqSpinnerItemStyle" format="reference"/>
+        <attr name="periodSpinnerStyle" format="reference"/>
+        <attr name="periodSpinnerItemStyle" format="reference"/>
         <attr name="endSpinnerStyle" format="reference"/>
         <attr name="endSpinnerItemStyle" format="reference"/>
         <attr name="weekButtonStyle" format="reference"/>

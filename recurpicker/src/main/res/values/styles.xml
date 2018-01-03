@@ -12,8 +12,8 @@
         <item name="optionCheckStyle">@style/OptionCheckStyle</item>
 
         <item name="labelTextAppearance">@style/TextAppearance.AppCompat.Subhead</item>
-        <item name="freqSpinnerStyle">@style/FreqSpinnerStyle</item>
-        <item name="freqSpinnerItemStyle">@style/FreqSpinnerItemStyle</item>
+        <item name="periodSpinnerStyle">@style/PeriodSpinnerStyle</item>
+        <item name="periodSpinnerItemStyle">@style/PeriodSpinnerItemStyle</item>
         <item name="endSpinnerStyle">@style/EndSpinnerStyle</item>
         <item name="endSpinnerItemStyle">@style/EndSpinnerItemStyle</item>
         <item name="weekButtonStyle">@style/WeekButtonStyle</item>
@@ -55,7 +55,7 @@
         <item name="android:layout_marginEnd">10dp</item>
     </style>
 
-    <style name="FreqSpinnerStyle">
+    <style name="PeriodSpinnerStyle">
         <item name="android:backgroundTint">?android:attr/textColorSecondaryInverse</item>
     </style>
 
@@ -63,7 +63,7 @@
         <!-- Nothing -->
     </style>
 
-    <style name="FreqSpinnerItemStyle">
+    <style name="PeriodSpinnerItemStyle">
         <item name="android:padding">10dp</item>
         <item name="android:maxLines">1</item>
         <item name="android:textAppearance">?attr/labelTextAppearance</item>

@@ -31,7 +31,7 @@
             android:id="@+id/spin_recur_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?attr/freqSpinnerStyle"
+            style="?attr/periodSpinnerStyle"
             android:visibility="gone"
             android:layout_centerVertical="true"
             />

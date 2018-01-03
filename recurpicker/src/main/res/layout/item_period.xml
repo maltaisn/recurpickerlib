@@ -5,6 +5,6 @@
     android:id="@+id/item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="?attr/freqSpinnerItemStyle"
+    style="?attr/periodSpinnerItemStyle"
     tools:text="Repeat weekly"
     />
