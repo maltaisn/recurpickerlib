@@ -15,6 +15,7 @@ import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -51,12 +52,8 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     private LinearLayout[] optionListItems;
     private LinearLayout creatorLayout;
 
-    private LinearLayout freqLayout;
     private EditText freqEdit;
-    private TextView freqEventLabel;
 
-    private LinearLayout weekButtonLayout1;
-    private LinearLayout weekButtonLayout2;
     private ToggleButton[] weekButtons;
 
     private RadioGroup monthlySettingsGroup;
@@ -65,9 +62,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     private LinearLayout endLayout;
     private Spinner endTypeSpin;
-    private EditText endDateEdit;
     private EditText endCountEdit;
-    private TextView endValueLabel;
     
     private Button cancelBtn;
     private Button doneBtn;
@@ -92,10 +87,13 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     public static final int DEFAULT_END_COUNT = 5;
     public static final boolean DEFAULT_END_DATE_USE_PERIOD = true;
     public static final int DEFAULT_END_DATE_INTERVAL = 3;
-    public static final boolean DEFAULT_SKIP_IN_LIST = false;
+    public static final boolean DEFAULT_OPTION_LIST_ENABLED = true;
+    public static final boolean DEFAULT_CREATOR_ENABLED = true;
     public static final boolean DEFAULT_SHOW_DONE_IN_LIST = false;
     public static final boolean DEFAULT_SHOW_HEADER_IN_LIST = true;
     public static final boolean DEFAULT_SHOW_CANCEL_BTN = false;
+    public static final int DEFAULT_ENABLED_PERIODS = 0b1111;
+    public static final int DEFAULT_ENABLED_END_TYPES = 0b111;
 
     private DateFormat endDateFormat;
     private DateFormat optionListDateFormat;
@@ -105,10 +103,13 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     private int defaultEndCount;
     private boolean defaultEndDateUsePeriod;
     private int defaultEndDateInterval;
-    private boolean skipOptionList;
+    private boolean optionListEnabled;
+    private boolean creatorEnabled;
     private boolean showDoneButtonInList;
     private boolean showHeaderInList;
     private boolean showCancelBtn;
+    private int enabledPeriods;
+    private int enabledEndTypes;
 
     private Calendar poolCal;  // Used to prevent many instantiations of Calendar
 
@@ -174,12 +175,12 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         optionListLayout = findViewById(R.id.option_list_layout);
         creatorLayout = findViewById(R.id.creator_layout);
 
-        freqLayout = findViewById(R.id.freq_layout);
+        final LinearLayout freqLayout = findViewById(R.id.freq_layout);
         freqEdit = findViewById(R.id.edit_freq);
-        freqEventLabel = findViewById(R.id.text_freq_event);
+        final TextView freqEventLabel = findViewById(R.id.text_freq_event);
 
-        weekButtonLayout1 = findViewById(R.id.week_button_row1);
-        weekButtonLayout2 = findViewById(R.id.week_button_row2);
+        final LinearLayout weekButtonLayout1 = findViewById(R.id.week_button_row1);
+        final LinearLayout weekButtonLayout2 = findViewById(R.id.week_button_row2);
 
         monthlySettingsGroup = findViewById(R.id.radiogroup_monthly_options);
         sameWeekRadio = findViewById(R.id.radio_same_week);
@@ -187,9 +188,9 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
         endLayout = findViewById(R.id.recur_end_layout);
         endTypeSpin = findViewById(R.id.spin_end_type);
-        endDateEdit = findViewById(R.id.edit_end_date);
+        final EditText endDateEdit = findViewById(R.id.edit_end_date);
         endCountEdit = findViewById(R.id.edit_end_count);
-        endValueLabel = findViewById(R.id.text_end_value);
+        final TextView endValueLabel = findViewById(R.id.text_end_value);
 
         cancelBtn = findViewById(R.id.cancel_btn);
         doneBtn = findViewById(R.id.done_btn);
@@ -208,11 +209,20 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
                     if (j != selectedOption) {  // If selection changed
                         if (j == 6) {
                             if (recurrence.getPeriod() == Recurrence.NONE) {
-                                // If current recurrence is "does not repeat" create a daily recurrence
-                                // if "does not repeat" option is selected, otherwise create a
-                                // recurrence of the selected option
-                                recurrence = new Recurrence(recurrence.getStartDate(),
-                                        selectedOption == 1 ? Recurrence.DAILY : selectedOption - 2);
+                                int period = 0;
+                                if (selectedOption == 1) {
+                                    // If current recurrence is "does not repeat" create a recurrence with the shortest enabled period
+                                    for (int i = 0; i < 4; i++) {
+                                        if ((enabledPeriods & (1 << i)) == (1 << i)) {
+                                            period = i;
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    // Otherwise create a recurrence of the selected option
+                                    period = selectedOption - 2;
+                                }
+                                recurrence = new Recurrence(recurrence.getStartDate(), period);
                             }
 
                             if (creatorListener != null) creatorListener.onCreatorShown();
@@ -242,7 +252,13 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         // Set up recurrence type spinner
         CharSeqAdapter recurPeriodAdapter = new CharSeqAdapter(getContext(),
                 R.layout.item_period, R.layout.item_period_dropdown,
-                periodSpinnerItemsText, periodSpinnerItemsText);
+                periodSpinnerItemsText, periodSpinnerItemsText) {
+            @Override
+            boolean isDropdownViewVisible(int position) {
+                // Only show enabled periods
+                return (enabledPeriods & (1 << position)) == (1 << position);
+            }
+        };
         recurPeriodSpin.setAdapter(recurPeriodAdapter);
         recurPeriodSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -284,7 +300,13 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         // Set up end type spinner
         CharSeqAdapter endTypeAdapter = new CharSeqAdapter(getContext(),
                 R.layout.item_end_type, R.layout.item_end_type_dropdown,
-                endSpinnerItemsText, endSpinnerItemsTextAbbr);
+                endSpinnerItemsText, endSpinnerItemsTextAbbr) {
+            @Override
+            boolean isDropdownViewVisible(int position) {
+                // Only show enabled end types
+                return (enabledEndTypes & (1 << position)) == (1 << position);
+            }
+        };
         endTypeAdapter.setDropDownViewResource(R.layout.item_end_type);
         endTypeSpin.setAdapter(endTypeAdapter);
         endTypeSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -466,7 +488,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
                     if (listener != null) listener.onRecurrenceSelected(recurrence);
 
-                    if (!skipOptionList) changeMode(false);  // Go back to option list
+                    if (optionListEnabled) changeMode(false);  // Go back to option list
                 } else {
                     selectDefaultOption(selectedOption);
                 }
@@ -491,10 +513,12 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             setMaxEndDate(DEFAULT_MAX_END_DATE);
             setDefaultEndCount(DEFAULT_END_COUNT);
             setDefaultEndDate(DEFAULT_END_DATE_USE_PERIOD, DEFAULT_END_DATE_INTERVAL);
-            setSkipOptionList(DEFAULT_SKIP_IN_LIST);
+            setEnabledModes(DEFAULT_OPTION_LIST_ENABLED, DEFAULT_CREATOR_ENABLED);
             setShowDoneButtonInOptionList(DEFAULT_SHOW_DONE_IN_LIST);
             setShowHeaderInOptionList(DEFAULT_SHOW_HEADER_IN_LIST);
             setShowCancelButton(DEFAULT_SHOW_CANCEL_BTN);
+            setEnabledPeriods(DEFAULT_ENABLED_PERIODS);
+            setEnabledEndTypes(DEFAULT_ENABLED_END_TYPES);
 
             updateMode();
         }
@@ -739,9 +763,27 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     }
 
     @Override
-    public RecurrencePickerSettings setSkipOptionList(boolean skip) {
-        skipOptionList = skip;
-        if (skipOptionList && !creatorShown) changeMode(true);
+    public RecurrencePickerSettings setEnabledModes(boolean optionListEnabled, boolean creatorEnabled) {
+        if (!optionListEnabled && !creatorEnabled) {
+            throw new IllegalArgumentException("Both recurrence picker view modes cannot be disabled");
+        }
+
+        this.optionListEnabled = optionListEnabled;
+        this.creatorEnabled = creatorEnabled;
+
+        if (!optionListEnabled && !creatorShown) {
+            // Option list disabled and current mode is option list, change that
+            changeMode(true);
+        } else if (!creatorEnabled) {
+            // Hide "custom..." list item
+            optionListItems[6].setVisibility(View.GONE);
+
+            if (creatorShown) {
+                // Creator disabled and current mode is creator, change that
+                changeMode(false);
+            }
+        }
+
         return this;
     }
 
@@ -763,6 +805,78 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     public RecurrencePickerSettings setShowCancelButton(boolean show) {
         showCancelBtn = show;
         cancelBtn.setVisibility(showCancelBtn ? View.VISIBLE : View.GONE);
+        return this;
+    }
+
+    @Override
+    public RecurrencePickerSettings setEnabledPeriods(int periods) {
+        if (periods < 1 || periods > 0b1111) {
+            throw new IllegalArgumentException("Invalid enabled periods parameter");
+        }
+
+        enabledPeriods = periods;
+
+        int count = 0;
+        boolean selected = false;
+        for (int i = 0; i < 4; i++) {
+            boolean enabled = (enabledPeriods & (1 << i)) == (1 << i);
+            if (enabled) {
+                count++;
+                if (!selected) {
+                    selected = true;
+                    recurPeriodSpin.setSelection(i);  // Set selection to shortest enabled period
+                }
+            }
+            optionListItems[i+2].setVisibility(enabled ? View.VISIBLE : View.GONE);
+        }
+        if (count == 1) {
+            // Only one item, disable spinner
+            recurPeriodSpin.setOnTouchListener(new OnTouchListener() {
+                @SuppressLint("ClickableViewAccessibility")
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return true;
+                }
+            });
+        }
+
+        return this;
+    }
+
+    @Override
+    public RecurrencePickerSettings setEnabledEndTypes(int types) {
+        if (types < 1 || types > 0b111) {
+            throw new IllegalArgumentException("Invalid enabled end types parameter");
+        }
+
+        enabledEndTypes = types;
+
+        // Hide end layout if only forever end type is enabled
+        endLayout.setVisibility(enabledEndTypes == 1 ? View.GONE : View.VISIBLE);
+
+        int count = 0;
+        boolean selected = false;
+        for (int i = 0; i < 4; i++) {
+            boolean enabled = (enabledEndTypes & (1 << i)) == (1 << i);
+            if (enabled) {
+                count++;
+                if (!selected) {
+                    selected = true;
+                    endTypeSpin.setSelection(i);  // Set selection to first enabled end type
+                }
+            }
+        }
+        if (count == 1) {
+            // Only one item, disable spinner
+            endTypeSpin.setOnTouchListener(new OnTouchListener() {
+                @SuppressLint("ClickableViewAccessibility")
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return true;
+                }
+            });
+        }
+
         return this;
     }
 
@@ -791,10 +905,13 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         bundle.putInt("defaultEndCount", defaultEndCount);
         bundle.putBoolean("defaultEndDateUsePeriod", defaultEndDateUsePeriod);
         bundle.putInt("defaultEndDateInterval", defaultEndDateInterval);
-        bundle.putBoolean("skipOptionList", skipOptionList);
+        bundle.putBoolean("optionListEnabled", optionListEnabled);
+        bundle.putBoolean("creatorEnabled", creatorEnabled);
         bundle.putBoolean("showDoneButtonInList", showDoneButtonInList);
         bundle.putBoolean("showHeaderInList", showHeaderInList);
         bundle.putBoolean("showCancelBtn", showCancelBtn);
+        bundle.putInt("enabledPeriods", enabledPeriods);
+        bundle.putInt("enabledEndTypes", enabledEndTypes);
 
         return bundle;
     }
@@ -822,10 +939,13 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             defaultEndCount = bundle.getInt("defaultEndCount");
             defaultEndDateUsePeriod = bundle.getBoolean("defaultEndDateUsePeriod");
             defaultEndDateInterval = bundle.getInt("defaultEndDateInterval");
-            skipOptionList = bundle.getBoolean("skipOptionList");
+            optionListEnabled = bundle.getBoolean("optionListEnabled");
+            creatorEnabled = bundle.getBoolean("creatorEnabled");
             showDoneButtonInList = bundle.getBoolean("showDoneButtonInList");
             showHeaderInList = bundle.getBoolean("showHeaderInList");
             showCancelBtn = bundle.getBoolean("showCancelBtn");
+            enabledPeriods = bundle.getInt("enabledPeriods");
+            enabledEndTypes = bundle.getInt("enabledEndTypes");
 
             changeMode(mode);
             setShowCancelButton(showCancelBtn);
@@ -846,7 +966,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     private class CharSeqAdapter extends ArrayAdapter<CharSequence>{
 
-        private final CharSequence[] selected;
+        private final CharSequence[] selectedItems;
         private int selectedResId;
         private int dropdownResId;
 
@@ -855,26 +975,38 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             super(context, selectedResId, dropdownItems);
             this.selectedResId = selectedResId;
             this.dropdownResId = dropdownResId;
-            this.selected = selectedItems;
+            this.selectedItems = selectedItems;
         }
 
         @NonNull
         @Override
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             TextView tv = getCustomView(parent, selectedResId);
-            tv.setText(selected[position]);
+            tv.setText(selectedItems[position]);
             return tv;
         }
 
         @Override
         public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
-            TextView tv = getCustomView(parent, dropdownResId);
-            tv.setText(getItem(position));
+            TextView tv;
+            if (!isDropdownViewVisible(position)) {
+                // This item is not visible, make random item with 0px height
+                // Setting the item gone doesn't work, it's height is still there
+                tv = new TextView(getContext());
+                tv.setHeight(0);
+            } else {
+                tv = getCustomView(parent, dropdownResId);
+                tv.setText(getItem(position));
+            }
             return tv;
         }
 
         TextView getCustomView(ViewGroup parent, int resId) {
             return (TextView) LayoutInflater.from(getContext()).inflate(resId, parent, false);
+        }
+
+        boolean isDropdownViewVisible(int position) {
+            return true;
         }
     }
 

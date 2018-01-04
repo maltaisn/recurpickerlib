@@ -77,12 +77,13 @@ public interface RecurrencePickerSettings {
     RecurrencePickerSettings setDefaultEndCount(int count);
 
     /**
-     * Set whether to skip the first screen, the list of default recurrence options, and only show
-     * the recurrence creator. By default, it is not skipped.
+     * Select which modes are enabled: default options list and recurrence creator
+     * By default, both modes are enabled, and at least one of them should be
      * Must be set before setting the recurrence
-     * @param skip Whether to skip it or not
+     * @param optionListEnabled whether to enable the default options list
+     * @param creatorEnabled whether to enabled the recurrence creator
      */
-    RecurrencePickerSettings setSkipOptionList(boolean skip);
+    RecurrencePickerSettings setEnabledModes(boolean optionListEnabled, boolean creatorEnabled);
 
     /**
      * Set whether to show the Done button in the first screen, the list of default recurrence options,
@@ -107,4 +108,28 @@ public interface RecurrencePickerSettings {
      * @param show Whether to show it or not
      */
     RecurrencePickerSettings setShowCancelButton(boolean show);
+
+    /**
+     * Set which periods are available to be used. Note that NONE period cannot be disabled
+     * You must set at least one period.
+     * Must be set before showing the creator or the dialog
+     * @param periods bit field of 1 << [Recurrence.DAILY to Recurrence.YEARLY]. Ex:
+     *                periods = (1 << Recurrence.DAILY) | (1 << Recurrence.WEEKLY)
+     *                Don't forget the parentheses!
+     *                A quicker way would be to use binary literal ex: periods = 0b1111 (all periods)
+     */
+    RecurrencePickerSettings setEnabledPeriods(int periods);
+
+    /**
+     * Set which end types are available to be used. Note that END_BY_DATE_OR_COUNT is not implemented
+     * You must set at least one type. If that's the case, end type spinner will be disabled.
+     * If the only end type set is forever, end type spinner completely disappears.
+     * Must be set before showing the creator or the dialog
+     * @param types bit field of 1 << [Recurrence.END_NEVER, END_BY_DATE and END_BY_COUNT]. Ex:
+     *              periods = (1 << Recurrence.END_BY_DATE) | (1 << Recurrence.END_BY_COUNT)
+     *              Don't forget the parentheses!
+     *              A quicker way would be to use binary literal ex: types = 0b111 (all types)
+     */
+    RecurrencePickerSettings setEnabledEndTypes(int types);
+
 }

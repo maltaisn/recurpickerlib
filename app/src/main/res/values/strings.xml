@@ -13,7 +13,8 @@
     <string name="default_end_date_periods">{0,choice,1#period|1&lt;periods}</string>
     <string name="default_end_date_days">{0,choice,1#day|1&lt;days}</string>
     <string name="default_end_count">Default end count:</string>
-    <string name="skip_option_list">Skip default options list</string>
+    <string name="option_list_enabled">Enable default options list</string>
+    <string name="creator_enabled">Enable recurrence creator</string>
     <string name="show_header_option_list">Show header in default options list</string>
     <string name="show_done_btn_option_list">Show done button in default options list</string>
     <string name="show_cancel_btn">Show cancel button</string>

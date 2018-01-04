@@ -29,10 +29,13 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
     private int defaultEndCount = RecurrencePickerView.DEFAULT_END_COUNT;
     private boolean defaultEndDateUsePeriod = RecurrencePickerView.DEFAULT_END_DATE_USE_PERIOD;
     private int defaultEndDateInterval = RecurrencePickerView.DEFAULT_END_DATE_INTERVAL;
-    private boolean skipOptionList = RecurrencePickerView.DEFAULT_SKIP_IN_LIST;
+    private boolean optionListEnabled = RecurrencePickerView.DEFAULT_OPTION_LIST_ENABLED;
+    private boolean creatorEnabled = RecurrencePickerView.DEFAULT_CREATOR_ENABLED;
     private boolean showDoneButtonInList = RecurrencePickerView.DEFAULT_SHOW_DONE_IN_LIST;
     private boolean showHeaderInList = RecurrencePickerView.DEFAULT_SHOW_HEADER_IN_LIST;
     private boolean showCancelBtn = RecurrencePickerView.DEFAULT_SHOW_CANCEL_BTN;
+    private int enabledPeriods = RecurrencePickerView.DEFAULT_ENABLED_PERIODS;
+    private int enabledEndTypes = RecurrencePickerView.DEFAULT_ENABLED_END_TYPES;
 
     private static final int CREATOR_TRANSITION_DURATION = 200;
 
@@ -105,10 +108,12 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
                     .setMaxEndDate(maxEndDate)
                     .setDefaultEndCount(defaultEndCount)
                     .setDefaultEndDate(defaultEndDateUsePeriod, defaultEndDateInterval)
-                    .setSkipOptionList(skipOptionList)
+                    .setEnabledModes(optionListEnabled, creatorEnabled)
                     .setShowDoneButtonInOptionList(showDoneButtonInList)
                     .setShowHeaderInOptionList(showHeaderInList)
-                    .setShowCancelButton(showCancelBtn);
+                    .setShowCancelButton(showCancelBtn)
+                    .setEnabledPeriods(enabledPeriods)
+                    .setEnabledEndTypes(enabledEndTypes);
             newPicker.updateMode();
         } else {
             newPicker.onRestoreInstanceState(picker.onSaveInstanceState());
@@ -174,8 +179,9 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
     }
 
     @Override
-    public RecurrencePickerSettings setSkipOptionList(boolean skip) {
-        skipOptionList = skip;
+    public RecurrencePickerSettings setEnabledModes(boolean optionListEnabled, boolean creatorEnabled) {
+        this.optionListEnabled = optionListEnabled;
+        this.creatorEnabled = creatorEnabled;
         return this;
     }
 
@@ -194,6 +200,18 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
     @Override
     public RecurrencePickerSettings setShowCancelButton(boolean show) {
         showCancelBtn = show;
+        return this;
+    }
+
+    @Override
+    public RecurrencePickerSettings setEnabledPeriods(int periods) {
+        enabledPeriods = periods;
+        return this;
+    }
+
+    @Override
+    public RecurrencePickerSettings setEnabledEndTypes(int types) {
+        enabledEndTypes = types;
         return this;
     }
 

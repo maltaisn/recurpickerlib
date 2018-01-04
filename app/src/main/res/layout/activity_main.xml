@@ -212,10 +212,17 @@
         </LinearLayout>
 
         <CheckBox
-            android:id="@+id/skip_option_list_check"
+            android:id="@+id/option_list_enabled_check"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/skip_option_list"
+            android:text="@string/option_list_enabled"
+            />
+        <CheckBox
+            android:id="@+id/creator_enabled_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/creator_enabled"
+            android:layout_marginBottom="10dp"
             />
         <CheckBox
             android:id="@+id/show_header_check"

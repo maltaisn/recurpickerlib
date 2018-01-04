@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         defaultEndDateValue = findViewById(R.id.default_end_date_value);
         defaultEndCountValue = findViewById(R.id.default_end_count_value);
 
-        final CheckBox skipOptionListCheck = findViewById(R.id.skip_option_list_check);
+        final CheckBox optionListEnabledCheck = findViewById(R.id.option_list_enabled_check);
+        final CheckBox creatorEnabledCheck = findViewById(R.id.creator_enabled_check);
         final CheckBox showHeaderCheck = findViewById(R.id.show_header_check);
         final CheckBox showDoneBtnCheck = findViewById(R.id.show_done_btn_check);
         final CheckBox showCancelBtnCheck = findViewById(R.id.show_cancel_btn_check);
@@ -301,7 +302,27 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         defaultEndCountValue.setText(String.valueOf(RecurrencePickerView.DEFAULT_END_COUNT));
 
         // Set up checkbox options
-        skipOptionListCheck.setChecked(RecurrencePickerView.DEFAULT_SKIP_IN_LIST);
+        optionListEnabledCheck.setChecked(RecurrencePickerView.DEFAULT_OPTION_LIST_ENABLED);
+        optionListEnabledCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked && !creatorEnabledCheck.isChecked()) {
+                    // Both can't be disabled
+                    creatorEnabledCheck.setChecked(true);
+                }
+            }
+        });
+        creatorEnabledCheck.setChecked(RecurrencePickerView.DEFAULT_CREATOR_ENABLED);
+        creatorEnabledCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (!isChecked && !optionListEnabledCheck.isChecked()) {
+                    // Both can't be disabled
+                    optionListEnabledCheck.setChecked(true);
+                }
+            }
+        });
+
         showHeaderCheck.setChecked(RecurrencePickerView.DEFAULT_SHOW_HEADER_IN_LIST);
         showDoneBtnCheck.setChecked(RecurrencePickerView.DEFAULT_SHOW_DONE_IN_LIST);
         showCancelBtnCheck.setChecked(RecurrencePickerView.DEFAULT_SHOW_CANCEL_BTN);
@@ -314,18 +335,18 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
             public void onClick(View view) {
                 // Set the settings
                 pickerDialog.setMaxFrequency(maxFreqCheck.isChecked() ?
-                        Integer.valueOf(maxFreqValue.getText().toString()) : -1);
-                pickerDialog.setMaxEndDate(maxEndDateCheck.isChecked() ? maxEndDate.getTimeInMillis() : -1);
-                pickerDialog.setMaxEventCount(maxEndCountCheck.isChecked() ?
-                        Integer.valueOf(maxEndCountValue.getText().toString()) : -1);
-                pickerDialog.setDefaultEndDate(defaultEndDateCheck.isChecked(),
-                        Integer.valueOf(defaultEndDateValue.getText().toString()));
-                pickerDialog.setDefaultEndCount(Integer.valueOf(defaultEndCountValue.getText().toString()));
-                pickerDialog.setSkipOptionList(skipOptionListCheck.isChecked());
-                pickerDialog.setShowHeaderInOptionList(showHeaderCheck.isChecked());
-                pickerDialog.setShowDoneButtonInOptionList(showDoneBtnCheck.isChecked());
-                pickerDialog.setShowCancelButton(showCancelBtnCheck.isChecked());
-                pickerDialog.setRecurrence(recurrence, startDate.getTimeInMillis());
+                            Integer.valueOf(maxFreqValue.getText().toString()) : -1)
+                        .setMaxEndDate(maxEndDateCheck.isChecked() ? maxEndDate.getTimeInMillis() : -1)
+                        .setMaxEventCount(maxEndCountCheck.isChecked() ?
+                            Integer.valueOf(maxEndCountValue.getText().toString()) : -1)
+                        .setDefaultEndDate(defaultEndDateCheck.isChecked(),
+                            Integer.valueOf(defaultEndDateValue.getText().toString()))
+                        .setDefaultEndCount(Integer.valueOf(defaultEndCountValue.getText().toString()))
+                        .setEnabledModes(optionListEnabledCheck.isChecked(), creatorEnabledCheck.isChecked())
+                        .setShowHeaderInOptionList(showHeaderCheck.isChecked())
+                        .setShowDoneButtonInOptionList(showDoneBtnCheck.isChecked())
+                        .setShowCancelButton(showCancelBtnCheck.isChecked())
+                        .setRecurrence(recurrence, startDate.getTimeInMillis());
 
                 // Not necessary, but if a cancel button is shown, often dialog isn't cancelable
                 pickerDialog.setCancelable(!showCancelBtnCheck.isChecked());

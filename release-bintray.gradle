@@ -3,7 +3,7 @@
  * */
 ext {
     bintrayRepo = 'recurrence-picker'
-    bintrayName = 'com.maltaisn.recurpickerlib:recurpicker'
+    bintrayName = 'recurrence-picker'
 
     publishedGroupId = 'com.maltaisn.recurpickerlib'
     libraryName = 'recurrence-picker'
@@ -12,16 +12,16 @@ ext {
 
     libraryDescription = 'Recurrence picker view and dialog for Android'
 
-    siteUrl = 'https://github.com/maltaisn/recurrence-picker'
-    gitUrl = 'https://github.com/maltaisn/recurrence-picker.git'
+    siteUrl = 'https://github.com/maltaisn/recurpickerlib'
+    gitUrl = 'https://github.com/maltaisn/recurpickerlib.git'
 
-    libraryVersion = '1.0'
+    libraryVersion = '1.1'
 
     developerId = 'maltaisn'
 
-    licenseName = 'LGPL-3.0'
-    licenseUrl = 'https://www.gnu.org/licenses/lgpl.txt'
-    allLicenses = ["LGPL-3.0"]
+    licenseName = 'MIT'
+    licenseUrl = 'https://github.com/maltaisn/recurpickerlib/blob/master/LICENSE'
+    allLicenses = ["MIT"]
 }
 
 apply from: rootProject.file('jcenter/maven-install.gradle')
