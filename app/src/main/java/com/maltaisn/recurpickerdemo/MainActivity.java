@@ -328,17 +328,6 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         showDoneBtnCheck.setChecked(RecurrencePickerView.DEFAULT_SHOW_DONE_IN_LIST);
         showCancelBtnCheck.setChecked(RecurrencePickerView.DEFAULT_SHOW_CANCEL_BTN);
 
-        final Recurrence[] defaults = new Recurrence[]{
-                new Recurrence(0, Recurrence.DAILY).setFrequency(2),
-                new Recurrence(0, Recurrence.WEEKLY).setWeeklySetting(0b10000010),
-                new Recurrence(0, Recurrence.WEEKLY).setWeeklySetting(0b01111100),
-        };
-        final CharSequence[] titles = new CharSequence[]{
-                "Every 2 days",
-                "On weekends",
-                "On weekdays",
-        };
-
         // Set up dialog recurrence picker
         final RecurrencePickerDialog pickerDialog = RecurrencePickerDialog.newInstance();
         pickerDialog.setDateFormat(dateFormatShort, dateFormatLong);
@@ -358,7 +347,6 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                         .setShowHeaderInOptionList(showHeaderCheck.isChecked())
                         .setShowDoneButtonInOptionList(showDoneBtnCheck.isChecked())
                         .setShowCancelButton(showCancelBtnCheck.isChecked())
-                        .setOptionListDefaults(defaults, titles)
                         .setRecurrence(recurrence, startDate.getTimeInMillis());
 
                 // Not necessary, but if a cancel button is shown, often dialog isn't cancelable
