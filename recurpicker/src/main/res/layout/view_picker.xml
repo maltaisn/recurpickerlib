@@ -118,7 +118,7 @@
 
                 <!-- Layout for displaying days of week buttons, if week unit selected -->
                 <include
-                    layout="@layout/week_buttons_layout"
+                    layout="@layout/layout_week_button"
                     />
 
                 <!-- Radios for monthly options -->
@@ -202,7 +202,7 @@
         </FrameLayout>
     </ScrollView>
 
-    <!-- Done button -->
+    <!-- Done and cancel button -->
     <LinearLayout
         android:id="@+id/button_layout"
         android:layout_width="match_parent"
@@ -211,11 +211,17 @@
         android:layout_weight="0"
         >
         <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/cancel_btn"
             android:visibility="gone"
             style="?attr/cancelButtonStyle"
             />
         <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:id="@+id/done_btn"
             android:visibility="gone"
             style="?attr/doneButtonStyle"

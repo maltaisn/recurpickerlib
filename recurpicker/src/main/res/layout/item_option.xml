@@ -17,6 +17,10 @@
         />
     <ImageView
         android:id="@+id/icon_check"
+        android:layout_width="?attr/optionCheckSize"
+        android:layout_height="?attr/optionCheckSize"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_weight="0"
         style="?attr/optionCheckStyle"
         android:visibility="invisible"

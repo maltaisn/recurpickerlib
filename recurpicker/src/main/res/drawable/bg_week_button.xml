@@ -4,10 +4,10 @@
     >
     <item
         android:state_checked="true"
-        android:drawable="@drawable/week_button_checked"/>
+        android:drawable="@drawable/bg_week_button_checked"/>
     <item
         android:state_pressed="true"
-        android:drawable="@drawable/week_button_checked"/>
+        android:drawable="@drawable/bg_week_button_checked"/>
     <item
-        android:drawable="@drawable/week_button_unchecked"/>
+        android:drawable="@drawable/bg_week_button_unchecked"/>
 </selector>

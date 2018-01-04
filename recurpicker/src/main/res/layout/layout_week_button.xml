@@ -11,33 +11,44 @@
         android:paddingEnd="15dp"
         android:visibility="gone"
         >
-        <ToggleButton
+        <include
             android:id="@+id/week_btn_1"
-            style="?attr/weekButtonStyle"
+            layout="@layout/view_week_button"
             />
-        <ToggleButton
+        <include
             android:id="@+id/week_btn_2"
-            style="?attr/weekButtonStyle"
+            layout="@layout/view_week_button"
             />
-        <ToggleButton
+        <include
             android:id="@+id/week_btn_3"
-            style="?attr/weekButtonStyle"
+            layout="@layout/view_week_button"
             />
-        <ToggleButton
+        <include
             android:id="@+id/week_btn_4"
-            style="?attr/weekButtonStyle"
+            layout="@layout/view_week_button"
             />
-        <ToggleButton
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/week_button_row2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:visibility="gone"
+        >
+        <include
             android:id="@+id/week_btn_5" 
-            style="?attr/weekButtonStyle"
+            layout="@layout/view_week_button"
             />
-        <ToggleButton
+        <include
             android:id="@+id/week_btn_6" 
-            style="?attr/weekButtonStyle"
+            layout="@layout/view_week_button"
             />
-        <ToggleButton
+        <include
             android:id="@+id/week_btn_7" 
-            style="?attr/weekButtonStyle"
+            layout="@layout/view_week_button"
             />
     </LinearLayout>
 

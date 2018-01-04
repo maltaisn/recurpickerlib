@@ -10,6 +10,7 @@
         <item name="optionItemSelectedColor">?attr/colorAccent</item>
         <item name="optionItemUnselectedColor">?android:attr/textColorPrimary</item>
         <item name="optionCheckStyle">@style/OptionCheckStyle</item>
+        <item name="optionCheckSize">25dp</item>
 
         <item name="labelTextAppearance">@style/TextAppearance.AppCompat.Subhead</item>
         <item name="periodSpinnerStyle">@style/PeriodSpinnerStyle</item>
@@ -28,6 +29,7 @@
         <item name="colorWeekButtonStrokeWidth">2px</item>
         <item name="colorWeekButtonTextChecked">?android:attr/textColorPrimaryInverse</item>
         <item name="colorWeekButtonTextUnchecked">?android:attr/textColorPrimary</item>
+        <item name="weekButtonSize">50dp</item>
 
         <item name="optionListItemsText">@array/option_list_items</item>
         <item name="periodSpinnerItemsText">@array/period_spinner_items</item>
@@ -55,12 +57,8 @@
     </style>
 
     <style name="OptionCheckStyle">
-        <item name="android:layout_width">25dp</item>
-        <item name="android:layout_height">25dp</item>
         <item name="android:src">@drawable/ic_check</item>
         <item name="android:tint">?attr/colorAccent</item>
-        <item name="android:layout_marginStart">10dp</item>
-        <item name="android:layout_marginEnd">10dp</item>
     </style>
 
     <style name="PeriodSpinnerStyle">
@@ -90,30 +88,18 @@
     </style>
 
     <style name="WeekButtonStyle">
-        <item name="android:layout_width">50dp</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:layout_marginStart">4dp</item>
-        <item name="android:layout_marginEnd">4dp</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginBottom">4dp</item>
-        <item name="android:background">@drawable/week_button_drawable</item>
-        <item name="android:textColor">@color/week_button_text_color</item>
+        <item name="android:background">@drawable/bg_week_button</item>
+        <item name="android:textColor">@color/color_week_button_text</item>
         <item name="android:textAllCaps">true</item>
     </style>
     
     <style name="CancelButtonStyle">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:text">@string/cancel</item>
         <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Widget.Button</item>
     </style>
 
     <style name="DoneButtonStyle">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:text">@string/done</item>
         <item name="android:textAppearance">@style/Base.TextAppearance.AppCompat.Widget.Button</item>

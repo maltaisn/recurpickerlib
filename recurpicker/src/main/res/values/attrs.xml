@@ -13,6 +13,7 @@
         <attr name="optionItemSelectedColor" format="reference|color"/>
         <attr name="optionItemUnselectedColor" format="reference|color"/>
         <attr name="optionCheckStyle" format="reference"/>
+        <attr name="optionCheckSize" format="dimension"/>
 
         <!-- List of recurrence creator attributes -->
         <attr name="labelTextAppearance" format="reference"/>
@@ -33,6 +34,7 @@
         <attr name="colorWeekButtonStrokeWidth" format="dimension"/>
         <attr name="colorWeekButtonTextChecked" format="reference|color"/>
         <attr name="colorWeekButtonTextUnchecked" format="reference|color"/>
+        <attr name="weekButtonSize" format="dimension"/>
 
         <!-- Strings attributes -->
         <attr name="optionListItemsText" format="reference"/>
