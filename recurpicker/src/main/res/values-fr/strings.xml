@@ -6,13 +6,14 @@
 
     <string name="repeat_options">Options de répétition</string>
 
+    <string name="option_list_none">Ne pas répéter</string>
+    <string name="option_list_custom">Personnaliser…</string>
+
     <string-array name="option_list_items">
-        <item>Ne pas répéter</item>
         <item>Tous les jours</item>
         <item>Toutes les semaines</item>
         <item>Tous les mois</item>
         <item>Tous les ans</item>
-        <item>Personnaliser…</item>
     </string-array>
 
     <string-array name="period_spinner_items">

@@ -96,7 +96,7 @@ public class Recurrence implements Parcelable {
 
     /**
      * Create a recurrence from a byte array
-     * @param array byte array obtained with {@link Recurrence#}
+     * @param array byte array containing recurrence
      * @param index recurrence object position in byte array
      */
     public Recurrence(byte[] array, int index) {
@@ -209,8 +209,9 @@ public class Recurrence implements Parcelable {
 
     /**
      * If repeating weekly, sets the days of the week on which to repeat
-     * @param days bit field of Calendar.SUNDAY to Calendar.SATURDAY constants
-     *             ex: {@code int days = Calendar.SUNDAY | Calendar.FRIDAY}
+     * @param days bit field of 1 << [Calendar.SUNDAY to Calendar.SATURDAY] constants
+     *             ex: {@code int days = (1 << Calendar.SATURDAY) | (1 << Calendar.SUNDAY)}
+     *             You can also use binary literals like this 0b10000010 (saturday and sunday)
      *             If setting 0 or 1 (no days), the recurrence will become Does not repeat
      *             If setting all days and frequency is 1, the recurrence becomes daily
      *             So make sure to set frequency before weekly settings

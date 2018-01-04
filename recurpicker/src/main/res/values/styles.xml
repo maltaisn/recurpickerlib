@@ -31,18 +31,16 @@
         <item name="colorWeekButtonTextUnchecked">?android:attr/textColorPrimary</item>
         <item name="weekButtonSize">50dp</item>
 
-        <item name="optionListItemsText">@array/option_list_items</item>
         <item name="periodSpinnerItemsText">@array/period_spinner_items</item>
         <item name="endSpinnerItemsText">@array/end_spinner_items</item>
         <item name="endSpinnerItemsTextAbbr">@array/end_spinner_items_abbr</item>
         <item name="weekButtonsText">@array/days_of_week_abbr</item>
+        <item name="optionListNoneText">@string/option_list_none</item>
+        <item name="optionListCustomText">@string/option_list_custom</item>
     </style>
 
     <style name="RpOptionListTitleStyle">
-        <item name="android:paddingStart">5dp</item>
-        <item name="android:paddingEnd">5dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">10dp</item>
+        <item name="android:padding">5dp</item>
         <item name="android:text">@string/repeat_options</item>
         <item name="android:textAppearance">?attr/labelTextAppearance</item>
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>

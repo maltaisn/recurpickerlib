@@ -5,13 +5,14 @@
 
     <string name="repeat_options">Repeat options</string>
 
+    <string name="option_list_none">Does not repeat</string>
+    <string name="option_list_custom">Custom…</string>
+
     <string-array name="option_list_items">
-        <item>Does not repeat</item>
         <item>Every day</item>
         <item>Every week</item>
         <item>Every month</item>
         <item>Every year</item>
-        <item>Custom…</item>
     </string-array>
 
     <string-array name="period_spinner_items">

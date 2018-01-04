@@ -36,6 +36,8 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
     private boolean showCancelBtn = RecurrencePickerView.DEFAULT_SHOW_CANCEL_BTN;
     private int enabledPeriods = RecurrencePickerView.DEFAULT_ENABLED_PERIODS;
     private int enabledEndTypes = RecurrencePickerView.DEFAULT_ENABLED_END_TYPES;
+    private Recurrence[] optionListDefaults = null;
+    private CharSequence[] optionListDefaultsTitle = null;
 
     private static final int CREATOR_TRANSITION_DURATION = 200;
 
@@ -100,9 +102,8 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
                 handler.postDelayed(runnable, CREATOR_TRANSITION_DURATION);
             }
         });
-        if (savedInstanceState == null) {
-            newPicker.setRecurrence(recurrence, startDate)
-                    .setDateFormat(endDateFormat, optionListDateFormat)
+        if (savedInstanceState == null || picker == null) {
+            newPicker.setDateFormat(endDateFormat, optionListDateFormat)
                     .setMaxEventCount(maxEndCount)
                     .setMaxFrequency(maxFrequency)
                     .setMaxEndDate(maxEndDate)
@@ -113,7 +114,9 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
                     .setShowHeaderInOptionList(showHeaderInList)
                     .setShowCancelButton(showCancelBtn)
                     .setEnabledPeriods(enabledPeriods)
-                    .setEnabledEndTypes(enabledEndTypes);
+                    .setEnabledEndTypes(enabledEndTypes)
+                    .setOptionListDefaults(optionListDefaults, optionListDefaultsTitle)
+                    .setRecurrence(recurrence, startDate);
             newPicker.updateMode();
         } else {
             newPicker.onRestoreInstanceState(picker.onSaveInstanceState());
@@ -212,6 +215,13 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
     @Override
     public RecurrencePickerSettings setEnabledEndTypes(int types) {
         enabledEndTypes = types;
+        return this;
+    }
+
+    @Override
+    public RecurrencePickerSettings setOptionListDefaults(@Nullable Recurrence[] defaults, @Nullable CharSequence[] titles) {
+        optionListDefaults = defaults;
+        optionListDefaultsTitle = titles;
         return this;
     }
 

@@ -1,6 +1,7 @@
 package com.maltaisn.recurpicker;
 
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -79,7 +80,6 @@ public interface RecurrencePickerSettings {
     /**
      * Select which modes are enabled: default options list and recurrence creator
      * By default, both modes are enabled, and at least one of them should be
-     * Must be set before setting the recurrence
      * @param optionListEnabled whether to enable the default options list
      * @param creatorEnabled whether to enabled the recurrence creator
      */
@@ -89,7 +89,6 @@ public interface RecurrencePickerSettings {
      * Set whether to show the Done button in the first screen, the list of default recurrence options,
      * or to hide it. If shown, listener won't be called when option is clicked, only when button is.
      * By default, done button is not shown in option list.
-     * Must be set before setting the recurrence
      * @param show Whether to show it or not
      */
     RecurrencePickerSettings setShowDoneButtonInOptionList(boolean show);
@@ -131,5 +130,18 @@ public interface RecurrencePickerSettings {
      *              A quicker way would be to use binary literal ex: types = 0b111 (all types)
      */
     RecurrencePickerSettings setEnabledEndTypes(int types);
+
+    /**
+     * Change defaults in option list. Note that "Does not repeat" will always be shown.
+     * By default, a daily, weekly, monthly and yearly recurrences with frequency of 1 are used
+     * MUST be set before setting the recurrence if using the view by itself
+     * @param defaults Array of recurrence to use as defaults, leave null to use default defaults (exactly)
+     *                 or leave null to only change the titles
+     *                 You can set any start date for these recurrences because it gets changed
+     * @param titles Array of titles to use for each recurrence, leave null to use
+     *               {@link Recurrence#format(Context, DateFormat)} instead. You can also leave
+     *               specific items in array null to only format those.
+     */
+    RecurrencePickerSettings setOptionListDefaults(@Nullable Recurrence[] defaults, @Nullable CharSequence[] titles);
 
 }

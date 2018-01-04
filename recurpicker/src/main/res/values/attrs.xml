@@ -37,11 +37,12 @@
         <attr name="weekButtonSize" format="dimension"/>
 
         <!-- Strings attributes -->
-        <attr name="optionListItemsText" format="reference"/>
         <attr name="periodSpinnerItemsText" format="reference"/>
         <attr name="endSpinnerItemsText" format="reference"/>
         <attr name="endSpinnerItemsTextAbbr" format="reference"/>
         <attr name="weekButtonsText" format="reference"/>
+        <attr name="optionListNoneText" format="reference"/>
+        <attr name="optionListCustomText" format="reference"/>
     </declare-styleable>
 
 </resources>
