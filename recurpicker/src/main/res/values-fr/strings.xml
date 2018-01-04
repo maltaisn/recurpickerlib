@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="cancel">Annuler</string>
+    <string name="done">Terminé</string>
+
+    <string name="repeat_options">Options de répétition</string>
+
+    <string-array name="option_list_items">
+        <item>Ne pas répéter</item>
+        <item>Tous les jours</item>
+        <item>Toutes les semaines</item>
+        <item>Tous les mois</item>
+        <item>Tous les ans</item>
+        <item>Personnaliser…</item>
+    </string-array>
+
+    <string-array name="period_spinner_items">
+        <item>Tous les jours</item>
+        <item>Toutes les semaines</item>
+        <item>Tous les mois</item>
+        <item>Tous les ans</item>
+    </string-array>
+
+    <string name="every">Chaque</string>
+
+    <string-array name="recur_units">
+        <item>{0,choice,1#jour|1&lt;jours}</item>
+        <item>{0,choice,1#semaine|1&lt;semaines}</item>
+        <item>{0,choice,1#mois|1&lt;mois}</item>
+        <item>{0,choice,1#an|1&lt;ans}</item>
+    </string-array>
+
+    <string-array name="days_of_week_abbr">
+        <item>Dim</item>
+        <item>Lun</item>
+        <item>Mar</item>
+        <item>Mer</item>
+        <item>Jeu</item>
+        <item>Ven</item>
+        <item>Sam</item>
+    </string-array>
+
+    <!-- These are meant to be used with "repeat_monthly_same_week"
+         Make sure to correctly use the plural form if necessary
+         Case is kept the same -->
+    <string-array name="days_of_week">
+        <item>dimanches</item>
+        <item>lundis</item>
+        <item>mardis</item>
+        <item>mercredis</item>
+        <item>jeudis</item>
+        <item>vendredis</item>
+        <item>samedis</item>
+    </string-array>
+
+    <string name="repeat_monthly_same_day">le même jour chaque mois</string>
+    <string name="repeat_monthly_same_week">tous les {0} {1}</string> <!-- {0}=ordinal number ex: third, {1}=day of week -->
+    <string name="repeat_monthly_last_day">le dernier jour du mois</string>
+
+    <string-array name="end_spinner_items">
+        <item>Pour toujours</item>
+        <item>Jusqu\'à une certaine date</item>
+        <item>Pour un nombre d\'événements</item>
+    </string-array>
+
+    <string-array name="end_spinner_items_abbr">
+        <item>Toujours</item>
+        <item>Jusqu\'au</item>
+        <item>Pour</item>
+    </string-array>
+
+    <string name="event">{0,choice,1#événement|1&lt;événements}</string>
+
+    <!-- These are meant to be used with "repeat_monthly_same_week"
+         Make sure to correctly use the plural form if necessary
+         Case is kept the same -->
+    <string-array name="ordinal_numbers">
+        <item>premiers</item>
+        <item>deuxièmes</item>
+        <item>troisièmes</item>
+        <item>quatrièmes</item>
+        <item>derniers</item>
+    </string-array>
+
+    <string-array name="recur_formats">
+        <item>Pas de répétitions</item>
+        <item>À tous les {0,choice,1#jour|1&lt;{0} jours}</item> <!-- Daily, {0}=number of days -->
+        <item>À toutes les {0,choice,1#semaine|1&lt;{0} semaines}{1,choice,0#|1# on {2}}</item> <!-- Weekly, {0}=number of weeks, {1}=whether to show days list (yes=1), {2}=days of week list -->
+        <item>À tous les {0,choice,1#mois|1&lt;{0} mois}{1,choice,0#|1# ({2})}</item> <!-- Monthly, {0}=number of months, {1}=whether to show extra setting (yes=1), {2}=repeat on same day of month/on every nth day of week -->
+        <item>{0,choice,1#À toutes les années|1&lt;À tous les {0} ans}</item> <!-- Yearly, {0}=number of years -->
+    </string-array>
+
+    <string-array name="end_formats">
+        <item></item> <!-- Forever -->
+        <item>jusqu\'au {0}</item> <!-- Until a date -->
+        <item>pour {0,choice,1#un événement|1&lt;{0} événements}</item> <!-- For a number of events -->
+        <item>jusqu\'au {0} ou pour {1,choice,1#un événement|1&lt;{1} événements}</item> <!-- Until a date or for a number of events, the one that comes first -->
+    </string-array>
+
+    <!-- Separator between each days of week when listing them
+         Ex: Sun, Tue, Fri, Sat
+         Use \u0020 for regular space, trailing whitespace get removed -->
+    <string name="days_of_week_list_sep">,\u0020</string>
+
+    <!-- Instead of listing all days when all of them are check, use this
+         This only happens if frequency > 1 otherwise it gets converted to a daily recurrence -->
+    <string name="days_of_week_list_all">à tous les jours de la semaine</string>
+
+    <!-- How to concatenate recurrence and end date/count when formatting -->
+    <string name="merge_format">{0}; {1}</string>
+
+</resources>

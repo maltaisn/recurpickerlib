@@ -714,7 +714,7 @@ public class Recurrence implements Parcelable {
     String getSameDayOfSameWeekString(Context context) {
         String[] daysOfWeek = context.getResources().getStringArray(R.array.days_of_week);
         String[] ordinalNbs = context.getResources().getStringArray(R.array.ordinal_numbers);
-        String weekOrd = ordinalNbs[startDate.get(Calendar.DAY_OF_WEEK_IN_MONTH)-1].toLowerCase();
+        String weekOrd = ordinalNbs[startDate.get(Calendar.DAY_OF_WEEK_IN_MONTH)-1];
         String dayOfWeek = daysOfWeek[startDate.get(Calendar.DAY_OF_WEEK)-1];
         return MessageFormat.format(context.getString(R.string.repeat_monthly_same_week), weekOrd, dayOfWeek);
     }

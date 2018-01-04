@@ -40,6 +40,9 @@
         <item>Sat</item>
     </string-array>
 
+    <!-- These are meant to be used with "repeat_monthly_same_week"
+         Make sure to correctly use the plural form if necessary
+         Case is kept the same -->
     <string-array name="days_of_week">
         <item>Sunday</item>
         <item>Monday</item>
@@ -68,12 +71,15 @@
 
     <string name="event">{0,choice,1#event|1&lt;events}</string>
 
+    <!-- These are meant to be used with "repeat_monthly_same_week"
+         Make sure to correctly use the plural form if necessary
+         Case is kept the same -->
     <string-array name="ordinal_numbers">
-        <item>First</item>
-        <item>Second</item>
-        <item>Third</item>
-        <item>Fourth</item>
-        <item>Last</item>
+        <item>first</item>
+        <item>second</item>
+        <item>third</item>
+        <item>fourth</item>
+        <item>last</item>
     </string-array>
 
     <string-array name="recur_formats">
