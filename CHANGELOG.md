@@ -1,3 +1,8 @@
+#### v1.2.1
+- Made recurrence object byte array length public
+- Removed `RecurrencePickerDialog.newInstance()`, it was useless
+- Renamed dialog callbacks to be less general ex. onCancelled becomes onRecurrencePickerCancelled
+
 ## v1.2
 - Setting to change default recurrences in list
 - Renamed some layout files, attributes and styles to follow conventions
