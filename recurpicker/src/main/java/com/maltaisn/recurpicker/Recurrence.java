@@ -20,7 +20,7 @@ public class Recurrence implements Parcelable {
 
     private static final String TAG = Recurrence.class.getSimpleName();
 
-    private static final int BYTE_ARRAY_LENGTH = 41;
+    public static final int BYTE_ARRAY_LENGTH = 41;
     private static final int BYTE_ARRAY_KEY = 100;
 
     public static final int NONE = -1;

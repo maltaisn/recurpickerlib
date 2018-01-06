@@ -41,13 +41,6 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
 
     private static final int CREATOR_TRANSITION_DURATION = 200;
 
-    /**
-     * Create a dialog to customize the recurrence
-     * @return the created dialog
-     */
-    public static RecurrencePickerDialog newInstance() {
-        return new RecurrencePickerDialog();
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,7 +64,7 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
             public void onRecurrenceSelected(Recurrence r) {
                 dismiss();
                 try {
-                    ((RecurrenceSelectedCallback) getActivity()).onRecurrenceSelected(r);
+                    ((RecurrenceSelectedCallback) getActivity()).onRecurrencePickerSelected(r);
                 } catch (Exception e) {
                     // Interface callback is not implemented in activity
                 }
@@ -81,7 +74,7 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
             public void onCancelled(Recurrence r) {
                 dismiss();
                 try {
-                    ((RecurrenceSelectedCallback) getActivity()).onCancelled(r);
+                    ((RecurrenceSelectedCallback) getActivity()).onRecurrencePickerCancelled(r);
                 } catch (Exception e) {
                     // Interface callback is not implemented in activity
                 }
@@ -228,7 +221,7 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
     @Override
     public void onCancel(DialogInterface dialog) {
         try {
-            ((RecurrenceSelectedCallback) getActivity()).onCancelled(recurrence);
+            ((RecurrenceSelectedCallback) getActivity()).onRecurrencePickerCancelled(recurrence);
         } catch (Exception e) {
             // Interface callback is not implemented in activity
         }
@@ -245,8 +238,8 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
     }
 
     public interface RecurrenceSelectedCallback {
-        void onRecurrenceSelected(Recurrence r);
-        void onCancelled(Recurrence r);
+        void onRecurrencePickerSelected(Recurrence r);
+        void onRecurrencePickerCancelled(Recurrence r);
     }
 
 }

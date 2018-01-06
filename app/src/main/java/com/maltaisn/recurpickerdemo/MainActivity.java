@@ -329,7 +329,7 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         showCancelBtnCheck.setChecked(RecurrencePickerView.DEFAULT_SHOW_CANCEL_BTN);
 
         // Set up dialog recurrence picker
-        final RecurrencePickerDialog pickerDialog = RecurrencePickerDialog.newInstance();
+        final RecurrencePickerDialog pickerDialog = new RecurrencePickerDialog();
         pickerDialog.setDateFormat(dateFormatShort, dateFormatLong);
         dialogPickerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -479,12 +479,12 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
     }
 
     @Override
-    public void onRecurrenceSelected(Recurrence r) {
+    public void onRecurrencePickerSelected(Recurrence r) {
         selectRecurrence(r);
     }
 
     @Override
-    public void onCancelled(Recurrence r) {
+    public void onRecurrencePickerCancelled(Recurrence r) {
         // Nothing happens
     }
 }
