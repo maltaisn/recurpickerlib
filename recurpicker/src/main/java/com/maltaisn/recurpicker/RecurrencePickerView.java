@@ -4,6 +4,7 @@ package com.maltaisn.recurpicker;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -43,6 +44,8 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     private boolean initialized;
 
+    private boolean isInDialog;
+
     private RelativeLayout headerLayout;
     private TextView headerTitle;
     private Spinner recurPeriodSpin;
@@ -62,10 +65,15 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     private LinearLayout endLayout;
     private Spinner endTypeSpin;
+    private EditText endDateEdit;
     private EditText endCountEdit;
-    
+
     private Button cancelBtn;
     private Button doneBtn;
+
+    private DatePickerDialog dateDialog;
+    private boolean dateDialogShown;
+    private Runnable restoreDateDialogRunnable;
 
     private int[] optionItemTextColor;
 
@@ -194,7 +202,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
         endLayout = findViewById(R.id.recur_end_layout);
         endTypeSpin = findViewById(R.id.spin_end_type);
-        final EditText endDateEdit = findViewById(R.id.edit_end_date);
+        endDateEdit = findViewById(R.id.edit_end_date);
         endCountEdit = findViewById(R.id.edit_end_count);
         final TextView endValueLabel = findViewById(R.id.text_end_value);
 
@@ -393,16 +401,9 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         endDateEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog dialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        endDate.set(year, month, day);
-                        endDateEdit.setText(endDateFormat.format(endDate.getTime()));
-                    }
-                }, endDate.get(Calendar.YEAR), endDate.get(Calendar.MONTH), endDate.get(Calendar.DAY_OF_MONTH));
-                dialog.getDatePicker().setMinDate(startDate);  // Event cannot stop recurring before it begins
-                if (maxEndDate != -1) dialog.getDatePicker().setMaxDate(maxEndDate);
-                dialog.show();
+                showDateDialog(endDate.get(Calendar.YEAR),
+                        endDate.get(Calendar.MONTH),
+                        endDate.get(Calendar.DAY_OF_MONTH));
             }
         });
 
@@ -713,6 +714,47 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         newItem.findViewById(R.id.icon_check).setVisibility(View.VISIBLE);
 
         selectedOption = pos;
+    }
+
+    private void showDateDialog(int day, int month, int year) {
+        dateDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                endDate.set(year, month, day);
+                endDateEdit.setText(endDateFormat.format(endDate.getTime()));
+            }
+        }, year, month, day);
+        dateDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                dateDialogShown = false;
+            }
+        });
+
+        dateDialog.getDatePicker().setMinDate(startDate);  // Event cannot stop recurring before it begins
+        if (maxEndDate != -1) dateDialog.getDatePicker().setMaxDate(maxEndDate);
+        dateDialog.setTitle(null);  // Fixes issue with date being set as title when max date is set
+
+        dateDialog.show();
+        dateDialogShown = true;
+    }
+
+    /**
+     * Call this method to notice the view that it is in a dialog
+     * When restoring, the view needs to know when to show the date dialog (if it was opened)
+     * to prevent it from being displayed being its parent dialog.
+     * @param isInDialog whether in a dialog or not
+     */
+    public void setIsInDialog(boolean isInDialog) {
+        this.isInDialog = isInDialog;
+    }
+
+    /**
+     * Call this method in your dialog's onShow listener to notice the
+     * view that it can restore the date dialog.
+     */
+    public void showDateDialogIfNeeded() {
+        if (dateDialogShown) restoreDateDialogRunnable.run();
     }
 
     /**
@@ -1045,6 +1087,13 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         if (optionListDefaultsTitle != null)
             bundle.putCharSequenceArray("optionListDefaultsTitle", optionListDefaultsTitle);
 
+        bundle.putBoolean("dateDialogShown", dateDialogShown);
+        if (dateDialogShown) {
+            bundle.putInt("dateDialogDay", dateDialog.getDatePicker().getDayOfMonth());
+            bundle.putInt("dateDialogMonth", dateDialog.getDatePicker().getMonth());
+            bundle.putInt("dateDialogYear", dateDialog.getDatePicker().getYear());
+        }
+
         return bundle;
     }
 
@@ -1053,7 +1102,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         if (state instanceof Bundle) {
             initialized = true;
 
-            Bundle bundle = (Bundle) state;
+            final Bundle bundle = (Bundle) state;
 
             creatorShown = bundle.getBoolean("creatorShown");
             recurrence = bundle.getParcelable("recurrence");
@@ -1080,6 +1129,22 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
             setOptionListDefaults((Recurrence[]) bundle.getParcelableArray("optionListDefaults"),
                     bundle.getCharSequenceArray("optionListDefaultsTitle"));
+
+            dateDialogShown = bundle.getBoolean("dateDialogShown");
+            if (dateDialogShown) {
+                restoreDateDialogRunnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        int day = bundle.getInt("dateDialogDay");
+                        int month = bundle.getInt("dateDialogMonth");
+                        int year = bundle.getInt("dateDialogYear");
+                        showDateDialog(day, month, year);
+                    }
+                };
+
+                // If not in a dialog, no need to wait before showing the date dialog
+                if (!isInDialog) restoreDateDialogRunnable.run();
+            }
 
             // Change mode, select recurrence, show header and done button if needed
             updateMode();

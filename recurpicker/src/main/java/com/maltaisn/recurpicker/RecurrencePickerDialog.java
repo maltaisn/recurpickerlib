@@ -59,6 +59,8 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
 
         RecurrencePickerView newPicker = (RecurrencePickerView) LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_picker, null);
+        newPicker.setIsInDialog(true);
+
         newPicker.setOnRecurrenceSelectedListener(new RecurrencePickerView.OnRecurrenceSelectedListener() {
             @Override
             public void onRecurrenceSelected(Recurrence r) {
@@ -80,6 +82,7 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
                 }
             }
         });
+
         newPicker.setOnCreatorShownListener(new RecurrencePickerView.OnCreatorShownListener() {
             @Override
             public void onCreatorShown() {
@@ -95,6 +98,7 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
                 handler.postDelayed(runnable, CREATOR_TRANSITION_DURATION);
             }
         });
+
         if (savedInstanceState == null || picker == null) {
             newPicker.setDateFormat(endDateFormat, optionListDateFormat)
                     .setMaxEventCount(maxEndCount)
@@ -117,7 +121,15 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
         picker = newPicker;
         builder.setView(picker);
 
-        return builder.create();
+        Dialog dialog = builder.create();
+        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                picker.showDateDialogIfNeeded();
+            }
+        });
+
+        return dialog;
     }
 
     /**
