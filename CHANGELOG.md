@@ -1,3 +1,6 @@
+#### v1.2.2
+- Made end date picker dialog be restored on configuration change.
+
 #### v1.2.1
 - Made recurrence object byte array length public
 - Removed `RecurrencePickerDialog.newInstance()`, it was useless
