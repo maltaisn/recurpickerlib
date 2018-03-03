@@ -18,7 +18,6 @@ import com.maltaisn.recurpicker.Recurrence;
 import com.maltaisn.recurpicker.RecurrencePickerDialog;
 import com.maltaisn.recurpicker.RecurrencePickerView;
 
-import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;

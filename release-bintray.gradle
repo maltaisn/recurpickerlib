@@ -15,13 +15,13 @@ ext {
     siteUrl = 'https://github.com/maltaisn/recurpickerlib'
     gitUrl = 'https://github.com/maltaisn/recurpickerlib.git'
 
-    libraryVersion = '1.2.2'
+    libraryVersion = '1.2.3'
 
     developerId = 'maltaisn'
 
-    licenseName = 'MIT'
-    licenseUrl = 'https://github.com/maltaisn/recurpickerlib/blob/master/LICENSE'
-    allLicenses = ["MIT"]
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
 }
 
 apply from: rootProject.file('jcenter/maven-install.gradle')

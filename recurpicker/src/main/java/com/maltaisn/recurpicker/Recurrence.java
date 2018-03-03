@@ -4,8 +4,11 @@ package com.maltaisn.recurpicker;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.nio.ByteBuffer;
 import java.text.DateFormat;
 import java.text.MessageFormat;
@@ -16,12 +19,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+@SuppressWarnings({"WeakerAccess", "UnusedReturnValue", "unused"})
 public class Recurrence implements Parcelable {
 
     private static final String TAG = Recurrence.class.getSimpleName();
 
     public static final int BYTE_ARRAY_LENGTH = 41;
-    private static final int BYTE_ARRAY_KEY = 100;
+
+    private static final int VERSION_1 = 100;
+    private static final int VERSION = VERSION_1;
 
     public static final int NONE = -1;
     public static final int DAILY = 0;
@@ -29,14 +35,27 @@ public class Recurrence implements Parcelable {
     public static final int MONTHLY = 2;
     public static final int YEARLY = 3;
 
-    public static final int SAME_DAY_OF_MONTH = 0;
-    public static final int SAME_DAY_OF_WEEK = 1;
-    public static final int LAST_DAY_OF_MONTH = 2;
+    @IntDef(value={NONE, DAILY, WEEKLY, MONTHLY, YEARLY})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface RecurrencePeriod {}
 
     public static final int END_NEVER = 0;
     public static final int END_BY_DATE = 1;
     public static final int END_BY_COUNT = 2;
     public static final int END_BY_DATE_OR_COUNT = 3;
+
+    @IntDef(value={END_NEVER, END_BY_DATE, END_BY_COUNT, END_BY_DATE_OR_COUNT})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface RecurrenceEndType {}
+
+    public static final int SAME_DAY_OF_MONTH = 0;
+    public static final int SAME_DAY_OF_WEEK = 1;
+    public static final int LAST_DAY_OF_MONTH = 2;
+
+    @IntDef(value={SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK, LAST_DAY_OF_MONTH})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface RecurrenceMonthlySetting {}
+
 
     public static final int EVERY_DAY_OF_WEEK = 0b11111110;
 
@@ -66,7 +85,7 @@ public class Recurrence implements Parcelable {
      *               If setting weekly period, recurrence will happen on same day of week as start date
      *               If setting monthly period, recurrence will happen on same day of month as start date
      */
-    public Recurrence(long start, int period) {
+    public Recurrence(long start, @RecurrencePeriod int period) {
         startDate = Calendar.getInstance();
         startDate.setTimeInMillis(start);
         setPeriod(period, true);
@@ -92,40 +111,6 @@ public class Recurrence implements Parcelable {
             endDate.setTimeInMillis(r.endDate.getTimeInMillis());
         }
         endCount = r.endCount;
-    }
-
-    /**
-     * Create a recurrence from a byte array
-     * @param array byte array containing recurrence
-     * @param index recurrence object position in byte array
-     */
-    public Recurrence(byte[] array, int index) {
-        if (array.length < BYTE_ARRAY_LENGTH) {
-            throw new IllegalArgumentException("Byte array does not represent a Recurrence object");
-        } else if (index < 0 || index > array.length - BYTE_ARRAY_LENGTH) {
-            throw new IllegalArgumentException("Byte array index is invalid");
-        }
-
-        ByteBuffer bb = ByteBuffer.allocate(BYTE_ARRAY_LENGTH);
-        bb.put(array, index, BYTE_ARRAY_LENGTH);
-        bb.position(0);
-        if (bb.getInt() != BYTE_ARRAY_KEY) {
-            throw new IllegalArgumentException("Byte array does not represent a Recurrence object");
-        }
-
-        isDefault = bb.get() == 1;
-        startDate = Calendar.getInstance();
-        startDate.setTimeInMillis(bb.getLong());
-        period = bb.getInt();
-        frequency = bb.getInt();
-        daySetting = bb.getInt();
-        endType = bb.getInt();
-        endCount = bb.getInt();
-        long end = bb.getLong();
-        if (end != 0) {
-            endDate = Calendar.getInstance();
-            endDate.setTimeInMillis(end);
-        }
     }
 
     /**
@@ -158,11 +143,11 @@ public class Recurrence implements Parcelable {
      *               If setting MONTHLY, recurrence will happen on same day of month as start date
      * @return the recurrence
      */
-    public Recurrence setPeriod(int period) {
+    public Recurrence setPeriod(@RecurrencePeriod int period) {
         return setPeriod(period, false);
     }
 
-    private Recurrence setPeriod(int period, boolean force) {
+    private Recurrence setPeriod(@RecurrencePeriod int period, boolean force) {
         if (period < NONE || period > YEARLY) {
             throw new IllegalArgumentException("Period must be one of Recurrence.NONE, DAILY, WEEKLY, MONTHLY or YEARLY");
         }
@@ -243,7 +228,7 @@ public class Recurrence implements Parcelable {
      * @param option either SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK or LAST_DAY_OF_MONTH
      * @return the recurrence
      */
-    public Recurrence setMonthlySetting(int option) {
+    public Recurrence setMonthlySetting(@RecurrenceMonthlySetting int option) {
         if (option < SAME_DAY_OF_MONTH || option > LAST_DAY_OF_MONTH) {
             throw new IllegalArgumentException("Monthly setting isn't one of Recurrence.SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK or LAST_DAY_OF_MONTH");
         }
@@ -275,6 +260,7 @@ public class Recurrence implements Parcelable {
      */
     public Recurrence setEndByDate(long date) {
         if (period == NONE) return this;
+
         endType = END_BY_DATE;
         if (endDate == null) endDate = Calendar.getInstance();
         endDate.setTimeInMillis(date);
@@ -290,11 +276,9 @@ public class Recurrence implements Parcelable {
      * @return the recurrence
      */
     public Recurrence setEndByCount(int count) {
-        if (count < 1) {
-            throw new IllegalArgumentException("End count must be 1 or greater");
-        }
-
         if (period == NONE) return this;
+        if (count < 1) setEndNever();
+
         endType = END_BY_COUNT;
         endCount = count;
 
@@ -310,11 +294,9 @@ public class Recurrence implements Parcelable {
      * @return the recurrence
      */
     public Recurrence setEndByDateOrCount(long date, int count) {
-        if (count < 1) {
-            throw new IllegalArgumentException("End count must be 1 or greater");
-        }
-
         if (period == NONE) return this;
+        if (count < 1) setEndByDate(date);
+
         endType = END_BY_DATE_OR_COUNT;
         if (endDate == null) endDate = Calendar.getInstance();
         endDate.setTimeInMillis(date);
@@ -363,7 +345,8 @@ public class Recurrence implements Parcelable {
      * Gets the period of the recurrence
      * @return either NONE, DAILY, WEEKLY, MONTHLY or YEARLY
      */
-    public int getPeriod() {
+
+    public @RecurrencePeriod int getPeriod() {
         return period;
     }
 
@@ -391,7 +374,7 @@ public class Recurrence implements Parcelable {
      * Gets the end type of the recurrence
      * @return either END_NEVER, END_BY_DATE, END_BY_COUNT or END_BY_DATE_OR_COUNT
      */
-    public int getEndType() {
+    public @RecurrenceEndType int getEndType() {
         return endType;
     }
 
@@ -621,9 +604,48 @@ public class Recurrence implements Parcelable {
         return result;
     }
 
+    /**
+     * Create a recurrence from a byte array
+     * @param array byte array containing recurrence
+     * @param index recurrence object position in byte array
+     */
+    public Recurrence(byte[] array, int index) {
+        if (array.length < BYTE_ARRAY_LENGTH) {
+            throw new IllegalArgumentException("Byte array does not represent a valid Recurrence object");
+        } else if (index < 0 || index > array.length - BYTE_ARRAY_LENGTH) {
+            throw new IllegalArgumentException("Byte array index is invalid");
+        }
+
+        ByteBuffer bb = ByteBuffer.allocate(BYTE_ARRAY_LENGTH);
+        bb.put(array, index, BYTE_ARRAY_LENGTH);
+        bb.position(0);
+
+        if (bb.getInt() != VERSION) {
+            throw new IllegalArgumentException("Byte array does not represent a valid Recurrence object");
+        }
+
+        isDefault = bb.get() == 1;
+        startDate = Calendar.getInstance();
+        startDate.setTimeInMillis(bb.getLong());
+        period = bb.getInt();
+        frequency = bb.getInt();
+        daySetting = bb.getInt();
+        endType = bb.getInt();
+        endCount = bb.getInt();
+        long end = bb.getLong();
+        if (end != 0) {
+            endDate = Calendar.getInstance();
+            endDate.setTimeInMillis(end);
+        }
+    }
+
+    /**
+     * Serialize recurrence into a byte array with length BYTE_ARRAY_LENGTH
+     * @return the byte array containing the serialized recurrence
+     */
     public byte[] toByteArray() {
         ByteBuffer bb = ByteBuffer.allocate(BYTE_ARRAY_LENGTH);
-        bb.putInt(BYTE_ARRAY_KEY);
+        bb.putInt(VERSION);
         bb.put(isDefault ? (byte) 1 : 0);
         bb.putLong(startDate.getTimeInMillis());
         bb.putInt(period);
@@ -728,7 +750,7 @@ public class Recurrence implements Parcelable {
      */
     public static boolean isOnSameDay(@NonNull Calendar c1, @NonNull Calendar c2) {
         return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
-                c1.get(Calendar.DAY_OF_YEAR) >= c2.get(Calendar.DAY_OF_YEAR);
+                c1.get(Calendar.DAY_OF_YEAR) == c2.get(Calendar.DAY_OF_YEAR);
     }
 
     private static int getDaysInCalendar(@NonNull Calendar cal) {
