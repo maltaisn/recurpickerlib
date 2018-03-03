@@ -1,3 +1,9 @@
+#### v1.2.3
+- Fixed `Recurrence.isOnSameDay` returning wrong result
+- Changed target build API to 27
+- Change license (again) to Apache 2.0
+- Added IntDef annotations for recurrence periods, end types and monthly settings
+
 #### v1.2.2
 - Made end date picker dialog be restored on configuration change.
 
