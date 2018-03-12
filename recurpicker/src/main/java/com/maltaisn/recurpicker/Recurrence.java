@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) Nicolas Maltais
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package com.maltaisn.recurpicker;
 
 
@@ -540,7 +561,7 @@ public class Recurrence implements Parcelable {
     public String format(@NonNull Context context, @NonNull DateFormat dateFormat) {
 
         // Generate first part of the text -> ex: Repeats every 2 days
-        String[] recurFormats = context.getResources().getStringArray(R.array.recur_formats);
+        String[] recurFormats = context.getResources().getStringArray(R.array.rp_recur_formats);
         String recurFormat;
         if (period == NONE) {
             recurFormat = recurFormats[0];  // Does not repeat
@@ -554,10 +575,10 @@ public class Recurrence implements Parcelable {
                 // Make a list of days of week
                 dayList = new StringBuilder();
                 if (daySetting == EVERY_DAY_OF_WEEK) {
-                    dayList.append(context.getString(R.string.days_of_week_list_all));
+                    dayList.append(context.getString(R.string.rp_days_of_week_list_all));
                 } else {
-                    String[] daysAbbr = context.getResources().getStringArray(R.array.days_of_week_abbr);
-                    String listSep = context.getString(R.string.days_of_week_list_sep);
+                    String[] daysAbbr = context.getResources().getStringArray(R.array.rp_days_of_week_abbr);
+                    String listSep = context.getString(R.string.rp_days_of_week_list_sep);
                     for (int day = 1; day <= 7; day++) {
                         if (isRepeatedOnDayOfWeek(day)) {
                             dayList.append(daysAbbr[day - 1]);
@@ -571,9 +592,9 @@ public class Recurrence implements Parcelable {
 
         } else if (period == MONTHLY) {
             String when = "";
-            if (!isDefault && daySetting == SAME_DAY_OF_MONTH) when = context.getString(R.string.repeat_monthly_same_day);
+            if (!isDefault && daySetting == SAME_DAY_OF_MONTH) when = context.getString(R.string.rp_repeat_monthly_same_day);
             else if (daySetting == SAME_DAY_OF_WEEK) when = getSameDayOfSameWeekString(context);
-            else if (daySetting == LAST_DAY_OF_MONTH) when = context.getString(R.string.repeat_monthly_last_day);
+            else if (daySetting == LAST_DAY_OF_MONTH) when = context.getString(R.string.rp_repeat_monthly_last_day);
 
             recurFormat = MessageFormat.format(recurFormats[3], frequency, when.isEmpty() ? 0 : 1, when);
 
@@ -582,7 +603,7 @@ public class Recurrence implements Parcelable {
         }
 
         // Generate second part of the text (how recurrence ends) -> ex: until 31-12-2017
-        String[] endFormats = context.getResources().getStringArray(R.array.end_formats);
+        String[] endFormats = context.getResources().getStringArray(R.array.rp_end_formats);
         String endFormat;
         if (endType == END_NEVER) {
             endFormat = endFormats[endType];
@@ -598,7 +619,7 @@ public class Recurrence implements Parcelable {
         if (endFormat.isEmpty()) {
             result = recurFormat;
         } else {
-            result = MessageFormat.format(context.getString(R.string.merge_format), recurFormat, endFormat);
+            result = MessageFormat.format(context.getString(R.string.rp_merge_format), recurFormat, endFormat);
         }
 
         return result;
@@ -735,11 +756,11 @@ public class Recurrence implements Parcelable {
     // Get the text for a date to display on a monthly recurrence repeated on the same day of week of same week
     // ex: "on third Sunday" or "on last Friday"
     String getSameDayOfSameWeekString(Context context) {
-        String[] daysOfWeek = context.getResources().getStringArray(R.array.days_of_week);
-        String[] ordinalNbs = context.getResources().getStringArray(R.array.ordinal_numbers);
+        String[] daysOfWeek = context.getResources().getStringArray(R.array.rp_days_of_week);
+        String[] ordinalNbs = context.getResources().getStringArray(R.array.rp_ordinal_numbers);
         String weekOrd = ordinalNbs[startDate.get(Calendar.DAY_OF_WEEK_IN_MONTH)-1];
         String dayOfWeek = daysOfWeek[startDate.get(Calendar.DAY_OF_WEEK)-1];
-        return MessageFormat.format(context.getString(R.string.repeat_monthly_same_week), weekOrd, dayOfWeek);
+        return MessageFormat.format(context.getString(R.string.rp_repeat_monthly_same_week), weekOrd, dayOfWeek);
     }
 
     /**

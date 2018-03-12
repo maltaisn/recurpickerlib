@@ -5,7 +5,7 @@ ext {
     bintrayRepo = 'recurrence-picker'
     bintrayName = 'recurrence-picker'
 
-    publishedGroupId = 'com.maltaisn.recurpickerlib'
+    publishedGroupId = 'com.maltaisn'
     libraryName = 'recurrence-picker'
     artifact = 'recurpicker'
     packagingType = 'jar'
@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/maltaisn/recurpickerlib'
     gitUrl = 'https://github.com/maltaisn/recurpickerlib.git'
 
-    libraryVersion = '1.2.3'
+    libraryVersion = '1.2.4'
 
     developerId = 'maltaisn'
 

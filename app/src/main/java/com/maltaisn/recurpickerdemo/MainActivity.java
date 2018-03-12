@@ -1,8 +1,29 @@
+/*
+ * Copyright (c) Nicolas Maltais
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package com.maltaisn.recurpickerdemo;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -27,7 +48,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements RecurrencePickerDialog.RecurrenceSelectedCallback {
+public class MainActivity extends Activity implements RecurrencePickerDialog.RecurrenceSelectedCallback {
 
     private CheckBox maxFreqCheck;
     private CheckBox maxEndCountCheck;
@@ -142,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 updateDialogPickerBtnEnabled();
             }
         });
-        maxFreqCheck.setChecked(RecurrencePickerView.DEFAULT_MAX_FREQUENCY != -1);
+        maxFreqCheck.setChecked(true);
         maxFreqValue.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -158,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 if (freq == 0) maxFreqValue.getText().replace(0, 1, "1");
             }
         });
-        maxFreqValue.setText(String.valueOf(RecurrencePickerView.DEFAULT_MAX_FREQUENCY));
+        maxFreqValue.setText(String.valueOf(99));
         maxFreqValue.setEnabled(maxFreqCheck.isChecked());
 
         // Max end count views
@@ -169,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 updateDialogPickerBtnEnabled();
             }
         });
-        maxEndCountCheck.setChecked(RecurrencePickerView.DEFAULT_MAX_END_COUNT != -1);
+        maxEndCountCheck.setChecked(true);
         maxEndCountValue.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -194,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 }
             }
         });
-        maxEndCountValue.setText(String.valueOf(RecurrencePickerView.DEFAULT_MAX_END_COUNT));
+        maxEndCountValue.setText(String.valueOf(999));
         maxEndCountValue.setEnabled(maxEndCountCheck.isChecked());
 
         // Max end date picker edit text
@@ -214,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 }
             }
         });
-        maxEndDateCheck.setChecked(RecurrencePickerView.DEFAULT_MAX_END_DATE != -1);
+        maxEndDateCheck.setChecked(false);
         if (!maxEndDateCheck.isChecked()) maxEndDateValue.setText(getString(R.string.max_end_date_none));
         maxEndDateValue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,12 +253,12 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         });
         maxEndDateValue.setEnabled(maxEndDateCheck.isChecked());
         if (maxEndDateCheck.isChecked()) {
-            maxEndDate.setTimeInMillis(RecurrencePickerView.DEFAULT_MAX_END_DATE);
+            maxEndDate.setTimeInMillis(-1);
             maxEndCountValue.setText(dateFormatLong.format(maxEndDate.getTime()));
         }
 
         // Default end date views
-        defaultEndDateCheck.setChecked(RecurrencePickerView.DEFAULT_END_DATE_USE_PERIOD);
+        defaultEndDateCheck.setChecked(true);
         defaultEndDateCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -269,9 +290,9 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                         R.string.default_end_date_periods : R.string.default_end_date_days), count));
             }
         });
-        defaultEndDateValue.setText(String.valueOf(RecurrencePickerView.DEFAULT_END_DATE_INTERVAL));
+        defaultEndDateValue.setText(String.valueOf(3));
         defaultEndDateUnit.setText(MessageFormat.format(getString(defaultEndDateCheck.isChecked() ?
-                R.string.default_end_date_periods : R.string.default_end_date_days), RecurrencePickerView.DEFAULT_END_DATE_INTERVAL));
+                R.string.default_end_date_periods : R.string.default_end_date_days), 3));
 
         // Default end count view
         defaultEndCountValue.addTextChangedListener(new TextWatcher() {
@@ -299,10 +320,10 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 }
             }
         });
-        defaultEndCountValue.setText(String.valueOf(RecurrencePickerView.DEFAULT_END_COUNT));
+        defaultEndCountValue.setText(String.valueOf(5));
 
         // Set up checkbox options
-        optionListEnabledCheck.setChecked(RecurrencePickerView.DEFAULT_OPTION_LIST_ENABLED);
+        optionListEnabledCheck.setChecked(true);
         optionListEnabledCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -312,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 }
             }
         });
-        creatorEnabledCheck.setChecked(RecurrencePickerView.DEFAULT_CREATOR_ENABLED);
+        creatorEnabledCheck.setChecked(true);
         creatorEnabledCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -323,9 +344,9 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
             }
         });
 
-        showHeaderCheck.setChecked(RecurrencePickerView.DEFAULT_SHOW_HEADER_IN_LIST);
-        showDoneBtnCheck.setChecked(RecurrencePickerView.DEFAULT_SHOW_DONE_IN_LIST);
-        showCancelBtnCheck.setChecked(RecurrencePickerView.DEFAULT_SHOW_CANCEL_BTN);
+        showHeaderCheck.setChecked(true);
+        showDoneBtnCheck.setChecked(false);
+        showCancelBtnCheck.setChecked(false);
 
         // Set up dialog recurrence picker
         final RecurrencePickerDialog pickerDialog = new RecurrencePickerDialog();

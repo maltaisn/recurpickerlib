@@ -8,10 +8,10 @@
         android:height="50dp"
         />
     <solid
-        android:color="?attr/colorWeekButtonUnchecked"
+        android:color="?attr/rpColorWeekButtonUnchecked"
         />
     <stroke
-        android:width="?attr/colorWeekButtonStrokeWidth"
-        android:color="?attr/colorWeekButtonStroke"
+        android:width="?attr/rpColorWeekButtonStrokeWidth"
+        android:color="?attr/rpColorWeekButtonStroke"
         />
 </shape>

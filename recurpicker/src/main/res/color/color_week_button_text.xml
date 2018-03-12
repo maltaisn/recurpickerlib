@@ -4,13 +4,13 @@
     >
     <item
         android:state_checked="true"
-        android:color="?attr/colorWeekButtonTextChecked"
+        android:color="?attr/rpColorWeekButtonTextChecked"
         />
     <item
         android:state_pressed="true"
-        android:color="?attr/colorWeekButtonTextChecked"
+        android:color="?attr/rpColorWeekButtonTextChecked"
         />
     <item
-        android:color="?attr/colorWeekButtonTextUnchecked"
+        android:color="?attr/rpColorWeekButtonTextUnchecked"
         />
 </selector>

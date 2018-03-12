@@ -1,37 +1,37 @@
 <resources>
 
-    <string name="cancel">Cancel</string>
-    <string name="done">Done</string>
+    <string name="rp_cancel">Cancel</string>
+    <string name="rp_done">Done</string>
 
-    <string name="repeat_options">Repeat options</string>
+    <string name="rp_repeat_options">Repeat options</string>
 
-    <string name="option_list_none">Does not repeat</string>
-    <string name="option_list_custom">Custom…</string>
+    <string name="rp_option_list_none">Does not repeat</string>
+    <string name="rp_option_list_custom">Custom…</string>
 
-    <string-array name="option_list_items">
+    <string-array name="rp_option_list_items">
         <item>Every day</item>
         <item>Every week</item>
         <item>Every month</item>
         <item>Every year</item>
     </string-array>
 
-    <string-array name="period_spinner_items">
+    <string-array name="rp_period_spinner_items">
         <item>Repeat daily</item>
         <item>Repeat weekly</item>
         <item>Repeat monthly</item>
         <item>Repeat yearly</item>
     </string-array>
 
-    <string name="every">Every</string>
+    <string name="rp_every">Every</string>
 
-    <string-array name="recur_units">
+    <string-array name="rp_recur_units">
         <item>{0,choice,1#day|1&lt;days}</item>
         <item>{0,choice,1#week|1&lt;weeks}</item>
         <item>{0,choice,1#month|1&lt;months}</item>
         <item>{0,choice,1#year|1&lt;years}</item>
     </string-array>
 
-    <string-array name="days_of_week_abbr">
+    <string-array name="rp_days_of_week_abbr">
         <item>Sun</item>
         <item>Mon</item>
         <item>Tue</item>
@@ -44,7 +44,7 @@
     <!-- These are meant to be used with "repeat_monthly_same_week"
          Make sure to correctly use the plural form if necessary
          Case is kept the same -->
-    <string-array name="days_of_week">
+    <string-array name="rp_days_of_week">
         <item>Sunday</item>
         <item>Monday</item>
         <item>Tuesday</item>
@@ -54,28 +54,28 @@
         <item>Saturday</item>
     </string-array>
 
-    <string name="repeat_monthly_same_day">on the same day each month</string>
-    <string name="repeat_monthly_same_week">on every {0} {1}</string> <!-- {0}=ordinal number ex: third, {1}=day of week -->
-    <string name="repeat_monthly_last_day">on every last day of the month</string>
+    <string name="rp_repeat_monthly_same_day">on the same day each month</string>
+    <string name="rp_repeat_monthly_same_week">on every {0} {1}</string> <!-- {0}=ordinal number ex: third, {1}=day of week -->
+    <string name="rp_repeat_monthly_last_day">on every last day of the month</string>
 
-    <string-array name="end_spinner_items">
+    <string-array name="rp_end_spinner_items">
         <item>Forever</item>
         <item>Until a date</item>
         <item>For a number of events</item>
     </string-array>
 
-    <string-array name="end_spinner_items_abbr">
+    <string-array name="rp_end_spinner_items_abbr">
         <item>Forever</item>
         <item>Until</item>
         <item>For</item>
     </string-array>
 
-    <string name="event">{0,choice,1#event|1&lt;events}</string>
+    <string name="rp_event">{0,choice,1#event|1&lt;events}</string>
 
     <!-- These are meant to be used with "repeat_monthly_same_week"
          Make sure to correctly use the plural form if necessary
          Case is kept the same -->
-    <string-array name="ordinal_numbers">
+    <string-array name="rp_ordinal_numbers">
         <item>first</item>
         <item>second</item>
         <item>third</item>
@@ -83,7 +83,7 @@
         <item>last</item>
     </string-array>
 
-    <string-array name="recur_formats">
+    <string-array name="rp_recur_formats">
         <item>Does not repeat</item>
         <item>Repeats every {0,choice,1#day|1&lt;{0} days}</item> <!-- Daily, {0}=number of days -->
         <item>Repeats every {0,choice,1#week|1&lt;{0} weeks}{1,choice,0#|1# on {2}}</item> <!-- Weekly, {0}=number of weeks, {1}=whether to show days list (yes=1), {2}=days of week list -->
@@ -91,7 +91,7 @@
         <item>Repeats every {0,choice,1#year|1&lt;{0} years}</item> <!-- Yearly, {0}=number of years -->
     </string-array>
 
-    <string-array name="end_formats">
+    <string-array name="rp_end_formats">
         <item></item> <!-- Forever -->
         <item>until {0}</item> <!-- Until a date -->
         <item>for {0,choice,1#one event|1&lt;{0} events}</item> <!-- For a number of events -->
@@ -101,13 +101,13 @@
     <!-- Separator between each days of week when listing them
          Ex: Sun, Tue, Fri, Sat
          Use \u0020 for regular space, trailing whitespace get removed -->
-    <string name="days_of_week_list_sep">,\u0020</string>
+    <string name="rp_days_of_week_list_sep">,\u0020</string>
 
     <!-- Instead of listing all days when all of them are check, use this
          This only happens if frequency > 1 otherwise it gets converted to a daily recurrence -->
-    <string name="days_of_week_list_all">every day of the week</string>
+    <string name="rp_days_of_week_list_all">every day of the week</string>
 
     <!-- How to concatenate recurrence and end date/count when formatting -->
-    <string name="merge_format">{0}; {1}</string>
+    <string name="rp_merge_format">{0}; {1}</string>
 
 </resources>

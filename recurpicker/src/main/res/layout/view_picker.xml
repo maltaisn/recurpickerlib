@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) Nicolas Maltais
+
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+  -->
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="?attr/colorPickerBackground"
+    android:background="?attr/rpColorPickerBackground"
     >
 
     <RelativeLayout
@@ -17,21 +38,21 @@
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         android:paddingBottom="5dp"
-        android:background="?attr/colorHeaderBackground"
+        android:background="?attr/rpColorHeaderBackground"
         android:layout_weight="0"
         >
         <TextView
             android:id="@+id/header_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?attr/optionListTitleStyle"
+            style="?attr/rpOptionListTitleStyle"
             android:layout_centerVertical="true"
             />
         <Spinner
             android:id="@+id/spin_recur_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?attr/periodSpinnerStyle"
+            style="?attr/rpPeriodSpinnerStyle"
             android:visibility="gone"
             android:layout_centerVertical="true"
             />
@@ -95,8 +116,8 @@
                         android:labelFor="@+id/edit_freq"
                         android:paddingStart="10dp"
                         android:paddingEnd="0dp"
-                        android:text="@string/every"
-                        android:textAppearance="?attr/labelTextAppearance"
+                        android:text="@string/rp_every"
+                        android:textAppearance="?attr/rpLabelTextAppearance"
                         />
                     <EditText
                         android:id="@+id/edit_freq"
@@ -106,13 +127,13 @@
                         android:paddingStart="15dp"
                         android:inputType="number"
                         android:textAlignment="center"
-                        android:textAppearance="?attr/labelTextAppearance"
+                        android:textAppearance="?attr/rpLabelTextAppearance"
                         />
                     <TextView
                         android:id="@+id/text_freq_event"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?attr/labelTextAppearance"
+                        android:textAppearance="?attr/rpLabelTextAppearance"
                         />
                 </LinearLayout>
 
@@ -135,21 +156,21 @@
                         android:id="@+id/radio_same_day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/repeat_monthly_same_day"
-                        android:textAppearance="?attr/labelTextAppearance"
+                        android:text="@string/rp_repeat_monthly_same_day"
+                        android:textAppearance="?attr/rpLabelTextAppearance"
                         />
                     <RadioButton
                         android:id="@+id/radio_same_week"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?attr/labelTextAppearance"
+                        android:textAppearance="?attr/rpLabelTextAppearance"
                         />
                     <RadioButton
                         android:id="@+id/radio_last_day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/repeat_monthly_last_day"
-                        android:textAppearance="?attr/labelTextAppearance"
+                        android:text="@string/rp_repeat_monthly_last_day"
+                        android:textAppearance="?attr/rpLabelTextAppearance"
                         />
                 </RadioGroup>
 
@@ -167,7 +188,7 @@
                         android:id="@+id/spin_end_type"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        style="?attr/endSpinnerStyle"
+                        style="?attr/rpEndSpinnerStyle"
                         />
                     <EditText
                         android:id="@+id/edit_end_date"
@@ -177,8 +198,8 @@
                         android:paddingStart="10dp"
                         android:focusable="false"
                         android:inputType="text"
-                        android:foreground="?attr/selectableItemBackground"
-                        android:textAppearance="?attr/labelTextAppearance"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:textAppearance="?attr/rpLabelTextAppearance"
                         tools:ignore="TextFields"
                         />
                     <EditText
@@ -189,13 +210,13 @@
                         android:paddingStart="15dp"
                         android:inputType="number"
                         android:textAlignment="center"
-                        android:textAppearance="?attr/labelTextAppearance"
+                        android:textAppearance="?attr/rpLabelTextAppearance"
                         />
                     <TextView
                         android:id="@+id/text_end_value"
                         android:layout_width="wrap_content"
                         android:layout_height="19dp"
-                        android:textAppearance="?attr/labelTextAppearance"
+                        android:textAppearance="?attr/rpLabelTextAppearance"
                         />
                 </LinearLayout>
             </LinearLayout>
@@ -216,7 +237,7 @@
             android:layout_weight="1"
             android:id="@+id/cancel_btn"
             android:visibility="gone"
-            style="?attr/cancelButtonStyle"
+            style="?attr/rpCancelButtonStyle"
             />
         <Button
             android:layout_width="0dp"
@@ -224,7 +245,7 @@
             android:layout_weight="1"
             android:id="@+id/done_btn"
             android:visibility="gone"
-            style="?attr/doneButtonStyle"
+            style="?attr/rpDoneButtonStyle"
             />
     </LinearLayout>
 

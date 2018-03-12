@@ -4,45 +4,45 @@
     <attr name="recurrencePickerStyle" format="reference"/>
 
     <declare-styleable name="RecurrencePickerView">
-        <attr name="colorPickerBackground" format="reference|color"/>
-        <attr name="colorHeaderBackground" format="reference|color"/>
+        <attr name="rpColorPickerBackground" format="reference|color"/>
+        <attr name="rpColorHeaderBackground" format="reference|color"/>
 
         <!-- List of option list attributes -->
-        <attr name="optionListTitleStyle" format="reference"/>
-        <attr name="optionItemStyle" format="reference"/>
-        <attr name="optionItemSelectedColor" format="reference|color"/>
-        <attr name="optionItemUnselectedColor" format="reference|color"/>
-        <attr name="optionCheckStyle" format="reference"/>
-        <attr name="optionCheckSize" format="dimension"/>
+        <attr name="rpOptionListTitleStyle" format="reference"/>
+        <attr name="rpOptionItemStyle" format="reference"/>
+        <attr name="rpOptionItemSelectedColor" format="reference|color"/>
+        <attr name="rpOptionItemUnselectedColor" format="reference|color"/>
+        <attr name="rpOptionCheckStyle" format="reference"/>
+        <attr name="rpOptionCheckSize" format="dimension"/>
 
         <!-- List of recurrence creator attributes -->
-        <attr name="labelTextAppearance" format="reference"/>
-        <attr name="periodSpinnerStyle" format="reference"/>
-        <attr name="periodSpinnerItemStyle" format="reference"/>
-        <attr name="periodSpinnerDropdownItemStyle" format="reference"/>
-        <attr name="endSpinnerStyle" format="reference"/>
-        <attr name="endSpinnerItemStyle" format="reference"/>
-        <attr name="endSpinnerDropdownItemStyle" format="reference"/>
-        <attr name="weekButtonStyle" format="reference"/>
-        <attr name="cancelButtonStyle" format="reference"/>
-        <attr name="doneButtonStyle" format="reference"/>
+        <attr name="rpLabelTextAppearance" format="reference"/>
+        <attr name="rpPeriodSpinnerStyle" format="reference"/>
+        <attr name="rpPeriodSpinnerItemStyle" format="reference"/>
+        <attr name="rpPeriodSpinnerDropdownItemStyle" format="reference"/>
+        <attr name="rpEndSpinnerStyle" format="reference"/>
+        <attr name="rpEndSpinnerItemStyle" format="reference"/>
+        <attr name="rpEndSpinnerDropdownItemStyle" format="reference"/>
+        <attr name="rpWeekButtonStyle" format="reference"/>
+        <attr name="rpCancelButtonStyle" format="reference"/>
+        <attr name="rpDoneButtonStyle" format="reference"/>
 
         <!-- Week button style -->
-        <attr name="colorWeekButtonChecked" format="reference|color"/>
-        <attr name="colorWeekButtonUnchecked" format="reference|color"/>
-        <attr name="colorWeekButtonStroke" format="reference|color"/>
-        <attr name="colorWeekButtonStrokeWidth" format="dimension"/>
-        <attr name="colorWeekButtonTextChecked" format="reference|color"/>
-        <attr name="colorWeekButtonTextUnchecked" format="reference|color"/>
-        <attr name="weekButtonSize" format="dimension"/>
+        <attr name="rpColorWeekButtonChecked" format="reference|color"/>
+        <attr name="rpColorWeekButtonUnchecked" format="reference|color"/>
+        <attr name="rpColorWeekButtonStroke" format="reference|color"/>
+        <attr name="rpColorWeekButtonStrokeWidth" format="dimension"/>
+        <attr name="rpColorWeekButtonTextChecked" format="reference|color"/>
+        <attr name="rpColorWeekButtonTextUnchecked" format="reference|color"/>
+        <attr name="rpWeekButtonSize" format="dimension"/>
 
         <!-- Strings attributes -->
-        <attr name="periodSpinnerItemsText" format="reference"/>
-        <attr name="endSpinnerItemsText" format="reference"/>
-        <attr name="endSpinnerItemsTextAbbr" format="reference"/>
-        <attr name="weekButtonsText" format="reference"/>
-        <attr name="optionListNoneText" format="reference"/>
-        <attr name="optionListCustomText" format="reference"/>
+        <attr name="rpPeriodSpinnerItemsText" format="reference"/>
+        <attr name="rpEndSpinnerItemsText" format="reference"/>
+        <attr name="rpEndSpinnerItemsTextAbbr" format="reference"/>
+        <attr name="rpWeekButtonsText" format="reference"/>
+        <attr name="rpOptionListNoneText" format="reference"/>
+        <attr name="rpOptionListCustomText" format="reference"/>
     </declare-styleable>
 
 </resources>

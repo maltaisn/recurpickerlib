@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) Nicolas Maltais
+
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+  -->
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,7 +44,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:text="@string/settings_title"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+            android:textAppearance="@android:style/TextAppearance.Material.Button"
             android:textStyle="bold"
             android:gravity="center"
             />
@@ -38,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_start_date"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 android:labelFor="@id/start_date_value"
                 />
             <EditText
@@ -49,8 +70,8 @@
                 android:paddingStart="10dp"
                 android:focusable="false"
                 android:inputType="text"
-                android:foreground="?attr/selectableItemBackground"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 tools:ignore="TextFields"
                 tools:text="01/01/2018"
                 />
@@ -67,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_max_freq"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 android:labelFor="@id/max_freq_value"
                 />
             <EditText
@@ -78,7 +99,7 @@
                 android:paddingStart="15dp"
                 android:inputType="number"
                 android:maxLength="3"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 tools:ignore="TextFields"
                 tools:text="99"
                 />
@@ -94,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_max_end_count"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 android:labelFor="@id/max_end_count_value"
                 />
             <EditText
@@ -105,7 +126,7 @@
                 android:paddingStart="15dp"
                 android:inputType="number"
                 android:maxLength="4"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 tools:ignore="TextFields"
                 tools:text="999"
                 />
@@ -121,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_max_end_date"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 android:labelFor="@id/max_end_date_value"
                 />
             <EditText
@@ -132,8 +153,8 @@
                 android:paddingStart="10dp"
                 android:focusable="false"
                 android:inputType="text"
-                android:foreground="?attr/selectableItemBackground"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 tools:ignore="TextFields"
                 tools:text="31/12/2018"
                 />
@@ -144,7 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_default_end_date"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
             android:labelFor="@id/default_end_date_value"
             />
 
@@ -161,7 +182,7 @@
                 android:paddingStart="10dp"
                 android:inputType="number"
                 android:maxLength="3"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 tools:ignore="TextFields"
                 tools:text="3"
                 />
@@ -169,7 +190,7 @@
                 android:id="@+id/default_end_date_value_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 tools:text="days"
                 />
             <CheckBox
@@ -191,7 +212,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_end_count"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 android:labelFor="@id/default_end_count_value"
                 />
             <EditText
@@ -202,7 +223,7 @@
                 android:paddingStart="15dp"
                 android:inputType="number"
                 android:maxLength="4"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 tools:ignore="TextFields"
                 tools:text="5"
                 />
@@ -247,7 +268,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:text="@string/dialog_picker_title"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
+            android:textAppearance="@android:style/TextAppearance.Material.Button"
             android:textStyle="bold"
             android:gravity="center"
             />
@@ -267,7 +288,7 @@
             android:paddingEnd="30dp"
             android:paddingStart="30dp"
             android:paddingTop="5dp"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
             android:layout_gravity="center_horizontal"
             tools:text="Repeats daily"
             />
@@ -295,7 +316,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:layout_weight="1"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
                 tools:text="#1 is on Mon Jan 1, 2018"
                 android:gravity="center"
                 />

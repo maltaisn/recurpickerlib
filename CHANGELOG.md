@@ -1,3 +1,10 @@
+#### v1.2.4
+- Removed AppCompat dependencies
+- Made all `RecurrencePickerView.DEFAULT_*` constants package-private
+- Prefixed all attributes and strings with `rp` to avoid mixing them with the user's own attributes
+- Added copyright license header to source files
+- Made some resources private (strings, drawables, colors, layouts)
+
 #### v1.2.3
 - Fixed `Recurrence.isOnSameDay` returning wrong result
 - Changed target build API to 27
