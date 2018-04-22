@@ -27,7 +27,7 @@
         <item name="rpColorWeekButtonChecked">?android:attr/colorAccent</item>
         <item name="rpColorWeekButtonUnchecked">@android:color/transparent</item>
         <item name="rpColorWeekButtonStroke">?android:attr/colorAccent</item>
-        <item name="rpColorWeekButtonStrokeWidth">2px</item>
+        <item name="rpColorWeekButtonStrokeWidth">1dp</item>
         <item name="rpColorWeekButtonTextChecked">?android:attr/textColorPrimaryInverse</item>
         <item name="rpColorWeekButtonTextUnchecked">?android:attr/textColorPrimary</item>
         <item name="rpWeekButtonSize">50dp</item>
@@ -59,7 +59,7 @@
 
     <public name="RpOptionCheckStyle" type="style"/>
     <style name="RpOptionCheckStyle">
-        <item name="android:src">@drawable/ic_check</item>
+        <item name="android:src">@drawable/rp_ic_check</item>
         <item name="android:tint">?attr/rpOptionItemSelectedColor</item>
     </style>
 
@@ -96,8 +96,8 @@
 
     <public name="RpWeekButtonStyle" type="style"/>
     <style name="RpWeekButtonStyle">
-        <item name="android:background">@drawable/bg_week_button</item>
-        <item name="android:textColor">@color/color_week_button_text</item>
+        <item name="android:background">@drawable/rp_bg_week_button</item>
+        <item name="android:textColor">@color/rp_color_week_button_text</item>
         <item name="android:textAllCaps">true</item>
     </style>
 

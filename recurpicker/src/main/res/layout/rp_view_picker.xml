@@ -139,7 +139,7 @@
 
                 <!-- Layout for displaying days of week buttons, if week unit selected -->
                 <include
-                    layout="@layout/layout_week_button"
+                    layout="@layout/rp_layout_week_button"
                     />
 
                 <!-- Radios for monthly options -->

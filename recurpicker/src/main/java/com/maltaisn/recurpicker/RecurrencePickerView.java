@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) Nicolas Maltais
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package com.maltaisn.recurpicker;
 
 
@@ -156,7 +177,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     private void initLayout() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        inflater.inflate(R.layout.view_picker, this);
+        inflater.inflate(R.layout.rp_view_picker, this);
 
         // Get colors from theme
         final TypedArray ta = getContext().obtainStyledAttributes(R.styleable.RecurrencePickerView);
@@ -226,7 +247,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
         for (int i = 0; i < 3; i++) {
             @SuppressLint("InflateParams")
-            LinearLayout item = (LinearLayout) inflater.inflate(R.layout.item_option, null);
+            LinearLayout item = (LinearLayout) inflater.inflate(R.layout.rp_item_option, null);
             item.setTag(i);
             TextView itemText = item.findViewById(R.id.text);
             if (i == 0) {
@@ -270,7 +291,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
         // Set up recurrence type spinner
         CharSeqAdapter recurPeriodAdapter = new CharSeqAdapter(getContext(),
-                R.layout.item_period, R.layout.item_period_dropdown,
+                R.layout.rp_item_period, R.layout.rp_item_period_dropdown,
                 periodSpinnerItemsText, periodSpinnerItemsText) {
             @Override
             boolean isDropdownViewVisible(int position) {
@@ -318,7 +339,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
         // Set up end type spinner
         CharSeqAdapter endTypeAdapter = new CharSeqAdapter(getContext(),
-                R.layout.item_end_type, R.layout.item_end_type_dropdown,
+                R.layout.rp_item_end_type, R.layout.rp_item_end_type_dropdown,
                 endSpinnerItemsText, endSpinnerItemsTextAbbr) {
             @Override
             boolean isDropdownViewVisible(int position) {
@@ -326,7 +347,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
                 return (enabledEndTypes & (1 << position)) == (1 << position);
             }
         };
-        endTypeAdapter.setDropDownViewResource(R.layout.item_end_type);
+        endTypeAdapter.setDropDownViewResource(R.layout.rp_item_end_type);
         endTypeSpin.setAdapter(endTypeAdapter);
         endTypeSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -1030,7 +1051,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             LayoutInflater inflater = LayoutInflater.from(getContext());
             for (int i = 0; i < nb; i++) {
                 @SuppressLint("InflateParams")
-                LinearLayout item = (LinearLayout) inflater.inflate(R.layout.item_option, null);
+                LinearLayout item = (LinearLayout) inflater.inflate(R.layout.rp_item_option, null);
                 item.setTag(i + 2);
                 item.setOnClickListener(optionListItemsClick);
 

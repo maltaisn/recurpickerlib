@@ -37,7 +37,6 @@ import android.widget.TextView;
 
 import com.maltaisn.recurpicker.Recurrence;
 import com.maltaisn.recurpicker.RecurrencePickerDialog;
-import com.maltaisn.recurpicker.RecurrencePickerView;
 
 import java.text.DateFormat;
 import java.text.MessageFormat;
@@ -90,6 +89,7 @@ public class MainActivity extends Activity implements RecurrencePickerDialog.Rec
             maxEndDate.setTimeInMillis(state.getLong("maxEndDate"));
 
             // Convert back long array to arraylist
+            //noinspection ConstantConditions
             for (long r : state.getLongArray("recurrenceList")) {
                 recurrenceList.add(r);
             }

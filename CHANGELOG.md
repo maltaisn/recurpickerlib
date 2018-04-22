@@ -1,4 +1,4 @@
-#### v1.2.4
+#### v1.2.4 & 1.2.5
 - Removed AppCompat dependencies
 - Made all `RecurrencePickerView.DEFAULT_*` constants package-private
 - Prefixed all attributes and strings with `rp` to avoid mixing them with the user's own attributes

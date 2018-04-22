@@ -34,19 +34,19 @@
         >
         <include
             android:id="@+id/week_btn_1"
-            layout="@layout/view_week_button"
+            layout="@layout/rp_view_week_button"
             />
         <include
             android:id="@+id/week_btn_2"
-            layout="@layout/view_week_button"
+            layout="@layout/rp_view_week_button"
             />
         <include
             android:id="@+id/week_btn_3"
-            layout="@layout/view_week_button"
+            layout="@layout/rp_view_week_button"
             />
         <include
             android:id="@+id/week_btn_4"
-            layout="@layout/view_week_button"
+            layout="@layout/rp_view_week_button"
             />
     </LinearLayout>
 
@@ -61,15 +61,15 @@
         >
         <include
             android:id="@+id/week_btn_5" 
-            layout="@layout/view_week_button"
+            layout="@layout/rp_view_week_button"
             />
         <include
             android:id="@+id/week_btn_6" 
-            layout="@layout/view_week_button"
+            layout="@layout/rp_view_week_button"
             />
         <include
             android:id="@+id/week_btn_7" 
-            layout="@layout/view_week_button"
+            layout="@layout/rp_view_week_button"
             />
     </LinearLayout>
 

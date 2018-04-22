@@ -9,14 +9,14 @@
     <string name="rp_option_list_none">Ne pas répéter</string>
     <string name="rp_option_list_custom">Personnaliser…</string>
 
-    <string-array name="option_list_items">
+    <string-array name="rp_option_list_items">
         <item>Tous les jours</item>
         <item>Toutes les semaines</item>
         <item>Tous les mois</item>
         <item>Tous les ans</item>
     </string-array>
 
-    <string-array name="period_spinner_items">
+    <string-array name="rp_period_spinner_items">
         <item>Tous les jours</item>
         <item>Toutes les semaines</item>
         <item>Tous les mois</item>
@@ -25,14 +25,14 @@
 
     <string name="rp_every">Chaque</string>
 
-    <string-array name="recur_units">
+    <string-array name="rp_recur_units">
         <item>{0,choice,1#jour|1&lt;jours}</item>
         <item>{0,choice,1#semaine|1&lt;semaines}</item>
         <item>{0,choice,1#mois|1&lt;mois}</item>
         <item>{0,choice,1#an|1&lt;ans}</item>
     </string-array>
 
-    <string-array name="days_of_week_abbr">
+    <string-array name="rp_days_of_week_abbr">
         <item>Dim</item>
         <item>Lun</item>
         <item>Mar</item>
@@ -45,7 +45,7 @@
     <!-- These are meant to be used with "repeat_monthly_same_week"
          Make sure to correctly use the plural form if necessary
          Case is kept the same -->
-    <string-array name="days_of_week">
+    <string-array name="rp_days_of_week">
         <item>dimanches</item>
         <item>lundis</item>
         <item>mardis</item>
@@ -59,13 +59,13 @@
     <string name="rp_repeat_monthly_same_week">tous les {0} {1}</string> <!-- {0}=ordinal number ex: third, {1}=day of week -->
     <string name="rp_repeat_monthly_last_day">le dernier jour du mois</string>
 
-    <string-array name="end_spinner_items">
+    <string-array name="rp_end_spinner_items">
         <item>Pour toujours</item>
         <item>Jusqu\'à une certaine date</item>
         <item>Pour un nombre d\'événements</item>
     </string-array>
 
-    <string-array name="end_spinner_items_abbr">
+    <string-array name="rp_end_spinner_items_abbr">
         <item>Toujours</item>
         <item>Jusqu\'au</item>
         <item>Pour</item>
@@ -76,7 +76,7 @@
     <!-- These are meant to be used with "repeat_monthly_same_week"
          Make sure to correctly use the plural form if necessary
          Case is kept the same -->
-    <string-array name="ordinal_numbers">
+    <string-array name="rp_ordinal_numbers">
         <item>premiers</item>
         <item>deuxièmes</item>
         <item>troisièmes</item>
@@ -84,7 +84,7 @@
         <item>derniers</item>
     </string-array>
 
-    <string-array name="recur_formats">
+    <string-array name="rp_recur_formats">
         <item>Pas de répétitions</item>
         <item>À tous les {0,choice,1#jour|1&lt;{0} jours}</item> <!-- Daily, {0}=number of days -->
         <item>À toutes les {0,choice,1#semaine|1&lt;{0} semaines}{1,choice,0#|1# on {2}}</item> <!-- Weekly, {0}=number of weeks, {1}=whether to show days list (yes=1), {2}=days of week list -->
@@ -92,7 +92,7 @@
         <item>{0,choice,1#À toutes les années|1&lt;À tous les {0} ans}</item> <!-- Yearly, {0}=number of years -->
     </string-array>
 
-    <string-array name="end_formats">
+    <string-array name="rp_end_formats">
         <item></item> <!-- Forever -->
         <item>jusqu\'au {0}</item> <!-- Until a date -->
         <item>pour {0,choice,1#un événement|1&lt;{0} événements}</item> <!-- For a number of events -->

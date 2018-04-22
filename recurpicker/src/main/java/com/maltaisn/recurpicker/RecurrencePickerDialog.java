@@ -82,7 +82,7 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
 
         @SuppressLint("InflateParams")
         RecurrencePickerView newPicker = (RecurrencePickerView) LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_picker, null);
+                .inflate(R.layout.rp_dialog_picker, null);
         newPicker.setIsInDialog(true);
 
         newPicker.setOnRecurrenceSelectedListener(new RecurrencePickerView.OnRecurrenceSelectedListener() {
