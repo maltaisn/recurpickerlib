@@ -93,6 +93,7 @@
     </string-array>
 
     <string-array name="rp_end_formats">
+        <!--suppress CheckTagEmptyBody -->
         <item></item> <!-- Forever -->
         <item>jusqu\'au {0}</item> <!-- Until a date -->
         <item>pour {0,choice,1#un événement|1&lt;{0} événements}</item> <!-- For a number of events -->

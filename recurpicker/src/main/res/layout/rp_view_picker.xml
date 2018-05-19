@@ -24,62 +24,67 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="?attr/rpColorPickerBackground"
-    >
+    tools:theme="@style/RecurrencePickerStyleTools">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:paddingTop="10dp"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
         android:paddingBottom="5dp"
-        android:background="?attr/rpColorHeaderBackground"
-        android:layout_weight="0"
-        >
+        android:background="?attr/rpColorHeaderBackground">
+
         <TextView
             android:id="@+id/header_title"
+            style="?attr/rpOptionListTitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?attr/rpOptionListTitleStyle"
-            android:layout_centerVertical="true"
-            />
+            android:layout_weight="0"
+            tools:text="Repeat options"
+            tools:visibility="gone"/>
+
         <Spinner
             android:id="@+id/spin_recur_type"
+            style="?attr/rpPeriodSpinnerStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?attr/rpPeriodSpinnerStyle"
+            android:layout_weight="0"
             android:visibility="gone"
-            android:layout_centerVertical="true"
-            />
+            tools:listitem="@layout/rp_item_period"
+            tools:visibility="visible"/>
+
         <Switch
             android:id="@+id/switch_repeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+            android:layout_weight="1"
+            android:gravity="end"
             android:checked="true"
             android:visibility="gone"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
+            tools:visibility="visible"/>
+
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        >
+        android:layout_weight="1">
+
         <FrameLayout
             android:id="@+id/body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <!-- List of default recurrence options -->
             <LinearLayout
@@ -89,16 +94,15 @@
                 android:orientation="vertical"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:visibility="gone"
-                />
+                android:visibility="gone"/>
 
             <LinearLayout
                 android:id="@+id/creator_layout"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone"
-                >
+                tools:visibility="visible">
 
                 <LinearLayout
                     android:id="@+id/freq_layout"
@@ -107,8 +111,8 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:paddingStart="15dp"
-                    android:paddingEnd="15dp"
-                    >
+                    android:paddingEnd="15dp">
+
                     <TextView
                         android:id="@+id/text_freq_label"
                         android:layout_width="wrap_content"
@@ -117,8 +121,8 @@
                         android:paddingStart="10dp"
                         android:paddingEnd="0dp"
                         android:text="@string/rp_every"
-                        android:textAppearance="?attr/rpLabelTextAppearance"
-                        />
+                        android:textAppearance="?attr/rpLabelTextAppearance"/>
+
                     <EditText
                         android:id="@+id/edit_freq"
                         android:layout_width="wrap_content"
@@ -128,19 +132,19 @@
                         android:inputType="number"
                         android:textAlignment="center"
                         android:textAppearance="?attr/rpLabelTextAppearance"
-                        />
+                        tools:text="2"/>
+
                     <TextView
                         android:id="@+id/text_freq_event"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?attr/rpLabelTextAppearance"
-                        />
+                        tools:text="weeks"/>
+
                 </LinearLayout>
 
                 <!-- Layout for displaying days of week buttons, if week unit selected -->
-                <include
-                    layout="@layout/rp_layout_week_button"
-                    />
+                <include layout="@layout/rp_layout_week_button"/>
 
                 <!-- Radios for monthly options -->
                 <RadioGroup
@@ -151,27 +155,29 @@
                     android:paddingEnd="15dp"
                     android:paddingStart="15dp"
                     android:visibility="gone"
-                    >
+                    tools:visibility="visible">
+
                     <RadioButton
                         android:id="@+id/radio_same_day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/rp_repeat_monthly_same_day"
-                        android:textAppearance="?attr/rpLabelTextAppearance"
-                        />
+                        android:textAppearance="?attr/rpLabelTextAppearance"/>
+
                     <RadioButton
                         android:id="@+id/radio_same_week"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAppearance="?attr/rpLabelTextAppearance"
-                        />
+                        tools:text="on every fourth Friday"/>
+
                     <RadioButton
                         android:id="@+id/radio_last_day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/rp_repeat_monthly_last_day"
-                        android:textAppearance="?attr/rpLabelTextAppearance"
-                        />
+                        android:textAppearance="?attr/rpLabelTextAppearance"/>
+
                 </RadioGroup>
 
                 <!-- Input for recurrence end setting -->
@@ -182,14 +188,15 @@
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:paddingStart="15dp"
-                    android:paddingEnd="15dp"
-                    >
+                    android:paddingEnd="15dp">
+
                     <Spinner
                         android:id="@+id/spin_end_type"
+                        style="?attr/rpEndSpinnerStyle"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        style="?attr/rpEndSpinnerStyle"
-                        />
+                        tools:listitem="@layout/rp_item_end_type"/>
+
                     <EditText
                         android:id="@+id/edit_end_date"
                         android:layout_width="wrap_content"
@@ -200,8 +207,9 @@
                         android:inputType="text"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:textAppearance="?attr/rpLabelTextAppearance"
-                        tools:ignore="TextFields"
-                        />
+                        tools:ignore="LabelFor,TextFields"
+                        tools:text="02-05-2018"/>
+
                     <EditText
                         android:id="@+id/edit_end_count"
                         android:layout_width="wrap_content"
@@ -211,13 +219,16 @@
                         android:inputType="number"
                         android:textAlignment="center"
                         android:textAppearance="?attr/rpLabelTextAppearance"
-                        />
+                        tools:visibility="gone"
+                        tools:ignore="LabelFor"/>
+
                     <TextView
                         android:id="@+id/text_end_value"
                         android:layout_width="wrap_content"
                         android:layout_height="19dp"
                         android:textAppearance="?attr/rpLabelTextAppearance"
-                        />
+                        tools:visibility="gone"/>
+
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
@@ -230,23 +241,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="0"
-        >
+        android:gravity="end"
+        android:paddingBottom="5dp">
+
         <Button
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="?attr/rpCancelButtonStyle"
             android:id="@+id/cancel_btn"
             android:visibility="gone"
-            style="?attr/rpCancelButtonStyle"
-            />
+            tools:visibility="visible"/>
+
         <Button
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="?attr/rpDoneButtonStyle"
             android:id="@+id/done_btn"
             android:visibility="gone"
-            style="?attr/rpDoneButtonStyle"
-            />
+            tools:visibility="visible"/>
+
     </LinearLayout>
 
 </LinearLayout>

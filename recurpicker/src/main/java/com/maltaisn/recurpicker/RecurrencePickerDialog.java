@@ -89,22 +89,18 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
             @Override
             public void onRecurrenceSelected(Recurrence r) {
                 dismiss();
-                try {
-                    ((RecurrenceSelectedCallback) getActivity()).onRecurrencePickerSelected(r);
-                } catch (Exception e) {
-                    // Interface callback is not implemented in activity
-                }
+
+                RecurrenceSelectedCallback callback = getCallback();
+                if (callback != null) callback.onRecurrencePickerSelected(r);
             }
         });
         newPicker.setOnRecurrencePickerCancelledListener(new RecurrencePickerView.OnRecurrencePickerCancelledListener() {
             @Override
             public void onRecurrencePickerCancelled(Recurrence r) {
                 dismiss();
-                try {
-                    ((RecurrenceSelectedCallback) getActivity()).onRecurrencePickerCancelled(r);
-                } catch (Exception e) {
-                    // Interface callback is not implemented in activity
-                }
+
+                RecurrenceSelectedCallback callback = getCallback();
+                if (callback != null) callback.onRecurrencePickerCancelled(r);
             }
         });
 
@@ -277,6 +273,19 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
     public interface RecurrenceSelectedCallback {
         void onRecurrencePickerSelected(Recurrence r);
         void onRecurrencePickerCancelled(Recurrence r);
+    }
+
+    private @Nullable RecurrenceSelectedCallback getCallback() {
+        try {
+            if (getTargetFragment() != null) {
+                return (RecurrenceSelectedCallback) getTargetFragment();
+            } else {
+                return (RecurrenceSelectedCallback) getActivity();
+            }
+        } catch (ClassCastException e) {
+            // Interface callback is not implemented in activity
+            return null;
+        }
     }
 
 }

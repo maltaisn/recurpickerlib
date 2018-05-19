@@ -28,4 +28,4 @@
     android:layout_height="wrap_content"
     style="?attr/rpPeriodSpinnerDropdownItemStyle"
     tools:text="Repeat weekly"
-    />
+    tools:theme="@style/RecurrencePickerStyle"/>

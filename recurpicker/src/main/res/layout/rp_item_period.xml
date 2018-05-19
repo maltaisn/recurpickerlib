@@ -27,5 +27,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     style="?attr/rpPeriodSpinnerItemStyle"
-    tools:text="Repeat weekly"
-    />
+    tools:text="Repeat monthly"
+    tools:theme="@style/RecurrencePickerStyleTools"/>

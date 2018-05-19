@@ -31,11 +31,11 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.ContextThemeWrapper;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -49,7 +49,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -68,7 +67,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     private boolean isInDialog;
 
-    private RelativeLayout headerLayout;
+    private LinearLayout headerLayout;
     private TextView headerTitle;
     private Spinner recurPeriodSpin;
     private Switch repeatSwitch;
@@ -106,9 +105,9 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     private Calendar endDate;
     private int endCount;
 
-    @Nullable private OnRecurrenceSelectedListener listener;
-    @Nullable private OnRecurrencePickerCancelledListener cancelListener;
-    @Nullable private OnCreatorShownListener creatorListener;
+    private @Nullable OnRecurrenceSelectedListener listener;
+    private @Nullable OnRecurrencePickerCancelledListener cancelListener;
+    private @Nullable OnCreatorShownListener creatorListener;
 
     // Additional settings
     static final int MAX_FIELD_VALUE = 999999999;

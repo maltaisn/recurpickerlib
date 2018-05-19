@@ -43,6 +43,7 @@
         <attr name="rpWeekButtonsText" format="reference"/>
         <attr name="rpOptionListNoneText" format="reference"/>
         <attr name="rpOptionListCustomText" format="reference"/>
+
     </declare-styleable>
 
 </resources>

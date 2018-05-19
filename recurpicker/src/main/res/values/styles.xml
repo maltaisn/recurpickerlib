@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="RecurrencePickerStyleTools" parent="RecurrencePickerStyle">
+        <item name="android:colorPrimary">#455a64</item>
+        <item name="android:colorPrimaryDark">#263238</item>
+        <item name="android:colorAccent">#2196f3</item>
+    </style>
+
     <public name="RecurrencePickerStyle" type="style"/>
     <style name="RecurrencePickerStyle">
         <item name="rpColorPickerBackground">@android:color/transparent</item>
@@ -102,17 +108,19 @@
     </style>
 
     <public name="RpCancelButtonStyle" type="style"/>
-    <style name="RpCancelButtonStyle">
+    <style name="RpCancelButtonStyle" parent="@android:style/Widget.Material.Light.Button.Borderless.Colored">
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:text">@string/rp_cancel</item>
-        <item name="android:textAppearance">@android:style/TextAppearance.Material.Widget.Button</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
     </style>
 
     <public name="RpDoneButtonStyle" type="style"/>
-    <style name="RpDoneButtonStyle">
+    <style name="RpDoneButtonStyle" parent="@android:style/Widget.Material.Light.Button.Borderless.Colored">
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:text">@string/rp_done</item>
-        <item name="android:textAppearance">@android:style/TextAppearance.Material.Widget.Button</item>
+        <item name="android:layout_marginStart">5dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
     </style>
 
 </resources>

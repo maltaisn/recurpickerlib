@@ -463,79 +463,91 @@ public class Recurrence implements Parcelable {
         int repeats = baseRepeats;
         int amnt = 0;
         boolean after = false;
-        if (period == DAILY || period == YEARLY) {
-            while (true) {
-                if (endCount != 0 && repeats >= endCount) return list;
-                current.add((period == DAILY ? Calendar.DATE : Calendar.YEAR), frequency);
-                if (endDate != null && !isOnSameDayOrAfter(endDate, current)) return list;
-                repeats++;
-                if (!after && isOnSameDayOrAfter(current, from)) after = true;
-                if (after && amnt < amount) {
-                    list.add(current.getTimeInMillis());
-                    amnt++;
-                    if (amnt == amount) return list;
-                }
-            }
-
-        } else if (period == WEEKLY) {
-            int skipped = 0;
-            boolean firstWeek = true;
-            while (true) {
-                for (int day = 1; day <= 7; day++) {
-                    if (firstWeek && current.get(Calendar.DAY_OF_WEEK) >= day) continue;  // Day is before start date on first week, wait until day after
+        switch (period) {
+            case DAILY:
+            case YEARLY:
+                while (true) {
                     if (endCount != 0 && repeats >= endCount) return list;
-                    skipped++;
-                    if (isRepeatedOnDayOfWeek(day)) {
-                        current.add(Calendar.DATE, skipped);
-                        if (endDate != null && !isOnSameDayOrAfter(endDate, current)) return list;
-                        skipped = 0;
-                        repeats++;
-                        if (!after && isOnSameDayOrAfter(current, from)) after = true;
-                        if (after && amnt < amount) {
-                            list.add(current.getTimeInMillis());
-                            amnt++;
-                            if (amnt == amount) return list;
+                    current.add((period == DAILY ? Calendar.DATE : Calendar.YEAR), frequency);
+                    if (endDate != null && !isOnSameDayOrAfter(endDate, current)) return list;
+                    repeats++;
+                    if (!after && isOnSameDayOrAfter(current, from)) after = true;
+                    if (after && amnt < amount) {
+                        list.add(current.getTimeInMillis());
+                        amnt++;
+                        if (amnt == amount) return list;
+                    }
+                }
+
+            case WEEKLY:
+                int skipped = 0;
+                boolean firstWeek = true;
+                while (true) {
+                    for (int day = 1; day <= 7; day++) {
+                        if (firstWeek && current.get(Calendar.DAY_OF_WEEK) >= day)
+                            continue;  // Day is before start date on first week, wait until day after
+                        if (endCount != 0 && repeats >= endCount) return list;
+                        skipped++;
+                        if (isRepeatedOnDayOfWeek(day)) {
+                            current.add(Calendar.DATE, skipped);
+                            if (endDate != null && !isOnSameDayOrAfter(endDate, current))
+                                return list;
+                            skipped = 0;
+                            repeats++;
+                            if (!after && isOnSameDayOrAfter(current, from)) after = true;
+                            if (after && amnt < amount) {
+                                list.add(current.getTimeInMillis());
+                                amnt++;
+                                if (amnt == amount) return list;
+                            }
                         }
                     }
+                    if (frequency > 1)
+                        current.add(Calendar.DATE, 7 * (frequency - 1));  // Skip weeks if needed
+                    firstWeek = false;
                 }
-                if (frequency > 1) current.add(Calendar.DATE, 7*(frequency -1));  // Skip weeks if needed
-                firstWeek = false;
-            }
 
-        } else if (period == MONTHLY) {
-            int rday = current.get(Calendar.DAY_OF_WEEK);
-            int rmonthDay = current.get(Calendar.DAY_OF_MONTH);
-            int rweek = current.get(Calendar.DAY_OF_WEEK_IN_MONTH);
-            while (true) {
-                if (endCount != 0 && repeats >= endCount) return list;
-                current.add(Calendar.MONTH, frequency);
-                if (daySetting == LAST_DAY_OF_MONTH) {
-                    // Set day of month to the last day
-                    current.set(Calendar.DAY_OF_MONTH, current.getActualMaximum(Calendar.DAY_OF_MONTH));
+            case MONTHLY:
+                int rday = current.get(Calendar.DAY_OF_WEEK);
+                int rmonthDay = current.get(Calendar.DAY_OF_MONTH);
+                int rweek = current.get(Calendar.DAY_OF_WEEK_IN_MONTH);
+                while (true) {
+                    if (endCount != 0 && repeats >= endCount) return list;
+                    current.add(Calendar.MONTH, frequency);
+                    switch (daySetting) {
+                        case LAST_DAY_OF_MONTH:
+                            // Set day of month to the last day
+                            current.set(Calendar.DAY_OF_MONTH, current.getActualMaximum(Calendar.DAY_OF_MONTH));
+                            break;
 
-                } else if (daySetting == SAME_DAY_OF_MONTH) {
-                    // If start date is on Jan 30 and we add a month, we get Feb 28. That's not the same day of month, skip month.
-                    if (rmonthDay > current.getActualMaximum(Calendar.DAY_OF_MONTH)) continue;
-                    else current.set(Calendar.DAY_OF_MONTH, rmonthDay);
-                } else {
-                    current.set(Calendar.DAY_OF_MONTH, 15);  // Set to 15, so when we change day of week, it won't go back to last month
-                    if (rweek == 5) {  // Day of last week, there may not always be 5 mondays for example so consider it last
-                        current.set(Calendar.DAY_OF_WEEK, rday);
-                        current.set(Calendar.DAY_OF_WEEK_IN_MONTH, -1);
-                    } else {
-                        current.set(Calendar.DAY_OF_WEEK, rday);
-                        current.set(Calendar.DAY_OF_WEEK_IN_MONTH, rweek);
+                        case SAME_DAY_OF_MONTH:
+                            // If start date is on Jan 30 and we add a month, we get Feb 28. That's not the same day of month, skip month.
+                            if (rmonthDay > current.getActualMaximum(Calendar.DAY_OF_MONTH))
+                                continue;
+                            else current.set(Calendar.DAY_OF_MONTH, rmonthDay);
+                            break;
+
+                        case SAME_DAY_OF_WEEK:
+                            current.set(Calendar.DAY_OF_MONTH, 15);  // Set to 15, so when we change day of week, it won't go back to last month
+
+                            if (rweek == 5) {  // Day of last week, there may not always be 5 mondays for example so consider it last
+                                current.set(Calendar.DAY_OF_WEEK, rday);
+                                current.set(Calendar.DAY_OF_WEEK_IN_MONTH, -1);
+                            } else {
+                                current.set(Calendar.DAY_OF_WEEK, rday);
+                                current.set(Calendar.DAY_OF_WEEK_IN_MONTH, rweek);
+                            }
+                            break;
+                    }
+                    if (endDate != null && !isOnSameDayOrAfter(endDate, current)) return list;
+                    repeats++;
+                    if (!after && isOnSameDayOrAfter(current, from)) after = true;
+                    if (after && amnt < amount) {
+                        list.add(current.getTimeInMillis());
+                        amnt++;
+                        if (amnt == amount) return list;
                     }
                 }
-                if (endDate != null && !isOnSameDayOrAfter(endDate, current)) return list;
-                repeats++;
-                if (!after && isOnSameDayOrAfter(current, from)) after = true;
-                if (after && amnt < amount) {
-                    list.add(current.getTimeInMillis());
-                    amnt++;
-                    if (amnt == amount) return list;
-                }
-            }
         }
 
         return list;
@@ -563,56 +575,69 @@ public class Recurrence implements Parcelable {
         // Generate first part of the text -> ex: Repeats every 2 days
         String[] recurFormats = context.getResources().getStringArray(R.array.rp_recur_formats);
         String recurFormat;
-        if (period == NONE) {
-            recurFormat = recurFormats[0];  // Does not repeat
+        switch (period) {
+            case NONE:
+                recurFormat = recurFormats[0];  // Does not repeat
+                break;
 
-        } else if (period == DAILY) {
-            recurFormat = MessageFormat.format(recurFormats[1], frequency);
+            case DAILY:
+                recurFormat = MessageFormat.format(recurFormats[1], frequency);
+                break;
 
-        } else if (period == WEEKLY) {
-            StringBuilder dayList = null;
-            if (!isDefault) {
-                // Make a list of days of week
-                dayList = new StringBuilder();
-                if (daySetting == EVERY_DAY_OF_WEEK) {
-                    dayList.append(context.getString(R.string.rp_days_of_week_list_all));
-                } else {
-                    String[] daysAbbr = context.getResources().getStringArray(R.array.rp_days_of_week_abbr);
-                    String listSep = context.getString(R.string.rp_days_of_week_list_sep);
-                    for (int day = 1; day <= 7; day++) {
-                        if (isRepeatedOnDayOfWeek(day)) {
-                            dayList.append(daysAbbr[day - 1]);
-                            dayList.append(listSep);
+            case WEEKLY:
+                StringBuilder dayList = null;
+                if (!isDefault) {
+                    // Make a list of days of week
+                    dayList = new StringBuilder();
+                    if (daySetting == EVERY_DAY_OF_WEEK) {
+                        dayList.append(context.getString(R.string.rp_days_of_week_list_all));
+                    } else {
+                        String[] daysAbbr = context.getResources().getStringArray(R.array.rp_days_of_week_abbr);
+                        String listSep = context.getString(R.string.rp_days_of_week_list_sep);
+                        for (int day = 1; day <= 7; day++) {
+                            if (isRepeatedOnDayOfWeek(day)) {
+                                dayList.append(daysAbbr[day - 1]);
+                                dayList.append(listSep);
+                            }
                         }
+                        dayList.delete(dayList.length() - listSep.length(), dayList.length());  // Remove extra separator
                     }
-                    dayList.delete(dayList.length() - listSep.length(), dayList.length());  // Remove extra separator
                 }
-            }
-            recurFormat = MessageFormat.format(recurFormats[2], frequency, dayList == null ? 0 : 1, dayList);
+                recurFormat = MessageFormat.format(recurFormats[2], frequency, dayList == null ? 0 : 1, dayList);
+                break;
 
-        } else if (period == MONTHLY) {
-            String when = "";
-            if (!isDefault && daySetting == SAME_DAY_OF_MONTH) when = context.getString(R.string.rp_repeat_monthly_same_day);
-            else if (daySetting == SAME_DAY_OF_WEEK) when = getSameDayOfSameWeekString(context);
-            else if (daySetting == LAST_DAY_OF_MONTH) when = context.getString(R.string.rp_repeat_monthly_last_day);
+            case MONTHLY:
+                String when = "";
+                if (!isDefault && daySetting == SAME_DAY_OF_MONTH)
+                    when = context.getString(R.string.rp_repeat_monthly_same_day);
+                else if (daySetting == SAME_DAY_OF_WEEK) when = getSameDayOfSameWeekString(context);
+                else if (daySetting == LAST_DAY_OF_MONTH)
+                    when = context.getString(R.string.rp_repeat_monthly_last_day);
 
-            recurFormat = MessageFormat.format(recurFormats[3], frequency, when.isEmpty() ? 0 : 1, when);
+                recurFormat = MessageFormat.format(recurFormats[3], frequency, when.isEmpty() ? 0 : 1, when);
+                break;
 
-        } else {
-            recurFormat = MessageFormat.format(recurFormats[4], frequency);
+            default: // YEARLY
+                recurFormat = MessageFormat.format(recurFormats[4], frequency);
+                break;
         }
 
         // Generate second part of the text (how recurrence ends) -> ex: until 31-12-2017
         String[] endFormats = context.getResources().getStringArray(R.array.rp_end_formats);
         String endFormat;
-        if (endType == END_NEVER) {
-            endFormat = endFormats[endType];
-        } else if (endType == END_BY_DATE) {
-            endFormat = MessageFormat.format(endFormats[1], dateFormat.format(endDate.getTime()));
-        } else if (endType == END_BY_COUNT) {
-            endFormat = MessageFormat.format(endFormats[2], endCount);
-        } else {
-            endFormat = MessageFormat.format(endFormats[3], dateFormat.format(endDate.getTime()), endCount);
+        switch (endType) {
+            case END_NEVER:
+                endFormat = endFormats[endType];
+                break;
+            case END_BY_DATE:
+                endFormat = MessageFormat.format(endFormats[1], dateFormat.format(endDate.getTime()));
+                break;
+            case END_BY_COUNT:
+                endFormat = MessageFormat.format(endFormats[2], endCount);
+                break;
+            default:  // END_BY_DATE_OR_COUNT
+                endFormat = MessageFormat.format(endFormats[3], dateFormat.format(endDate.getTime()), endCount);
+                break;
         }
 
         String result;

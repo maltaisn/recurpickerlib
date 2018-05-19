@@ -24,8 +24,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item"
+    style="?attr/rpEndSpinnerItemStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="?attr/rpEndSpinnerItemStyle"
-    tools:text="Repeat weekly"
-    />
+    tools:text="Until"
+    tools:theme="@style/RecurrencePickerStyleTools"/>

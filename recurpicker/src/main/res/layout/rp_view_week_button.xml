@@ -22,8 +22,9 @@
 
 <ToggleButton
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/rpWeekButtonStyle"
     android:layout_width="?attr/rpWeekButtonSize"
     android:layout_height="?attr/rpWeekButtonSize"
     android:layout_margin="4dp"
-    style="?attr/rpWeekButtonStyle"
-    />
+    tools:theme="@style/RecurrencePickerStyleTools"/>

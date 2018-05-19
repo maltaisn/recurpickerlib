@@ -1,3 +1,7 @@
+#### v1.2.6
+- Callbacks can now be made to fragments
+- Changed default dialog buttons style to fit material style
+
 #### v1.2.4 & 1.2.5
 - Removed AppCompat dependencies
 - Made all `RecurrencePickerView.DEFAULT_*` constants package-private

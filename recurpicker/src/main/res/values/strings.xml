@@ -92,6 +92,7 @@
     </string-array>
 
     <string-array name="rp_end_formats">
+        <!--suppress CheckTagEmptyBody -->
         <item></item> <!-- Forever -->
         <item>until {0}</item> <!-- Until a date -->
         <item>for {0,choice,1#one event|1&lt;{0} events}</item> <!-- For a number of events -->
