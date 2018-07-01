@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Nicolas Maltais
+ * Copyright (c) Nicolas Maltais 2018
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file

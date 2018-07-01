@@ -1,3 +1,11 @@
+#### v1.3.0
+- Refactored code and created unit tests.
+- Added the `RRuleFormat` class to convert a `Recurrence` object to a RFC 5545 recurrence rule string. However, it is still not possible to create a recurrence from a string rule and this feature isn't planned because the recurrence picker only supports a thin subset of what RRule supports.
+- Removed `END_BY_DATE_OR_COUNT` in recurrence object, which RFC 5545 doesn't support, plus, it wasn't used.
+- Moved formatting methods from `Recurrence` to new `RecurrenceFormat` class.
+- Changed `isRepeatedOnDayOfWeek` to `isRepeatedOnDaysOfWeek`, accepting multiple days.
+- Added day of week constants for setting weekly day setting, instead of using `1 << Calendar.SUNDAY`.
+
 #### v1.2.6
 - Callbacks can now be made to fragments
 - Changed default dialog buttons style to fit material style

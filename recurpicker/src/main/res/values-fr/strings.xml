@@ -97,7 +97,6 @@
         <item></item> <!-- Forever -->
         <item>jusqu\'au {0}</item> <!-- Until a date -->
         <item>pour {0,choice,1#un événement|1&lt;{0} événements}</item> <!-- For a number of events -->
-        <item>jusqu\'au {0} ou pour {1,choice,1#un événement|1&lt;{1} événements}</item> <!-- Until a date or for a number of events, the one that comes first -->
     </string-array>
 
     <!-- Separator between each days of week when listing them

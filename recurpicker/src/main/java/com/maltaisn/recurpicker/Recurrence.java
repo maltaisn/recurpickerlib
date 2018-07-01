@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Nicolas Maltais
+ * Copyright (c) Nicolas Maltais 2018
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -45,10 +45,10 @@ public class Recurrence implements Parcelable {
 
     private static final String TAG = Recurrence.class.getSimpleName();
 
-    public static final int BYTE_ARRAY_LENGTH = 41;
-
     private static final int VERSION_1 = 100;
     private static final int VERSION = VERSION_1;
+
+    public static final int BYTE_ARRAY_LENGTH = 41;
 
     public static final int NONE = -1;
     public static final int DAILY = 0;
@@ -75,9 +75,8 @@ public class Recurrence implements Parcelable {
     public static final int END_NEVER = 0;
     public static final int END_BY_DATE = 1;
     public static final int END_BY_COUNT = 2;
-    public static final int END_BY_DATE_OR_COUNT = 3;
 
-    @IntDef(value = {END_NEVER, END_BY_DATE, END_BY_COUNT, END_BY_DATE_OR_COUNT})
+    @IntDef(value = {END_NEVER, END_BY_DATE, END_BY_COUNT})
     @Retention(RetentionPolicy.SOURCE)
     public @interface RecurrenceEndType {}
 
@@ -95,14 +94,14 @@ public class Recurrence implements Parcelable {
     // If recurrence is default, it will have a simpler text format
     private boolean isDefault;
 
-    private Calendar startDate;
+    Calendar startDate;
     private int period;  // Daily, weekly, ...
     private int frequency;  // Repeat every x periods...
     private int daySetting;  // Extra setting, either day of week or day of month
 
     private int endType;
     private int endCount;
-    private Calendar endDate;
+    Calendar endDate;
 
     // Two calendars used for finding next recurrence
     private Calendar from;
@@ -329,25 +328,6 @@ public class Recurrence implements Parcelable {
 
         isDefault = false;
         endDate = null;
-        return this;
-    }
-
-    /**
-     * Set recurrence to end after both a date or a number of events depending on which one comes first
-     * @param date  end date, time in millis
-     * @param count number of events, must be > 1
-     * @return the recurrence
-     */
-    public Recurrence setEndByDateOrCount(long date, int count) {
-        if (period == NONE) return this;
-        if (count < 1) setEndByDate(date);
-
-        endType = END_BY_DATE_OR_COUNT;
-        if (endDate == null) endDate = Calendar.getInstance();
-        endDate.setTimeInMillis(date);
-        endCount = count;
-
-        isDefault = false;
         return this;
     }
 
@@ -718,9 +698,6 @@ public class Recurrence implements Parcelable {
     }
 
     // HELPER METHODS
-
-
-
     /**
      * Checks if two calendars are on the same day
      * @param c1 calendar 1

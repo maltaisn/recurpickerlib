@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="rp_cancel">Cancel</string>
@@ -96,7 +97,6 @@
         <item></item> <!-- Forever -->
         <item>until {0}</item> <!-- Until a date -->
         <item>for {0,choice,1#one event|1&lt;{0} events}</item> <!-- For a number of events -->
-        <item>until {0} or for {1,choice,1#one event|1&lt;{1} events}</item> <!-- Until a date or for a number of events, the one that comes first -->
     </string-array>
 
     <!-- Separator between each days of week when listing them
