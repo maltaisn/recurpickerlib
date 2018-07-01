@@ -10,7 +10,7 @@ import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
-public class RecurrenceDateTest {
+public class RecurDateTest {
 
     private static Calendar calendar = Calendar.getInstance();
 
@@ -59,6 +59,8 @@ public class RecurrenceDateTest {
 
         List<Long> actual1 = r.findRecurrences(-1, 100);
         assertEquals(expected, actual1);
+
+        // If test is passed, same applies to other periods because same mechanism is used to detect end date
     }
 
     @Test
@@ -74,6 +76,8 @@ public class RecurrenceDateTest {
 
         List<Long> actual1 = r.findRecurrences(-1, 100);
         assertEquals(expected, actual1);
+
+        // If test is passed, same applies to other periods because same mechanism is used to detect end count
     }
 
     @Test
@@ -160,6 +164,57 @@ public class RecurrenceDateTest {
     }
 
     @Test
+    public void recur_date_monthly_last() {
+        List<Long> expected = Arrays.asList(
+                getDate(2018, Calendar.FEBRUARY, 28),
+                getDate(2018, Calendar.MARCH, 31),
+                getDate(2018, Calendar.APRIL, 30),
+                getDate(2018, Calendar.MAY, 31),
+                getDate(2018, Calendar.JUNE, 30)
+        );
+
+        Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 31), Recurrence.MONTHLY)
+                .setMonthlySetting(Recurrence.LAST_DAY_OF_MONTH);
+
+        List<Long> actual1 = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual1);
+    }
+
+    @Test
+    public void recur_date_monthly_same_day_of_week_last() {
+        List<Long> expected = Arrays.asList(
+                getDate(2018, Calendar.FEBRUARY, 28),
+                getDate(2018, Calendar.MARCH, 28),
+                getDate(2018, Calendar.APRIL, 25),
+                getDate(2018, Calendar.MAY, 30),
+                getDate(2018, Calendar.JUNE, 27)
+        );
+
+        Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 31), Recurrence.MONTHLY)
+                .setMonthlySetting(Recurrence.SAME_DAY_OF_WEEK);
+
+        List<Long> actual1 = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual1);
+    }
+
+    @Test
+    public void recur_date_monthly_same_day_of_week_second() {
+        List<Long> expected = Arrays.asList(
+                getDate(2018, Calendar.FEBRUARY, 14),
+                getDate(2018, Calendar.MARCH, 14),
+                getDate(2018, Calendar.APRIL, 11),
+                getDate(2018, Calendar.MAY, 9),
+                getDate(2018, Calendar.JUNE, 13)
+        );
+
+        Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 10), Recurrence.MONTHLY)
+                .setMonthlySetting(Recurrence.SAME_DAY_OF_WEEK);
+
+        List<Long> actual1 = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual1);
+    }
+
+    @Test
     public void recur_date_yearly() {
         List<Long> expected = Arrays.asList(
                 getDate(2019, Calendar.JANUARY, 1),
@@ -169,6 +224,22 @@ public class RecurrenceDateTest {
         );
 
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.YEARLY);
+
+        List<Long> actual1 = r.findRecurrences(-1, 4);
+        assertEquals(expected, actual1);
+    }
+
+    @Test
+    public void recur_date_yearly_freq3() {
+        List<Long> expected = Arrays.asList(
+                getDate(2021, Calendar.JANUARY, 1),
+                getDate(2024, Calendar.JANUARY, 1),
+                getDate(2027, Calendar.JANUARY, 1),
+                getDate(2030, Calendar.JANUARY, 1)
+        );
+
+        Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.YEARLY)
+                .setFrequency(3);
 
         List<Long> actual1 = r.findRecurrences(-1, 4);
         assertEquals(expected, actual1);

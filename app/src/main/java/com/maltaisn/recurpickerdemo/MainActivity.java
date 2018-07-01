@@ -26,6 +26,7 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -36,6 +37,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.maltaisn.recurpicker.Recurrence;
+import com.maltaisn.recurpicker.RecurrenceFormat;
 import com.maltaisn.recurpicker.RecurrencePickerDialog;
 
 import java.text.DateFormat;
@@ -48,6 +50,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends Activity implements RecurrencePickerDialog.RecurrenceSelectedCallback {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private static final long DAYS_100 = DateUtils.DAY_IN_MILLIS * 100;
 
     private CheckBox maxFreqCheck;
     private CheckBox maxEndCountCheck;
@@ -69,7 +75,7 @@ public class MainActivity extends Activity implements RecurrencePickerDialog.Rec
     private int recurCount;
     private ArrayList<Long> recurrenceList;
 
-    private static final long DAYS_100 = 8640000000L;
+    private RecurrenceFormat formatter;
     private Calendar maxEndDate;
 
     @Override
@@ -124,6 +130,9 @@ public class MainActivity extends Activity implements RecurrencePickerDialog.Rec
         Locale locale = getResources().getConfiguration().locale;
         dateFormatLong = new SimpleDateFormat("EEE MMM dd, yyyy", locale);  // Sun Dec 31, 2017
         final DateFormat dateFormatShort = new SimpleDateFormat("dd-MM-yyyy", locale);  // 31-12-2017
+
+        // Formatter for formatting the recurrences
+        formatter = new RecurrenceFormat(this, dateFormatLong);
 
         // Start date picker edit text
         startDateValue.setOnClickListener(new View.OnClickListener() {
@@ -378,7 +387,7 @@ public class MainActivity extends Activity implements RecurrencePickerDialog.Rec
         });
 
         // Set up recurrence list views
-        dialogPickerValue.setText(recurrence.format(this, dateFormatLong));
+        dialogPickerValue.setText(formatter.format(recurrence));
 
         dialogPickerPreviousBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -452,7 +461,7 @@ public class MainActivity extends Activity implements RecurrencePickerDialog.Rec
 
     private void selectRecurrence(Recurrence r) {
         recurrence = r;
-        dialogPickerValue.setText(recurrence.format(MainActivity.this, dateFormatLong));
+        dialogPickerValue.setText(formatter.format(recurrence));
 
         // Compute first two recurrences
         List<Long> next = recurrence.findRecurrences(-1, 2);

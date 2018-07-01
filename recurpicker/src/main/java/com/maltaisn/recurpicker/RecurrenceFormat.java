@@ -7,9 +7,9 @@ import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class RecurrenceFormatter {
+public class RecurrenceFormat {
 
-    private static final String TAG = RecurrenceFormatter.class.getSimpleName();
+    private static final String TAG = RecurrenceFormat.class.getSimpleName();
 
     private Context context;
     private DateFormat dateFormat;
@@ -21,7 +21,7 @@ public class RecurrenceFormatter {
      * @param context any context
      * @param dateFormat date format for the end date
      */
-    public RecurrenceFormatter(Context context, DateFormat dateFormat) {
+    public RecurrenceFormat(Context context, DateFormat dateFormat) {
         this.context = context;
         this.dateFormat = dateFormat;
 
@@ -29,11 +29,23 @@ public class RecurrenceFormatter {
     }
 
     /**
+     * Set date format used for formatting the end date
+     * @param dateFormat date format
+     */
+    public void setDateFormat(DateFormat dateFormat) {
+        this.dateFormat = dateFormat;
+    }
+
+    public DateFormat getDateFormat() {
+        return dateFormat;
+    }
+
+    /**
      * Format a recurrence to a string
      * @param r recurrence to format
      * @return the formatted string
      */
-    public String formatRecurrence(Recurrence r) {
+    public String format(Recurrence r) {
         // Generate first part of the text -> ex: Repeats every 2 days
         String[] recurFormats = context.getResources().getStringArray(R.array.rp_recur_formats);
         String recurFormat = null;

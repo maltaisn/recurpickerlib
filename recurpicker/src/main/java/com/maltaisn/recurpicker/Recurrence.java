@@ -56,16 +56,28 @@ public class Recurrence implements Parcelable {
     public static final int MONTHLY = 2;
     public static final int YEARLY = 3;
 
-    @IntDef(value={NONE, DAILY, WEEKLY, MONTHLY, YEARLY})
+    @IntDef(value = {NONE, DAILY, WEEKLY, MONTHLY, YEARLY})
     @Retention(RetentionPolicy.SOURCE)
     public @interface RecurrencePeriod {}
+
+    public static final int SUNDAY = 1 << Calendar.SUNDAY;
+    public static final int MONDAY = 1 << Calendar.MONDAY;
+    public static final int TUESDAY = 1 << Calendar.TUESDAY;
+    public static final int WEDNESDAY = 1 << Calendar.WEDNESDAY;
+    public static final int THURSDAY = 1 << Calendar.THURSDAY;
+    public static final int FRIDAY = 1 << Calendar.FRIDAY;
+    public static final int SATURDAY = 1 << Calendar.SATURDAY;
+
+    @IntDef(flag = true, value = {SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface RecurrenceDaysOfWeek {}
 
     public static final int END_NEVER = 0;
     public static final int END_BY_DATE = 1;
     public static final int END_BY_COUNT = 2;
     public static final int END_BY_DATE_OR_COUNT = 3;
 
-    @IntDef(value={END_NEVER, END_BY_DATE, END_BY_COUNT, END_BY_DATE_OR_COUNT})
+    @IntDef(value = {END_NEVER, END_BY_DATE, END_BY_COUNT, END_BY_DATE_OR_COUNT})
     @Retention(RetentionPolicy.SOURCE)
     public @interface RecurrenceEndType {}
 
@@ -73,7 +85,7 @@ public class Recurrence implements Parcelable {
     public static final int SAME_DAY_OF_WEEK = 1;
     public static final int LAST_DAY_OF_MONTH = 2;
 
-    @IntDef(value={SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK, LAST_DAY_OF_MONTH})
+    @IntDef(value = {SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK, LAST_DAY_OF_MONTH})
     @Retention(RetentionPolicy.SOURCE)
     public @interface RecurrenceMonthlySetting {}
 
@@ -101,7 +113,7 @@ public class Recurrence implements Parcelable {
      * Create a default recurrence that never ends and with frequency of 1
      * Recurrence can then be customized with {@link Recurrence#setFrequency(int)},
      * {@link Recurrence#setEndByDate(long)} for example. This constructor acts as a builder.
-     * @param start date of first event
+     * @param start  date of first event
      * @param period any of NONE, DAILY, WEEKLY, MONTHLY or YEARLY
      *               If setting weekly period, recurrence will happen on same day of week as start date
      *               If setting monthly period, recurrence will happen on same day of month as start date
@@ -215,17 +227,15 @@ public class Recurrence implements Parcelable {
 
     /**
      * If repeating weekly, sets the days of the week on which to repeat
-     * @param days bit field of 1 << [Calendar.SUNDAY to Calendar.SATURDAY] constants
-     *             ex: {@code int days = (1 << Calendar.SATURDAY) | (1 << Calendar.SUNDAY)}
-     *             You can also use binary literals like this 0b10000010 (saturday and sunday)
+     * @param days bit field of {@link RecurrenceDaysOfWeek} values
      *             If setting 0 or 1 (no days), the recurrence will become Does not repeat
      *             If setting all days and frequency is 1, the recurrence becomes daily
      *             So make sure to set frequency before weekly settings
      * @return the recurrence
      */
-    public Recurrence setWeeklySetting(int days) {
+    public Recurrence setWeeklySetting(@RecurrenceDaysOfWeek int days) {
         if (days < 0 || days > EVERY_DAY_OF_WEEK) {
-            throw new IllegalArgumentException("Weekly setting isn't a bit field of Calendar.SUNDAY - SATURDAY");
+            throw new IllegalArgumentException("Weekly setting isn't valid");
         }
 
         if (period == WEEKLY && days != daySetting) {
@@ -237,8 +247,9 @@ public class Recurrence implements Parcelable {
                 // Repeating weekly on every day -> change to daily
                 period = DAILY;
                 daySetting = 0;
+            } else {
+                daySetting = days;
             }
-            daySetting = days;
             isDefault = false;
         }
         return this;
@@ -247,6 +258,8 @@ public class Recurrence implements Parcelable {
     /**
      * If repeating monthly, sets on which day of the month to repeat
      * @param option either SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK or LAST_DAY_OF_MONTH
+     *               If trying to set LAST_DAY_OF_MONTH without start date actually being
+     *               on the last day, SAME_DAY_OF_MONTH will be set instead.
      * @return the recurrence
      */
     public Recurrence setMonthlySetting(@RecurrenceMonthlySetting int option) {
@@ -255,7 +268,12 @@ public class Recurrence implements Parcelable {
         }
 
         if (period == MONTHLY && option != daySetting) {
-            daySetting = option;
+            if (option == LAST_DAY_OF_MONTH && startDate.get(Calendar.DAY_OF_MONTH)
+                    != startDate.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+                daySetting = SAME_DAY_OF_MONTH;
+            } else {
+                daySetting = option;
+            }
             isDefault = false;
         }
         return this;
@@ -286,6 +304,12 @@ public class Recurrence implements Parcelable {
         if (endDate == null) endDate = Calendar.getInstance();
         endDate.setTimeInMillis(date);
 
+        if (!isOnSameDayOrAfter(endDate, startDate)) {
+            endDate = null;
+            endType = END_NEVER;
+            throw new IllegalArgumentException("End date cannot be before start date");
+        }
+
         isDefault = false;
         endCount = 0;
         return this;
@@ -310,7 +334,7 @@ public class Recurrence implements Parcelable {
 
     /**
      * Set recurrence to end after both a date or a number of events depending on which one comes first
-     * @param date end date, time in millis
+     * @param date  end date, time in millis
      * @param count number of events, must be > 1
      * @return the recurrence
      */
@@ -332,10 +356,10 @@ public class Recurrence implements Parcelable {
      * If changing to true, the recurrence must match these criteria to change:
      * -> Does not repeat, or;
      * -> Repeats
-     *    -> With a frequency of 1
-     *    -> Never ends
-     *    -> If repeating weekly, only repeats on the same day as start date
-     *    -> If repeating monthly, repeats on the same day of each month
+     * -> With a frequency of 1
+     * -> Never ends
+     * -> If repeating weekly, only repeats on the same day as start date
+     * -> If repeating monthly, repeats on the same day of each month
      * @param flag value to change to
      * @return the recurrence
      */
@@ -367,7 +391,8 @@ public class Recurrence implements Parcelable {
      * @return either NONE, DAILY, WEEKLY, MONTHLY or YEARLY
      */
 
-    public @RecurrencePeriod int getPeriod() {
+    @RecurrencePeriod
+    public int getPeriod() {
         return period;
     }
 
@@ -381,11 +406,10 @@ public class Recurrence implements Parcelable {
 
     /**
      * Gets the set weekly or monthly settings on which day to repeat on
-     * @return If repeated weekly, returns the bit-flag with days of week repeated
-     *         In this case you can use {@code repeated = (daySetting & (1 << day)) == (1 << day)},
-     *         where day is any of Calendar.SUNDAY to SATURDAY
-     *         If repeated monthly, returns either SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK or LAST_DAY_OF_MONTH
-     *         If not repeated weekly or monthly, returns 0
+     * @return If repeated weekly, returns the bit field of {@link RecurrenceDaysOfWeek} values
+     * If repeated monthly, returns either SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK or LAST_DAY_OF_MONTH
+     * If not repeated weekly or monthly, returns 0
+     * @see #isRepeatedOnDaysOfWeek(int) shortcut to know if recurrence repeats on a day of the week
      */
     public int getDaySetting() {
         return daySetting;
@@ -395,7 +419,8 @@ public class Recurrence implements Parcelable {
      * Gets the end type of the recurrence
      * @return either END_NEVER, END_BY_DATE, END_BY_COUNT or END_BY_DATE_OR_COUNT
      */
-    public @RecurrenceEndType int getEndType() {
+    @RecurrenceEndType
+    public int getEndType() {
         return endType;
     }
 
@@ -424,12 +449,12 @@ public class Recurrence implements Parcelable {
     }
 
     /**
-     * If repeating weekly, checks if event is repeated on a day of week
-     * @param day which day, use Calendar.SUNDAY-SATURDAY
-     * @return true if repeated on this day
+     * If repeating weekly, checks if event is repeated on days of week
+     * @param days which day, use {@link RecurrenceDaysOfWeek} values
+     * @return true if repeated on these days
      */
-    public boolean isRepeatedOnDayOfWeek(int day) {
-        return period == WEEKLY && (daySetting & (1 << day)) == (1 << day);
+    public boolean isRepeatedOnDaysOfWeek(int days) {
+        return period == WEEKLY && (daySetting & days) == days;
     }
 
     /**
@@ -437,11 +462,11 @@ public class Recurrence implements Parcelable {
      * This method computes each recurrence based on a previous one until it meets given date and amount
      * It is useful if you want to find the 1000th recurrence and you already know the 999th, because
      * it prevents 999 useless iterations. Just make sure to use a correct recurrence as the base.
-     * @param base recurrence on which next ones will be based
+     * @param base        recurrence on which next ones will be based
      * @param baseRepeats how many events were already repeated when base event happened.
      *                    This is important if recurrence ends by count, otherwise set 0
-     * @param fromDate get recurrences after this date, set to -1 if get after start date
-     * @param amount number of dates to get
+     * @param fromDate    get recurrences after this date, set to -1 if get after start date
+     * @param amount      number of dates to get
      * @return ArrayList of dates, empty if none
      */
     public List<Long> findRecurrencesBasedOn(long base, int baseRepeats, long fromDate, int amount) {
@@ -452,7 +477,8 @@ public class Recurrence implements Parcelable {
         List<Long> list = new ArrayList<>();
 
         if (from == null) from = Calendar.getInstance();
-        if (fromDate < 0) from.setTimeInMillis(startDate.getTimeInMillis());  // No date specified, find all recurrences
+        if (fromDate < 0)
+            from.setTimeInMillis(startDate.getTimeInMillis());  // No date specified, find all recurrences
         else from.setTimeInMillis(fromDate);
 
         // Check if repeat has already stopped as of this date, or not repeating
@@ -488,7 +514,7 @@ public class Recurrence implements Parcelable {
                             continue;  // Day is before start date on first week, wait until day after
                         if (endCount != 0 && repeats >= endCount) return list;
                         skipped++;
-                        if (isRepeatedOnDayOfWeek(day)) {
+                        if (isRepeatedOnDaysOfWeek(1 << day)) {
                             current.add(Calendar.DATE, skipped);
                             if (endDate != null && !isOnSameDayOrAfter(endDate, current))
                                 return list;
@@ -556,7 +582,7 @@ public class Recurrence implements Parcelable {
     /**
      * Get repeat dates after a date
      * This method computes each repetition based on the start date until it meets given date and amount
-     * @param from get events after this date (time in millis)
+     * @param from   get events after this date (time in millis)
      * @param amount number of dates to get
      * @return ArrayList of dates, empty if none
      */
@@ -564,91 +590,7 @@ public class Recurrence implements Parcelable {
         return findRecurrencesBasedOn(startDate.getTimeInMillis(), 0, from, amount);
     }
 
-    /**
-     * Format the recurrence object into readable text
-     * @param context any context, used to get the strings
-     * @param dateFormat used to format date if recurrence ends on date, can be null if you know it's not
-     * @return text of formatted recurrence
-     */
-    public String format(@NonNull Context context, @NonNull DateFormat dateFormat) {
 
-        // Generate first part of the text -> ex: Repeats every 2 days
-        String[] recurFormats = context.getResources().getStringArray(R.array.rp_recur_formats);
-        String recurFormat;
-        switch (period) {
-            case NONE:
-                recurFormat = recurFormats[0];  // Does not repeat
-                break;
-
-            case DAILY:
-                recurFormat = MessageFormat.format(recurFormats[1], frequency);
-                break;
-
-            case WEEKLY:
-                StringBuilder dayList = null;
-                if (!isDefault) {
-                    // Make a list of days of week
-                    dayList = new StringBuilder();
-                    if (daySetting == EVERY_DAY_OF_WEEK) {
-                        dayList.append(context.getString(R.string.rp_days_of_week_list_all));
-                    } else {
-                        String[] daysAbbr = context.getResources().getStringArray(R.array.rp_days_of_week_abbr);
-                        String listSep = context.getString(R.string.rp_days_of_week_list_sep);
-                        for (int day = 1; day <= 7; day++) {
-                            if (isRepeatedOnDayOfWeek(day)) {
-                                dayList.append(daysAbbr[day - 1]);
-                                dayList.append(listSep);
-                            }
-                        }
-                        dayList.delete(dayList.length() - listSep.length(), dayList.length());  // Remove extra separator
-                    }
-                }
-                recurFormat = MessageFormat.format(recurFormats[2], frequency, dayList == null ? 0 : 1, dayList);
-                break;
-
-            case MONTHLY:
-                String when = "";
-                if (!isDefault && daySetting == SAME_DAY_OF_MONTH)
-                    when = context.getString(R.string.rp_repeat_monthly_same_day);
-                else if (daySetting == SAME_DAY_OF_WEEK) when = getSameDayOfSameWeekString(context);
-                else if (daySetting == LAST_DAY_OF_MONTH)
-                    when = context.getString(R.string.rp_repeat_monthly_last_day);
-
-                recurFormat = MessageFormat.format(recurFormats[3], frequency, when.isEmpty() ? 0 : 1, when);
-                break;
-
-            default: // YEARLY
-                recurFormat = MessageFormat.format(recurFormats[4], frequency);
-                break;
-        }
-
-        // Generate second part of the text (how recurrence ends) -> ex: until 31-12-2017
-        String[] endFormats = context.getResources().getStringArray(R.array.rp_end_formats);
-        String endFormat;
-        switch (endType) {
-            case END_NEVER:
-                endFormat = endFormats[endType];
-                break;
-            case END_BY_DATE:
-                endFormat = MessageFormat.format(endFormats[1], dateFormat.format(endDate.getTime()));
-                break;
-            case END_BY_COUNT:
-                endFormat = MessageFormat.format(endFormats[2], endCount);
-                break;
-            default:  // END_BY_DATE_OR_COUNT
-                endFormat = MessageFormat.format(endFormats[3], dateFormat.format(endDate.getTime()), endCount);
-                break;
-        }
-
-        String result;
-        if (endFormat.isEmpty()) {
-            result = recurFormat;
-        } else {
-            result = MessageFormat.format(context.getString(R.string.rp_merge_format), recurFormat, endFormat);
-        }
-
-        return result;
-    }
 
     /**
      * Create a recurrence from a byte array
@@ -710,7 +652,7 @@ public class Recurrence implements Parcelable {
         if (!(obj instanceof Recurrence)) return false;
 
         Recurrence r = (Recurrence) obj;
-        return  r.isDefault == isDefault &&
+        return r.isDefault == isDefault &&
                 r.period == period &&
                 r.frequency == frequency &&
                 r.daySetting == daySetting &&
@@ -740,7 +682,7 @@ public class Recurrence implements Parcelable {
         sb.append(", startDate=");
         sb.append(sdf.format(startDate.getTime()));
         sb.append(", period=");
-        sb.append(new String[]{"NONE", "DAILY", "WEEKLY", "MONTHLY", "YEARLY"}[period+1]);
+        sb.append(new String[]{"NONE", "DAILY", "WEEKLY", "MONTHLY", "YEARLY"}[period + 1]);
         sb.append(", frequency=");
         sb.append(frequency);
         if (period == WEEKLY) {
@@ -748,15 +690,14 @@ public class Recurrence implements Parcelable {
             if (daySetting == EVERY_DAY_OF_WEEK) {
                 sb.append("EVERYDAY");
             } else {
-                String[] days = {"SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY",
-                        "THURSDAY", "FRIDAY", "SATURDAY"};
+                String[] days = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
                 for (int d = 0; d < 7; d++) {
-                    if (isRepeatedOnDayOfWeek(d+1)) {
+                    if (isRepeatedOnDaysOfWeek(1 << (d + 1))) {
                         sb.append(days[d]);
                         sb.append(", ");
                     }
                 }
-                sb.delete(sb.length()-2, sb.length());  // Remove extra ", "
+                sb.delete(sb.length() - 2, sb.length());  // Remove extra ", "
             }
         } else if (period == MONTHLY) {
             sb.append(", daySetting=");
@@ -778,15 +719,7 @@ public class Recurrence implements Parcelable {
 
     // HELPER METHODS
 
-    // Get the text for a date to display on a monthly recurrence repeated on the same day of week of same week
-    // ex: "on third Sunday" or "on last Friday"
-    String getSameDayOfSameWeekString(Context context) {
-        String[] daysOfWeek = context.getResources().getStringArray(R.array.rp_days_of_week);
-        String[] ordinalNbs = context.getResources().getStringArray(R.array.rp_ordinal_numbers);
-        String weekOrd = ordinalNbs[startDate.get(Calendar.DAY_OF_WEEK_IN_MONTH)-1];
-        String dayOfWeek = daysOfWeek[startDate.get(Calendar.DAY_OF_WEEK)-1];
-        return MessageFormat.format(context.getString(R.string.rp_repeat_monthly_same_week), weekOrd, dayOfWeek);
-    }
+
 
     /**
      * Checks if two calendars are on the same day
@@ -800,7 +733,7 @@ public class Recurrence implements Parcelable {
     }
 
     private static int getDaysInCalendar(@NonNull Calendar cal) {
-        return cal.get(Calendar.YEAR)*365 + cal.get(Calendar.DAY_OF_YEAR);
+        return cal.get(Calendar.YEAR) * 365 + cal.get(Calendar.DAY_OF_YEAR);
     }
 
     /**

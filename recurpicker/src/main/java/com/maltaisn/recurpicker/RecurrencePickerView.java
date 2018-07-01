@@ -63,9 +63,11 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     private static final String TAG = RecurrencePickerView.class.getSimpleName();
 
-    private boolean initialized;
-
     private boolean isInDialog;
+
+    private DatePickerDialog dateDialog;
+    private boolean dateDialogShown;
+    private Runnable restoreDateDialogRunnable;
 
     private LinearLayout headerLayout;
     private TextView headerTitle;
@@ -73,31 +75,22 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     private Switch repeatSwitch;
     
     private LinearLayout optionListLayout;
-    private OnClickListener optionListItemsClick;
     private LinearLayout creatorLayout;
-
     private EditText freqEdit;
-
     private ToggleButton[] weekButtons;
-
     private RadioGroup monthlySettingsGroup;
     private RadioButton sameWeekRadio;
     private RadioButton lastDayRadio;
-
     private LinearLayout endLayout;
     private Spinner endTypeSpin;
     private EditText endDateEdit;
     private EditText endCountEdit;
-
     private Button cancelBtn;
     private Button doneBtn;
 
-    private DatePickerDialog dateDialog;
-    private boolean dateDialogShown;
-    private Runnable restoreDateDialogRunnable;
+    private OnClickListener optionListItemsClick;
 
-    private int[] optionItemTextColor;
-
+    private boolean initialized;
     private boolean creatorShown;
     private int selectedOption;
     private Recurrence recurrence;
@@ -109,23 +102,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     private @Nullable OnRecurrencePickerCancelledListener cancelListener;
     private @Nullable OnCreatorShownListener creatorListener;
 
-    // Additional settings
-    static final int MAX_FIELD_VALUE = 999999999;
-    static final int DEFAULT_MAX_END_COUNT = 999;
-    static final int DEFAULT_MAX_FREQUENCY = 99;
-    static final int DEFAULT_MAX_END_DATE = -1;
-    static final int DEFAULT_END_COUNT = 5;
-    static final boolean DEFAULT_END_DATE_USE_PERIOD = true;
-    static final int DEFAULT_END_DATE_INTERVAL = 3;
-    static final boolean DEFAULT_OPTION_LIST_ENABLED = true;
-    static final boolean DEFAULT_CREATOR_ENABLED = true;
-    static final boolean DEFAULT_SHOW_DONE_IN_LIST = false;
-    static final boolean DEFAULT_SHOW_HEADER_IN_LIST = true;
-    static final boolean DEFAULT_SHOW_CANCEL_BTN = false;
-    static final int DEFAULT_ENABLED_PERIODS = 0b1111;
-    static final int DEFAULT_ENABLED_END_TYPES = 0b111;
-    static final Recurrence[] DEFAULT_OPTION_LIST_DEFAULTS = null;
-    static final CharSequence[] DEFAULT_OPTION_LIST_TITLES = null;
+    private int[] optionItemTextColor;
 
     private DateFormat endDateFormat;
     private DateFormat optionListDateFormat;
@@ -145,6 +122,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     private Recurrence[] optionListDefaults;
     private CharSequence[] optionListDefaultsTitle;
 
+    private RecurrenceFormat formatter;
     private Calendar poolCal;  // Used to prevent many instantiations of Calendar
 
 
@@ -177,6 +155,8 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     private void initLayout() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         inflater.inflate(R.layout.rp_view_picker, this);
+
+        formatter = new RecurrenceFormat(getContext(), null);
 
         // Get colors from theme
         final TypedArray ta = getContext().obtainStyledAttributes(R.styleable.RecurrencePickerView);
@@ -587,7 +567,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             freqEdit.setText(String.valueOf(recurrence.getFrequency()));
 
             // Set text for "on third Sunday of month" radio according to start date
-            sameWeekRadio.setText(recurrence.getSameDayOfSameWeekString(getContext()));
+            sameWeekRadio.setText(formatter.getSameDayOfSameWeekString(recurrence.getStartDate()));
 
             // Show "on last day of month" radio if start date is on last day of month
             poolCal.setTimeInMillis(recurrence.getStartDate());
@@ -597,7 +577,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             // Select days of week matching recurrence's settings
             if (recurrence.getPeriod() == Recurrence.WEEKLY) {
                 for (int i = 0; i < 7; i++) {
-                    weekButtons[i].setChecked(recurrence.isRepeatedOnDayOfWeek(i+1));
+                    weekButtons[i].setChecked(recurrence.isRepeatedOnDaysOfWeek(i+1));
                 }
             } else {
                 // If weekly is not the current period, set the default for when it will be selected
@@ -655,9 +635,10 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
             // Set up top item to selected recurrence
             if (showCustom) {
+                formatter.setDateFormat(optionListDateFormat);
                 optionListLayout.getChildAt(0).setVisibility(View.VISIBLE);
                 ((TextView) optionListLayout.getChildAt(0).findViewById(R.id.text))
-                        .setText(recurrence.format(getContext(), optionListDateFormat));
+                        .setText(formatter.format(recurrence));
             } else {
                 optionListLayout.getChildAt(0).setVisibility(View.GONE);
             }
@@ -813,6 +794,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     public RecurrencePickerSettings setDateFormat(@NonNull DateFormat endDateFormat, @NonNull DateFormat optionListDateFormat) {
         this.endDateFormat = endDateFormat;
         this.optionListDateFormat = optionListDateFormat;
+
         return this;
     }
 
@@ -1068,7 +1050,8 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
                     if (defaults == null) {
                         text = defaultTitles[i];
                     } else {
-                        text = defaults[i].format(getContext(), optionListDateFormat);
+                        formatter.setDateFormat(optionListDateFormat);
+                        text = formatter.format(defaults[i]);
                     }
                 } else {
                     text = titles[i];

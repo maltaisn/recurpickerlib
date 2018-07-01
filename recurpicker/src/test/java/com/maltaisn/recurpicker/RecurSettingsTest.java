@@ -2,53 +2,58 @@ package com.maltaisn.recurpicker;
 
 import org.junit.Test;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
-public class RecurSerializationTest {
+public class RecurSettingsTest {
 
     @Test
-    public void recur_serialization_1() {
-        Recurrence r1 = new Recurrence(System.currentTimeMillis(), Recurrence.DAILY)
-                .setFrequency(3).setEndByCount(100);
-        byte[] arr = r1.toByteArray();
-
-        Recurrence r2 = new Recurrence(arr, 0);
-        assertRecurrenceEquals(r1, r2);
+    public void recur_weekly_all_days_freq1() {
+        Recurrence r = new Recurrence(System.currentTimeMillis(), Recurrence.WEEKLY)
+                .setFrequency(1)
+                .setWeeklySetting(Recurrence.EVERY_DAY_OF_WEEK);
+        assertEquals(r.getPeriod(), Recurrence.DAILY);
+        assertEquals(r.getDaySetting(), 0);
     }
 
     @Test
-    public void recur_serialization_2() {
-        Recurrence r1 = new Recurrence(System.currentTimeMillis(), Recurrence.WEEKLY)
-                .setFrequency(5)
-                .setWeeklySetting(Recurrence.SATURDAY | Recurrence.SUNDAY)
-                .setEndByDate(System.currentTimeMillis() + 100000);
-        byte[] arr = r1.toByteArray();
-
-        Recurrence r2 = new Recurrence(arr, 0);
-        assertRecurrenceEquals(r1, r2);
-    }
-
-    @Test
-    public void recur_serialization_3() {
-        Recurrence r1 = new Recurrence(System.currentTimeMillis(), Recurrence.MONTHLY)
+    public void recur_weekly_all_days_freq2() {
+        Recurrence r = new Recurrence(System.currentTimeMillis(), Recurrence.WEEKLY)
                 .setFrequency(2)
-                .setMonthlySetting(Recurrence.SAME_DAY_OF_MONTH)
-                .setEndByDateOrCount(System.currentTimeMillis() + 100000, 5);
-        byte[] arr = r1.toByteArray();
-
-        Recurrence r2 = new Recurrence(arr, 0);
-        assertRecurrenceEquals(r1, r2);
+                .setWeeklySetting(Recurrence.EVERY_DAY_OF_WEEK);
+        assertEquals(r.getPeriod(), Recurrence.WEEKLY);
+        assertEquals(r.getDaySetting(), Recurrence.EVERY_DAY_OF_WEEK);
     }
 
-    private static void assertRecurrenceEquals(Recurrence r1, Recurrence r2) {
-        assertEquals(r1.getPeriod(), r2.getPeriod());
-        assertEquals(r1.getStartDate(), r2.getStartDate());
-        assertEquals(r1.getFrequency(), r2.getFrequency());
-        assertEquals(r1.getEndCount(), r2.getEndCount());
-        assertEquals(r1.getDaySetting(), r2.getDaySetting());
-        assertEquals(r1.getEndType(), r2.getEndType());
-        assertEquals(r1.getEndDate(), r2.getEndDate());
-        assertEquals(r1.getEndCount(), r2.getEndCount());
+    @Test
+    public void recur_monthly_last_day_change_start() {
+        long startDate = new GregorianCalendar(2018, Calendar.JANUARY, 31).getTimeInMillis();
+        Recurrence r = new Recurrence(startDate, Recurrence.MONTHLY)
+                .setMonthlySetting(Recurrence.LAST_DAY_OF_MONTH);
+
+        assertEquals(r.getDaySetting(), Recurrence.LAST_DAY_OF_MONTH);
+
+        long newDate = new GregorianCalendar(2018, Calendar.JANUARY, 1).getTimeInMillis();
+        r.setStartDate(newDate);
+
+        assertEquals(r.getDaySetting(), Recurrence.SAME_DAY_OF_MONTH);
+    }
+
+    @Test
+    public void recur_monthly_last_day_wrong_start() {
+        long startDate = new GregorianCalendar(2018, Calendar.JANUARY, 1).getTimeInMillis();
+        Recurrence r = new Recurrence(startDate, Recurrence.MONTHLY)
+                .setMonthlySetting(Recurrence.LAST_DAY_OF_MONTH);
+
+        assertEquals(r.getDaySetting(), Recurrence.SAME_DAY_OF_MONTH);
+
+        long newDate = new GregorianCalendar(2018, Calendar.JANUARY, 31).getTimeInMillis();
+        r.setStartDate(newDate).setMonthlySetting(Recurrence.LAST_DAY_OF_MONTH);
+
+        assertEquals(r.getDaySetting(), Recurrence.LAST_DAY_OF_MONTH);
     }
 
 }

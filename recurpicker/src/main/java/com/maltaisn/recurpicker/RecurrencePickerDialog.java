@@ -46,21 +46,22 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
 
     private DateFormat endDateFormat;
     private DateFormat optionListDateFormat;
-    private int maxEndCount = RecurrencePickerView.DEFAULT_MAX_END_COUNT;
-    private int maxFrequency = RecurrencePickerView.DEFAULT_MAX_FREQUENCY;
-    private long maxEndDate = RecurrencePickerView.DEFAULT_MAX_END_DATE;
-    private int defaultEndCount = RecurrencePickerView.DEFAULT_END_COUNT;
-    private boolean defaultEndDateUsePeriod = RecurrencePickerView.DEFAULT_END_DATE_USE_PERIOD;
-    private int defaultEndDateInterval = RecurrencePickerView.DEFAULT_END_DATE_INTERVAL;
-    private boolean optionListEnabled = RecurrencePickerView.DEFAULT_OPTION_LIST_ENABLED;
-    private boolean creatorEnabled = RecurrencePickerView.DEFAULT_CREATOR_ENABLED;
-    private boolean showDoneButtonInList = RecurrencePickerView.DEFAULT_SHOW_DONE_IN_LIST;
-    private boolean showHeaderInList = RecurrencePickerView.DEFAULT_SHOW_HEADER_IN_LIST;
-    private boolean showCancelBtn = RecurrencePickerView.DEFAULT_SHOW_CANCEL_BTN;
-    private int enabledPeriods = RecurrencePickerView.DEFAULT_ENABLED_PERIODS;
-    private int enabledEndTypes = RecurrencePickerView.DEFAULT_ENABLED_END_TYPES;
-    private Recurrence[] optionListDefaults = null;
-    private CharSequence[] optionListDefaultsTitle = null;
+
+    private int maxEndCount = DEFAULT_MAX_END_COUNT;
+    private int maxFrequency = DEFAULT_MAX_FREQUENCY;
+    private long maxEndDate = DEFAULT_MAX_END_DATE;
+    private int defaultEndCount = DEFAULT_END_COUNT;
+    private boolean defaultEndDateUsePeriod = DEFAULT_END_DATE_USE_PERIOD;
+    private int defaultEndDateInterval = DEFAULT_END_DATE_INTERVAL;
+    private boolean optionListEnabled = DEFAULT_OPTION_LIST_ENABLED;
+    private boolean creatorEnabled = DEFAULT_CREATOR_ENABLED;
+    private boolean showDoneButtonInList = DEFAULT_SHOW_DONE_IN_LIST;
+    private boolean showHeaderInList = DEFAULT_SHOW_HEADER_IN_LIST;
+    private boolean showCancelBtn = DEFAULT_SHOW_CANCEL_BTN;
+    private int enabledPeriods = DEFAULT_ENABLED_PERIODS;
+    private int enabledEndTypes = DEFAULT_ENABLED_END_TYPES;
+    private Recurrence[] optionListDefaults = DEFAULT_OPTION_LIST_DEFAULTS;
+    private CharSequence[] optionListDefaultsTitle = DEFAULT_OPTION_LIST_TITLES;
 
     private static final int CREATOR_TRANSITION_DURATION = 200;
 

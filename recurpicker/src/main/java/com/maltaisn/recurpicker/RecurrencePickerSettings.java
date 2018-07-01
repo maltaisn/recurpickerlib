@@ -22,7 +22,6 @@
 package com.maltaisn.recurpicker;
 
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -33,6 +32,23 @@ import java.text.DateFormat;
  * for the settings, this interface improves consistency
  */
 public interface RecurrencePickerSettings {
+
+    int MAX_FIELD_VALUE = 999999999;
+    int DEFAULT_MAX_END_COUNT = 999;
+    int DEFAULT_MAX_FREQUENCY = 99;
+    int DEFAULT_MAX_END_DATE = -1;
+    int DEFAULT_END_COUNT = 5;
+    boolean DEFAULT_END_DATE_USE_PERIOD = true;
+    int DEFAULT_END_DATE_INTERVAL = 3;
+    boolean DEFAULT_OPTION_LIST_ENABLED = true;
+    boolean DEFAULT_CREATOR_ENABLED = true;
+    boolean DEFAULT_SHOW_DONE_IN_LIST = false;
+    boolean DEFAULT_SHOW_HEADER_IN_LIST = true;
+    boolean DEFAULT_SHOW_CANCEL_BTN = false;
+    int DEFAULT_ENABLED_PERIODS = 0b1111;
+    int DEFAULT_ENABLED_END_TYPES = 0b111;
+    Recurrence[] DEFAULT_OPTION_LIST_DEFAULTS = null;
+    CharSequence[] DEFAULT_OPTION_LIST_TITLES = null;
 
     /**
      * Set the date format to use
@@ -160,7 +176,7 @@ public interface RecurrencePickerSettings {
      *                 or leave null to only change the titles
      *                 You can set any start date for these recurrences because it gets changed
      * @param titles Array of titles to use for each recurrence, leave null to use
-     *               {@link Recurrence#format(Context, DateFormat)} instead. You can also leave
+     *               {@link RecurrenceFormat#format(Recurrence)} instead. You can also leave
      *               specific items in array null to only format those.
      */
     RecurrencePickerSettings setOptionListDefaults(@Nullable Recurrence[] defaults, @Nullable CharSequence[] titles);
