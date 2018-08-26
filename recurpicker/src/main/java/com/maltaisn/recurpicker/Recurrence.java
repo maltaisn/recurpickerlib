@@ -333,12 +333,16 @@ public class Recurrence implements Parcelable {
 
     /**
      * Set recurrence to end after a number of events
-     * @param count number of events, must be > 1
+     * If setting less than 1, recurrence becomes "Does not repeat"
+     * @param count number of events
      * @return the recurrence
      */
     public Recurrence setEndByCount(int count) {
         if (period == NONE) return this;
-        if (count < 1) return setEndNever();
+        if (count < 1) {
+            // Repeating for 0 events = Does not repeat
+            return setPeriod(NONE);
+        }
 
         endType = END_BY_COUNT;
         endCount = count;

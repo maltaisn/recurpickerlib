@@ -102,7 +102,7 @@ public class RecurSettingsTest {
         Recurrence r = new Recurrence(startDate, Recurrence.DAILY)
                 .setEndByCount(0);
 
-        assertEquals(r.getEndType(), Recurrence.END_NEVER);
+        assertEquals(r.getPeriod(), Recurrence.NONE);
     }
 
 }
