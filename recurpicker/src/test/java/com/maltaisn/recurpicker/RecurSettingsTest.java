@@ -77,4 +77,32 @@ public class RecurSettingsTest {
         assertEquals(r.getDaySetting(), Recurrence.LAST_DAY_OF_MONTH);
     }
 
+    @Test
+    public void recur_end_date_on_start_date() {
+        long startDate = new GregorianCalendar(2018, Calendar.JANUARY, 1).getTimeInMillis();
+        Recurrence r = new Recurrence(startDate, Recurrence.DAILY)
+                .setEndByDate(startDate);
+
+        assertEquals(r.getPeriod(), Recurrence.NONE);
+    }
+
+    @Test
+    public void recur_start_date_on_end_date() {
+        long startDate = new GregorianCalendar(2018, Calendar.JANUARY, 1).getTimeInMillis();
+        long endDate = new GregorianCalendar(2018, Calendar.JANUARY, 2).getTimeInMillis();
+        Recurrence r = new Recurrence(startDate, Recurrence.DAILY)
+                .setEndByDate(endDate).setStartDate(endDate);
+
+        assertEquals(r.getPeriod(), Recurrence.NONE);
+    }
+
+    @Test
+    public void recur_end_by_count_0() {
+        long startDate = new GregorianCalendar(2018, Calendar.JANUARY, 1).getTimeInMillis();
+        Recurrence r = new Recurrence(startDate, Recurrence.DAILY)
+                .setEndByCount(0);
+
+        assertEquals(r.getEndType(), Recurrence.END_NEVER);
+    }
+
 }

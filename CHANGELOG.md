@@ -1,4 +1,9 @@
-#### v1.3.0
+### v1.3.1
+- Setting start date on the same day or after end date, or setting end date on the same day as start date will make recurrence become "Does not repeat".
+- Fixed bug where setting end by count to less than 1 didn't change end type to never.
+- Fixed bug where end date could be set on the same day as start date in RecurrencePickerView
+
+## v1.3.0
 - Refactored code and created unit tests.
 - Added the `RRuleFormat` class to convert a `Recurrence` object to a RFC 5545 recurrence rule string. However, it is still not possible to create a recurrence from a string rule and this feature isn't planned because the recurrence picker only supports a thin subset of what RRule supports.
 - Removed `END_BY_DATE_OR_COUNT` in recurrence object, which RFC 5545 doesn't support, plus, it wasn't used.
@@ -6,27 +11,27 @@
 - Changed `isRepeatedOnDayOfWeek` to `isRepeatedOnDaysOfWeek`, accepting multiple days.
 - Added day of week constants for setting weekly day setting, instead of using `1 << Calendar.SUNDAY`.
 
-#### v1.2.6
+### v1.2.6
 - Callbacks can now be made to fragments
 - Changed default dialog buttons style to fit material style
 
-#### v1.2.4 & 1.2.5
+### v1.2.4 & 1.2.5
 - Removed AppCompat dependencies
 - Made all `RecurrencePickerView.DEFAULT_*` constants package-private
 - Prefixed all attributes and strings with `rp` to avoid mixing them with the user's own attributes
 - Added copyright license header to source files
 - Made some resources private (strings, drawables, colors, layouts)
 
-#### v1.2.3
+### v1.2.3
 - Fixed `Recurrence.isOnSameDay` returning wrong result
 - Changed target build API to 27
 - Change license (again) to Apache 2.0
 - Added IntDef annotations for recurrence periods, end types and monthly settings
 
-#### v1.2.2
+### v1.2.2
 - Made end date picker dialog be restored on configuration change.
 
-#### v1.2.1
+### v1.2.1
 - Made recurrence object byte array length public
 - Removed `RecurrencePickerDialog.newInstance()`, it was useless
 - Renamed dialog callbacks to be less general ex. onCancelled becomes onRecurrencePickerCancelled

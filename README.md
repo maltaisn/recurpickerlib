@@ -2,7 +2,7 @@
 Fully customizable recurrence view and dialog, compatible with API 21. Easy to set up and to customize, almost every view can be styled with attributes. Several settings are available to change the picker interface.
 
 ### Gradle dependency
-`compile 'com.maltaisn:recurpicker:X.Y.Z'`
+`implementation 'com.maltaisn:recurpicker:X.Y.Z'`
 
 Replace `X.Y.Z` with lastest version number: [ ![Download](https://api.bintray.com/packages/maltaisn/recurrence-picker/recurrence-picker/images/download.svg) ](https://bintray.com/maltaisn/recurrence-picker/recurrence-picker/_latestVersion)
 

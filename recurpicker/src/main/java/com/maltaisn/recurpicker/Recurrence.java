@@ -148,6 +148,7 @@ public class Recurrence implements Parcelable {
     /**
      * Change the start date of the recurrence
      * If recurrence is default and repeating weekly, the day of week on which it is repeating will also change
+     * If setting start date on the same day or after end date, period will become {@link #NONE}
      * @param date time in millis on which to start recurring
      * @return the recurrence
      */
@@ -157,11 +158,17 @@ public class Recurrence implements Parcelable {
         if (period == WEEKLY && isDefault) {
             // If weekly recurrence is default, recurring day of week to the same as start date
             daySetting = 1 << startDate.get(Calendar.DAY_OF_WEEK);
+
         } else if (period == MONTHLY && daySetting == LAST_DAY_OF_MONTH && startDate.get(Calendar.DAY_OF_MONTH)
                 != startDate.getActualMaximum(Calendar.DAY_OF_MONTH)) {
             // Before changing it was repeating on last day, but now the start date isn't on the last
             // day of the month anymore so we change it to repeat on the same day of the month
             daySetting = SAME_DAY_OF_MONTH;
+        }
+
+        if (endType == END_BY_DATE && isOnSameDayOrAfter(startDate, endDate)) {
+            // Start and end date are on the same day now: remove recurrence
+            setPeriod(NONE);
         }
 
         return this;
@@ -197,9 +204,11 @@ public class Recurrence implements Parcelable {
             endType = END_NEVER;
             endDate = null;
             endCount = 0;
+
         } else if (period == WEEKLY) {
             // Repeat on the same day as starting day
             daySetting = 1 << startDate.get(Calendar.DAY_OF_WEEK);
+
         } else if (period == MONTHLY) {
             daySetting = SAME_DAY_OF_MONTH;
         }
@@ -218,6 +227,7 @@ public class Recurrence implements Parcelable {
         }
 
         if (period == NONE) return this;
+
         frequency = freq;
         isDefault = false;
         return this;
@@ -263,7 +273,8 @@ public class Recurrence implements Parcelable {
      */
     public Recurrence setMonthlySetting(@RecurrenceMonthlySetting int option) {
         if (option < SAME_DAY_OF_MONTH || option > LAST_DAY_OF_MONTH) {
-            throw new IllegalArgumentException("Monthly setting isn't one of Recurrence.SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK or LAST_DAY_OF_MONTH");
+            throw new IllegalArgumentException("Monthly setting isn't one of Recurrence." +
+                    "SAME_DAY_OF_MONTH, SAME_DAY_OF_WEEK or LAST_DAY_OF_MONTH");
         }
 
         if (period == MONTHLY && option != daySetting) {
@@ -293,6 +304,8 @@ public class Recurrence implements Parcelable {
 
     /**
      * Set recurrence to end on a date
+     * If setting end date on same day as start date, recurrence will become {@link #NONE}
+     * End date must happen after start date
      * @param date end date, time in millis
      * @return the recurrence
      */
@@ -303,7 +316,11 @@ public class Recurrence implements Parcelable {
         if (endDate == null) endDate = Calendar.getInstance();
         endDate.setTimeInMillis(date);
 
-        if (!isOnSameDayOrAfter(endDate, startDate)) {
+        if (isOnSameDay(startDate, endDate)) {
+            // Start and end date are on the same day now: remove recurrence
+            setPeriod(NONE);
+        } else if (!isOnSameDayOrAfter(endDate, startDate)) {
+            // End date is before start date
             endDate = null;
             endType = END_NEVER;
             throw new IllegalArgumentException("End date cannot be before start date");
@@ -321,7 +338,7 @@ public class Recurrence implements Parcelable {
      */
     public Recurrence setEndByCount(int count) {
         if (period == NONE) return this;
-        if (count < 1) setEndNever();
+        if (count < 1) return setEndNever();
 
         endType = END_BY_COUNT;
         endCount = count;

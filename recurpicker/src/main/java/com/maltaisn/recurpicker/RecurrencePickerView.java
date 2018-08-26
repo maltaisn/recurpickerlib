@@ -34,6 +34,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -735,7 +736,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             }
         });
 
-        dateDialog.getDatePicker().setMinDate(startDate);  // Event cannot stop recurring before it begins
+        dateDialog.getDatePicker().setMinDate(startDate + DateUtils.DAY_IN_MILLIS);  // Event cannot stop recurring before it begins
         if (maxEndDate != -1) dateDialog.getDatePicker().setMaxDate(maxEndDate);
         dateDialog.setTitle(null);  // Fixes issue with date being set as title when max date is set
 
