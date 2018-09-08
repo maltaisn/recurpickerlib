@@ -1,5 +1,5 @@
 # Recurrence picker
-Fully customizable recurrence view and dialog, compatible with API 21. Easy to set up and to customize, almost every view can be styled with attributes. Several settings are available to change the picker interface.
+Fully customizable recurrence view and dialog, compatible with API 19. Easy to set up and to customize, almost every view can be styled with attributes. Several settings are available to change the picker interface.
 
 ### Gradle dependency
 `implementation 'com.maltaisn:recurpicker:X.Y.Z'`

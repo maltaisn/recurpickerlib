@@ -27,7 +27,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="10dp"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="?attr/selectableItemBackground"
     android:gravity="center_vertical"
     tools:theme="@style/RecurrencePickerStyleTools">
 
@@ -39,7 +39,7 @@
         android:layout_weight="1"
         tools:text="Does not repeat"/>
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/icon_check"
         android:layout_width="?attr/rpOptionCheckSize"
         android:layout_height="?attr/rpOptionCheckSize"
@@ -50,4 +50,5 @@
         android:visibility="invisible"
         tools:visibility="visible"
         tools:ignore="ContentDescription"/>
+
 </LinearLayout>

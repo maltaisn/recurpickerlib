@@ -52,9 +52,9 @@
         <attr name="rpColorWeekButtonChecked" format="reference|color"/>
         <attr name="rpColorWeekButtonUnchecked" format="reference|color"/>
         <attr name="rpColorWeekButtonStroke" format="reference|color"/>
-        <attr name="rpColorWeekButtonStrokeWidth" format="dimension"/>
         <attr name="rpColorWeekButtonTextChecked" format="reference|color"/>
         <attr name="rpColorWeekButtonTextUnchecked" format="reference|color"/>
+        <attr name="rpWeekButtonStrokeWidth" format="dimension"/>
         <attr name="rpWeekButtonSize" format="dimension"/>
 
         <!-- Strings attributes -->

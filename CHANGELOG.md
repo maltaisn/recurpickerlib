@@ -1,3 +1,6 @@
+## v1.4.0
+- Backported to API 19, re-added AppCompat dependencies
+
 ### v1.3.1
 - Setting start date on the same day or after end date, or setting end date on the same day as start date will make recurrence become "Does not repeat".
 - Fixed bug where setting end by count to less than 1 didn't change end type to never.

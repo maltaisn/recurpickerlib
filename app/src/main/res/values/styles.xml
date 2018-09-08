@@ -22,10 +22,10 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">
-        <item name="android:colorPrimary">@color/colorPrimary</item>
-        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="android:colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
         <item name="recurrencePickerStyle">@style/RecurrencePickerStyleCustom</item>
     </style>
@@ -34,7 +34,7 @@
     <style name="RecurrencePickerStyleCustom" parent="RecurrencePickerStyle">
         <!--
         You can customize the recurrence picker style here ex:
-            <item name="colorHeaderBackground">?android:attr/colorPrimary</item>
+            <item name="colorHeaderBackground">?attr/colorPrimary</item>
         -->
     </style>
 

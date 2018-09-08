@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:text="@string/settings_title"
-            android:textAppearance="@android:style/TextAppearance.Material.Button"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textStyle="bold"
             android:gravity="center"/>
 
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_start_date"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:labelFor="@id/start_date_value"/>
 
             <EditText
@@ -67,8 +67,8 @@
                 android:paddingStart="10dp"
                 android:focusable="false"
                 android:inputType="text"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:foreground="?attr/selectableItemBackground"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 tools:ignore="TextFields"
                 tools:text="01/01/2018"/>
 
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_max_freq"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:labelFor="@+id/max_freq_value"/>
 
             <EditText
@@ -95,7 +95,7 @@
                 android:paddingStart="15dp"
                 android:inputType="number"
                 android:maxLength="3"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 tools:ignore="LabelFor,TextFields"
                 tools:text="99"/>
 
@@ -111,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_max_end_count"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:labelFor="@id/max_end_count_value"/>
 
             <EditText
@@ -122,7 +122,7 @@
                 android:paddingStart="15dp"
                 android:inputType="number"
                 android:maxLength="4"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 tools:ignore="LabelFor,TextFields"
                 tools:text="999"/>
 
@@ -138,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_max_end_date"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:labelFor="@id/max_end_date_value"/>
 
             <EditText
@@ -149,8 +149,8 @@
                 android:paddingStart="10dp"
                 android:focusable="false"
                 android:inputType="text"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:foreground="?attr/selectableItemBackground"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 tools:ignore="LabelFor,TextFields"
                 tools:text="31/12/2018"/>
 
@@ -161,7 +161,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_default_end_date"
-            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:labelFor="@id/default_end_date_value"/>
 
         <LinearLayout
@@ -177,7 +177,7 @@
                 android:paddingStart="10dp"
                 android:inputType="number"
                 android:maxLength="3"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 tools:ignore="TextFields"
                 tools:text="3"/>
 
@@ -185,7 +185,7 @@
                 android:id="@+id/default_end_date_value_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 tools:text="days"/>
 
             <CheckBox
@@ -207,7 +207,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_end_count"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 android:labelFor="@id/default_end_count_value"/>
 
             <EditText
@@ -218,7 +218,7 @@
                 android:paddingStart="15dp"
                 android:inputType="number"
                 android:maxLength="4"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 tools:ignore="TextFields"
                 tools:text="5"/>
 
@@ -262,7 +262,7 @@
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:text="@string/dialog_picker_title"
-            android:textAppearance="@android:style/TextAppearance.Material.Button"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textStyle="bold"
             android:gravity="center"/>
 
@@ -280,7 +280,7 @@
             android:paddingEnd="30dp"
             android:paddingStart="30dp"
             android:paddingTop="5dp"
-            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:layout_gravity="center_horizontal"
             tools:text="Repeats daily"/>
 
@@ -307,7 +307,7 @@
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:layout_weight="1"
-                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 tools:text="#1 is on Mon Jan 1, 2018"
                 android:gravity="center"/>
 

@@ -24,18 +24,18 @@ package com.maltaisn.recurpicker;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 
 import java.text.DateFormat;
 
 @SuppressWarnings("unused")
-public class RecurrencePickerDialog extends DialogFragment implements RecurrencePickerSettings {
+public class RecurrencePickerDialog extends AppCompatDialogFragment implements RecurrencePickerSettings {
 
     private static final String TAG = RecurrencePickerDialog.class.getSimpleName();
 
@@ -73,6 +73,7 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
     }
 
     @Override
+    @NonNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
@@ -110,7 +111,7 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
             public void onRecurrenceCreatorShown() {
                 // Briefly hide the dialog while it is rearranging its view because that looks weird
                 getDialog().hide();
-                final Handler handler  = new Handler();
+                final Handler handler = new Handler();
                 final Runnable runnable = new Runnable() {
                     @Override
                     public void run() {
@@ -254,11 +255,8 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
 
     @Override
     public void onCancel(DialogInterface dialog) {
-        try {
-            ((RecurrenceSelectedCallback) getActivity()).onRecurrencePickerCancelled(recurrence);
-        } catch (Exception e) {
-            // Interface callback is not implemented in activity
-        }
+        RecurrenceSelectedCallback callback = getCallback();
+        if (callback != null) callback.onRecurrencePickerCancelled(recurrence);
     }
 
     @Override
@@ -276,7 +274,8 @@ public class RecurrencePickerDialog extends DialogFragment implements Recurrence
         void onRecurrencePickerCancelled(Recurrence r);
     }
 
-    private @Nullable RecurrenceSelectedCallback getCallback() {
+    @Nullable
+    private RecurrenceSelectedCallback getCallback() {
         try {
             if (getTargetFragment() != null) {
                 return (RecurrenceSelectedCallback) getTargetFragment();

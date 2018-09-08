@@ -21,9 +21,9 @@
 
 package com.maltaisn.recurpickerdemo;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateUtils;
@@ -49,7 +49,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends Activity implements RecurrencePickerDialog.RecurrenceSelectedCallback {
+public class MainActivity extends AppCompatActivity implements RecurrencePickerDialog.RecurrenceSelectedCallback {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -382,7 +382,7 @@ public class MainActivity extends Activity implements RecurrencePickerDialog.Rec
                 pickerDialog.setCancelable(!showCancelBtnCheck.isChecked());
 
                 // Show the recurrence dialog
-                pickerDialog.show(getFragmentManager(), "recur_picker_dialog");
+                pickerDialog.show(getSupportFragmentManager(), "recur_picker_dialog");
             }
         });
 
