@@ -1,3 +1,6 @@
+## v1.4.1
+- Fixed library dependencies not being added to the project
+
 ## v1.4.0
 - Backported to API 19, re-added AppCompat dependencies
 

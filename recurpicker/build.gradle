@@ -1,13 +1,37 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'recurrence-picker'
+    bintrayName = 'recurrence-picker'
+
+    publishedGroupId = 'com.maltaisn'
+    libraryName = 'recurrence-picker'
+    artifact = 'recurpicker'
+    packagingType = 'jar'
+
+    libraryDescription = 'Recurrence picker view and dialog for Android'
+
+    siteUrl = 'https://github.com/maltaisn/recurpickerlib'
+    gitUrl = 'https://github.com/maltaisn/recurpickerlib.git'
+
+    libraryVersionCode = 13
+    libraryVersion = '1.4.1'
+
+    developerId = 'maltaisn'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 27
 
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 12
-        versionName "1.4.0"
+        versionCode libraryVersionCode
+        versionName libraryVersion
     }
 
     buildTypes {
@@ -29,7 +53,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:support-annotations:27.1.1'
 }
 
-apply from: rootProject.file('release-bintray.gradle')
+apply from: 'maven-install.gradle'
+apply from: 'bintray.gradle'
