@@ -22,17 +22,20 @@
 package com.maltaisn.recurpicker;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.support.v4.os.ConfigurationCompat;
 
 import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class RecurrenceFormat {
 
     private static final String TAG = RecurrenceFormat.class.getSimpleName();
 
-    private Context context;
+    private Resources res;
     private DateFormat dateFormat;
 
     private Calendar calendar;
@@ -43,7 +46,7 @@ public class RecurrenceFormat {
      * @param dateFormat date format for the end date, can be null but must be set before formatting
      */
     public RecurrenceFormat(Context context, DateFormat dateFormat) {
-        this.context = context;
+        res = context.getResources();
         this.dateFormat = dateFormat;
 
         calendar = Calendar.getInstance();
@@ -68,80 +71,89 @@ public class RecurrenceFormat {
      */
     public String format(Recurrence r) {
         // Generate first part of the text -> ex: Repeats every 2 days
-        String[] recurFormats = context.getResources().getStringArray(R.array.rp_recur_formats);
-        String recurFormat = "";
+        StringBuilder recurSb = new StringBuilder();
+        int freq = r.getFrequency();
         switch (r.getPeriod()) {
             case Recurrence.NONE:
-                recurFormat = recurFormats[0];  // Does not repeat
+                // Does not repeat
+                recurSb.append(res.getString(R.string.rp_format_none));
                 break;
 
             case Recurrence.DAILY:
-                recurFormat = MessageFormat.format(recurFormats[1], r.getFrequency());
+                // Repeat on every [freq] day(s)
+                recurSb.append(res.getQuantityString(R.plurals.rp_format_day, freq, freq));
                 break;
 
             case Recurrence.WEEKLY:
-                StringBuilder dayList = null;
+                // Repeat on every [freq] week(s)
+                recurSb.append(res.getQuantityString(R.plurals.rp_format_week, freq, freq));
                 if (!r.isDefault()) {
                     // Make a list of days of week
-                    dayList = new StringBuilder();
+                    StringBuilder weekOptionStr = new StringBuilder();
                     if (r.getDaySetting() == Recurrence.EVERY_DAY_OF_WEEK) {
-                        dayList.append(context.getString(R.string.rp_days_of_week_list_all));
+                        // on every day of the week
+                        weekOptionStr.append(res.getString(R.string.rp_format_weekly_all));
                     } else {
-                        String[] daysAbbr = context.getResources().getStringArray(R.array.rp_days_of_week_abbr);
-                        String listSep = context.getString(R.string.rp_days_of_week_list_sep);
-                        for (int day = 1; day <= 7; day++) {
+                        // on [Sun, Mon, Wed, ...]
+                        String[] daysAbbr = res.getStringArray(R.array.rp_days_of_week_abbr);
+                        for (int day = Calendar.SUNDAY; day <= Calendar.SATURDAY; day++) {
                             if (r.isRepeatedOnDaysOfWeek(1 << day)) {
-                                dayList.append(daysAbbr[day - 1]);
-                                dayList.append(listSep);
+                                weekOptionStr.append(daysAbbr[day - 1]);
+                                weekOptionStr.append(", ");
                             }
                         }
-                        dayList.delete(dayList.length() - listSep.length(), dayList.length());  // Remove extra separator
+                        weekOptionStr.delete(weekOptionStr.length() - 2, weekOptionStr.length());  // Remove extra separator
                     }
+                    recurSb.append(' ');
+                    recurSb.append(res.getString(R.string.rp_format_weekly_option, weekOptionStr.toString()));
                 }
-                recurFormat = MessageFormat.format(recurFormats[2], r.getFrequency(), dayList == null ? 0 : 1, dayList);
                 break;
 
             case Recurrence.MONTHLY:
-                String when = "";
-                int daySetting = r.getDaySetting();
-                if (!r.isDefault() && daySetting == Recurrence.SAME_DAY_OF_MONTH)
-                    when = context.getString(R.string.rp_repeat_monthly_same_day);
-                else if (daySetting == Recurrence.SAME_DAY_OF_WEEK) when = getSameDayOfSameWeekString(r.getStartDate());
-                else if (daySetting == Recurrence.LAST_DAY_OF_MONTH)
-                    when = context.getString(R.string.rp_repeat_monthly_last_day);
+                // Repeat on every [freq] month(s)
+                recurSb.append(res.getQuantityString(R.plurals.rp_format_month, freq, freq));
 
-                recurFormat = MessageFormat.format(recurFormats[3], r.getFrequency(), when.isEmpty() ? 0 : 1, when);
+                int daySetting = r.getDaySetting();
+                if (!r.isDefault()) {
+                    recurSb.append(" (");
+                    String monthOptionStr = null;
+                    switch (daySetting) {
+                        case Recurrence.SAME_DAY_OF_MONTH:
+                            // on the same day of each month
+                            recurSb.append(res.getString(R.string.rp_format_monthly_same_day));
+                            break;
+                        case Recurrence.SAME_DAY_OF_WEEK:
+                            // on every [nth] [Sunday]
+                            recurSb.append(getSameDayOfSameWeekString(r.getStartDate()));
+                            break;
+                        case Recurrence.LAST_DAY_OF_MONTH:
+                            // on the last day of each month
+                            recurSb.append(res.getString(R.string.rp_format_monthly_last_day));
+                            break;
+                    }
+                    recurSb.append(")");
+                }
                 break;
 
             case Recurrence.YEARLY:
-                recurFormat = MessageFormat.format(recurFormats[4], r.getFrequency());
+                recurSb.append(res.getQuantityString(R.plurals.rp_format_year, freq, freq));
                 break;
         }
 
-        // Generate second part of the text (how recurrence ends) -> ex: until 31-12-2017
-        String[] endFormats = context.getResources().getStringArray(R.array.rp_end_formats);
-        String endFormat = "";
-        switch (r.getEndType()) {
-            case Recurrence.END_NEVER:
-                endFormat = endFormats[0];
-                break;
-            case Recurrence.END_BY_DATE:
-                endFormat = MessageFormat.format(endFormats[1],
-                        dateFormat.format(new Date(r.getEndDate())));
-                break;
-            case Recurrence.END_BY_COUNT:
-                endFormat = MessageFormat.format(endFormats[2], r.getEndCount());
-                break;
+        int endType = r.getEndType();
+        if (endType != Recurrence.END_NEVER) {
+            recurSb.append("; ");
+            if (endType == Recurrence.END_BY_DATE) {
+                // until [date]
+                recurSb.append(res.getString(R.string.rp_format_end_date,
+                        dateFormat.format(new Date(r.getEndDate()))));
+            } else {
+                // for [endCount] event(s)
+                int endCount = r.getEndCount();
+                recurSb.append(res.getQuantityString(R.plurals.rp_format_end_count, endCount, endCount));
+            }
         }
-
-        String result;
-        if (endFormat.isEmpty()) {
-            result = recurFormat;
-        } else {
-            result = MessageFormat.format(context.getString(R.string.rp_merge_format), recurFormat, endFormat);
-        }
-
-        return result;
+        return recurSb.toString();
     }
 
     /**
@@ -152,11 +164,11 @@ public class RecurrenceFormat {
     String getSameDayOfSameWeekString(long date) {
         calendar.setTimeInMillis(date);
 
-        String[] daysOfWeek = context.getResources().getStringArray(R.array.rp_days_of_week);
-        String[] ordinalNbs = context.getResources().getStringArray(R.array.rp_ordinal_numbers);
-        String weekOrd = ordinalNbs[calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH) - 1];
-        String dayOfWeek = daysOfWeek[calendar.get(Calendar.DAY_OF_WEEK) - 1];
-        return MessageFormat.format(context.getString(R.string.rp_repeat_monthly_same_week), weekOrd, dayOfWeek);
+        Locale locale = ConfigurationCompat.getLocales(res.getConfiguration()).get(0);
+        String[] daysStr = res.getStringArray(R.array.rp_format_monthly_same_week);
+        String[] numbersStr = res.getStringArray(R.array.rp_format_monthly_ordinal);
+        String weekNbStr = numbersStr[calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH) - 1];
+        return String.format(locale, daysStr[calendar.get(Calendar.DAY_OF_WEEK) - 1], weekNbStr);
     }
 
 }

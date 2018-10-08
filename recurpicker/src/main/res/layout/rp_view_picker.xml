@@ -130,8 +130,9 @@
                         android:labelFor="@+id/edit_freq"
                         android:paddingStart="10dp"
                         android:paddingEnd="0dp"
-                        android:text="@string/rp_every"
                         android:textAppearance="?attr/rpLabelTextAppearance"
+                        tools:text="Every"
+                        tools:ignore="LabelFor"
                         />
 
                     <EditText
@@ -175,7 +176,7 @@
                         android:id="@+id/radio_same_day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/rp_repeat_monthly_same_day"
+                        android:text="@string/rp_format_monthly_same_day"
                         android:textAppearance="?attr/rpLabelTextAppearance"
                         />
 
@@ -191,7 +192,7 @@
                         android:id="@+id/radio_last_day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/rp_repeat_monthly_last_day"
+                        android:text="@string/rp_format_monthly_last_day"
                         android:textAppearance="?attr/rpLabelTextAppearance"
                         />
 

@@ -28,15 +28,11 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -58,12 +54,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import java.text.DateFormat;
-import java.text.MessageFormat;
 import java.util.Calendar;
 
 @SuppressWarnings({"SameParameterValue", "UnusedReturnValue"})
@@ -206,6 +200,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
         final LinearLayout freqLayout = findViewById(R.id.freq_layout);
         freqEdit = findViewById(R.id.edit_freq);
+        final TextView freqLabel = findViewById(R.id.text_freq_label);
         final TextView freqEventLabel = findViewById(R.id.text_freq_event);
 
         final LinearLayout weekButtonLayout1 = findViewById(R.id.week_button_row1);
@@ -419,7 +414,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
                 }
 
                 // Change between "event" and "events"
-                endValueLabel.setText(MessageFormat.format(getContext().getString(R.string.rp_event), endCount));
+                endValueLabel.setText(getResources().getQuantityString(R.plurals.rp_end_count_event, endCount));
             }
         });
 
@@ -459,9 +454,24 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
                 }
 
                 // Change between week and weeks (or other time unit)
-                String unitFormat = getResources().getStringArray(R.array.rp_recur_units)
-                        [recurPeriodSpin.getSelectedItemPosition()];
-                freqEventLabel.setText(MessageFormat.format(unitFormat, freq));
+                int formatId = 0;
+                switch (recurPeriodSpin.getSelectedItemPosition()) {
+                    case 0:
+                        formatId = R.plurals.rp_frequency_day;
+                        break;
+                    case 1:
+                        formatId = R.plurals.rp_frequency_week;
+                        break;
+                    case 2:
+                        formatId = R.plurals.rp_frequency_month;
+                        break;
+                    case 3:
+                        formatId = R.plurals.rp_frequency_year;
+                        break;
+                }
+                String[] parts = getResources().getQuantityString(formatId, freq).split("%d", 2);
+                freqLabel.setText(parts[0].trim());
+                freqEventLabel.setText(parts[1].trim());
             }
         });
 
@@ -582,7 +592,6 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     /**
      * Change the editing mode of the recurrence picker and updates the current views to match the recurrence
-     *
      * @param creatorShown if not shown, the list of default options is shown
      */
     public void changeMode(boolean creatorShown) {
@@ -606,7 +615,8 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             // Select days of week matching recurrence's settings
             if (recurrence.getPeriod() == Recurrence.WEEKLY) {
                 for (int i = 0; i < 7; i++) {
-                    weekButtons[i].setChecked(recurrence.isRepeatedOnDaysOfWeek(i + 1));
+                    int day = 1 << (i + 1);
+                    weekButtons[i].setChecked(recurrence.isRepeatedOnDaysOfWeek(day));
                 }
             } else {
                 // If weekly is not the current period, set the default for when it will be selected
@@ -776,7 +786,6 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
      * Call this method to notice the view that it is in a dialog
      * When restoring, the view needs to know when to show the date dialog (if it was opened)
      * to prevent it from being displayed being its parent dialog.
-     *
      * @param isInDialog whether in a dialog or not
      */
     public void setIsInDialog(boolean isInDialog) {
@@ -794,7 +803,6 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     /**
      * Set a listener to call when picker goes from option list to creator
      * Can be used to hide the view while it rearranges its views
-     *
      * @param listener the listener
      */
     public RecurrencePickerSettings setOnCreatorShownListener(@Nullable OnCreatorShownListener listener) {
@@ -804,7 +812,6 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     /**
      * Set a listener to call when picker produces a recurrence
-     *
      * @param listener the listener
      */
     public RecurrencePickerSettings setOnRecurrenceSelectedListener(@Nullable OnRecurrenceSelectedListener listener) {
@@ -814,7 +821,6 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
     /**
      * Set the cancel lsitener to call when the picker is cancelled
-     *
      * @param listener the listener
      * @return the picker
      */
