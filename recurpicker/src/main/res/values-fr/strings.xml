@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="rp_cancel">Annuler</string>
     <string name="rp_done">OK</string>
 
     <string name="rp_repeat_options">Options de répétition</string>

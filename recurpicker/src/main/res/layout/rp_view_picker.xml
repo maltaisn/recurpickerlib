@@ -31,10 +31,9 @@
     >
 
     <LinearLayout
-        android:id="@+id/header_layout"
+        android:id="@+id/rp_layout_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingTop="10dp"
@@ -45,7 +44,7 @@
         >
 
         <TextView
-            android:id="@+id/header_title"
+            android:id="@+id/rp_txv_header_title"
             style="?attr/rpOptionListTitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +54,7 @@
             />
 
         <Spinner
-            android:id="@+id/spin_recur_type"
+            android:id="@+id/rp_spn_period"
             style="?attr/rpPeriodSpinnerStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,8 +65,8 @@
             />
 
         <android.support.v7.widget.SwitchCompat
-            android:id="@+id/switch_repeat"
-            android:layout_width="wrap_content"
+            android:id="@+id/rp_sw_enabled"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_weight="1"
@@ -80,14 +79,11 @@
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         >
 
         <FrameLayout
-            android:id="@+id/body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -95,7 +91,7 @@
 
             <!-- List of default recurrence options -->
             <LinearLayout
-                android:id="@+id/option_list_layout"
+                android:id="@+id/rp_layout_default_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -105,7 +101,7 @@
                 />
 
             <LinearLayout
-                android:id="@+id/creator_layout"
+                android:id="@+id/rp_layout_creator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -114,7 +110,7 @@
                 >
 
                 <LinearLayout
-                    android:id="@+id/freq_layout"
+                    android:id="@+id/rp_layout_freq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -124,10 +120,10 @@
                     >
 
                     <TextView
-                        android:id="@+id/text_freq_label"
+                        android:id="@+id/rp_txv_freq_suffix"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:labelFor="@+id/edit_freq"
+                        android:labelFor="@+id/rp_edt_freq"
                         android:paddingStart="10dp"
                         android:paddingEnd="0dp"
                         android:textAppearance="?attr/rpLabelTextAppearance"
@@ -136,7 +132,7 @@
                         />
 
                     <EditText
-                        android:id="@+id/edit_freq"
+                        android:id="@+id/rp_edt_freq"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="15dp"
@@ -145,10 +141,11 @@
                         android:textAlignment="center"
                         android:textAppearance="?attr/rpLabelTextAppearance"
                         tools:text="2"
+                        tools:ignore="Autofill"
                         />
 
                     <TextView
-                        android:id="@+id/text_freq_event"
+                        android:id="@+id/rp_txv_freq_prefix"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?attr/rpLabelTextAppearance"
@@ -162,7 +159,7 @@
 
                 <!-- Radios for monthly options -->
                 <RadioGroup
-                    android:id="@+id/radiogroup_monthly_options"
+                    android:id="@+id/rp_rg_monthly_options"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -173,7 +170,7 @@
                     >
 
                     <RadioButton
-                        android:id="@+id/radio_same_day"
+                        android:id="@+id/rp_rb_same_day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/rp_format_monthly_same_day"
@@ -181,7 +178,7 @@
                         />
 
                     <RadioButton
-                        android:id="@+id/radio_same_week"
+                        android:id="@+id/rp_rb_same_week"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAppearance="?attr/rpLabelTextAppearance"
@@ -189,7 +186,7 @@
                         />
 
                     <RadioButton
-                        android:id="@+id/radio_last_day"
+                        android:id="@+id/rp_rb_last_day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/rp_format_monthly_last_day"
@@ -200,7 +197,7 @@
 
                 <!-- Input for recurrence end setting -->
                 <LinearLayout
-                    android:id="@+id/recur_end_layout"
+                    android:id="@+id/rp_layout_end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -210,7 +207,7 @@
                     >
 
                     <Spinner
-                        android:id="@+id/spin_end_type"
+                        android:id="@+id/rp_spn_end"
                         style="?attr/rpEndSpinnerStyle"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
@@ -218,7 +215,7 @@
                         />
 
                     <EditText
-                        android:id="@+id/edit_end_date"
+                        android:id="@+id/rp_edt_end_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="10dp"
@@ -227,12 +224,12 @@
                         android:inputType="text"
                         android:foreground="?attr/selectableItemBackground"
                         android:textAppearance="?attr/rpLabelTextAppearance"
-                        tools:ignore="LabelFor,TextFields"
+                        tools:ignore="Autofill,LabelFor,TextFields"
                         tools:text="02-05-2018"
                         />
 
                     <EditText
-                        android:id="@+id/edit_end_count"
+                        android:id="@+id/rp_edt_end_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingEnd="15dp"
@@ -241,11 +238,11 @@
                         android:textAlignment="center"
                         android:textAppearance="?attr/rpLabelTextAppearance"
                         tools:visibility="gone"
-                        tools:ignore="LabelFor"
+                        tools:ignore="Autofill,LabelFor"
                         />
 
                     <TextView
-                        android:id="@+id/text_end_value"
+                        android:id="@+id/rp_txv_end_prefix"
                         android:layout_width="wrap_content"
                         android:layout_height="19dp"
                         android:textAppearance="?attr/rpLabelTextAppearance"
@@ -259,17 +256,15 @@
 
     <!-- Done and cancel button -->
     <LinearLayout
-        android:id="@+id/button_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
         android:orientation="horizontal"
         android:gravity="end"
         android:paddingBottom="5dp"
         >
 
         <Button
-            android:id="@+id/cancel_btn"
+            android:id="@+id/rp_btn_cancel"
             style="?attr/rpCancelButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -278,7 +273,7 @@
             />
 
         <Button
-            android:id="@+id/done_btn"
+            android:id="@+id/rp_btn_done"
             style="?attr/rpDoneButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

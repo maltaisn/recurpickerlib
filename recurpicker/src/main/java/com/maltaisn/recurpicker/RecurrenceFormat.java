@@ -26,7 +26,6 @@ import android.content.res.Resources;
 import android.support.v4.os.ConfigurationCompat;
 
 import java.text.DateFormat;
-import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -42,7 +41,7 @@ public class RecurrenceFormat {
 
     /**
      * Create a new recurrence formatter
-     * @param context any context
+     * @param context    any context
      * @param dateFormat date format for the end date, can be null but must be set before formatting
      */
     public RecurrenceFormat(Context context, DateFormat dateFormat) {
@@ -116,16 +115,17 @@ public class RecurrenceFormat {
                 int daySetting = r.getDaySetting();
                 if (!r.isDefault()) {
                     recurSb.append(" (");
-                    String monthOptionStr = null;
                     switch (daySetting) {
                         case Recurrence.SAME_DAY_OF_MONTH:
                             // on the same day of each month
                             recurSb.append(res.getString(R.string.rp_format_monthly_same_day));
                             break;
+
                         case Recurrence.SAME_DAY_OF_WEEK:
                             // on every [nth] [Sunday]
                             recurSb.append(getSameDayOfSameWeekString(r.getStartDate()));
                             break;
+
                         case Recurrence.LAST_DAY_OF_MONTH:
                             // on the last day of each month
                             recurSb.append(res.getString(R.string.rp_format_monthly_last_day));

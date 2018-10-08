@@ -19,7 +19,7 @@
   specific language governing permissions and limitations
   under the License.
   -->
-
+<!-- @formatter:off -->
 <resources>
 
     <attr name="recurrencePickerStyle" format="reference"/>

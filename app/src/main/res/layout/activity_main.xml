@@ -25,7 +25,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.maltaisn.recurpickerdemo.MainActivity">
+    tools:context="com.maltaisn.recurpickerdemo.MainActivity"
+    tools:ignore="Autofill,LabelFor,TextFields,ContentDescription"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,33 +36,37 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         android:paddingStart="10dp"
-        android:paddingEnd="10dp">
+        android:paddingEnd="10dp"
+        >
 
         <TextView
-            android:id="@+id/settings_title"
+            android:id="@+id/txv_settings_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:text="@string/settings_title"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="center"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <TextView
-                android:id="@+id/start_date_label"
+                android:id="@+id/txv_start_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_start_date"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:labelFor="@id/start_date_value"/>
+                android:labelFor="@id/edt_start_date"
+                />
 
             <EditText
-                android:id="@+id/start_date_value"
+                android:id="@+id/edt_start_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="10dp"
@@ -69,26 +75,28 @@
                 android:inputType="text"
                 android:foreground="?attr/selectableItemBackground"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                tools:ignore="TextFields"
-                tools:text="01/01/2018"/>
+                tools:text="01/01/2018"
+                />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <CheckBox
-                android:id="@+id/max_freq_check"
+                android:id="@+id/chk_max_freq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_max_freq"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:labelFor="@+id/max_freq_value"/>
+                android:labelFor="@+id/edt_max_freq"
+                />
 
             <EditText
-                android:id="@+id/max_freq_value"
+                android:id="@+id/edt_max_freq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="15dp"
@@ -96,26 +104,28 @@
                 android:inputType="number"
                 android:maxLength="3"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                tools:ignore="LabelFor,TextFields"
-                tools:text="99"/>
+                tools:text="99"
+                />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <CheckBox
-                android:id="@+id/max_end_count_check"
+                android:id="@+id/chk_max_end_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_max_end_count"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:labelFor="@id/max_end_count_value"/>
+                android:labelFor="@id/edt_max_end_count"
+                />
 
             <EditText
-                android:id="@+id/max_end_count_value"
+                android:id="@+id/edt_max_end_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="15dp"
@@ -123,26 +133,28 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                tools:ignore="LabelFor,TextFields"
-                tools:text="999"/>
+                tools:text="999"
+                />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <CheckBox
-                android:id="@+id/max_end_date_check"
+                android:id="@+id/chk_max_end_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_max_end_date"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:labelFor="@id/max_end_date_value"/>
+                android:labelFor="@id/edt_max_end_date"
+                />
 
             <EditText
-                android:id="@+id/max_end_date_value"
+                android:id="@+id/edt_max_end_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="10dp"
@@ -151,26 +163,28 @@
                 android:inputType="text"
                 android:foreground="?attr/selectableItemBackground"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                tools:ignore="LabelFor,TextFields"
-                tools:text="31/12/2018"/>
+                tools:text="31/12/2018"
+                />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/default_end_date_label"
+            android:id="@+id/txv_default_end_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_default_end_date"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-            android:labelFor="@id/default_end_date_value"/>
+            android:labelFor="@id/edt_default_end_date"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <EditText
-                android:id="@+id/default_end_date_value"
+                android:id="@+id/edt_default_end_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="10dp"
@@ -178,40 +192,44 @@
                 android:inputType="number"
                 android:maxLength="3"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                tools:ignore="TextFields"
-                tools:text="3"/>
+                tools:text="3"
+                />
 
             <TextView
-                android:id="@+id/default_end_date_value_unit"
+                android:id="@+id/edt_default_end_date_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                tools:text="days"/>
+                tools:text="days"
+                />
 
             <CheckBox
-                android:id="@+id/default_end_date_use_period_check"
+                android:id="@+id/chk_default_end_date_use_period"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:text="@string/default_end_date_use_period"/>
+                android:text="@string/default_end_date_use_period"
+                />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            >
 
             <TextView
-                android:id="@+id/default_end_count_label"
+                android:id="@+id/txv_default_end_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_end_count"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                android:labelFor="@id/default_end_count_value"/>
+                android:labelFor="@id/edt_default_end_count"
+                />
 
             <EditText
-                android:id="@+id/default_end_count_value"
+                android:id="@+id/edt_default_end_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="15dp"
@@ -219,62 +237,69 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
-                tools:ignore="TextFields"
-                tools:text="5"/>
+                tools:text="5"
+                />
 
         </LinearLayout>
 
         <CheckBox
-            android:id="@+id/option_list_enabled_check"
+            android:id="@+id/chk_option_list_enabled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/option_list_enabled"/>
+            android:text="@string/option_list_enabled"
+            />
 
         <CheckBox
-            android:id="@+id/creator_enabled_check"
+            android:id="@+id/chk_creator_enabled"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/creator_enabled"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            />
 
         <CheckBox
-            android:id="@+id/show_header_check"
+            android:id="@+id/chk_show_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/show_header_option_list"/>
+            android:text="@string/show_header_option_list"
+            />
 
         <CheckBox
-            android:id="@+id/show_done_btn_check"
+            android:id="@+id/chk_show_done_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/show_done_btn_option_list"/>
+            android:text="@string/show_done_btn_option_list"
+            />
 
         <CheckBox
-            android:id="@+id/show_cancel_btn_check"
+            android:id="@+id/chk_show_cancel_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/show_cancel_btn"/>
+            android:text="@string/show_cancel_btn"
+            />
 
         <TextView
-            android:id="@+id/dialog_picker_title"
+            android:id="@+id/txv_recur_picker_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="10dp"
             android:text="@string/dialog_picker_title"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
             android:textStyle="bold"
-            android:gravity="center"/>
+            android:gravity="center"
+            />
 
         <Button
-            android:id="@+id/dialog_picker_btn"
+            android:id="@+id/btn_recur_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dialog_picker_pick"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            />
 
         <TextView
-            android:id="@+id/dialog_picker_value"
+            android:id="@+id/txv_recurrence"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingEnd="30dp"
@@ -282,26 +307,28 @@
             android:paddingTop="5dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
             android:layout_gravity="center_horizontal"
-            tools:text="Repeats daily"/>
+            tools:text="Repeats daily"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center"
+            >
 
             <ImageButton
-                android:id="@+id/dialog_picker_previous_btn"
+                android:id="@+id/btn_event_prev"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_weight="0"
                 android:padding="10dp"
                 android:src="@drawable/ic_chevron_left"
-                tools:ignore="ContentDescription"/>
+                />
 
             <TextView
-                android:id="@+id/dialog_picker_next_value"
+                android:id="@+id/txv_event_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="15dp"
@@ -309,17 +336,18 @@
                 android:layout_weight="1"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Subhead"
                 tools:text="#1 is on Mon Jan 1, 2018"
-                android:gravity="center"/>
+                android:gravity="center"
+                />
 
             <ImageButton
-                android:id="@+id/dialog_picker_next_btn"
+                android:id="@+id/btn_event_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:layout_marginEnd="15dp"
                 android:padding="10dp"
                 android:src="@drawable/ic_chevron_right"
-                tools:ignore="ContentDescription"/>
+                />
 
         </LinearLayout>
 

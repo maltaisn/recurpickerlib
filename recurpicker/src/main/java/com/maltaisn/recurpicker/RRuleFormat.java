@@ -86,7 +86,7 @@ public class RRuleFormat {
                         rule.append(',');
                     }
                 }
-                rule.deleteCharAt(rule.length()-1); // Delete extra ","
+                rule.deleteCharAt(rule.length() - 1); // Delete extra ","
                 rule.append(';');
                 break;
             case Recurrence.MONTHLY:
@@ -105,7 +105,7 @@ public class RRuleFormat {
                         }
                         rule.append(";BYDAY=");
                         int dayOfWeek = r.startDate.get(Calendar.DAY_OF_WEEK);
-                        rule.append(RRULE_BYDAY_VALUES[dayOfWeek-1]);
+                        rule.append(RRULE_BYDAY_VALUES[dayOfWeek - 1]);
                         break;
                     case Recurrence.LAST_DAY_OF_MONTH:
                         rule.append("BYMONTHDAY=-1");
@@ -138,7 +138,7 @@ public class RRuleFormat {
                 break;
         }
 
-        rule.deleteCharAt(rule.length()-1); // Delete extra ";"
+        rule.deleteCharAt(rule.length() - 1); // Delete extra ";"
 
         return rule.toString();
     }

@@ -102,29 +102,29 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         }
 
         // Get views
-        final EditText startDateValue = findViewById(R.id.start_date_value);
-        maxFreqCheck = findViewById(R.id.max_freq_check);
-        final CheckBox maxEndDateCheck = findViewById(R.id.max_end_date_check);
-        maxEndCountCheck = findViewById(R.id.max_end_count_check);
-        maxFreqValue = findViewById(R.id.max_freq_value);
-        final EditText maxEndDateValue = findViewById(R.id.max_end_date_value);
-        maxEndCountValue = findViewById(R.id.max_end_count_value);
-        final CheckBox defaultEndDateCheck = findViewById(R.id.default_end_date_use_period_check);
-        final TextView defaultEndDateUnit = findViewById(R.id.default_end_date_value_unit);
-        defaultEndDateValue = findViewById(R.id.default_end_date_value);
-        defaultEndCountValue = findViewById(R.id.default_end_count_value);
+        final EditText startDateValue = findViewById(R.id.edt_start_date);
+        maxFreqCheck = findViewById(R.id.chk_max_freq);
+        final CheckBox maxEndDateCheck = findViewById(R.id.chk_max_end_date);
+        maxEndCountCheck = findViewById(R.id.chk_max_end_count);
+        maxFreqValue = findViewById(R.id.edt_max_freq);
+        final EditText maxEndDateValue = findViewById(R.id.edt_max_end_date);
+        maxEndCountValue = findViewById(R.id.edt_max_end_count);
+        final CheckBox defaultEndDateCheck = findViewById(R.id.chk_default_end_date_use_period);
+        final TextView defaultEndDateUnit = findViewById(R.id.edt_default_end_date_unit);
+        defaultEndDateValue = findViewById(R.id.edt_default_end_date);
+        defaultEndCountValue = findViewById(R.id.edt_default_end_count);
 
-        final CheckBox optionListEnabledCheck = findViewById(R.id.option_list_enabled_check);
-        final CheckBox creatorEnabledCheck = findViewById(R.id.creator_enabled_check);
-        final CheckBox showHeaderCheck = findViewById(R.id.show_header_check);
-        final CheckBox showDoneBtnCheck = findViewById(R.id.show_done_btn_check);
-        final CheckBox showCancelBtnCheck = findViewById(R.id.show_cancel_btn_check);
+        final CheckBox optionListEnabledCheck = findViewById(R.id.chk_option_list_enabled);
+        final CheckBox creatorEnabledCheck = findViewById(R.id.chk_creator_enabled);
+        final CheckBox showHeaderCheck = findViewById(R.id.chk_show_header);
+        final CheckBox showDoneBtnCheck = findViewById(R.id.chk_show_done_btn);
+        final CheckBox showCancelBtnCheck = findViewById(R.id.chk_show_cancel_btn);
 
-        dialogPickerBtn = findViewById(R.id.dialog_picker_btn);
-        dialogPickerValue = findViewById(R.id.dialog_picker_value);
-        dialogPickerNextValue = findViewById(R.id.dialog_picker_next_value);
-        dialogPickerPreviousBtn = findViewById(R.id.dialog_picker_previous_btn);
-        dialogPickerNextBtn = findViewById(R.id.dialog_picker_next_btn);
+        dialogPickerBtn = findViewById(R.id.btn_recur_picker);
+        dialogPickerValue = findViewById(R.id.txv_recurrence);
+        dialogPickerNextValue = findViewById(R.id.txv_event_date);
+        dialogPickerPreviousBtn = findViewById(R.id.btn_event_prev);
+        dialogPickerNextBtn = findViewById(R.id.btn_event_next);
 
         // Set the date formats
         Locale locale = getResources().getConfiguration().locale;
@@ -154,8 +154,9 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                         if (maxEndDate != null && !Recurrence.isOnSameDayOrAfter(maxEndDate, startDate)) {
                             // Change end date to 100 days after start date
                             maxEndDate.setTimeInMillis(startDate.getTimeInMillis() + DAYS_100);
-                            if (maxEndDateCheck.isChecked()) maxEndDateValue
-                                    .setText(dateFormatLong.format(maxEndDate.getTime()));
+                            if (maxEndDateCheck.isChecked()) {
+                                maxEndDateValue.setText(dateFormatLong.format(maxEndDate.getTime()));
+                            }
                         }
                     }
                 }, startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH), startDate.get(Calendar.DAY_OF_MONTH));
@@ -174,9 +175,11 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         });
         maxFreqCheck.setChecked(true);
         maxFreqValue.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -185,7 +188,9 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 if (text.isEmpty()) return;
 
                 int freq = Integer.valueOf(text);
-                if (freq == 0) maxFreqValue.getText().replace(0, 1, "1");
+                if (freq == 0) {
+                    maxFreqValue.getText().replace(0, 1, "1");
+                }
             }
         });
         maxFreqValue.setText(String.valueOf(99));
@@ -201,9 +206,11 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         });
         maxEndCountCheck.setChecked(true);
         maxEndCountValue.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -219,7 +226,9 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                     String defaultCountStr = defaultEndCountValue.getText().toString();
                     if (!defaultCountStr.isEmpty()) {
                         int defaultCount = Integer.valueOf(defaultCountStr);
-                        if (defaultCount > count) defaultEndCountValue.setText(String.valueOf(count));
+                        if (defaultCount > count) {
+                            defaultEndCountValue.setText(String.valueOf(count));
+                        }
                     }
                 }
             }
@@ -245,7 +254,9 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
             }
         });
         maxEndDateCheck.setChecked(false);
-        if (!maxEndDateCheck.isChecked()) maxEndDateValue.setText(getString(R.string.max_end_date_none));
+        if (!maxEndDateCheck.isChecked()) {
+            maxEndDateValue.setText(getString(R.string.max_end_date_none));
+        }
         maxEndDateValue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -273,21 +284,27 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 String text = defaultEndDateValue.getText().toString();
                 int count = 1;
-                if (!text.isEmpty()) count = Integer.valueOf(text);
+                if (!text.isEmpty()) {
+                    count = Integer.valueOf(text);
+                }
                 defaultEndDateUnit.setText(MessageFormat.format(getString(defaultEndDateCheck.isChecked() ?
                         R.string.default_end_date_periods : R.string.default_end_date_days), count));
             }
         });
         defaultEndDateValue.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
                 String text = s.toString();
                 updateDialogPickerBtnEnabled();
-                if (text.isEmpty()) return;
+                if (text.isEmpty()) {
+                    return;
+                }
 
                 int count = Integer.valueOf(text);
                 if (count == 0) {
@@ -305,15 +322,19 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
 
         // Default end count view
         defaultEndCountValue.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
                 String text = s.toString();
                 updateDialogPickerBtnEnabled();
-                if (text.isEmpty()) return;
+                if (text.isEmpty()) {
+                    return;
+                }
 
                 int count = Integer.valueOf(text);
                 if (count == 0) {
@@ -365,12 +386,12 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
             public void onClick(View view) {
                 // Set the settings
                 pickerDialog.setMaxFrequency(maxFreqCheck.isChecked() ?
-                            Integer.valueOf(maxFreqValue.getText().toString()) : -1)
+                        Integer.valueOf(maxFreqValue.getText().toString()) : -1)
                         .setMaxEndDate(maxEndDateCheck.isChecked() ? maxEndDate.getTimeInMillis() : -1)
                         .setMaxEventCount(maxEndCountCheck.isChecked() ?
-                            Integer.valueOf(maxEndCountValue.getText().toString()) : -1)
+                                Integer.valueOf(maxEndCountValue.getText().toString()) : -1)
                         .setDefaultEndDate(defaultEndDateCheck.isChecked(),
-                            Integer.valueOf(defaultEndDateValue.getText().toString()))
+                                Integer.valueOf(defaultEndDateValue.getText().toString()))
                         .setDefaultEndCount(Integer.valueOf(defaultEndCountValue.getText().toString()))
                         .setEnabledModes(optionListEnabledCheck.isChecked(), creatorEnabledCheck.isChecked())
                         .setShowHeaderInOptionList(showHeaderCheck.isChecked())
@@ -396,7 +417,7 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 selectedRecur--;
                 Date date = new Date(recurrenceList.get(selectedRecur));
                 dialogPickerNextValue.setText(MessageFormat.format(getString(R.string.dialog_picker_value),
-                        selectedRecur+1, dateFormatLong.format(date)));
+                        selectedRecur + 1, dateFormatLong.format(date)));
 
                 setButtonEnabled(dialogPickerPreviousBtn, selectedRecur > 0);
                 setButtonEnabled(dialogPickerNextBtn, true);
@@ -410,20 +431,20 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                 selectedRecur++;
                 Date date = new Date(recurrenceList.get(selectedRecur));
                 dialogPickerNextValue.setText(MessageFormat.format(getString(R.string.dialog_picker_value),
-                        selectedRecur+1, dateFormatLong.format(date)));
+                        selectedRecur + 1, dateFormatLong.format(date)));
 
                 setButtonEnabled(dialogPickerPreviousBtn, true);
 
-                if (recurCount == selectedRecur+1) {
+                if (recurCount == selectedRecur + 1) {
                     // If this is last recurrence, disable next button
                     setButtonEnabled(dialogPickerNextBtn, false);
-                } else if (recurrenceList.size() == selectedRecur+1) {
+                } else if (recurrenceList.size() == selectedRecur + 1) {
                     // If not already done, compute next recurrence based on current one
                     List<Long> next = recurrence.findRecurrencesBasedOn(recurrenceList.get(selectedRecur),
-                            selectedRecur+1, -1, 1);
+                            selectedRecur + 1, -1, 1);
                     if (next.size() == 0) {
                         recurCount = recurrenceList.size();
-                        setButtonEnabled(dialogPickerNextBtn,false);
+                        setButtonEnabled(dialogPickerNextBtn, false);
                     } else {
                         recurrenceList.add(next.get(0));
                     }
@@ -438,9 +459,9 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
     private void updateDialogPickerBtnEnabled() {
         dialogPickerBtn.setEnabled(
                 (!maxFreqCheck.isChecked() || !maxFreqValue.getText().toString().isEmpty()) &&
-                (!maxEndCountCheck.isChecked() || !maxEndCountValue.getText().toString().isEmpty()) &&
-                (!defaultEndDateValue.getText().toString().isEmpty()) &&
-                (!defaultEndCountValue.getText().toString().isEmpty())
+                        (!maxEndCountCheck.isChecked() || !maxEndCountValue.getText().toString().isEmpty()) &&
+                        (!defaultEndDateValue.getText().toString().isEmpty()) &&
+                        (!defaultEndCountValue.getText().toString().isEmpty())
         );
     }
 
@@ -449,13 +470,13 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         dialogPickerPreviousBtn.setVisibility(visibility);
         dialogPickerNextBtn.setVisibility(visibility);
 
-        setButtonEnabled(dialogPickerNextBtn, selectedRecur+1 < recurrenceList.size());
+        setButtonEnabled(dialogPickerNextBtn, selectedRecur + 1 < recurrenceList.size());
         setButtonEnabled(dialogPickerPreviousBtn, selectedRecur > 0);
         if (recurrenceList.size() == 0) {
             dialogPickerNextValue.setText(getString(R.string.dialog_picker_value_none));
         } else {
             dialogPickerNextValue.setText(MessageFormat.format(getString(R.string.dialog_picker_value),
-                    selectedRecur+1, dateFormatLong.format(recurrenceList.get(selectedRecur))));
+                    selectedRecur + 1, dateFormatLong.format(recurrenceList.get(selectedRecur))));
         }
     }
 
@@ -497,7 +518,7 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
         state.putParcelable("recurrence", recurrence);
         state.putInt("selectedRecur", selectedRecur);
         state.putInt("recurCount", recurCount);
-        state.putLong("maxEndDate", maxEndDate == null ? - 1 : maxEndDate.getTimeInMillis());
+        state.putLong("maxEndDate", maxEndDate == null ? -1 : maxEndDate.getTimeInMillis());
 
         // Save recurrence list, have to convert it to primitive array
         long[] list = new long[recurrenceList.size()];

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
 <resources>
 
-    <string name="rp_cancel" comment="Text of button to cancel the recurrence view.">Cancel</string>
     <string name="rp_done" comment="Text of button to confirm the recurrence view.">Done</string>
 
     <string name="rp_repeat_options" comment="Title of the recurrence view.">Repeat options</string>
@@ -20,18 +20,22 @@
 
     <plurals name="rp_frequency_day" comment="The number argument is replaced with an user input for the frequency.">
         <item quantity="one">Every %d day</item>
+        <item quantity="few">Every %d days</item>
         <item quantity="other">Every %d days</item>
     </plurals>
     <plurals name="rp_frequency_week" comment="The number argument is replaced with an user input for the frequency.">
         <item quantity="one">Every %d week</item>
+        <item quantity="few">Every %d weeks</item>
         <item quantity="other">Every %d weeks</item>
     </plurals>
     <plurals name="rp_frequency_month" comment="The number argument is replaced with an user input for the frequency.">
         <item quantity="one">Every %d month</item>
+        <item quantity="few">Every %d months</item>
         <item quantity="other">Every %d months</item>
     </plurals>
     <plurals name="rp_frequency_year" comment="The number argument is replaced with an user input for the frequency.">
         <item quantity="one">Every %d year</item>
+        <item quantity="few">Every %d years</item>
         <item quantity="other">Every %d years</item>
     </plurals>
 
@@ -44,6 +48,7 @@
     <string name="rp_end_count_abbr" comment="Abbreviated form of string rp_end_count. Text goes before a number of events input (text [input])">For</string>
     <plurals name="rp_end_count_event" comment="Text goes after the number of events input ([input] text)">
         <item quantity="one">event</item>
+        <item quantity="few">events</item>
         <item quantity="other">events</item>
     </plurals>
 
@@ -60,18 +65,22 @@
     <string name="rp_format_none" comment="Text for no recurrence.">Does not repeat</string>
     <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency.">
         <item quantity="one">Repeats every %d day</item>
+        <item quantity="few">Repeats every %d days</item>
         <item quantity="other">Repeats every %d days</item>
     </plurals>
     <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
         <item quantity="one">Repeats every %d week</item>
+        <item quantity="few">Repeats every %d weeks</item>
         <item quantity="other">Repeats every %d weeks</item>
     </plurals>
     <plurals name="rp_format_month"  comment="Text for a monthly recurrence. The number argument is the frequency.">
         <item quantity="one">Repeats every %d month</item>
+        <item quantity="few">Repeats every %d months</item>
         <item quantity="other">Repeats every %d months</item>
     </plurals>
     <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
         <item quantity="one">Repeats every %d year</item>
+        <item quantity="few">Repeats every %d years</item>
         <item quantity="other">Repeats every %d years</item>
     </plurals>
 
@@ -98,6 +107,7 @@
     <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">until %s</string>
     <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
         <item quantity="one">for %d event</item>
+        <item quantity="few">for %d events</item>
         <item quantity="other">for %d events</item>
     </plurals>
 

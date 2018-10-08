@@ -22,7 +22,8 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme"
+           parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -31,7 +32,8 @@
     </style>
 
     <!-- Recurrence picker theme -->
-    <style name="RecurrencePickerStyleCustom" parent="RecurrencePickerStyle">
+    <style name="RecurrencePickerStyleCustom"
+           parent="RecurrencePickerStyle">
         <!--
         You can customize the recurrence picker style here ex:
             <item name="colorHeaderBackground">?attr/colorPrimary</item>

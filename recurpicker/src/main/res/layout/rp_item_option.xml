@@ -29,18 +29,20 @@
     android:padding="10dp"
     android:background="?attr/selectableItemBackground"
     android:gravity="center_vertical"
-    tools:theme="@style/RecurrencePickerStyleTools">
+    tools:theme="@style/RecurrencePickerStyleTools"
+    >
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/rp_txv_title"
         style="?attr/rpOptionItemStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        tools:text="Does not repeat"/>
+        tools:text="Does not repeat"
+        />
 
     <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/icon_check"
+        android:id="@+id/rp_imv_check"
         android:layout_width="?attr/rpOptionCheckSize"
         android:layout_height="?attr/rpOptionCheckSize"
         style="?attr/rpOptionCheckStyle"
@@ -49,6 +51,7 @@
         android:layout_weight="0"
         android:visibility="invisible"
         tools:visibility="visible"
-        tools:ignore="ContentDescription"/>
+        tools:ignore="ContentDescription"
+        />
 
 </LinearLayout>

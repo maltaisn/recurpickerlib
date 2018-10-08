@@ -23,33 +23,61 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        android:id="@+id/week_button_row1"
+        android:id="@+id/rp_layout_weekbtn_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
-        <include android:id="@+id/week_btn_1" layout="@layout/rp_view_week_button"/>
-        <include android:id="@+id/week_btn_2" layout="@layout/rp_view_week_button"/>
-        <include android:id="@+id/week_btn_3" layout="@layout/rp_view_week_button"/>
-        <include android:id="@+id/week_btn_4" layout="@layout/rp_view_week_button"/>
+        <include
+            android:id="@+id/rp_btn_day_1"
+            layout="@layout/rp_view_week_button"
+            />
+
+        <include
+            android:id="@+id/rp_btn_day_2"
+            layout="@layout/rp_view_week_button"
+            />
+
+        <include
+            android:id="@+id/rp_btn_day_3"
+            layout="@layout/rp_view_week_button"
+            />
+
+        <include
+            android:id="@+id/rp_btn_day_4"
+            layout="@layout/rp_view_week_button"
+            />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/week_button_row2"
+        android:id="@+id/rp_layout_weekbtn_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingStart="15dp"
         android:paddingEnd="15dp"
-        android:visibility="gone">
+        android:visibility="gone"
+        >
 
-        <include android:id="@+id/week_btn_5" layout="@layout/rp_view_week_button"/>
-        <include android:id="@+id/week_btn_6" layout="@layout/rp_view_week_button"/>
-        <include android:id="@+id/week_btn_7" layout="@layout/rp_view_week_button"/>
+        <include
+            android:id="@+id/rp_btn_day_5"
+            layout="@layout/rp_view_week_button"
+            />
+
+        <include
+            android:id="@+id/rp_btn_day_6"
+            layout="@layout/rp_view_week_button"
+            />
+
+        <include
+            android:id="@+id/rp_btn_day_7"
+            layout="@layout/rp_view_week_button"
+            />
 
     </LinearLayout>
 

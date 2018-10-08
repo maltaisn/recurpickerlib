@@ -27,4 +27,5 @@
     android:layout_width="?attr/rpWeekButtonSize"
     android:layout_height="?attr/rpWeekButtonSize"
     android:layout_margin="4dp"
-    tools:theme="@style/RecurrencePickerStyleTools"/>
+    tools:theme="@style/RecurrencePickerStyleTools"
+    />

@@ -54,17 +54,17 @@ public interface RecurrencePickerSettings {
      * Set the date format to use
      * By default, the system default date format is used
      * You should call this method before {@link #setRecurrence(Recurrence, long)}
-     * @param endDateFormat Date format to use for the end date
-     *                      This date should usually be shorter
+     * @param endDateFormat        Date format to use for the end date
+     *                             This date should usually be shorter
      * @param optionListDateFormat Date format to use for the custom item in the option list
-     *                         This date should usually be more verbose
+     *                             This date should usually be more verbose
      */
     RecurrencePickerSettings setDateFormat(@NonNull DateFormat endDateFormat, @NonNull DateFormat optionListDateFormat);
 
     /**
      * Call this method to initialize the recurrence picker with a recurrence and a date
      * @param recurrence Recurrence to display, use null for the default "does not repeat"
-     * @param startDate Starting date of recurrence to be returned, use 0 for today
+     * @param startDate  Starting date of recurrence to be returned, use 0 for today
      */
     RecurrencePickerSettings setRecurrence(@Nullable Recurrence recurrence, long startDate);
 
@@ -102,7 +102,7 @@ public interface RecurrencePickerSettings {
      * @param usePeriod If true, will use the currently selected period as the unit of the interval
      *                  ex: if repeating weekly and interval is 3, default end date will be 3 weeks after start date
      *                  If false, will use days as the unit of the interval
-     * @param interval How many periods/days after start date to set default end date
+     * @param interval  How many periods/days after start date to set default end date
      */
     RecurrencePickerSettings setDefaultEndDate(boolean usePeriod, int interval);
 
@@ -118,7 +118,7 @@ public interface RecurrencePickerSettings {
      * Select which modes are enabled: default options list and recurrence creator
      * By default, both modes are enabled, and at least one of them should be
      * @param optionListEnabled whether to enable the default options list
-     * @param creatorEnabled whether to enabled the recurrence creator
+     * @param creatorEnabled    whether to enabled the recurrence creator
      */
     RecurrencePickerSettings setEnabledModes(boolean optionListEnabled, boolean creatorEnabled);
 
@@ -175,9 +175,9 @@ public interface RecurrencePickerSettings {
      * @param defaults Array of recurrence to use as defaults, leave null to use default defaults (exactly)
      *                 or leave null to only change the titles
      *                 You can set any start date for these recurrences because it gets changed
-     * @param titles Array of titles to use for each recurrence, leave null to use
-     *               {@link RecurrenceFormat#format(Recurrence)} instead. You can also leave
-     *               specific items in array null to only format those.
+     * @param titles   Array of titles to use for each recurrence, leave null to use
+     *                 {@link RecurrenceFormat#format(Recurrence)} instead. You can also leave
+     *                 specific items in array null to only format those.
      */
     RecurrencePickerSettings setOptionListDefaults(@Nullable Recurrence[] defaults, @Nullable CharSequence[] titles);
 

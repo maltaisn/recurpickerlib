@@ -21,8 +21,6 @@
 
 package com.maltaisn.recurpicker;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 
 import java.util.Arrays;

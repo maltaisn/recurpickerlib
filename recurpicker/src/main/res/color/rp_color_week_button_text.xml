@@ -21,7 +21,17 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true" android:color="?attr/rpColorWeekButtonTextChecked"/>
-    <item android:state_pressed="true" android:color="?attr/rpColorWeekButtonTextChecked"/>
-    <item android:color="?attr/rpColorWeekButtonTextUnchecked"/>
+
+    <item
+        android:state_checked="true"
+        android:color="?attr/rpColorWeekButtonTextChecked"
+        />
+    <item
+        android:state_pressed="true"
+        android:color="?attr/rpColorWeekButtonTextChecked"
+        />
+    <item
+        android:color="?attr/rpColorWeekButtonTextUnchecked"
+        />
+
 </selector>
