@@ -1,7 +1,8 @@
 ## v1.4.2
-- Fixed French translations.
+- Fixed French translation.
 - Fixed bug where days of the week of weekly recurrence were not checked.
 - Target API changed to 28.
+- Better Recurrence toString() method.
 
 ## v1.4.1
 - Fixed library dependencies not being added to the project
