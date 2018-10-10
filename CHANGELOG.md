@@ -1,3 +1,6 @@
+## v1.4.4
+- Removed 4 strings for faster translation.
+
 ## v1.4.3
 - Changed "Every 1 day/month/..." formatting to "Every day/month/...".
 - Removed the "Repeats" part of the formatted recurrence.

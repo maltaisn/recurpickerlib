@@ -480,19 +480,20 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
                 int formatId = 0;
                 switch (recurPeriodSpin.getSelectedItemPosition()) {
                     case 0:
-                        formatId = R.plurals.rp_frequency_day;
+                        formatId = R.plurals.rp_format_day;
                         break;
                     case 1:
-                        formatId = R.plurals.rp_frequency_week;
+                        formatId = R.plurals.rp_format_week;
                         break;
                     case 2:
-                        formatId = R.plurals.rp_frequency_month;
+                        formatId = R.plurals.rp_format_month;
                         break;
                     case 3:
-                        formatId = R.plurals.rp_frequency_year;
+                        formatId = R.plurals.rp_format_year;
                         break;
                 }
-                String[] parts = getResources().getQuantityString(formatId, freq).split("%d", 2);
+                String[] parts = getResources().getQuantityString(formatId, freq)
+                        .replace("%d", "").split("\\|", 2);
                 freqLabel.setText(parts[0].trim());
                 freqEventLabel.setText(parts[1].trim());
             }

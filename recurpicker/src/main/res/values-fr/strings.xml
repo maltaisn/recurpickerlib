@@ -15,23 +15,6 @@
     <string name="rp_period_month">Tous les mois</string>
     <string name="rp_period_year">Tous les ans</string>
 
-    <plurals name="rp_frequency_day">
-        <item quantity="one">Tous les %d jours</item>
-        <item quantity="other">Tous les %d jours</item>
-    </plurals>
-    <plurals name="rp_frequency_week">
-        <item quantity="one">Toutes les %d semaines</item>
-        <item quantity="other">Toutes les %d semaines</item>
-    </plurals>
-    <plurals name="rp_frequency_month">
-        <item quantity="one">Tous les %d mois</item>
-        <item quantity="other">Tous les %d mois</item>
-    </plurals>
-    <plurals name="rp_frequency_year">
-        <item quantity="one">Tous les %d ans</item>
-        <item quantity="other">Tous les %d ans</item>
-    </plurals>
-
     <string name="rp_end_never">Pour toujours</string>
     <string name="rp_end_date">Jusqu\'à une date</string>
     <string name="rp_end_count">Pour un nombre d\'événements</string>
@@ -57,20 +40,20 @@
 
     <string name="rp_format_none">Pas de répétition</string>
     <plurals name="rp_format_day">
-        <item quantity="one">Tous les jours</item>
-        <item quantity="other">Tous les %d jours</item>
+        <item quantity="one">Tous les |jours</item>
+        <item quantity="other">Tous les |%d jours</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">Toutes les semaines</item>
-        <item quantity="other">Toutes les %d semaines</item>
+        <item quantity="one">Toutes les |semaines</item>
+        <item quantity="other">Toutes les |%d semaines</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="one">Tous les mois</item>
-        <item quantity="other">Tous les %d mois</item>
+        <item quantity="one">Tous les |mois</item>
+        <item quantity="other">Tous les |%d mois</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="one">Tous les ans</item>
-        <item quantity="other">Tous les %d ans</item>
+        <item quantity="one">Tous les |ans</item>
+        <item quantity="other">Tous les |%d ans</item>
     </plurals>
 
     <string name="rp_format_weekly_option">les %s</string>
