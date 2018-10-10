@@ -63,8 +63,8 @@
         <item name="rpEndSpinnerItemsText">@array/rp_end_spinner_items</item>
         <item name="rpEndSpinnerItemsTextAbbr">@array/rp_end_spinner_items_abbr</item>
         <item name="rpWeekButtonsText">@array/rp_days_of_week_abbr</item>
-        <item name="rpOptionListNoneText">@string/rp_option_list_none</item>
-        <item name="rpOptionListCustomText">@string/rp_option_list_custom</item>
+        <item name="rpOptionListNoneText">@null</item>
+        <item name="rpOptionListCustomText">@string/rp_custom</item>
     </style>
 
     <public name="RpOptionListTitleStyle" type="style"/>

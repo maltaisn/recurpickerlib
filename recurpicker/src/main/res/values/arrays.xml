@@ -2,13 +2,6 @@
 <!-- @formatter:off -->
 <resources>
 
-    <string-array name="rp_option_list_items">
-        <item>@string/rp_option_list_day</item>
-        <item>@string/rp_option_list_week</item>
-        <item>@string/rp_option_list_month</item>
-        <item>@string/rp_option_list_year</item>
-    </string-array>
-
     <string-array name="rp_period_spinner_items">
         <item>@string/rp_period_day</item>
         <item>@string/rp_period_week</item>

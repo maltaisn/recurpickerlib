@@ -35,7 +35,7 @@
     <style name="RecurrencePickerStyleCustom"
            parent="RecurrencePickerStyle">
         <!--
-        You can customize the recurrence picker style here ex:
+        You can customize the recurrence picker style here eg:
             <item name="colorHeaderBackground">?attr/colorPrimary</item>
         -->
     </style>

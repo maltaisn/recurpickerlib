@@ -159,7 +159,7 @@ public class RecurrenceFormat {
     /**
      * Get the text for a date to display on a monthly recurrence repeated on the same day of week of same week
      * @param date date to get it for
-     * @return ex: "on third Sunday" or "on last Friday"
+     * @return eg: "on third Sunday" or "on last Friday"
      */
     String getSameDayOfSameWeekString(long date) {
         calendar.setTimeInMillis(date);

@@ -1,2 +1,0 @@
-- make done and cancel button normal style
-- 

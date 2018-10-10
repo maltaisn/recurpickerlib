@@ -6,12 +6,7 @@
 
     <string name="rp_repeat_options" comment="Title of the recurrence view.">Repeat options</string>
 
-    <string name="rp_option_list_none" comment="Recurrence in the list of preset">Does not repeat</string>
-    <string name="rp_option_list_day" comment="Recurrence in the list of preset">Every day</string>
-    <string name="rp_option_list_week" comment="Recurrence in the list of preset">Every week</string>
-    <string name="rp_option_list_month" comment="Recurrence in the list of preset">Every month</string>
-    <string name="rp_option_list_year" comment="Recurrence in the list of preset">Every year</string>
-    <string name="rp_option_list_custom" comment="Recurrence in the list of preset">Custom…</string>
+    <string name="rp_custom" comment="Recurrence in the list of preset">Custom…</string>
 
     <string name="rp_period_day" comment="Recurrence period option.">Repeat daily</string>
     <string name="rp_period_week" comment="Recurrence period option.">Repeat weekly</string>
@@ -24,17 +19,17 @@
         <item quantity="other">Every %d days</item>
     </plurals>
     <plurals name="rp_frequency_week" comment="The number argument is replaced with an user input for the frequency.">
-        <item quantity="one">Every %d week</item>
+        <item quantity="one">Every %dweek</item>
         <item quantity="few">Every %d weeks</item>
         <item quantity="other">Every %d weeks</item>
     </plurals>
     <plurals name="rp_frequency_month" comment="The number argument is replaced with an user input for the frequency.">
-        <item quantity="one">Every %d month</item>
+        <item quantity="one">Every %dmonth</item>
         <item quantity="few">Every %d months</item>
         <item quantity="other">Every %d months</item>
     </plurals>
     <plurals name="rp_frequency_year" comment="The number argument is replaced with an user input for the frequency.">
-        <item quantity="one">Every %d year</item>
+        <item quantity="one">Every %dyear</item>
         <item quantity="few">Every %d years</item>
         <item quantity="other">Every %d years</item>
     </plurals>
@@ -64,24 +59,24 @@
 
     <string name="rp_format_none" comment="Text for no recurrence.">Does not repeat</string>
     <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency.">
-        <item quantity="one">Repeats every %d day</item>
-        <item quantity="few">Repeats every %d days</item>
-        <item quantity="other">Repeats every %d days</item>
+        <item quantity="one">Every day</item>
+        <item quantity="few">Every %d days</item>
+        <item quantity="other">Every %d days</item>
     </plurals>
     <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
-        <item quantity="one">Repeats every %d week</item>
-        <item quantity="few">Repeats every %d weeks</item>
-        <item quantity="other">Repeats every %d weeks</item>
+        <item quantity="one">Every week</item>
+        <item quantity="few">Every %d weeks</item>
+        <item quantity="other">Every %d weeks</item>
     </plurals>
     <plurals name="rp_format_month"  comment="Text for a monthly recurrence. The number argument is the frequency.">
-        <item quantity="one">Repeats every %d month</item>
-        <item quantity="few">Repeats every %d months</item>
-        <item quantity="other">Repeats every %d months</item>
+        <item quantity="one">Every month</item>
+        <item quantity="few">Every %d months</item>
+        <item quantity="other">Every %d months</item>
     </plurals>
     <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
-        <item quantity="one">Repeats every %d year</item>
-        <item quantity="few">Repeats every %d years</item>
-        <item quantity="other">Repeats every %d years</item>
+        <item quantity="one">Every year</item>
+        <item quantity="few">Every %d years</item>
+        <item quantity="other">Every %d years</item>
     </plurals>
 
     <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">on %s</string>
@@ -89,13 +84,13 @@
 
     <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">on the same day each month</string>
     <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">on every last day of the month</string>
-    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number ex: 'third'">on every %s Sunday</string>
-    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number ex: 'third'">on every %s Monday</string>
-    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number ex: 'third'">on every %s Tuesday</string>
-    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number ex: 'third'">on every %s Wednesday</string>
-    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number ex: 'third'">on every %s Thursday</string>
-    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number ex: 'third'">on every %s Friday</string>
-    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number ex: 'third'">on every %s Saturday</string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Sunday</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Monday</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Tuesday</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Wednesday</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Thursday</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Friday</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Saturday</string>
     <string-array name="rp_format_monthly_ordinal">
         <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">first</item>
         <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">second</item>

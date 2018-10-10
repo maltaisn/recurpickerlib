@@ -196,6 +196,11 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             weekButtonsText = ta.getTextArray(R.styleable.RecurrencePickerView_rpWeekButtonsText);
             optionListNoneText = ta.getText(R.styleable.RecurrencePickerView_rpOptionListNoneText);
             optionListCustomText = ta.getText(R.styleable.RecurrencePickerView_rpOptionListCustomText);
+
+            if (optionListNoneText == null) {
+                optionListNoneText = formatter.format(new Recurrence(0, Recurrence.NONE));
+            }
+
         } finally {
             ta.recycle();
         }
@@ -685,16 +690,10 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
                 // Does not repeat
                 pos = 1;
                 showCustom = false;
-            } else if (optionListDefaults == null) {
-                if (recurrence.isDefault()) {
-                    pos = recurrence.getPeriod();
-                    pos += 2;
-                    showCustom = false;
-                }
             } else {
                 // Check if selected recurrence matches one of the defaults
                 for (int i = 0; i < optionListDefaults.length; i++) {
-                    if (recurrence.equals(optionListDefaults[i])) {
+                    if (recurrence.equals(optionListDefaults[i], true)) {
                         pos = i + 2;
                         showCustom = false;
                         break;
@@ -763,13 +762,8 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             // Does not repeat
             recurrence = new Recurrence(startDate, Recurrence.NONE);
         } else if (pos > 1) {
-            if (optionListDefaults == null) {
-                // Create a daily, weekly, monthly or yearly recurrence
-                recurrence = new Recurrence(startDate, pos - 2);
-            } else {
-                // Use set default for that option
-                recurrence = new Recurrence(optionListDefaults[pos - 2]);
-            }
+            // Use set default for that option
+            recurrence = new Recurrence(optionListDefaults[pos - 2]);
         }
         if (listener != null) {
             listener.onRecurrenceSelected(recurrence);
@@ -814,6 +808,23 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
 
         dateDialog.show();
         dateDialogShown = true;
+    }
+
+    private void setOptionListDefaultsText() {
+        if (initialized) {
+            for (int i = 0; i < optionListDefaults.length; i++) {
+                CharSequence text;
+                if (optionListDefaultsTitle == null || optionListDefaultsTitle.length <= i
+                        || optionListDefaultsTitle[i] == null) {
+                    formatter.setDateFormat(optionListDateFormat);
+                    text = formatter.format(optionListDefaults[i]);
+                } else {
+                    text = optionListDefaultsTitle[i];
+                }
+                ((TextView) optionListLayout.getChildAt(i + 2)
+                        .findViewById(R.id.rp_txv_title)).setText(text);
+            }
+        }
     }
 
     /**
@@ -889,6 +900,9 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             // Adjust defaults start dates
             for (Recurrence r : optionListDefaults) {
                 r.setStartDate(startDate);
+
+                // Setting start date might change the text too
+                setOptionListDefaultsText();
             }
         }
 
@@ -1119,18 +1133,21 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
             }
         }
 
-        boolean defaultsChanged = !initialized || optionListDefaults != null && defaults == null || defaults != null;
-        boolean titlesChanged = optionListDefaults == null && titles != null || defaultsChanged;
-
-        int nb = (defaults == null ? 4 : defaults.length);
+        boolean defaultsChanged = !initialized || optionListDefaults != DEFAULT_OPTION_LIST_DEFAULTS && defaults == null || defaults != null;
+        boolean titlesChanged = optionListDefaults == DEFAULT_OPTION_LIST_DEFAULTS && titles != null || defaultsChanged;
 
         if (defaultsChanged) {
             if (initialized) {
-                optionListLayout.removeViews(2, (optionListDefaults == null ? 4 : optionListDefaults.length));
+                optionListLayout.removeViews(2, optionListDefaults.length);
+            }
+
+            optionListDefaults = defaults == null ? DEFAULT_OPTION_LIST_DEFAULTS : defaults;
+            for (Recurrence r : optionListDefaults) {
+                r.setStartDate(recurrence.getStartDate());
             }
 
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            for (int i = 0; i < nb; i++) {
+            for (int i = 0; i < optionListDefaults.length; i++) {
                 @SuppressLint("InflateParams")
                 LinearLayout item = (LinearLayout) inflater.inflate(R.layout.rp_item_option, null);
                 item.setTag(i + 2);
@@ -1142,29 +1159,9 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         }
 
         if (titlesChanged) {
-            CharSequence[] defaultTitles = getResources().getStringArray(R.array.rp_option_list_items);
-            if (defaults == null && titles == null) {
-                titles = defaultTitles;
-            }
-            for (int i = 0; i < nb; i++) {
-                CharSequence text;
-                if (titles == null || titles.length <= i || titles[i] == null) {
-                    if (defaults == null) {
-                        text = defaultTitles[i];
-                    } else {
-                        formatter.setDateFormat(optionListDateFormat);
-                        text = formatter.format(defaults[i]);
-                    }
-                } else {
-                    text = titles[i];
-                }
-                ((TextView) optionListLayout.getChildAt(i + 2)
-                        .findViewById(R.id.rp_txv_title)).setText(text);
-            }
+            optionListDefaultsTitle = titles;
+            setOptionListDefaultsText();
         }
-
-        optionListDefaults = defaults;
-        optionListDefaultsTitle = titles;
 
         return this;
     }
@@ -1203,7 +1200,7 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         bundle.putBoolean("showCancelBtn", showCancelBtn);
         bundle.putInt("enabledPeriods", enabledPeriods);
         bundle.putInt("enabledEndTypes", enabledEndTypes);
-        if (optionListDefaults != null) {
+        if (optionListDefaults != DEFAULT_OPTION_LIST_DEFAULTS) {
             bundle.putParcelableArray("optionListDefaults", optionListDefaults);
         }
         if (optionListDefaultsTitle != null) {

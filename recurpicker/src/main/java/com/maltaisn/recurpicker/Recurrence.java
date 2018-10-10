@@ -688,8 +688,13 @@ public class Recurrence implements Parcelable {
         return bb.array();
     }
 
+    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     @Override
     public boolean equals(Object obj) {
+        return equals(obj, false);
+    }
+
+    boolean equals(Object obj, boolean ignoreStartDate) {
         if (obj == this) return true;
         if (!(obj instanceof Recurrence)) return false;
 
@@ -700,7 +705,7 @@ public class Recurrence implements Parcelable {
                 r.daySetting == daySetting &&
                 r.endType == endType &&
                 (endCount == 0 || r.endCount == endCount) &&
-                isOnSameDay(r.startDate, startDate) &&
+                (ignoreStartDate || isOnSameDay(r.startDate, startDate)) &&
                 (endDate == null || isOnSameDay(r.endDate, endDate));
     }
 
@@ -722,15 +727,15 @@ public class Recurrence implements Parcelable {
         recurSb.append(", ");
         switch (period) {
             case NONE:
-                recurSb.append("Does not repeat");
+                recurSb.append("does not repeat");
 
             case DAILY:
-                recurSb.append("repeats on every ");
+                recurSb.append("on every ");
                 recurSb.append(toStringPlural("day", frequency, false));
                 break;
 
             case WEEKLY:
-                recurSb.append("repeats on every ");
+                recurSb.append("on every ");
                 recurSb.append(toStringPlural("week", frequency, false));
                 if (!isDefault) {
                     // Make a list of days of week
@@ -753,7 +758,7 @@ public class Recurrence implements Parcelable {
                 break;
 
             case Recurrence.MONTHLY:
-                recurSb.append("repeats on every ");
+                recurSb.append("on every ");
                 recurSb.append(toStringPlural("month", frequency, false));
                 if (!isDefault) {
                     recurSb.append(" (");
@@ -779,7 +784,7 @@ public class Recurrence implements Parcelable {
                 break;
 
             case YEARLY:
-                recurSb.append("repeats on every ");
+                recurSb.append("on every ");
                 recurSb.append(toStringPlural("year", frequency, false));
                 break;
         }

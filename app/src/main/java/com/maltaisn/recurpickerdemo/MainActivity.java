@@ -23,6 +23,7 @@ package com.maltaisn.recurpickerdemo;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -145,10 +146,8 @@ public class MainActivity extends AppCompatActivity implements RecurrencePickerD
                         startDateValue.setText(dateFormatLong.format(startDate.getTimeInMillis()));
 
                         // Also needs to update current recurrence
-                        if (recurrence != null) {
-                            recurrence.setStartDate(startDate.getTimeInMillis());
-                            selectRecurrence(recurrence);  // Update interface
-                        }
+                        recurrence.setStartDate(startDate.getTimeInMillis());
+                        selectRecurrence(recurrence);  // Update interface
 
                         // Check if end date is before start date
                         if (maxEndDate != null && !Recurrence.isOnSameDayOrAfter(maxEndDate, startDate)) {

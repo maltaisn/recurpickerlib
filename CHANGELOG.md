@@ -1,3 +1,8 @@
+## v1.4.3
+- Changed "Every 1 day/month/..." formatting to "Every day/month/...".
+- Removed the "Repeats" part of the formatted recurrence.
+- Fixed bug where changing start date of dialog didn't update the text of custom defaults in option list.
+
 ## v1.4.2
 - Fixed French translation.
 - Fixed bug where days of the week of weekly recurrence were not checked.

@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- @formatter:off -->
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ImpliedQuantity">
 
     <string name="rp_done">OK</string>
 
     <string name="rp_repeat_options">Options de répétition</string>
 
-    <string name="rp_option_list_none">Ne pas répéter</string>
-    <string name="rp_option_list_day">À tous les jours</string>
-    <string name="rp_option_list_week">À toutes les semaines</string>
-    <string name="rp_option_list_month">À tous les mois</string>
-    <string name="rp_option_list_year">À tous les ans</string>
-    <string name="rp_option_list_custom">Personnaliser…</string>
+    <string name="rp_custom">Personnaliser…</string>
 
     <string name="rp_period_day">Tous les jours</string>
     <string name="rp_period_week">Toutes les semaines</string>
@@ -44,7 +41,7 @@
     <string name="rp_end_count_abbr">Pour</string>
 
     <plurals name="rp_end_count_event">
-        <item quantity="one" tools:ignore="ImpliedQuantity">événement</item>
+        <item quantity="one">événement</item>
         <item quantity="other">événements</item>
     </plurals>
 
@@ -60,20 +57,20 @@
 
     <string name="rp_format_none">Pas de répétition</string>
     <plurals name="rp_format_day">
-        <item quantity="one">À tous les %d jours</item>
-        <item quantity="other">À tous les %d jours</item>
+        <item quantity="one">Tous les jours</item>
+        <item quantity="other">Tous les %d jours</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">À toutes les %d semaines</item>
-        <item quantity="other">À toutes les %d semaines</item>
+        <item quantity="one">Toutes les semaines</item>
+        <item quantity="other">Toutes les %d semaines</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="one">À tous les %d mois</item>
-        <item quantity="other">À tous les %d mois</item>
+        <item quantity="one">Tous les mois</item>
+        <item quantity="other">Tous les %d mois</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="one">À tous les %d ans</item>
-        <item quantity="other">À tous les %d ans</item>
+        <item quantity="one">Tous les ans</item>
+        <item quantity="other">Tous les %d ans</item>
     </plurals>
 
     <string name="rp_format_weekly_option">les %s</string>
