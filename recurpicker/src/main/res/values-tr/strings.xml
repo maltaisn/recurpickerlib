@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+	<string name="rp_done">Tamam</string>
+	<string name="rp_repeat_options">Seçenekleri tekrarlayın</string>
+	<string name="rp_custom">Özel…
+	</string>
+	<string name="rp_period_day">Günlük tekrar</string>
+	<string name="rp_period_week">Haftalık tekrar
+	</string>
+	<string name="rp_period_month">Aylık tekrar</string>
+	<string name="rp_period_year">Yıllık tekrarla</string>
+	<string name="rp_end_never">Sonsuza dek</string>
+	<string name="rp_end_date">Tarihe kadar</string>
+	<string name="rp_end_count">Bir dizi etkinlik için</string>
+	<string name="rp_end_never_abbr">Sonsuza dek</string>
+	<string name="rp_end_date_abbr">Kadar</string>
+	<string name="rp_end_count_abbr">İçin</string>
+	<plurals name="rp_end_count_event">
+		<item quantity="one">etkinlik</item>
+		<item quantity="few">etkinlikler</item>
+		<item quantity="other">etkinlikler</item>
+	</plurals>
+	<string-array name="rp_days_of_week_abbr">
+		<item comment="Used in a list of days of week.">Güneş</item>
+		<item comment="Used in a list of days of week.">Paz</item>
+		<item comment="Used in a list of days of week.">Sal</item>
+		<item comment="Used in a list of days of week.">Çar</item>
+		<item comment="Used in a list of days of week.">Per</item>
+		<item comment="Used in a list of days of week.">Cum</item>
+		<item comment="Used in a list of days of week.">Cmt</item>
+	</string-array>
+	<string name="rp_format_none">Tekrar etmez</string>
+	<plurals name="rp_format_day">
+		<item quantity="one">Her |gün
+		</item>
+		<item quantity="few">Her |%d günler
+		</item>
+		<item quantity="other">Her |%d günler</item>
+	</plurals>
+	<plurals name="rp_format_week">
+		<item quantity="one">Her |hafta
+		</item>
+		<item quantity="few">Her |%d haftalar
+		</item>
+		<item quantity="other">Her |%d haftalar
+		</item>
+	</plurals>
+	<plurals name="rp_format_month">
+		<item quantity="one">Her |ay</item>
+		<item quantity="few">Her |%d aylar
+		</item>
+		<item quantity="other">Her |%d aylar
+		</item>
+	</plurals>
+	<plurals name="rp_format_year">
+		<item quantity="one">Her |sene
+		</item>
+		<item quantity="few">Her |%d seneler
+		</item>
+		<item quantity="other">Her |%d seneler</item>
+	</plurals>
+	<string name="rp_format_weekly_option">üzerinde %s</string>
+	<string name="rp_format_weekly_all">haftanın her günü</string>
+	<string name="rp_format_monthly_same_day">her ay aynı günde</string>
+	<string name="rp_format_monthly_last_day">Her ayın son gününde</string>
+	<string name="rp_format_monthly_sun">her %s Pazar günü
+	</string>
+	<string name="rp_format_monthly_mon">her %s Pazartesi</string>
+	<string name="rp_format_monthly_tue">her %s Salı
+	</string>
+	<string name="rp_format_monthly_wed">her %s Çarşamba
+	</string>
+	<string name="rp_format_monthly_thu">her %s Perşembe
+	</string>
+	<string name="rp_format_monthly_fri">her %s Cuma</string>
+	<string name="rp_format_monthly_sat">her %s Cumartesi</string>
+	<string-array name="rp_format_monthly_ordinal">
+		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">birinci</item>
+		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">ikinci</item>
+		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">üçüncü</item>
+		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">dördüncü</item>
+		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">son</item>
+	</string-array>
+	<string name="rp_format_end_date">kadar %s</string>
+	<plurals name="rp_format_end_count">
+		<item quantity="one">için %d etkinlik</item>
+		<item quantity="few">için %d etkinlikler</item>
+		<item quantity="other">için %d etkinlikler</item>
+	</plurals>
+</resources>
