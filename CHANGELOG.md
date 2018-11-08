@@ -1,6 +1,6 @@
 ## v1.4.5
-- 
-- Added strings for AboutLibraries
+- Added 10 translations: Albanian, Czech, German, Italian, Lithuanian, Norwegian, Polish, Russian, Slovak and Turkish.
+- Added strings for AboutLibraries.
 
 ## v1.4.4
 - Removed 4 strings for faster translation.

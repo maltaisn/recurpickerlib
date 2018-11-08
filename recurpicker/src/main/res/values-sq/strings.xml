@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 	<string name="rp_done">U krye</string>
 	<string name="rp_repeat_options">Mundësitë e përsëritjes</string>
 	<string name="rp_custom">Sipas dëshirës…</string>
@@ -15,37 +15,32 @@
 	<string name="rp_end_count_abbr">Për</string>
 	<plurals name="rp_end_count_event">
 		<item quantity="one">ndodhi</item>
-		<item quantity="few">raste</item>
 		<item quantity="other">raste</item>
 	</plurals>
 	<string-array name="rp_days_of_week_abbr">
-		<item comment="Used in a list of days of week.">Djelë</item>
-		<item comment="Used in a list of days of week.">Hënë</item>
-		<item comment="Used in a list of days of week.">Martë</item>
-		<item comment="Used in a list of days of week.">Mërkurë</item>
-		<item comment="Used in a list of days of week.">Enjte</item>
-		<item comment="Used in a list of days of week.">Premte</item>
-		<item comment="Used in a list of days of week.">Shtunë</item>
+		<item>Djelë</item>
+		<item>Hënë</item>
+		<item>Martë</item>
+		<item>Mërkurë</item>
+		<item>Enjte</item>
+		<item>Premte</item>
+		<item>Shtunë</item>
 	</string-array>
 	<string name="rp_format_none">Nuk përsëritet</string>
 	<plurals name="rp_format_day">
 		<item quantity="one">Çdo |ditë</item>
-		<item quantity="few">Çdo |%d ditë</item>
 		<item quantity="other">Çdo |%d ditë</item>
 	</plurals>
 	<plurals name="rp_format_week">
 		<item quantity="one">Çdo |javë</item>
-		<item quantity="few">Çdo |%d javë</item>
 		<item quantity="other">Çdo |%d javë</item>
 	</plurals>
 	<plurals name="rp_format_month">
 		<item quantity="one">Çdo |muaj</item>
-		<item quantity="few">Çdo |%d muaj</item>
 		<item quantity="other">Çdo |%d muaj</item>
 	</plurals>
 	<plurals name="rp_format_year">
 		<item quantity="one">Çdo |vit</item>
-		<item quantity="few">Çdo |%d vit</item>
 		<item quantity="other">Çdo |%d vit</item>
 	</plurals>
 	<string name="rp_format_weekly_option">të %s</string>
@@ -60,16 +55,15 @@
 	<string name="rp_format_monthly_fri">çdo të %s premte</string>
 	<string name="rp_format_monthly_sat">çdo të %s shtunë</string>
 	<string-array name="rp_format_monthly_ordinal">
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">e para</item>
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">e dyta</item>
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">e treta</item>
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">e katërta</item>
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">e fundit</item>
+		<item>e para</item>
+		<item>e dyta</item>
+		<item>e treta</item>
+		<item>e katërta</item>
+		<item>e fundit</item>
 	</string-array>
 	<string name="rp_format_end_date">Deri %s</string>
 	<plurals name="rp_format_end_count">
 		<item quantity="one">për %d raste</item>
-		<item quantity="few">për %d raste</item>
 		<item quantity="other">për %d raste</item>
 	</plurals>
 </resources>

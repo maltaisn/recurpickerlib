@@ -1,75 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-	<string name="rp_done">Fatto</string>
-	<string name="rp_repeat_options">Opzioni di ripetizione</string>
-	<string name="rp_custom">Personalizza…</string>
-	<string name="rp_period_day">Ripeti giornalmente</string>
-	<string name="rp_period_week">Ripeti settimanalmente</string>
-	<string name="rp_period_month">Ripeti mensilmente</string>
-	<string name="rp_period_year">Ripeti annualmente</string>
-	<string name="rp_end_never">Per sempre</string>
-	<string name="rp_end_date">Fino alla data</string>
-	<string name="rp_end_count">Per un numero di eventi</string>
-	<string name="rp_end_never_abbr">Per sempre</string>
-	<string name="rp_end_date_abbr">Fino a</string>
-	<string name="rp_end_count_abbr">Per</string>
-	<plurals name="rp_end_count_event">
-		<item quantity="one">evento</item>
-		<item quantity="few">eventi</item>
-		<item quantity="other">eventi</item>
-	</plurals>
-	<string-array name="rp_days_of_week_abbr">
-		<item comment="Used in a list of days of week.">Dom</item>
-		<item comment="Used in a list of days of week.">Lun</item>
-		<item comment="Used in a list of days of week.">Mar</item>
-		<item comment="Used in a list of days of week.">Mer</item>
-		<item comment="Used in a list of days of week.">Gio</item>
-		<item comment="Used in a list of days of week.">Ven</item>
-		<item comment="Used in a list of days of week.">Sab</item>
-	</string-array>
-	<string name="rp_format_none">Non ripetere</string>
-	<plurals name="rp_format_day">
-		<item quantity="one">Ogni |giorno</item>
-		<item quantity="few">Ogni |%d giorni</item>
-		<item quantity="other">Ogni |%d giorni</item>
-	</plurals>
-	<plurals name="rp_format_week">
-		<item quantity="one">Ogni |settimana</item>
-		<item quantity="few">Ogni |%d settimane</item>
-		<item quantity="other">Ogni |%d settimane</item>
-	</plurals>
-	<plurals name="rp_format_month">
-		<item quantity="one">Ogni |mese</item>
-		<item quantity="few">Ogni |%d mesi</item>
-		<item quantity="other">Ogni |%d mesi</item>
-	</plurals>
-	<plurals name="rp_format_year">
-		<item quantity="one">Ogni |anno</item>
-		<item quantity="few">Ogni |%d anni</item>
-		<item quantity="other">Ogni |%d anni</item>
-	</plurals>
-	<string name="rp_format_weekly_option">%s</string>
-	<string name="rp_format_weekly_all">ogni giorno della settimana</string>
-	<string name="rp_format_monthly_same_day">nello stesso giorno ogni mese</string>
-	<string name="rp_format_monthly_last_day">ogni ultimo del mese</string>
-	<string name="rp_format_monthly_sun">ogni %s Domeniche</string>
-	<string name="rp_format_monthly_mon">ogni %s Lunedì</string>
-	<string name="rp_format_monthly_tue">ogni %s Martedì</string>
-	<string name="rp_format_monthly_wed">ogni %s Mercoledì</string>
-	<string name="rp_format_monthly_thu">ogni %s Giovedì</string>
-	<string name="rp_format_monthly_fri">ogni %s Venerdì</string>
-	<string name="rp_format_monthly_sat">ogni %s Sabato</string>
-	<string-array name="rp_format_monthly_ordinal">
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">primo</item>
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">secondo</item>
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">terzo</item>
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">quarto</item>
-		<item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">ultimo</item>
-	</string-array>
-	<string name="rp_format_end_date">fino a %s</string>
-	<plurals name="rp_format_end_count">
-		<item quantity="one">per %d evento</item>
-		<item quantity="few">per %d eventi</item>
-		<item quantity="other">per %d eventi</item>
-	</plurals>
+<resources>
+    <string name="rp_done">Fatto</string>
+    <string name="rp_repeat_options">Opzioni di ripetizione</string>
+    <string name="rp_custom">Personalizza…</string>
+    <string name="rp_period_day">Ripeti giornalmente</string>
+    <string name="rp_period_week">Ripeti settimanalmente</string>
+    <string name="rp_period_month">Ripeti mensilmente</string>
+    <string name="rp_period_year">Ripeti annualmente</string>
+    <string name="rp_end_never">Per sempre</string>
+    <string name="rp_end_date">Fino alla data</string>
+    <string name="rp_end_count">Per un numero di eventi</string>
+    <string name="rp_end_never_abbr">Per sempre</string>
+    <string name="rp_end_date_abbr">Fino a</string>
+    <string name="rp_end_count_abbr">Per</string>
+    <plurals name="rp_end_count_event">
+        <item quantity="one">evento</item>
+        <item quantity="other">eventi</item>
+    </plurals>
+    <string-array name="rp_days_of_week_abbr">
+        <item>Dom</item>
+        <item>Lun</item>
+        <item>Mar</item>
+        <item>Mer</item>
+        <item>Gio</item>
+        <item>Ven</item>
+        <item>Sab</item>
+    </string-array>
+    <string name="rp_format_none">Non ripetere</string>
+    <plurals name="rp_format_day">
+        <item quantity="one">Ogni |giorno</item>
+        <item quantity="other">Ogni |%d giorni</item>
+    </plurals>
+    <plurals name="rp_format_week">
+        <item quantity="one">Ogni |settimana</item>
+        <item quantity="other">Ogni |%d settimane</item>
+    </plurals>
+    <plurals name="rp_format_month">
+        <item quantity="one">Ogni |mese</item>
+        <item quantity="other">Ogni |%d mesi</item>
+    </plurals>
+    <plurals name="rp_format_year">
+        <item quantity="one">Ogni |anno</item>
+        <item quantity="other">Ogni |%d anni</item>
+    </plurals>
+    <string name="rp_format_weekly_option">%s</string>
+    <string name="rp_format_weekly_all">ogni giorno della settimana</string>
+    <string name="rp_format_monthly_same_day">nello stesso giorno ogni mese</string>
+    <string name="rp_format_monthly_last_day">ogni ultimo del mese</string>
+    <string name="rp_format_monthly_sun">ogni %s Domeniche</string>
+    <string name="rp_format_monthly_mon">ogni %s Lunedì</string>
+    <string name="rp_format_monthly_tue">ogni %s Martedì</string>
+    <string name="rp_format_monthly_wed">ogni %s Mercoledì</string>
+    <string name="rp_format_monthly_thu">ogni %s Giovedì</string>
+    <string name="rp_format_monthly_fri">ogni %s Venerdì</string>
+    <string name="rp_format_monthly_sat">ogni %s Sabato</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item>primo</item>
+        <item>secondo</item>
+        <item>terzo</item>
+        <item>quarto</item>
+        <item>ultimo</item>
+    </string-array>
+    <string name="rp_format_end_date">fino a %s</string>
+    <plurals name="rp_format_end_count">
+        <item quantity="one">per %d evento</item>
+        <item quantity="other">per %d eventi</item>
+    </plurals>
 </resources>

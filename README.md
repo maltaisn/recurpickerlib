@@ -19,5 +19,8 @@ Replace `X.Y.Z` with lastest version number: [ ![Download](https://api.bintray.c
 ## Changelog
 View [changelog](CHANGELOG.md).
 
+## Credits
+- Thanks to [David Vavra](https://github.com/davidvavra) and his translators for translating to 10 languages.
+
 ## Translations
 This library is only available in English and in French for now. If you make a translation please send a pull request!

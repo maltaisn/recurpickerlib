@@ -23,6 +23,7 @@
     <plurals name="rp_end_count_event" comment="Text goes after the number of events input ([input] text)">
         <item quantity="one">event</item>
         <item quantity="few">events</item>
+        <item quantity="many">events</item>
         <item quantity="other">events</item>
     </plurals>
 
@@ -40,21 +41,25 @@
     <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. The | character is required to separate the part the goes before the number and the part that goes after for user input labels, but it is never shown.">
         <item quantity="one">Every |day</item>
         <item quantity="few">Every |%d days</item>
+        <item quantity="many">Every |%d days</item>
         <item quantity="other">Every |%d days</item>
     </plurals>
     <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency. The | character is required to separate the part the goes before the number and the part that goes after for user input labels, but it is never shown.">
         <item quantity="one">Every |week</item>
         <item quantity="few">Every |%d weeks</item>
+        <item quantity="many">Every |%d weeks</item>
         <item quantity="other">Every |%d weeks</item>
     </plurals>
     <plurals name="rp_format_month"  comment="Text for a monthly recurrence. The number argument is the frequency. The | character is required to separate the part the goes before the number and the part that goes after for user input labels, but it is never shown.">
         <item quantity="one">Every |month</item>
         <item quantity="few">Every |%d months</item>
+        <item quantity="many">Every |%d months</item>
         <item quantity="other">Every |%d months</item>
     </plurals>
     <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency. The | character is required to separate the part the goes before the number and the part that goes after for user input labels, but it is never shown.">
         <item quantity="one">Every |year</item>
         <item quantity="few">Every |%d years</item>
+        <item quantity="many">Every |%d years</item>
         <item quantity="other">Every |%d years</item>
     </plurals>
 
@@ -82,6 +87,7 @@
     <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
         <item quantity="one">for %d event</item>
         <item quantity="few">for %d events</item>
+        <item quantity="many">for %d events</item>
         <item quantity="other">for %d events</item>
     </plurals>
 
