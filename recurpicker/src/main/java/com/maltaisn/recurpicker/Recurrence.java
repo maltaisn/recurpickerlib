@@ -718,89 +718,92 @@ public class Recurrence implements Parcelable {
     @NonNull
     @Override
     public String toString() {
-        DateFormatSymbols dfs = DateFormatSymbols.getInstance(Locale.ENGLISH);
-        DateFormat df = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
-        StringBuilder recurSb = new StringBuilder();
-        recurSb.append('[');
-        recurSb.append("From ");
-        recurSb.append(df.format(startDate.getTime()));
-        recurSb.append(", ");
-        switch (period) {
-            case NONE:
-                recurSb.append("does not repeat");
+        if (BuildConfig.DEBUG) {
+            DateFormatSymbols dfs = DateFormatSymbols.getInstance(Locale.ENGLISH);
+            DateFormat df = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
+            StringBuilder recurSb = new StringBuilder();
+            recurSb.append('[');
+            recurSb.append("From ");
+            recurSb.append(df.format(startDate.getTime()));
+            recurSb.append(", ");
+            switch (period) {
+                case NONE:
+                    recurSb.append("does not repeat");
 
-            case DAILY:
-                recurSb.append("on every ");
-                recurSb.append(toStringPlural("day", frequency, false));
-                break;
+                case DAILY:
+                    recurSb.append("on every ");
+                    recurSb.append(toStringPlural("day", frequency, false));
+                    break;
 
-            case WEEKLY:
-                recurSb.append("on every ");
-                recurSb.append(toStringPlural("week", frequency, false));
-                if (!isDefault) {
-                    // Make a list of days of week
-                    recurSb.append(" on ");
-                    if (daySetting == EVERY_DAY_OF_WEEK) {
-                        // on every day of the week
-                        recurSb.append("every day of the week");
-                    } else {
-                        // on [Sun, Mon, Wed, ...]
-                        String[] daysAbbr = dfs.getShortWeekdays();
-                        for (int day = Calendar.SUNDAY; day <= Calendar.SATURDAY; day++) {
-                            if (isRepeatedOnDaysOfWeek(1 << day)) {
-                                recurSb.append(daysAbbr[day]);
-                                recurSb.append(", ");
+                case WEEKLY:
+                    recurSb.append("on every ");
+                    recurSb.append(toStringPlural("week", frequency, false));
+                    if (!isDefault) {
+                        // Make a list of days of week
+                        recurSb.append(" on ");
+                        if (daySetting == EVERY_DAY_OF_WEEK) {
+                            // on every day of the week
+                            recurSb.append("every day of the week");
+                        } else {
+                            // on [Sun, Mon, Wed, ...]
+                            String[] daysAbbr = dfs.getShortWeekdays();
+                            for (int day = Calendar.SUNDAY; day <= Calendar.SATURDAY; day++) {
+                                if (isRepeatedOnDaysOfWeek(1 << day)) {
+                                    recurSb.append(daysAbbr[day]);
+                                    recurSb.append(", ");
+                                }
                             }
+                            recurSb.delete(recurSb.length() - 2, recurSb.length());  // Remove extra separator
                         }
-                        recurSb.delete(recurSb.length() - 2, recurSb.length());  // Remove extra separator
                     }
-                }
-                break;
+                    break;
 
-            case Recurrence.MONTHLY:
-                recurSb.append("on every ");
-                recurSb.append(toStringPlural("month", frequency, false));
-                if (!isDefault) {
-                    recurSb.append(" (");
-                    switch (daySetting) {
-                        case SAME_DAY_OF_MONTH:
-                            recurSb.append("on the same day each month");
-                            break;
+                case Recurrence.MONTHLY:
+                    recurSb.append("on every ");
+                    recurSb.append(toStringPlural("month", frequency, false));
+                    if (!isDefault) {
+                        recurSb.append(" (");
+                        switch (daySetting) {
+                            case SAME_DAY_OF_MONTH:
+                                recurSb.append("on the same day each month");
+                                break;
 
-                        case SAME_DAY_OF_WEEK:
-                            recurSb.append("on every ");
-                            recurSb.append(new String[]{"first", "second", "third", "fourth", "last"}
-                                    [startDate.get(Calendar.DAY_OF_WEEK_IN_MONTH) - 1]);
-                            recurSb.append(' ');
-                            recurSb.append(dfs.getWeekdays()[startDate.get(Calendar.DAY_OF_WEEK)]);
-                            break;
+                            case SAME_DAY_OF_WEEK:
+                                recurSb.append("on every ");
+                                recurSb.append(new String[]{"first", "second", "third", "fourth", "last"}
+                                        [startDate.get(Calendar.DAY_OF_WEEK_IN_MONTH) - 1]);
+                                recurSb.append(' ');
+                                recurSb.append(dfs.getWeekdays()[startDate.get(Calendar.DAY_OF_WEEK)]);
+                                break;
 
-                        case LAST_DAY_OF_MONTH:
-                            recurSb.append("on the last day of the month");
-                            break;
+                            case LAST_DAY_OF_MONTH:
+                                recurSb.append("on the last day of the month");
+                                break;
+                        }
+                        recurSb.append(")");
                     }
-                    recurSb.append(")");
-                }
-                break;
+                    break;
 
-            case YEARLY:
-                recurSb.append("on every ");
-                recurSb.append(toStringPlural("year", frequency, false));
-                break;
-        }
-
-        if (endType != END_NEVER) {
-            recurSb.append("; ");
-            if (endType == END_BY_DATE) {
-                recurSb.append("until ");
-                recurSb.append(df.format(endDate.getTime()));
-            } else {
-                recurSb.append("for ");
-                recurSb.append(toStringPlural("event", endCount, true));
+                case YEARLY:
+                    recurSb.append("on every ");
+                    recurSb.append(toStringPlural("year", frequency, false));
+                    break;
             }
+
+            if (endType != END_NEVER) {
+                recurSb.append("; ");
+                if (endType == END_BY_DATE) {
+                    recurSb.append("until ");
+                    recurSb.append(df.format(endDate.getTime()));
+                } else {
+                    recurSb.append("for ");
+                    recurSb.append(toStringPlural("event", endCount, true));
+                }
+            }
+            recurSb.append(']');
+            return recurSb.toString();
         }
-        recurSb.append(']');
-        return recurSb.toString();
+        return super.toString();
     }
 
     private static String toStringPlural(String text, int quantity, boolean alwaysIncludeQuantity) {

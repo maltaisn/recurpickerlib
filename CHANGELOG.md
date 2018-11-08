@@ -1,3 +1,7 @@
+## v1.4.5
+- 
+- Added strings for AboutLibraries
+
 ## v1.4.4
 - Removed 4 strings for faster translation.
 

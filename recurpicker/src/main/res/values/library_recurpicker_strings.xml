@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--@formatter:off-->
+<resources>
+
+    <string name="define_int_recurpicker" translatable="false"/>
+    <string name="library_recurpicker_libraryName" translatable="false">Recurrence Picker</string>
+    <string name="library_recurpicker_libraryDescription" translatable="false">Recurrence picker view, dialog and utilities.</string>
+    <string name="library_recurpicker_author" translatable="false">Nicolas Maltais</string>
+    <string name="library_recurpicker_authorWebsite" translatable="false">https://github.com/maltaisn</string>
+    <string name="library_recurpicker_libraryVersion" translatable="false">@string/rp_library_version</string>
+    <string name="library_recurpicker_isOpenSource" translatable="false">true</string>
+    <string name="library_recurpicker_repositoryLink" translatable="false">https://github.com/maltaisn/recurpickerlib</string>
+    <string name="library_recurpicker_classPath" translatable="false">com.maltaisn.recurpicker</string>
+    <string name="library_recurpicker_licenseId" translatable="false">apache_2_0</string>
+
+</resources>

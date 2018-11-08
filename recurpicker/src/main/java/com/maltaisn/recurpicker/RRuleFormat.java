@@ -21,17 +21,20 @@
 
 package com.maltaisn.recurpicker;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
- * Class used to convert a recurrence to a RRule
- * See https://tools.ietf.org/html/rfc5545
+ * Class used to convert a recurrence to a RRule.
+ * See <a href="https://tools.ietf.org/html/rfc5545">RFC5545 standard</a>.
  */
 public class RRuleFormat {
 
-    private static final String TAG = RRuleFormat.class.getSimpleName();
-
     private static final String[] RRULE_BYDAY_VALUES = {"SU", "MO", "TU", "WE", "TH", "FR", "SA"};
+
+    private static final SimpleDateFormat RRULE_DATE_FORMAT =
+            new SimpleDateFormat("yyyyMMdd'T'HHmmss", Locale.ENGLISH);
 
     /**
      * Convert the recurrence to a RFC 5545 string rule
@@ -47,7 +50,7 @@ public class RRuleFormat {
 
         // Start date
         rule.append("DTSTART=");
-        rule.append(getRRuleDate(r.startDate));
+        rule.append(RRULE_DATE_FORMAT.format(r.startDate.getTime()));
         rule.append(';');
 
         // Period
@@ -128,7 +131,7 @@ public class RRuleFormat {
                 break;
             case Recurrence.END_BY_DATE:
                 rule.append("UNTIL=");
-                rule.append(getRRuleDate(r.endDate));
+                rule.append(RRULE_DATE_FORMAT.format(r.endDate.getTime()));
                 rule.append(';');
                 break;
             case Recurrence.END_BY_COUNT:
@@ -141,31 +144,6 @@ public class RRuleFormat {
         rule.deleteCharAt(rule.length() - 1); // Delete extra ";"
 
         return rule.toString();
-    }
-
-    /**
-     * Format a date to be used in an RRule (local time)
-     * Format is: YYYY-MM-DD-T-HH-MM-SS (ignore the hyphens)
-     * @param cal calendar date to format
-     * @return formatted date string
-     */
-    @SuppressWarnings("StringBufferReplaceableByString")
-    private static String getRRuleDate(Calendar cal) {
-        StringBuilder sb = new StringBuilder(15);
-        sb.append(cal.get(Calendar.YEAR));
-        sb.append(zeroTabNumber(cal.get(Calendar.MONTH) + 1));
-        sb.append(zeroTabNumber(cal.get(Calendar.DATE)));
-        sb.append('T');
-        sb.append(zeroTabNumber(cal.get(Calendar.HOUR_OF_DAY)));
-        sb.append(zeroTabNumber(cal.get(Calendar.MINUTE)));
-        sb.append(zeroTabNumber(cal.get(Calendar.SECOND)));
-        return sb.toString();
-    }
-
-    private static String zeroTabNumber(int n) {
-        String str = String.valueOf(n);
-        if (str.length() == 1) str = '0' + str;
-        return str;
     }
 
 }
