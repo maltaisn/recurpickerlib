@@ -23,4 +23,4 @@ View [changelog](CHANGELOG.md).
 - Thanks to [David Vavra](https://github.com/davidvavra) and his translators for translating to 10 languages.
 
 ## Translations
-This library is only available in English and in French for now. If you make a translation please send a pull request!
+The library is available in 12 languages. If you make a translation please send a pull request! There are comments in the default strings.xml to help with specific translation requirements.
