@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rp_done">完成</string>
+    <string name="rp_repeat_options">重複選項</string>
+    <string name="rp_custom">自訂…</string>
+    <string name="rp_period_day">每日重複</string>
+    <string name="rp_period_week">每週重複</string>
+    <string name="rp_period_month">每月重複</string>
+    <string name="rp_period_year">每年重複</string>
+    <string name="rp_end_never">永遠</string>
+    <string name="rp_end_date">直到某天</string>
+    <string name="rp_end_count">經過數次事件後</string>
+    <string name="rp_end_never_abbr">永遠</string>
+    <string name="rp_end_date_abbr">直到</string>
+    <string name="rp_end_count_abbr">直到</string>
+    <plurals name="rp_end_count_event">
+        <item quantity="one">事件</item>
+        <item quantity="few">事件</item>
+        <item quantity="other">事件</item>
+    </plurals>
+    <string-array name="rp_days_of_week_abbr">
+        <item>星期日</item>
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+    </string-array>
+    <string name="rp_format_none">不重複</string>
+    <plurals name="rp_format_day">
+        <item quantity="one">每 |天</item>
+        <item quantity="few">每 |%d 天</item>
+        <item quantity="other">每 |%d 天</item>
+    </plurals>
+    <plurals name="rp_format_week">
+        <item quantity="one">每 |週</item>
+        <item quantity="few">每 |%d 週</item>
+        <item quantity="other">每 |%d 週</item>
+    </plurals>
+    <plurals name="rp_format_month">
+        <item quantity="one">每 |月</item>
+        <item quantity="few">每 |%d 月</item>
+        <item quantity="other">每 |%d 月</item>
+    </plurals>
+    <plurals name="rp_format_year">
+        <item quantity="one">每 |年</item>
+        <item quantity="few">每 |%d 年</item>
+        <item quantity="other">每 |%d 年</item>
+    </plurals>
+    <string name="rp_format_weekly_option">在 %s</string>
+    <string name="rp_format_weekly_all">當週的每一天</string>
+    <string name="rp_format_monthly_same_day">每月的同一天</string>
+    <string name="rp_format_monthly_last_day">每月的倒數某天</string>
+    <string name="rp_format_monthly_sun">在每月的第 %s 個星期日</string>
+    <string name="rp_format_monthly_mon">在每月的第 %s 個星期一</string>
+    <string name="rp_format_monthly_tue">在每月的第 %s 個星期二</string>
+    <string name="rp_format_monthly_wed">在每月的第 %s 個星期三</string>
+    <string name="rp_format_monthly_thu">在每月的第 %s 個星期四</string>
+    <string name="rp_format_monthly_fri">在每月的第 %s 個星期五</string>
+    <string name="rp_format_monthly_sat">在每月的第 %s 個星期六</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item>第一</item>
+        <item>第二</item>
+        <item>第三</item>
+        <item>第四</item>
+        <item>最後</item>
+    </string-array>
+    <string name="rp_format_end_date">直到 %s</string>
+    <plurals name="rp_format_end_count">
+        <item quantity="one">為了 %d 事件</item>
+        <item quantity="few">為了 %d 事件</item>
+        <item quantity="other">為了 %d 事件</item>
+    </plurals>
+</resources>
