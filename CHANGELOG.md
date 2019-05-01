@@ -1,6 +1,6 @@
-# v1.5.0
-- 
-- Added 5 translations thanks to bezysoftware
+## v1.5.0
+- Migrated to AndroidX.
+- Added 5 translations thanks to bezysoftware.
 
 ### v1.4.5
 - Added 10 translations: Albanian, Czech, German, Italian, Lithuanian, Norwegian, Polish, Russian, Slovak and Turkish.
