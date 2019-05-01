@@ -6,6 +6,8 @@ Fully customizable recurrence view and dialog, compatible with API 19. Easy to s
 
 Replace `X.Y.Z` with lastest version number: [ ![Download](https://api.bintray.com/packages/maltaisn/recurrence-picker/recurrence-picker/images/download.svg) ](https://bintray.com/maltaisn/recurrence-picker/recurrence-picker/_latestVersion)
 
+If you haven't migrated to AndroidX, use version 1.4.5. Version 1.5.0 and above use AndroidX.
+
 ## Tutorial
 - **Get started with [using the recurrence picker dialog](https://github.com/maltaisn/recurpickerlib/wiki/Using-the-dialog-picker) or the [recurrence picker view](https://github.com/maltaisn/recurpickerlib/wiki/Using-the-picker-view) by itself.**
 - Customize the picker appearance and behaviour by [changing its settings](https://github.com/maltaisn/recurpickerlib/wiki/Recurrence-picker-settings)
@@ -21,6 +23,7 @@ View [changelog](CHANGELOG.md).
 
 ## Credits
 - Thanks to [David Vavra](https://github.com/davidvavra) and his translators for translating to 10 languages.
+- Thanks to [bezysoftware](https://github.com/bezysoftware) for translating to 5 languages.
 
 ## Translations
 The library is available in 12 languages. If you make a translation please send a pull request! There are comments in the default strings.xml to help with specific translation requirements.

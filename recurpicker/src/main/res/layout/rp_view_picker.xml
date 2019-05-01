@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright (c) 2018 Nicolas Maltais
+  Copyright (c) 2019 Nicolas Maltais
   Licensed to the Apache Software Foundation (ASF) under one
   or more contributor license agreements.  See the NOTICE file
   distributed with this work for additional information
@@ -63,7 +63,7 @@
             tools:visibility="visible"
             />
 
-        <android.support.v7.widget.SwitchCompat
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/rp_sw_enabled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

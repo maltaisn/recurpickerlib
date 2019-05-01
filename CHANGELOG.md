@@ -1,22 +1,26 @@
-## v1.4.5
+# v1.5.0
+- 
+- Added 5 translations thanks to bezysoftware
+
+### v1.4.5
 - Added 10 translations: Albanian, Czech, German, Italian, Lithuanian, Norwegian, Polish, Russian, Slovak and Turkish.
 - Added strings for AboutLibraries.
 
-## v1.4.4
+### v1.4.4
 - Removed 4 strings for faster translation.
 
-## v1.4.3
+### v1.4.3
 - Changed "Every 1 day/month/..." formatting to "Every day/month/...".
 - Removed the "Repeats" part of the formatted recurrence.
 - Fixed bug where changing start date of dialog didn't update the text of custom defaults in option list.
 
-## v1.4.2
+### v1.4.2
 - Fixed French translation.
 - Fixed bug where days of the week of weekly recurrence were not checked.
 - Target API changed to 28.
 - Better Recurrence toString() method.
 
-## v1.4.1
+### v1.4.1
 - Fixed library dependencies not being added to the project
 
 ## v1.4.0

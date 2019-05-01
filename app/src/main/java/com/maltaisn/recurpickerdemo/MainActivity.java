@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Nicolas Maltais
+ * Copyright (c) 2019 Nicolas Maltais
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -22,7 +22,6 @@ package com.maltaisn.recurpickerdemo;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.format.DateUtils;
@@ -47,6 +46,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements RecurrencePickerDialog.RecurrenceSelectedCallback {
 

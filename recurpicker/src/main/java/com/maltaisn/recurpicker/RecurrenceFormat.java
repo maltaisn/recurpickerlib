@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Nicolas Maltais
+ * Copyright (c) 2019 Nicolas Maltais
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -22,12 +22,13 @@ package com.maltaisn.recurpicker;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.v4.os.ConfigurationCompat;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import androidx.core.os.ConfigurationCompat;
 
 public class RecurrenceFormat {
 

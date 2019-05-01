@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Nicolas Maltais
+ * Copyright (c) 2019 Nicolas Maltais
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -26,12 +26,13 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 
 import java.text.DateFormat;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDialogFragment;
 
 @SuppressWarnings("unused")
 public class RecurrencePickerDialog extends AppCompatDialogFragment implements RecurrencePickerSettings {

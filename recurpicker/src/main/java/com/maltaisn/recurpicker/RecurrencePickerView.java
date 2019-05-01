@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Nicolas Maltais
+ * Copyright (c) 2019 Nicolas Maltais
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -30,9 +30,6 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -58,6 +55,10 @@ import android.widget.ToggleButton;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 
 @SuppressWarnings({"SameParameterValue", "UnusedReturnValue"})
 public class RecurrencePickerView extends LinearLayout implements RecurrencePickerSettings {
