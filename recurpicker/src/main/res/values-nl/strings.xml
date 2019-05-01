@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2019 Nicolas Maltais
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+  -->
+
 <resources>
     <string name="rp_done">Klaar</string>
     <string name="rp_repeat_options">Herhalingsopties</string>
@@ -15,7 +35,6 @@
     <string name="rp_end_count_abbr">Voor</string>
     <plurals name="rp_end_count_event">
         <item quantity="one">gebeurtenis</item>
-        <item quantity="few">gebeurtenissen</item>
         <item quantity="other">gebeurtenissen</item>
     </plurals>
     <string-array name="rp_days_of_week_abbr">
@@ -30,22 +49,18 @@
     <string name="rp_format_none">Herhaalt niet</string>
     <plurals name="rp_format_day">
         <item quantity="one">Elke |dag</item>
-        <item quantity="few">Elke |%d dagen</item>
         <item quantity="other">Elke |%d dagen</item>
     </plurals>
     <plurals name="rp_format_week">
         <item quantity="one">Elke |week</item>
-        <item quantity="few">Elke |%d weken</item>
         <item quantity="other">Elke |%d weken</item>
     </plurals>
     <plurals name="rp_format_month">
         <item quantity="one">Elke |maand</item>
-        <item quantity="few">Elke |%d maanden</item>
         <item quantity="other">Elke |%d maanden</item>
     </plurals>
     <plurals name="rp_format_year">
         <item quantity="one">Elk |jaar</item>
-        <item quantity="few">Elk |%d jaar</item>
         <item quantity="other">Elk |%d jaar</item>
     </plurals>
     <string name="rp_format_weekly_option">op %s</string>
@@ -69,7 +84,6 @@
     <string name="rp_format_end_date">tot %s</string>
     <plurals name="rp_format_end_count">
         <item quantity="one">voor %d gebeurtenis</item>
-        <item quantity="few">voor %d gebeurtenissen</item>
         <item quantity="other">voor %d gebeurtenissen</item>
     </plurals>
 </resources>

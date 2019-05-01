@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright (c) 2018 Nicolas Maltais
+  Copyright (c) 2019 Nicolas Maltais
   Licensed to the Apache Software Foundation (ASF) under one
   or more contributor license agreements.  See the NOTICE file
   distributed with this work for additional information
@@ -51,21 +51,25 @@
     <plurals name="rp_format_day">
         <item quantity="one">Każdego |dnia</item>
         <item quantity="few">Każde |%d dni</item>
+        <item quantity="many">Każde |%d dni</item>
         <item quantity="other">Każde |%d dni</item>
     </plurals>
     <plurals name="rp_format_week">
         <item quantity="one">Każdego |tygodnia</item>
         <item quantity="few">Każde |%d tygodnie</item>
+        <item quantity="many">Każde |%d tygodnie</item>
         <item quantity="other">Każde |%d tygodnie</item>
     </plurals>
     <plurals name="rp_format_month">
         <item quantity="one">Każdego |miesiąca</item>
         <item quantity="few">Każde |%d miesiące</item>
+        <item quantity="many">Każde |%d miesiące</item>
         <item quantity="other">Każde |%d miesiące</item>
     </plurals>
     <plurals name="rp_format_year">
         <item quantity="one">Każdego |roku</item>
         <item quantity="few">Każde |%d lata</item>
+        <item quantity="many">Każde |%d lata</item>
         <item quantity="other">Każde |%d lata</item>
     </plurals>
     <string name="rp_format_weekly_option">w %s</string>
@@ -90,6 +94,7 @@
     <plurals name="rp_format_end_count">
         <item quantity="one">na %d wydarzenie</item>
         <item quantity="few">na %d wydarzenia</item>
+        <item quantity="many">na %d wydarzenia</item>
         <item quantity="other">na %d wydarzenia</item>
     </plurals>
 </resources>

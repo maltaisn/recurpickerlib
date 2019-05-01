@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2019 Nicolas Maltais
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+  -->
+
 <resources>
     <string name="rp_done">Hecho</string>
     <string name="rp_repeat_options">Opciones de recurrencia</string>
@@ -15,7 +35,6 @@
     <string name="rp_end_count_abbr">Para</string>
     <plurals name="rp_end_count_event">
         <item quantity="one">ocurrencia</item>
-        <item quantity="few">ocurrencias</item>
         <item quantity="other">ocurrencias</item>
     </plurals>
     <string-array name="rp_days_of_week_abbr">
@@ -30,22 +49,18 @@
     <string name="rp_format_none">No repetie</string>
     <plurals name="rp_format_day">
         <item quantity="one">Cada |día</item>
-        <item quantity="few">Cada |%d días</item>
         <item quantity="other">Cada |%d días</item>
     </plurals>
     <plurals name="rp_format_week">
         <item quantity="one">Cada |semana</item>
-        <item quantity="few">Cada |%d semanas</item>
         <item quantity="other">Cada |%d semanas</item>
     </plurals>
     <plurals name="rp_format_month">
         <item quantity="one">Cada |mes</item>
-        <item quantity="few">Cada |%d meses</item>
         <item quantity="other">Cada |%d meses</item>
     </plurals>
     <plurals name="rp_format_year">
         <item quantity="one">Cada |año</item>
-        <item quantity="few">Cada |%d años</item>
         <item quantity="other">Cada |%d años</item>
     </plurals>
     <string name="rp_format_weekly_option">el %s</string>
@@ -69,7 +84,6 @@
     <string name="rp_format_end_date">hasta %s</string>
     <plurals name="rp_format_end_count">
         <item quantity="one">por %d ocurrencia</item>
-        <item quantity="few">por %d ocurrencias</item>
         <item quantity="other">por %d ocurrencias</item>
     </plurals>
 </resources>
