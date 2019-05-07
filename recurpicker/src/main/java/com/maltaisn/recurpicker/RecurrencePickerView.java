@@ -110,12 +110,12 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
     private Calendar endDate;
     private int endCount;
 
-    private @Nullable
-    OnRecurrenceSelectedListener listener;
-    private @Nullable
-    OnRecurrencePickerCancelledListener cancelListener;
-    private @Nullable
-    OnCreatorShownListener creatorListener;
+    @Nullable
+    private OnRecurrenceSelectedListener listener;
+    @Nullable
+    private OnRecurrencePickerCancelledListener cancelListener;
+    @Nullable
+    private OnCreatorShownListener creatorListener;
 
     private int[] optionItemTextColor;
 
