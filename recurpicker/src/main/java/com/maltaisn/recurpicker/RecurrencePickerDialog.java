@@ -123,6 +123,13 @@ public class RecurrencePickerDialog extends AppCompatDialogFragment implements R
         });
 
         if (savedInstanceState == null || picker == null) {
+            if (endDateFormat == null) {
+                endDateFormat = android.text.format.DateFormat.getDateFormat(getContext());  // System default format
+            }
+            if (optionListDateFormat == null) {
+                optionListDateFormat = endDateFormat;
+            }
+
             newPicker.setDateFormat(endDateFormat, optionListDateFormat)
                     .setMaxEventCount(maxEndCount)
                     .setMaxFrequency(maxFrequency)
