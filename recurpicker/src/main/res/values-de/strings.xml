@@ -20,7 +20,7 @@
   -->
 
 <resources>
-    <string name="rp_done">Beendet</string>
+    <string name="rp_done">Fertig</string>
     <string name="rp_repeat_options">Wiederholungsoptionen</string>
     <string name="rp_custom">Benutzerdefiniert…</string>
     <string name="rp_period_day">Täglich wiederholen</string>
@@ -35,7 +35,7 @@
     <string name="rp_end_count_abbr">Für</string>
     <plurals name="rp_end_count_event">
         <item quantity="one">Mal</item>
-        <item quantity="other">Male</item>
+        <item quantity="other">Mal</item>
     </plurals>
     <string-array name="rp_days_of_week_abbr">
         <item>So</item>
@@ -49,19 +49,19 @@
     <string name="rp_format_none">Wiederholt sich nicht</string>
     <plurals name="rp_format_day">
         <item quantity="one">Jeden |Tag</item>
-        <item quantity="other">Every |%d days</item>
+        <item quantity="other">Jeden |%d. Tag</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">Every |week</item>
-        <item quantity="other">Every |%d weeks</item>
+        <item quantity="one">Jede |Woche</item>
+        <item quantity="other">Jede |%d. Woche</item>
     </plurals>
     <plurals name="rp_format_month">
         <item quantity="one">Jeden |Monat</item>
-        <item quantity="other">Every |%d months</item>
+        <item quantity="other">Jeden |%d. Monat</item>
     </plurals>
     <plurals name="rp_format_year">
         <item quantity="one">Jedes |Jahr</item>
-        <item quantity="other">Every |%d years</item>
+        <item quantity="other">Jedes |%d. Jahr</item>
     </plurals>
     <string name="rp_format_weekly_option">am %s</string>
     <string name="rp_format_weekly_all">jeden Tag der Woche</string>
