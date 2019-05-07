@@ -1,3 +1,6 @@
+### v.1.5.1
+- Fixed default date formats not being set in dialog.
+
 ## v1.5.0
 - Migrated to AndroidX.
 - Added 5 translations thanks to bezysoftware.

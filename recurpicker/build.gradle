@@ -14,8 +14,8 @@ ext {
     siteUrl = 'https://github.com/maltaisn/recurpickerlib'
     gitUrl = 'https://github.com/maltaisn/recurpickerlib.git'
 
-    libraryVersionCode = 18
-    libraryVersion = '1.5.0'
+    libraryVersionCode = 19
+    libraryVersion = '1.5.1'
 
     developerId = 'maltaisn'
 
@@ -36,12 +36,12 @@ android {
 
     buildTypes {
         debug {
-            resValue "string", "rp_library_version", "${defaultConfig.versionCode}"
+            resValue "string", "rp_library_version", "${defaultConfig.versionName}"
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue "string", "rp_library_version", "${defaultConfig.versionCode}"
+            resValue "string", "rp_library_version", "${defaultConfig.versionName}"
         }
     }
 
