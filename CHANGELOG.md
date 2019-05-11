@@ -1,4 +1,7 @@
-### v.1.5.1
+### v1.5.2
+- Fixed German translation.
+
+### v1.5.1
 - Fixed default date formats not being set in dialog.
 
 ## v1.5.0
