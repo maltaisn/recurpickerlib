@@ -14,8 +14,8 @@ ext {
     siteUrl = 'https://github.com/maltaisn/recurpickerlib'
     gitUrl = 'https://github.com/maltaisn/recurpickerlib.git'
 
-    libraryVersionCode = 19
-    libraryVersion = '1.5.1'
+    libraryVersionCode = 22
+    libraryVersion = '1.5.3'
 
     developerId = 'maltaisn'
 
