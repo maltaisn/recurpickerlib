@@ -633,6 +633,24 @@ public class Recurrence implements Parcelable {
         return findRecurrencesBasedOn(startDate.getTimeInMillis(), 0, from, amount);
     }
 
+    /**
+     * Get repeat dates between two dates
+     * @param startDate get recurrences from this date (inclusive).
+     * @param endDate   get recurrences until this date (exclusive).
+     * @return ArrayList of dates, empty if none.
+     */
+    @NonNull
+    public List<Long> findRecurrencesBetween(long startDate, long endDate) {
+        List<Long> recurrences = new ArrayList<>();
+        long lastDate = findRecurrences(startDate, 1).get(0);
+        int repeats = 1;
+        while (lastDate < endDate) {
+            recurrences.add(lastDate);
+            lastDate = findRecurrencesBasedOn(lastDate, repeats, startDate, 1).get(0);
+            repeats++;
+        }
+        return recurrences;
+    }
 
     /**
      * Create a recurrence from a byte array.
