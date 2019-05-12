@@ -28,11 +28,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 
-import java.text.DateFormat;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import java.text.DateFormat;
 
 @SuppressWarnings("unused")
 public class RecurrencePickerDialog extends AppCompatDialogFragment implements RecurrencePickerSettings {
@@ -165,6 +165,7 @@ public class RecurrencePickerDialog extends AppCompatDialogFragment implements R
     /**
      * Get the dialog's picker view. Note than the view changes every time the dialog is shown,
      * do not keep it in memory, that's a memory leak
+     *
      * @return the dialog's RecurrencePickerView, null if not yet created
      */
     public RecurrencePickerView getPickerView() {
@@ -278,6 +279,7 @@ public class RecurrencePickerDialog extends AppCompatDialogFragment implements R
 
     public interface RecurrenceSelectedCallback {
         void onRecurrencePickerSelected(Recurrence r);
+
         void onRecurrencePickerCancelled(Recurrence r);
     }
 
@@ -286,6 +288,8 @@ public class RecurrencePickerDialog extends AppCompatDialogFragment implements R
         try {
             if (getTargetFragment() != null) {
                 return (RecurrenceSelectedCallback) getTargetFragment();
+            } else if (getParentFragment() != null) {
+                return (RecurrenceSelectedCallback) getParentFragment();
             } else {
                 return (RecurrenceSelectedCallback) getActivity();
             }
