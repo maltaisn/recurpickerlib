@@ -20,13 +20,15 @@
 
 package com.maltaisn.recurpicker;
 
+import android.text.format.DateUtils;
+
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class RecurDateTest {
 
@@ -44,8 +46,8 @@ public class RecurDateTest {
 
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.DAILY);
 
-        List<Long> actual1 = r.findRecurrences(-1, 5);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -60,8 +62,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 27), Recurrence.DAILY)
                 .setFrequency(3);
 
-        List<Long> actual1 = r.findRecurrences(-1, 4);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 4);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -75,8 +77,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.DAILY)
                 .setEndByDate(expected.get(2));
 
-        List<Long> actual1 = r.findRecurrences(-1, 100);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 100);
+        assertEquals(expected, actual);
 
         // If test is passed, same applies to other periods because same mechanism is used to detect end date
     }
@@ -92,8 +94,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.DAILY)
                 .setEndByCount(3);
 
-        List<Long> actual1 = r.findRecurrences(-1, 100);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 100);
+        assertEquals(expected, actual);
 
         // If test is passed, same applies to other periods because same mechanism is used to detect end count
     }
@@ -111,8 +113,8 @@ public class RecurDateTest {
 
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.WEEKLY);
 
-        List<Long> actual1 = r.findRecurrences(-1, 6);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 6);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -128,8 +130,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.WEEKLY)
                 .setFrequency(3);
 
-        List<Long> actual1 = r.findRecurrences(-1, 5);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -144,8 +146,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.WEEKLY)
                 .setWeeklySetting(Recurrence.SUNDAY);
 
-        List<Long> actual1 = r.findRecurrences(-1, 4);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 4);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -161,8 +163,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.WEEKLY)
                 .setWeeklySetting(Recurrence.SUNDAY | Recurrence.FRIDAY | Recurrence.WEDNESDAY);
 
-        List<Long> actual1 = r.findRecurrences(-1, 5);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -177,8 +179,8 @@ public class RecurDateTest {
 
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.MONTHLY);
 
-        List<Long> actual1 = r.findRecurrences(-1, 5);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -194,8 +196,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 31), Recurrence.MONTHLY)
                 .setMonthlySetting(Recurrence.LAST_DAY_OF_MONTH);
 
-        List<Long> actual1 = r.findRecurrences(-1, 5);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -211,8 +213,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 31), Recurrence.MONTHLY)
                 .setMonthlySetting(Recurrence.SAME_DAY_OF_WEEK);
 
-        List<Long> actual1 = r.findRecurrences(-1, 5);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -228,8 +230,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 10), Recurrence.MONTHLY)
                 .setMonthlySetting(Recurrence.SAME_DAY_OF_WEEK);
 
-        List<Long> actual1 = r.findRecurrences(-1, 5);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 5);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -244,8 +246,8 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 31), Recurrence.MONTHLY)
                 .setMonthlySetting(Recurrence.SAME_DAY_OF_MONTH);
 
-        List<Long> actual1 = r.findRecurrences(-1, 4);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 4);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -259,8 +261,8 @@ public class RecurDateTest {
 
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.YEARLY);
 
-        List<Long> actual1 = r.findRecurrences(-1, 4);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 4);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -275,8 +277,22 @@ public class RecurDateTest {
         Recurrence r = new Recurrence(getDate(2018, Calendar.JANUARY, 1), Recurrence.YEARLY)
                 .setFrequency(3);
 
-        List<Long> actual1 = r.findRecurrences(-1, 4);
-        assertEquals(expected, actual1);
+        List<Long> actual = r.findRecurrences(-1, 4);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void recur_date_daily_from_date() {
+        List<Long> expected = Arrays.asList(
+                getDate(2019, Calendar.MAY, 28),
+                getDate(2019, Calendar.MAY, 29)
+        );
+
+        long startDate = getDate(2019, Calendar.MAY, 26);
+        Recurrence recurrence = new Recurrence(startDate, Recurrence.DAILY);
+
+        List<Long> actual = recurrence.findRecurrences(startDate + DateUtils.DAY_IN_MILLIS + 1, 2);
+        assertEquals(expected, actual);
     }
 
     private static long getDate(int year, int month, int day) {

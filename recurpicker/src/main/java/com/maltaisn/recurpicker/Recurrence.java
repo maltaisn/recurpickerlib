@@ -518,7 +518,8 @@ public class Recurrence implements Parcelable {
                         return list;
                     }
                     repeats++;
-                    if (!after && isOnSameDayOrAfter(current, from)) {
+                    if (!after && isOnSameDayOrAfter(current, from)
+                            && current.getTimeInMillis() >= fromDate) {
                         after = true;
                     }
                     if (after && amnt < amount) {
