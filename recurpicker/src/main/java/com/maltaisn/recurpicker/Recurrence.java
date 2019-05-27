@@ -272,7 +272,7 @@ public class Recurrence implements Parcelable {
 
     /**
      * If repeating monthly, sets on which day of the month to repeat.
-     * @param option either {@code SAME_DAY_OF_MONTH, {@code SAME_DAY_OF_WEEK} or {@code LAST_DAY_OF_MONTH}.
+     * @param option either {@code SAME_DAY_OF_MONTH}, {@code SAME_DAY_OF_WEEK} or {@code LAST_DAY_OF_MONTH}.
      *               If trying to set {@code LAST_DAY_OF_MONTH} without start date actually being
      *               on the last day, {@code SAME_DAY_OF_MONTH} will be set instead.
      * @return the recurrence.
