@@ -1,6 +1,7 @@
 ## v1.6.0
 - Added `Recurrence.findRecurrencesBetween` to find recurrences between two dates.
 - Added parent fragment as a callback target for the dialog.
+- Fixed date not being set in "until date" date picker dialog.
 
 ### v1.5.2
 - Fixed German translation.

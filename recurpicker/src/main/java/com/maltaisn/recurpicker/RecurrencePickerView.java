@@ -807,6 +807,9 @@ public class RecurrencePickerView extends LinearLayout implements RecurrencePick
         }
         dateDialog.setTitle(null);  // Fixes issue with date being set as title when max date is set
 
+        dateDialog.updateDate(endDate.get(Calendar.YEAR), endDate.get(Calendar.MONTH),
+                endDate.get(Calendar.DATE));
+
         dateDialog.show();
         dateDialogShown = true;
     }
