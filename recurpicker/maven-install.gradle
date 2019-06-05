@@ -1,3 +1,5 @@
+group = publishedGroupId
+
 install {
     repositories.mavenInstaller {
         pom {
@@ -5,6 +7,7 @@ install {
                 packaging packagingType
                 groupId publishedGroupId
                 artifactId artifact
+                version libraryVersion
 
                 name libraryName
                 description libraryDescription
@@ -25,6 +28,17 @@ install {
                     connection gitUrl
                     developerConnection gitUrl
                     url siteUrl
+                }
+
+                // Manually add dependencies to the pom
+                pom.withXml {
+                    def dependenciesNode = asNode().appendNode("dependencies")
+                    configurations.implementation.allDependencies.each {
+                        def dependencyNode = dependenciesNode.appendNode("dependency")
+                        dependencyNode.appendNode("groupId", it.group)
+                        dependencyNode.appendNode("artifactId", it.name)
+                        dependencyNode.appendNode("version", it.version)
+                    }
                 }
             }
         }
