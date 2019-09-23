@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rp_done">Fertig</string>
+    <string name="rp_repeat_options">Wiederholungsoptionen</string>
+    <string name="rp_custom">Benutzerdefiniert…</string>
+    <string name="rp_period_day">Täglich wiederholen</string>
+    <string name="rp_period_week">Wöchentlich wiederholen</string>
+    <string name="rp_period_month">Monatlich wiederholen</string>
+    <string name="rp_period_year">Jährlich wiederholen</string>
+    <string name="rp_end_never">Unendlich</string>
+    <string name="rp_end_date">Bis zu einem Datum</string>
+    <string name="rp_end_count">Für eine bestimmte Anzahl</string>
+    <string name="rp_end_never_abbr">Unendlich</string>
+    <string name="rp_end_date_abbr">Bis</string>
+    <string name="rp_end_count_abbr">Für</string>
+    <plurals name="rp_end_count_event">
+        <item quantity="one">Mal</item>
+        <item quantity="other">Mal</item>
+    </plurals>
+    <string-array name="rp_days_of_week_abbr">
+        <item>So</item>
+        <item>Mo</item>
+        <item>Di</item>
+        <item>Mi</item>
+        <item>Do</item>
+        <item>Fr</item>
+        <item>Sa</item>
+    </string-array>
+    <string name="rp_format_none">Wiederholt sich nicht</string>
+    <plurals name="rp_format_day">
+        <item quantity="one">Jeden |Tag</item>
+        <item quantity="other">Jeden |%d. Tag</item>
+    </plurals>
+    <plurals name="rp_format_week">
+        <item quantity="one">Jede |Woche</item>
+        <item quantity="other">Jede |%d. Woche</item>
+    </plurals>
+    <plurals name="rp_format_month">
+        <item quantity="one">Jeden |Monat</item>
+        <item quantity="other">Jeden |%d. Monat</item>
+    </plurals>
+    <plurals name="rp_format_year">
+        <item quantity="one">Jedes |Jahr</item>
+        <item quantity="other">Jedes |%d. Jahr</item>
+    </plurals>
+    <string name="rp_format_weekly_option">am %s</string>
+    <string name="rp_format_weekly_all">jeden Tag der Woche</string>
+    <string name="rp_format_monthly_same_day">am selben Tag jedes Monats</string>
+    <string name="rp_format_monthly_last_day">am letzten Tag jedes Monats</string>
+    <string name="rp_format_monthly_sun">an jedem %s Sonntag</string>
+    <string name="rp_format_monthly_mon">an jedem %s Montag</string>
+    <string name="rp_format_monthly_tue">an jedem %s Dienstag</string>
+    <string name="rp_format_monthly_wed">an jedem %s Mittwoch</string>
+    <string name="rp_format_monthly_thu">an jedem %s Donnerstag</string>
+    <string name="rp_format_monthly_fri">an jedem %s Freitag</string>
+    <string name="rp_format_monthly_sat">an jedem %s Samstag</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item>ersten</item>
+        <item>zweiten</item>
+        <item>dritten</item>
+        <item>vierten</item>
+        <item>letzten</item>
+    </string-array>
+    <string name="rp_format_end_date">bis %s</string>
+    <plurals name="rp_format_end_count">
+        <item quantity="one">für %d Mal</item>
+        <item quantity="other">für %d Male</item>
+    </plurals>
+</resources>

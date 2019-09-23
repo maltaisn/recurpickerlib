@@ -3,30 +3,20 @@ plugins {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.maltaisn.recurpickerdemo"
+        applicationId "com.maltaisn.recurpicker.demo"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-        }
     }
 }
 
 dependencies {
-    testImplementation "junit:junit:4.12"
-    androidTestImplementation "androidx.test:runner:1.2.0"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
+    implementation project(":lib")
 
-    implementation "androidx.appcompat:appcompat:1.0.2"
-    implementation "androidx.annotation:annotation:1.0.2"
-
-    implementation project(":recurpicker")
+    implementation "androidx.appcompat:appcompat:1.1.0"
+    implementation "androidx.annotation:annotation:1.1.0"
 }

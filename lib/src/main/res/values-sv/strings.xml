@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rp_done">Klar</string>
+    <string name="rp_repeat_options">Repetera alternativ</string>
+    <string name="rp_custom">Egen…</string>
+    <string name="rp_period_day">Repetera dagligen</string>
+    <string name="rp_period_week">Repetera veckovis</string>
+    <string name="rp_period_month">Repetera månadsvis</string>
+    <string name="rp_period_year">Repetera årligen</string>
+    <string name="rp_end_never">Tills vidare</string>
+    <string name="rp_end_date">Ange slutdatum</string>
+    <string name="rp_end_count">Ange antal gånger</string>
+    <string name="rp_end_never_abbr">Tills vidare</string>
+    <string name="rp_end_date_abbr">Till</string>
+    <string name="rp_end_count_abbr">Vid</string>
+    <plurals name="rp_end_count_event">
+        <item quantity="one">tillfälle</item>
+        <item quantity="other">tillfällen</item>
+    </plurals>
+    <string-array name="rp_days_of_week_abbr">
+        <item>Sön</item>
+        <item>Mån</item>
+        <item>Tis</item>
+        <item>Ons</item>
+        <item>Tors</item>
+        <item>Fre</item>
+        <item>Lör</item>
+    </string-array>
+    <string name="rp_format_none">Upprepas inte</string>
+    <plurals name="rp_format_day">
+        <item quantity="one">Varje |dag</item>
+        <item quantity="other">Var |%d dag</item>
+    </plurals>
+    <plurals name="rp_format_week">
+        <item quantity="one">Varje |vecka</item>
+        <item quantity="other">Var |%d vecka</item>
+    </plurals>
+    <plurals name="rp_format_month">
+        <item quantity="one">Varje |månad</item>
+        <item quantity="other">Var |%d månad</item>
+    </plurals>
+    <plurals name="rp_format_year">
+        <item quantity="one">Varje |år</item>
+        <item quantity="other">Var |%d år</item>
+    </plurals>
+    <string name="rp_format_weekly_option">på %s</string>
+    <string name="rp_format_weekly_all">Varje dag i veckan</string>
+    <string name="rp_format_monthly_same_day">Samma dag varje månad</string>
+    <string name="rp_format_monthly_last_day">Sista dagen varje månad</string>
+    <string name="rp_format_monthly_sun">Var %s söndag</string>
+    <string name="rp_format_monthly_mon">var %s måndag</string>
+    <string name="rp_format_monthly_tue">var %s tisdag</string>
+    <string name="rp_format_monthly_wed">var %s onsdag</string>
+    <string name="rp_format_monthly_thu">var %s torsdag</string>
+    <string name="rp_format_monthly_fri">var %s fredag</string>
+    <string name="rp_format_monthly_sat">var %s lördag</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item>första</item>
+        <item>andra</item>
+        <item>tredje</item>
+        <item>fjärde</item>
+        <item>sista</item>
+    </string-array>
+    <string name="rp_format_end_date">till %s</string>
+    <plurals name="rp_format_end_count">
+        <item quantity="one">vid %d tillfälle</item>
+        <item quantity="other">vid %d tillfällen</item>
+    </plurals>
+</resources>

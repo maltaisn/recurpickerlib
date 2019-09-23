@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2019 Nicolas Maltais
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<!-- @formatter:off -->
+<resources>
+
+    <attr name="recurrencePickerStyle" format="reference"/>
+
+    <declare-styleable name="RecurrencePickerView">
+        <attr name="rpColorPickerBackground" format="reference|color"/>
+        <attr name="rpColorHeaderBackground" format="reference|color"/>
+
+        <!-- List of option list attributes -->
+        <attr name="rpOptionListTitleStyle" format="reference"/>
+        <attr name="rpOptionItemStyle" format="reference"/>
+        <attr name="rpOptionItemSelectedColor" format="reference|color"/>
+        <attr name="rpOptionItemUnselectedColor" format="reference|color"/>
+        <attr name="rpOptionCheckStyle" format="reference"/>
+        <attr name="rpOptionCheckSize" format="dimension"/>
+
+        <!-- List of recurrence creator attributes -->
+        <attr name="rpLabelTextAppearance" format="reference"/>
+        <attr name="rpPeriodSpinnerStyle" format="reference"/>
+        <attr name="rpPeriodSpinnerItemStyle" format="reference"/>
+        <attr name="rpPeriodSpinnerDropdownItemStyle" format="reference"/>
+        <attr name="rpEndSpinnerStyle" format="reference"/>
+        <attr name="rpEndSpinnerItemStyle" format="reference"/>
+        <attr name="rpEndSpinnerDropdownItemStyle" format="reference"/>
+        <attr name="rpWeekButtonStyle" format="reference"/>
+        <attr name="rpCancelButtonStyle" format="reference"/>
+        <attr name="rpDoneButtonStyle" format="reference"/>
+
+        <!-- Week button style -->
+        <attr name="rpColorWeekButtonChecked" format="reference|color"/>
+        <attr name="rpColorWeekButtonUnchecked" format="reference|color"/>
+        <attr name="rpColorWeekButtonStroke" format="reference|color"/>
+        <attr name="rpColorWeekButtonTextChecked" format="reference|color"/>
+        <attr name="rpColorWeekButtonTextUnchecked" format="reference|color"/>
+        <attr name="rpWeekButtonStrokeWidth" format="dimension"/>
+        <attr name="rpWeekButtonSize" format="dimension"/>
+
+        <!-- Strings attributes -->
+        <attr name="rpPeriodSpinnerItemsText" format="reference"/>
+        <attr name="rpEndSpinnerItemsText" format="reference"/>
+        <attr name="rpEndSpinnerItemsTextAbbr" format="reference"/>
+        <attr name="rpWeekButtonsText" format="reference"/>
+        <attr name="rpOptionListNoneText" format="reference"/>
+        <attr name="rpOptionListCustomText" format="reference"/>
+
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
+<resources>
+
+    <string-array name="rp_period_spinner_items">
+        <item>@string/rp_period_day</item>
+        <item>@string/rp_period_week</item>
+        <item>@string/rp_period_month</item>
+        <item>@string/rp_period_year</item>
+    </string-array>
+
+    <string-array name="rp_end_spinner_items">
+        <item>@string/rp_end_never</item>
+        <item>@string/rp_end_date</item>
+        <item>@string/rp_end_count</item>
+    </string-array>
+
+    <string-array name="rp_end_spinner_items_abbr">
+        <item>@string/rp_end_never_abbr</item>
+        <item>@string/rp_end_date_abbr</item>
+        <item>@string/rp_end_count_abbr</item>
+    </string-array>
+
+    <string-array name="rp_format_monthly_same_week">
+        <item>@string/rp_format_monthly_sun</item>
+        <item>@string/rp_format_monthly_mon</item>
+        <item>@string/rp_format_monthly_tue</item>
+        <item>@string/rp_format_monthly_wed</item>
+        <item>@string/rp_format_monthly_thu</item>
+        <item>@string/rp_format_monthly_fri</item>
+        <item>@string/rp_format_monthly_sat</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rp_done">Pronto!</string>
+    <string name="rp_repeat_options">Repetir as opções</string>
+    <string name="rp_custom">Personalizadas</string>
+    <string name="rp_period_day">Repetir diariamente</string>
+    <string name="rp_period_week">Repetir semanalmente</string>
+    <string name="rp_period_month">Repetir mensalmente</string>
+    <string name="rp_period_year">Repetir anualmente</string>
+    <string name="rp_end_never">Sempre</string>
+    <string name="rp_end_date">Até uma data</string>
+    <string name="rp_end_count">Um número de vezes</string>
+    <string name="rp_end_never_abbr">Sempre</string>
+    <string name="rp_end_date_abbr">Até</string>
+    <string name="rp_end_count_abbr">Para</string>
+    <plurals name="rp_end_count_event">
+        <item quantity="one">Evento</item>
+        <item quantity="other">Eventos</item>
+    </plurals>
+    <string-array name="rp_days_of_week_abbr">
+        <item>Domingo</item>
+        <item>Segunda</item>
+        <item>Terça</item>
+        <item>Quarta</item>
+        <item>Quinta</item>
+        <item>Sexta</item>
+        <item>Sábado</item>
+    </string-array>
+    <string name="rp_format_none">Não se repete</string>
+    <plurals name="rp_format_day">
+        <item quantity="one">Todos os |dias</item>
+        <item quantity="other">Todos os |%d dias</item>
+    </plurals>
+    <plurals name="rp_format_week">
+        <item quantity="one">Toda a |%d semana</item>
+        <item quantity="other">Todas as |%d semanas</item>
+    </plurals>
+    <plurals name="rp_format_month">
+        <item quantity="one">Todo |mês</item>
+        <item quantity="other">Todos os |%d meses</item>
+    </plurals>
+    <plurals name="rp_format_year">
+        <item quantity="one">Todo |ano</item>
+        <item quantity="other">Todos os |%d anos</item>
+    </plurals>
+    <string name="rp_format_weekly_option">Até %s</string>
+    <string name="rp_format_weekly_all">todos os dias da semana</string>
+    <string name="rp_format_monthly_same_day">no mesmo dia a cada mês</string>
+    <string name="rp_format_monthly_last_day">em todos os últimos dias do mês</string>
+    <string name="rp_format_monthly_sun">em cada %s domingo</string>
+    <string name="rp_format_monthly_mon">em cada %s segunda-feira</string>
+    <string name="rp_format_monthly_tue">em cada %s terça-feira</string>
+    <string name="rp_format_monthly_wed">em cada %s quarta-feira</string>
+    <string name="rp_format_monthly_thu">em cada %s quinta-feira</string>
+    <string name="rp_format_monthly_fri">em cada %s sexta-feira</string>
+    <string name="rp_format_monthly_sat">em cada %s Sábado</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item>primeiro</item>
+        <item>segundo</item>
+        <item>terceiro</item>
+        <item>quarto</item>
+        <item>último</item>
+    </string-array>
+    <string name="rp_format_end_date">Até %s</string>
+    <plurals name="rp_format_end_count">
+        <item quantity="one">Para %d evento</item>
+        <item quantity="other">Para %d eventos</item>
+    </plurals>
+</resources>

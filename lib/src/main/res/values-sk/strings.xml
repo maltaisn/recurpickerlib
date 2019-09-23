@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rp_done">Hotovo</string>
+    <string name="rp_repeat_options">Možnosti opakovaní</string>
+    <string name="rp_custom">Vlastné</string>
+    <string name="rp_period_day">Opakovať denne</string>
+    <string name="rp_period_week">Opakovať týždenne</string>
+    <string name="rp_period_month">Opakovať mesačne</string>
+    <string name="rp_period_year">Opakovať ročne</string>
+    <string name="rp_end_never">Neobmedzene</string>
+    <string name="rp_end_date">Do dátumu</string>
+    <string name="rp_end_count">Do počtu opakovaní</string>
+    <string name="rp_end_never_abbr">Neobmedzene</string>
+    <string name="rp_end_date_abbr">Do</string>
+    <string name="rp_end_count_abbr">Do</string>
+    <plurals name="rp_end_count_event">
+        <item quantity="one">udalosť</item>
+        <item quantity="few">udalosti</item>
+        <item quantity="other">udalostí</item>
+    </plurals>
+    <string-array name="rp_days_of_week_abbr">
+        <item>Ne</item>
+        <item>Pon</item>
+        <item>Ut</item>
+        <item>Str</item>
+        <item>Štv</item>
+        <item>Pia</item>
+        <item>Sob</item>
+    </string-array>
+    <string name="rp_format_none">Neopakuje sa</string>
+    <plurals name="rp_format_day">
+        <item quantity="one">Každý |deň</item>
+        <item quantity="few">Každé |%d dni</item>
+        <item quantity="other">Každých |%d dní</item>
+    </plurals>
+    <plurals name="rp_format_week">
+        <item quantity="one">Každý |týždeň</item>
+        <item quantity="few">Každé |%d týždne</item>
+        <item quantity="other">Každých |%d týždňov</item>
+    </plurals>
+    <plurals name="rp_format_month">
+        <item quantity="one">Každý |mesiac</item>
+        <item quantity="few">Každé |%d mesiace</item>
+        <item quantity="other">Každých |%d mesiacov</item>
+    </plurals>
+    <plurals name="rp_format_year">
+        <item quantity="one">Každý |rok</item>
+        <item quantity="few">Každé |%d roky</item>
+        <item quantity="other">Každých |%d rokov</item>
+    </plurals>
+    <string name="rp_format_weekly_option">v %s</string>
+    <string name="rp_format_weekly_all">každý deň v týždni</string>
+    <string name="rp_format_monthly_same_day">v rovnaký deň každý mesiac</string>
+    <string name="rp_format_monthly_last_day">posledný deň v mesiaci</string>
+    <string name="rp_format_monthly_sun">každú %s nedeľu</string>
+    <string name="rp_format_monthly_mon">každý %s pondelok</string>
+    <string name="rp_format_monthly_tue">každý %s utorok</string>
+    <string name="rp_format_monthly_wed">každú %s stredu</string>
+    <string name="rp_format_monthly_thu">každý %s štvrtok</string>
+    <string name="rp_format_monthly_fri">každý %s piatok</string>
+    <string name="rp_format_monthly_sat">každú %s sobotu</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item>prvý</item>
+        <item>druhý</item>
+        <item>tretí</item>
+        <item>štvrtý</item>
+        <item>posledný</item>
+    </string-array>
+    <string name="rp_format_end_date">do %s</string>
+    <plurals name="rp_format_end_count">
+        <item quantity="one">do %d opakovania</item>
+        <item quantity="few">do %d opakovaní</item>
+        <item quantity="other">do %d opakovaní</item>
+    </plurals>
+</resources>

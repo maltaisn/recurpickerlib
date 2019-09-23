@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rp_done">Ferdig</string>
+    <string name="rp_repeat_options">Gjenta alternativer</string>
+    <string name="rp_custom">Tilpasset…</string>
+    <string name="rp_period_day">Gjenta daglig</string>
+    <string name="rp_period_week">Gjenta daglig</string>
+    <string name="rp_period_month">Gjenta månedlig</string>
+    <string name="rp_period_year">Gjenta årlig</string>
+    <string name="rp_end_never">Alltid</string>
+    <string name="rp_end_date">Inntil en dato</string>
+    <string name="rp_end_count">For en rekke arrangementer</string>
+    <string name="rp_end_never_abbr">Alltid</string>
+    <string name="rp_end_date_abbr">Inntil</string>
+    <string name="rp_end_count_abbr">For</string>
+    <plurals name="rp_end_count_event">
+        <item quantity="one">event</item>
+        <item quantity="other">events</item>
+    </plurals>
+    <string-array name="rp_days_of_week_abbr">
+        <item>Søn</item>
+        <item>Man</item>
+        <item>Tir</item>
+        <item>Ons</item>
+        <item>Tors</item>
+        <item>Fre</item>
+        <item>Lør</item>
+    </string-array>
+    <string name="rp_format_none">Gjentar ikke</string>
+    <plurals name="rp_format_day">
+        <item quantity="one">Alle |dager</item>
+        <item quantity="other">Alle |%d dager</item>
+    </plurals>
+    <plurals name="rp_format_week">
+        <item quantity="one">Alle |uke</item>
+        <item quantity="other">Alle |%d uker</item>
+    </plurals>
+    <plurals name="rp_format_month">
+        <item quantity="one">Alle |måned</item>
+        <item quantity="other">Alle |%d måneder</item>
+    </plurals>
+    <plurals name="rp_format_year">
+        <item quantity="one">Alle |år</item>
+        <item quantity="other">Alle |%d år</item>
+    </plurals>
+    <string name="rp_format_weekly_option">på %s</string>
+    <string name="rp_format_weekly_all">alle dager i uken</string>
+    <string name="rp_format_monthly_same_day">på samme dag hver måned</string>
+    <string name="rp_format_monthly_last_day">på siste dag i hver måneden</string>
+    <string name="rp_format_monthly_sun">på hver %s søndag</string>
+    <string name="rp_format_monthly_mon">på hver %s mandag</string>
+    <string name="rp_format_monthly_tue">på hver %s tirsdag</string>
+    <string name="rp_format_monthly_wed">på hver %s onsdag</string>
+    <string name="rp_format_monthly_thu">på hver %s torsdag</string>
+    <string name="rp_format_monthly_fri">på hver %s fredag</string>
+    <string name="rp_format_monthly_sat">på hver %s lørdag</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item>først</item>
+        <item>andre</item>
+        <item>tredje</item>
+        <item>fjerde</item>
+        <item>sist</item>
+    </string-array>
+    <string name="rp_format_end_date">inntil %s</string>
+    <plurals name="rp_format_end_count">
+        <item quantity="one">til %d event</item>
+        <item quantity="other">til %d events</item>
+    </plurals>
+</resources>

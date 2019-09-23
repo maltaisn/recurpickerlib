@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="rp_done">U krye</string>
+	<string name="rp_repeat_options">Mundësitë e përsëritjes</string>
+	<string name="rp_custom">Sipas dëshirës…</string>
+	<string name="rp_period_day">Përsërit çdo ditë</string>
+	<string name="rp_period_week">Përsërit çdo javë</string>
+	<string name="rp_period_month">Përsërit çdo muaj</string>
+	<string name="rp_period_year">Përsërit çdo vit</string>
+	<string name="rp_end_never">Përgjithmonë</string>
+	<string name="rp_end_date">Deri më datën</string>
+	<string name="rp_end_count">Për disa herë</string>
+	<string name="rp_end_never_abbr">Përgjithmonë</string>
+	<string name="rp_end_date_abbr">Deri më</string>
+	<string name="rp_end_count_abbr">Për</string>
+	<plurals name="rp_end_count_event">
+		<item quantity="one">ndodhi</item>
+		<item quantity="other">raste</item>
+	</plurals>
+	<string-array name="rp_days_of_week_abbr">
+		<item>Djelë</item>
+		<item>Hënë</item>
+		<item>Martë</item>
+		<item>Mërkurë</item>
+		<item>Enjte</item>
+		<item>Premte</item>
+		<item>Shtunë</item>
+	</string-array>
+	<string name="rp_format_none">Nuk përsëritet</string>
+	<plurals name="rp_format_day">
+		<item quantity="one">Çdo |ditë</item>
+		<item quantity="other">Çdo |%d ditë</item>
+	</plurals>
+	<plurals name="rp_format_week">
+		<item quantity="one">Çdo |javë</item>
+		<item quantity="other">Çdo |%d javë</item>
+	</plurals>
+	<plurals name="rp_format_month">
+		<item quantity="one">Çdo |muaj</item>
+		<item quantity="other">Çdo |%d muaj</item>
+	</plurals>
+	<plurals name="rp_format_year">
+		<item quantity="one">Çdo |vit</item>
+		<item quantity="other">Çdo |%d vit</item>
+	</plurals>
+	<string name="rp_format_weekly_option">të %s</string>
+	<string name="rp_format_weekly_all">çdo ditë të javës</string>
+	<string name="rp_format_monthly_same_day">në të njëjtën ditë të çdo muaji</string>
+	<string name="rp_format_monthly_last_day">në ditën e fundit të muajit</string>
+	<string name="rp_format_monthly_sun">çdo të %s djelë</string>
+	<string name="rp_format_monthly_mon">çdo të %s hënë</string>
+	<string name="rp_format_monthly_tue">çdo të %s martë</string>
+	<string name="rp_format_monthly_wed">çdo të %s mërkurë</string>
+	<string name="rp_format_monthly_thu">çdo të %s enjte</string>
+	<string name="rp_format_monthly_fri">çdo të %s premte</string>
+	<string name="rp_format_monthly_sat">çdo të %s shtunë</string>
+	<string-array name="rp_format_monthly_ordinal">
+		<item>e para</item>
+		<item>e dyta</item>
+		<item>e treta</item>
+		<item>e katërta</item>
+		<item>e fundit</item>
+	</string-array>
+	<string name="rp_format_end_date">Deri %s</string>
+	<plurals name="rp_format_end_count">
+		<item quantity="one">për %d raste</item>
+		<item quantity="other">për %d raste</item>
+	</plurals>
+</resources>
