@@ -1,8 +1,12 @@
 plugins {
     id "com.android.library"
+    id "kotlin-android"
 }
 
 ext {
+    // Auto generate version code based on version name
+    libVersionCode = libVersion.split(/\./).collect { it.padLeft(2, "0") }.sum().toInteger()
+
     publishedGroupId = "com.maltaisn"
     libraryName = "recurrence-picker"
     artifact = "recurpicker"
@@ -12,9 +16,6 @@ ext {
 
     siteUrl = "https://github.com/maltaisn/recurpickerlib"
     gitUrl = "https://github.com/maltaisn/recurpickerlib.git"
-
-    libraryVersionCode = 24
-    libraryVersion = "2.0.0"
 
     developerId = "maltaisn"
 
@@ -29,14 +30,29 @@ android {
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode libraryVersionCode
-        versionName libraryVersion
+        versionCode libVersionCode
+        versionName libVersion
+    }
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
-    testImplementation "junit:junit:4.12"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
+    implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.annotation:annotation:1.1.0"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 }
