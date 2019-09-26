@@ -271,4 +271,10 @@ internal class RecurrenceBuilderTest {
         assertEquals(15, r.endCount)
     }
 
+    @Test
+    fun everyDayOfWeekConstant() {
+        assertEquals(Recurrence.SUNDAY or Recurrence.MONDAY or Recurrence.TUESDAY or Recurrence.WEDNESDAY or
+                Recurrence.THURSDAY or Recurrence.FRIDAY or Recurrence.SATURDAY, Recurrence.EVERY_DAY_OF_WEEK)
+    }
+
 }

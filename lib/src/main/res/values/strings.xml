@@ -67,7 +67,7 @@
     <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">every day of the week</string>
 
     <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">on the same day each month</string>
-    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">on every last day of the month</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">on the last day of the month</string>
     <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Sunday</string>
     <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Monday</string>
     <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'">on every %s Tuesday</string>

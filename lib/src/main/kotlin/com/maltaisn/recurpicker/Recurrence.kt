@@ -21,6 +21,7 @@ import androidx.annotation.IntDef
 import com.maltaisn.recurpicker.Recurrence.*
 import com.maltaisn.recurpicker.Recurrence.Companion.DATE_NONE
 import com.maltaisn.recurpicker.Recurrence.Period.*
+import com.maltaisn.recurpicker.format.RecurrenceFormat
 import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.*
@@ -105,11 +106,12 @@ class Recurrence private constructor(
     /**
      * Return a human readable string representation of the recurrence.
      * This is only for debug purposes and will not even work on release builds.
+     * [RecurrenceFormat] should be used instead.
      */
     override fun toString(): String {
         if (BuildConfig.DEBUG) {
             val dfs = DateFormatSymbols.getInstance(Locale.ENGLISH)
-            val df = SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH)
+            val df = SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH)
 
             val recurSb = StringBuilder()
             recurSb.append("Recurrence{ ")
@@ -448,7 +450,7 @@ class Recurrence private constructor(
         const val FRIDAY = 1 shl Calendar.FRIDAY
         const val SATURDAY = 1 shl Calendar.SATURDAY
 
-        const val EVERY_DAY_OF_WEEK = 0b01111111
+        const val EVERY_DAY_OF_WEEK = 0b11111110
 
         /** Date value used for no end date. */
         const val DATE_NONE = Long.MIN_VALUE
