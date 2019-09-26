@@ -73,6 +73,23 @@ internal class RecurrenceTest {
     }
 
     @Test
+    fun toStringDebug() {
+        assertTrue(BuildConfig.DEBUG)
+        assertEquals("Recurrence{ From Sep 24, 2019, does not repeat }",
+                Recurrence(dateFor("2019-09-24"), Period.NONE).toString())
+        assertEquals("Recurrence{ From Dec 30, 2001, on every 5 days }",
+                Recurrence(dateFor("2001-12-30"), Period.DAILY) { frequency = 5 }.toString())
+        assertEquals("Recurrence{ From Dec 30, 2001, on every year; until Dec 30, 2010 }",
+                Recurrence(dateFor("2001-12-30"), Period.YEARLY) { endDate = dateFor("2010-12-30") }.toString())
+        assertEquals("Recurrence{ From Dec 30, 2001, on every year; for 12 events }",
+                Recurrence(dateFor("2001-12-30"), Period.YEARLY) { endCount = 12 }.toString())
+        assertEquals("Recurrence{ From Dec 30, 2001, on every week on Sun, Wed }",
+                Recurrence(dateFor("2001-12-30"), Period.WEEKLY) { weeklyDays = Recurrence.SUNDAY or Recurrence.WEDNESDAY }.toString())
+        assertEquals("Recurrence{ From Sep 24, 2019, on every month (on every fourth Tuesday) }",
+                Recurrence(dateFor("2019-09-24"), Period.MONTHLY) { monthlyDay = MonthlyDay.SAME_DAY_OF_WEEK }.toString())
+    }
+
+    @Test
     fun isRecurringOnDaysOfWeek() {
         val r = Recurrence(dateFor("2019-09-24"), Period.WEEKLY) {
             weeklyDays = Recurrence.MONDAY or Recurrence.TUESDAY or Recurrence.FRIDAY

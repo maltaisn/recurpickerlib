@@ -21,6 +21,8 @@ import androidx.annotation.IntDef
 import com.maltaisn.recurpicker.Recurrence.*
 import com.maltaisn.recurpicker.Recurrence.Companion.DATE_NONE
 import com.maltaisn.recurpicker.Recurrence.Period.*
+import java.text.DateFormatSymbols
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -99,6 +101,102 @@ class Recurrence private constructor(
 
     override fun hashCode(): Int = Objects.hash(getDaysInDate(startDate), period, frequency,
             weeklyDays, monthlyDay, endType, getDaysInDate(endDate), endCount, isDefault)
+
+    /**
+     * Return a human readable string representation of the recurrence.
+     * This is only for debug purposes and will not even work on release builds.
+     */
+    override fun toString(): String {
+        if (BuildConfig.DEBUG) {
+            val dfs = DateFormatSymbols.getInstance(Locale.ENGLISH)
+            val df = SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH)
+
+            val recurSb = StringBuilder()
+            recurSb.append("Recurrence{ ")
+            recurSb.append("From ")
+            recurSb.append(df.format(startDate))
+            recurSb.append(", ")
+
+            when (period) {
+                NONE -> {
+                    recurSb.append("does not repeat")
+                }
+                DAILY -> {
+                    recurSb.append("on every ")
+                    recurSb.append(toStringPlural("day", frequency, false))
+                }
+                WEEKLY -> {
+                    recurSb.append("on every ")
+                    recurSb.append(toStringPlural("week", frequency, false))
+                    if (!isDefault) {
+                        // Make a list of days of week
+                        recurSb.append(" on ")
+                        if (weeklyDays == EVERY_DAY_OF_WEEK) {
+                            // on every day of the week
+                            recurSb.append("every day of the week")
+                        } else {
+                            // on [Sun, Mon, Wed, ...]
+                            for (day in Calendar.SUNDAY..Calendar.SATURDAY) {
+                                if (isRecurringOnDaysOfWeek(1 shl day)) {
+                                    recurSb.append(dfs.shortWeekdays[day])
+                                    recurSb.append(", ")
+                                }
+                            }
+                            recurSb.delete(recurSb.length - 2, recurSb.length)  // Remove extra separator
+                        }
+                    }
+                }
+                MONTHLY -> {
+                    recurSb.append("on every ")
+                    recurSb.append(toStringPlural("month", frequency, false))
+                    if (!isDefault) {
+                        recurSb.append(" (")
+                        when (monthlyDay) {
+                            MonthlyDay.SAME_DAY_OF_MONTH -> {
+                                recurSb.append("on the same day each month")
+                            }
+                            MonthlyDay.SAME_DAY_OF_WEEK -> {
+                                calendar.timeInMillis = startDate
+                                recurSb.append("on every ")
+                                recurSb.append(arrayOf("first", "second", "third", "fourth", "last")
+                                        [calendar[Calendar.DAY_OF_WEEK_IN_MONTH] - 1])
+                                recurSb.append(' ')
+                                recurSb.append(dfs.weekdays[calendar[Calendar.DAY_OF_WEEK]])
+                            }
+                            MonthlyDay.LAST_DAY_OF_MONTH -> recurSb.append("on the last day of the month")
+                        }
+                        recurSb.append(')')
+                    }
+                }
+                YEARLY -> {
+                    recurSb.append("on every ")
+                    recurSb.append(toStringPlural("year", frequency, false))
+                }
+            }
+
+            if (endType != EndType.NEVER) {
+                recurSb.append("; ")
+                if (endType == EndType.BY_DATE) {
+                    recurSb.append("until ")
+                    recurSb.append(df.format(endDate))
+                } else {
+                    recurSb.append("for ")
+                    recurSb.append(toStringPlural("event", endCount, true))
+                }
+            }
+            recurSb.append(" }")
+            return recurSb.toString()
+        }
+        return super.toString()
+    }
+
+    private fun toStringPlural(text: String, quantity: Int, alwaysIncludeQuantity: Boolean): String {
+        return if (quantity <= 1) {
+            (if (alwaysIncludeQuantity) "$quantity " else "") + text
+        } else {
+            quantity.toString() + " " + text + "s"
+        }
+    }
 
 
     class Builder {
