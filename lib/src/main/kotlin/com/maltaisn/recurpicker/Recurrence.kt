@@ -17,6 +17,8 @@
 package com.maltaisn.recurpicker
 
 
+import android.os.Parcel
+import android.os.Parcelable
 import androidx.annotation.IntDef
 import com.maltaisn.recurpicker.Recurrence.*
 import com.maltaisn.recurpicker.Recurrence.Companion.DATE_NONE
@@ -71,7 +73,21 @@ class Recurrence private constructor(
         val endType: EndType,
         val endDate: Long,
         val endCount: Int,
-        val isDefault: Boolean) {
+        val isDefault: Boolean) : Parcelable {
+
+    /**
+     * Parcelable constructor.
+     */
+    private constructor(parcel: Parcel) : this(
+            parcel.readLong(),
+            parcel.readSerializable() as Period,
+            parcel.readInt(),
+            parcel.readInt(),
+            parcel.readSerializable() as MonthlyDay,
+            parcel.readSerializable() as EndType,
+            parcel.readLong(),
+            parcel.readInt(),
+            parcel.readByte() != 0.toByte())
 
     /**
      * If repeating weekly, check if recurrence happens on certain [days] of the week.
@@ -505,6 +521,31 @@ class Recurrence private constructor(
             calendar.timeInMillis = date
             return calendar[Calendar.YEAR] * 366 + calendar[Calendar.DAY_OF_YEAR]
         }
+
+        @JvmField
+        val CREATOR = object : Parcelable.Creator<Recurrence> {
+            override fun createFromParcel(parcel: Parcel) = Recurrence(parcel)
+            override fun newArray(size: Int) = arrayOfNulls<Recurrence?>(size)
+        }
+    }
+
+    // Parcelable stuff
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.apply {
+            writeLong(startDate)
+            writeSerializable(period)
+            writeInt(frequency)
+            writeInt(weeklyDays)
+            writeSerializable(monthlyDay)
+            writeSerializable(endType)
+            writeLong(endDate)
+            writeInt(endCount)
+            writeByte(if (isDefault) 1 else 0)
+        }
+    }
+
+    override fun describeContents(): Int {
+        return 0
     }
 
 }
