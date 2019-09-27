@@ -24,8 +24,8 @@ import java.nio.ByteBuffer
 /**
  * Utility object to write a [Recurrence] as a byte array and read it back.
  * Read is backward-compatible with previous versions.
+ * Prefer [RRuleFormat] to this format for serialization since its more flexible.
  */
-@Deprecated("Use RRule serialization instead.")
 object RecurrenceSerializer {
 
     /**
