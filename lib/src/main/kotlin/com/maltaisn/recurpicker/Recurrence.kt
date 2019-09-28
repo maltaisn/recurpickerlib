@@ -320,6 +320,17 @@ class Recurrence private constructor(
         }
 
         /**
+         * Add a list of [days] to the [weeklyDays] field.
+         * This is probably simpler than using `or` to create the bit field.
+         */
+        fun setWeekDays(@WeeklyDays vararg days: Int) {
+            weeklyDays = 0
+            for (day in days) {
+                weeklyDays = weeklyDays or day
+            }
+        }
+
+        /**
          * Build the recurrence object described by the builder.
          * This validates and normalizes all field values.
          */

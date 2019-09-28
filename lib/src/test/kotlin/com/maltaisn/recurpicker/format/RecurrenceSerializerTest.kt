@@ -39,7 +39,7 @@ class RecurrenceSerializerTest {
         val a2 = hexStringToByteArray("0000006400000000E8DF6BDA0000000001000000050000009400000000000000000000000000000000")
         assertEquals(Recurrence(dateFor("2001-09-11"), Period.WEEKLY) {
             frequency = 5
-            weeklyDays = Recurrence.MONDAY or Recurrence.WEDNESDAY or Recurrence.SATURDAY
+            setWeekDays(Recurrence.MONDAY, Recurrence.WEDNESDAY, Recurrence.SATURDAY)
         }, serializer.read(a2))
 
         val a3 = hexStringToByteArray("000000640000000176B72ABC800000000200000002000000020000000100000000000001941B15C880")
@@ -62,7 +62,7 @@ class RecurrenceSerializerTest {
 
         val r2 = Recurrence(dateFor("2001-09-11"), Period.WEEKLY) {
             frequency = 5
-            weeklyDays = Recurrence.MONDAY or Recurrence.WEDNESDAY or Recurrence.SATURDAY
+            setWeekDays(Recurrence.MONDAY, Recurrence.WEDNESDAY, Recurrence.SATURDAY)
         }
         assertEquals(r2, serializer.read(serializer.write(r2)))
 

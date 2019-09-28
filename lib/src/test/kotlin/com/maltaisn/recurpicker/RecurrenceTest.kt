@@ -20,6 +20,7 @@ import com.maltaisn.recurpicker.Recurrence.Companion.compareDay
 import com.maltaisn.recurpicker.Recurrence.MonthlyDay
 import com.maltaisn.recurpicker.Recurrence.Period
 import org.junit.Test
+import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
@@ -31,7 +32,7 @@ internal class RecurrenceTest {
     fun equals_hashCode_allFields() {
         val r1 = Recurrence(dateFor("2019-09-24"), Period.WEEKLY) {
             frequency = 17
-            weeklyDays = Recurrence.MONDAY or Recurrence.TUESDAY
+            setWeekDays(Recurrence.MONDAY, Recurrence.TUESDAY)
             endCount = 23
         }
         val r2 = Recurrence(r1)
@@ -84,7 +85,7 @@ internal class RecurrenceTest {
         assertEquals("Recurrence{ From Dec 30, 2001, on every year; for 12 events }",
                 Recurrence(dateFor("2001-12-30"), Period.YEARLY) { endCount = 12 }.toString())
         assertEquals("Recurrence{ From Dec 30, 2001, on every week on Sun, Wed }",
-                Recurrence(dateFor("2001-12-30"), Period.WEEKLY) { weeklyDays = Recurrence.SUNDAY or Recurrence.WEDNESDAY }.toString())
+                Recurrence(dateFor("2001-12-30"), Period.WEEKLY) { setWeekDays(Recurrence.SUNDAY, Recurrence.WEDNESDAY) }.toString())
         assertEquals("Recurrence{ From Sep 24, 2019, on every month (on every fourth Tuesday) }",
                 Recurrence(dateFor("2019-09-24"), Period.MONTHLY) { monthlyDay = MonthlyDay.SAME_DAY_OF_WEEK }.toString())
     }
@@ -92,7 +93,7 @@ internal class RecurrenceTest {
     @Test
     fun isRecurringOnDaysOfWeek() {
         val r = Recurrence(dateFor("2019-09-24"), Period.WEEKLY) {
-            weeklyDays = Recurrence.MONDAY or Recurrence.TUESDAY or Recurrence.FRIDAY
+            setWeekDays(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.FRIDAY)
         }
         assertTrue(r.isRecurringOnDaysOfWeek(0))
         assertTrue(r.isRecurringOnDaysOfWeek(Recurrence.MONDAY))
@@ -104,10 +105,11 @@ internal class RecurrenceTest {
 
     @Test
     fun compareDay() {
-        assertEquals(dateFor("2018-01-01").compareDay(dateFor("2019-01-01")), -1)
-        assertEquals(dateFor("2019-01-01").compareDay(dateFor("2018-01-01")), 1)
-        assertEquals(dateFor("2019-01-01").compareDay(dateFor("2019-01-01")), 0)
-        assertEquals(dateFor("2019-01-01").compareDay(dateFor("2019-01-01") + 1000), 0)
+        val cal = Calendar.getInstance()
+        assertEquals(dateFor("2018-01-01").compareDay(dateFor("2019-01-01"), cal), -1)
+        assertEquals(dateFor("2019-01-01").compareDay(dateFor("2018-01-01"), cal), 1)
+        assertEquals(dateFor("2019-01-01").compareDay(dateFor("2019-01-01"), cal), 0)
+        assertEquals(dateFor("2019-01-01").compareDay(dateFor("2019-01-01") + 1000, cal), 0)
     }
 
 }

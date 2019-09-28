@@ -53,7 +53,7 @@ internal class RRuleFormatTest {
     @Test
     fun weekly() {
         val r = Recurrence(dateFor("2019-09-27"), Period.WEEKLY) {
-            weeklyDays = Recurrence.MONDAY or Recurrence.TUESDAY or Recurrence.THURSDAY
+            setWeekDays(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.THURSDAY)
         }
         testRRule(r, "RRULE:DTSTART=20190927T000000;FREQ=WEEKLY;BYDAY=MO,TU,TH")
     }

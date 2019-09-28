@@ -141,7 +141,7 @@ internal class RecurrenceFinderTest {
     @Test
     fun weekly_sun_mon_wed() {
         val r = Recurrence(dateFor("2019-01-01"), Period.WEEKLY) {
-            weeklyDays = Recurrence.SUNDAY or Recurrence.MONDAY or Recurrence.WEDNESDAY
+            setWeekDays(Recurrence.SUNDAY, Recurrence.MONDAY, Recurrence.WEDNESDAY)
         }
         assertEquals(listOf(
                 dateFor("2019-01-02"),

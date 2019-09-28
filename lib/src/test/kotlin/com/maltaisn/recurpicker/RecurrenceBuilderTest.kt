@@ -106,7 +106,7 @@ internal class RecurrenceBuilderTest {
     @Test(expected = IllegalArgumentException::class)
     fun shouldThrow_wrongIsDefault2() {
         Recurrence(dateFor("2019-09-23"), Period.WEEKLY) {
-            weeklyDays = Recurrence.SUNDAY
+            setWeekDays(Recurrence.SUNDAY)
             isDefault = true
         }
     }
@@ -229,7 +229,7 @@ internal class RecurrenceBuilderTest {
         val r = Recurrence(dateFor("2019-09-24"), Period.WEEKLY) {
             isDefault = true
             frequency = 1
-            weeklyDays = Recurrence.TUESDAY
+            setWeekDays(Recurrence.TUESDAY)
         }
         assertTrue(r.isDefault)
     }
@@ -238,6 +238,17 @@ internal class RecurrenceBuilderTest {
     fun weeklyDays_defaultShouldBeSet() {
         Recurrence(dateFor("2019-09-24"), Period.WEEKLY) {
             assertEquals(Recurrence.TUESDAY, weeklyDays)
+        }
+    }
+
+    @Test
+    fun addWeekDays() {
+        Recurrence(0, Period.WEEKLY) {
+            setWeekDays(Recurrence.SATURDAY, Recurrence.MONDAY)
+            assertEquals(Recurrence.SATURDAY or Recurrence.MONDAY, weeklyDays)
+
+            setWeekDays(Recurrence.SATURDAY, Recurrence.MONDAY, Recurrence.FRIDAY)
+            assertEquals(Recurrence.SATURDAY or Recurrence.MONDAY or Recurrence.FRIDAY, weeklyDays)
         }
     }
 

@@ -105,10 +105,10 @@ class RecurrenceFormatTest {
 
     @Test
     fun format_weekly_days() {
-        val r1 = Recurrence(0, Period.WEEKLY) { weeklyDays = Recurrence.FRIDAY or Recurrence.SATURDAY }
+        val r1 = Recurrence(0, Period.WEEKLY) { setWeekDays(Recurrence.FRIDAY, Recurrence.SATURDAY) }
         assertEquals("Every 1 weeks on Fri, Sat", recurFormat.format(r1))
 
-        val r2 = Recurrence(0, Period.WEEKLY) { weeklyDays = Recurrence.MONDAY or Recurrence.TUESDAY or Recurrence.WEDNESDAY }
+        val r2 = Recurrence(0, Period.WEEKLY) { setWeekDays(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.WEDNESDAY) }
         assertEquals("Every 1 weeks on Mon, Tue, Wed", recurFormat.format(r2))
     }
 
