@@ -22,17 +22,16 @@ import java.nio.ByteBuffer
 
 
 /**
- * Utility object to write a [Recurrence] as a byte array and read it back.
+ * Utility class to write a [Recurrence] as a byte array and read it back.
  * Read is backward-compatible with previous versions.
- * Prefer [RRuleFormat] to this format for serialization since its more flexible.
+ * Prefer [RRuleFormatter] to this format for serialization since its more flexible.
  */
-object RecurrenceSerializer {
+class RecurrenceSerializer {
 
     /**
      * Read a recurrence from a byte [array] and return it.
      * The encoded recurrence object must start at index 0 in the array.
      */
-    @JvmStatic
     fun read(array: ByteArray): Recurrence {
         val bb = ByteBuffer.wrap(array)
         return when (bb.int) {
@@ -77,7 +76,6 @@ object RecurrenceSerializer {
     /**
      * Write a [recurrence][r] to a byte array and return it.
      */
-    @JvmStatic
     fun write(r: Recurrence): ByteArray = ByteBuffer.allocate(36).apply {
         putInt(VERSION)
         putLong(r.startDate)
@@ -92,37 +90,41 @@ object RecurrenceSerializer {
     }.array()
 
 
-    /**
-     * Version 1, from v1.0.0 to v1.6.0
-     * - 0: int, version
-     * - 4: byte, default flag (0=false, 1=true)
-     * - 5: long, start date
-     * - 13: int, period (-1=none, 0=daily, 1=weekly, 2=monthly, 3=yearly)
-     * - 17: int, frequency
-     * - 21: int, day setting (both weekly and monthly additional options)
-     * - 25: int, end type (0=never, 1=date, 2=count)
-     * - 29: int, end count
-     * - 33: long, end date (0=none)
-     * - Length: 41
-     */
-    private const val VERSION_1 = 100
+    companion object {
 
-    /**
-     * Version 1, from v2.0.0
-     * - 0: int, version
-     * - 4: long, start date
-     * - 12: byte, period (0=none, 1=daily, 2=weekly, 3=monthly, 4=yearly)
-     * - 13: int, frequency
-     * - 17: int, weekly setting
-     * - 21: byte: monthly setting (0=same day, 1=same week, 2=last)
-     * - 22: byte, end type (0=never, 1=date, 2=count)
-     * - 23: int, end count
-     * - 27: long, end date (Long.MIN_VALUE=none)
-     * - 35: byte, default flag (0=false, 1=true)
-     * - Length: 36
-     */
-    private const val VERSION_2 = 101
+        /**
+         * Version 1, from v1.0.0 to v1.6.0
+         * - 0: int, version
+         * - 4: byte, default flag (0=false, 1=true)
+         * - 5: long, start date
+         * - 13: int, period (-1=none, 0=daily, 1=weekly, 2=monthly, 3=yearly)
+         * - 17: int, frequency
+         * - 21: int, day setting (both weekly and monthly additional options)
+         * - 25: int, end type (0=never, 1=date, 2=count)
+         * - 29: int, end count
+         * - 33: long, end date (0=none)
+         * - Length: 41
+         */
+        private const val VERSION_1 = 100
 
-    private const val VERSION = VERSION_2
+        /**
+         * Version 1, from v2.0.0
+         * - 0: int, version
+         * - 4: long, start date
+         * - 12: byte, period (0=none, 1=daily, 2=weekly, 3=monthly, 4=yearly)
+         * - 13: int, frequency
+         * - 17: int, weekly setting
+         * - 21: byte: monthly setting (0=same day, 1=same week, 2=last)
+         * - 22: byte, end type (0=never, 1=date, 2=count)
+         * - 23: int, end count
+         * - 27: long, end date (Long.MIN_VALUE=none)
+         * - 35: byte, default flag (0=false, 1=true)
+         * - Length: 36
+         */
+        private const val VERSION_2 = 101
+
+        private const val VERSION = VERSION_2
+
+    }
 
 }

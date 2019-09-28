@@ -27,54 +27,56 @@ import kotlin.test.assertEquals
 @Suppress("DEPRECATION")
 class RecurrenceSerializerTest {
 
+    private val serializer = RecurrenceSerializer()
+
     @Test
     fun read_version1() {
         val a1 = hexStringToByteArray("00000064010000016D6BB9C60000000000000000010000000000000000000000000000000000000000")
         assertEquals(Recurrence(dateFor("2019-09-26"), Period.DAILY) {
             isDefault = true
-        }, RecurrenceSerializer.read(a1))
+        }, serializer.read(a1))
 
         val a2 = hexStringToByteArray("0000006400000000E8DF6BDA0000000001000000050000009400000000000000000000000000000000")
         assertEquals(Recurrence(dateFor("2001-09-11"), Period.WEEKLY) {
             frequency = 5
             weeklyDays = Recurrence.MONDAY or Recurrence.WEDNESDAY or Recurrence.SATURDAY
-        }, RecurrenceSerializer.read(a2))
+        }, serializer.read(a2))
 
         val a3 = hexStringToByteArray("000000640000000176B72ABC800000000200000002000000020000000100000000000001941B15C880")
         assertEquals(Recurrence(dateFor("2020-12-31"), Period.MONTHLY) {
             frequency = 2
             monthlyDay = MonthlyDay.LAST_DAY_OF_MONTH
             endDate = dateFor("2024-12-31")
-        }, RecurrenceSerializer.read(a3))
+        }, serializer.read(a3))
 
         val a4 = hexStringToByteArray("000000640000000176B72ABC80000000030000000100000000000000020000000C0000000000000000")
         assertEquals(Recurrence(dateFor("2020-12-31"), Period.YEARLY) {
             endCount = 12
-        }, RecurrenceSerializer.read(a4))
+        }, serializer.read(a4))
     }
 
     @Test
     fun read_write_version2() {
         val r1 = Recurrence(dateFor("2019-09-26"), Period.DAILY) { isDefault = true }
-        assertEquals(r1, RecurrenceSerializer.read(RecurrenceSerializer.write(r1)))
+        assertEquals(r1, serializer.read(serializer.write(r1)))
 
         val r2 = Recurrence(dateFor("2001-09-11"), Period.WEEKLY) {
             frequency = 5
             weeklyDays = Recurrence.MONDAY or Recurrence.WEDNESDAY or Recurrence.SATURDAY
         }
-        assertEquals(r2, RecurrenceSerializer.read(RecurrenceSerializer.write(r2)))
+        assertEquals(r2, serializer.read(serializer.write(r2)))
 
         val r3 = Recurrence(dateFor("2020-12-31"), Period.MONTHLY) {
             frequency = 2
             monthlyDay = MonthlyDay.LAST_DAY_OF_MONTH
             endDate = dateFor("2024-12-31")
         }
-        assertEquals(r3, RecurrenceSerializer.read(RecurrenceSerializer.write(r3)))
+        assertEquals(r3, serializer.read(serializer.write(r3)))
 
         val r4 = Recurrence(dateFor("2020-12-31"), Period.YEARLY) {
             endCount = 12
         }
-        assertEquals(r4, RecurrenceSerializer.read(RecurrenceSerializer.write(r4)))
+        assertEquals(r4, serializer.read(serializer.write(r4)))
     }
 
 

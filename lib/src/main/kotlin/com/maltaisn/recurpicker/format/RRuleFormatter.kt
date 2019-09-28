@@ -23,7 +23,7 @@ import java.util.*
 
 
 /**
- * Utility object to write a [Recurrence] as a RRule and read it back.
+ * Utility class to write a [Recurrence] as a RRule and read it back.
  * See [RFC2445][https://tools.ietf.org/html/rfc2445#section-4.8.5.4] and
  * [RFC5545][https://tools.ietf.org/html/rfc5545#section-3.3.10].
  *
@@ -34,13 +34,9 @@ import java.util.*
  *
  * Start dates and end dates are formatted to a local time string.
  */
-object RRuleFormat {
+class RRuleFormatter {
 
     private val calendar = Calendar.getInstance()
-
-    private val BYDAY_VALUES = arrayOf("SU", "MO", "TU", "WE", "TH", "FR", "SA")
-    private val DATE_FORMAT = SimpleDateFormat("yyyyMMdd'T'HHmmss", Locale.ENGLISH)
-
 
     /**
      * Parse a RFC 5545 string recurrence rule and return a recurrence.
@@ -51,7 +47,6 @@ object RRuleFormat {
      * yearly but not on the same day as start date, this information is lost when parsing,
      * since yearly recurrence can only happen on the same day as start date.
      */
-    @JvmStatic
     fun parse(rrule: String): Recurrence {
         require(rrule.startsWith("RRULE:")) { "Recurrence rule string is invalid." }
 
@@ -110,10 +105,8 @@ object RRuleFormat {
     }
 
     /**
-     * Format a [recurrence][r] to a RFC 5545 string recurrence rule and return it.
-     *
+     * Format a [recurrence][r] to a string recurrence rule and return it.
      */
-    @JvmStatic
     fun format(r: Recurrence): String {
         val sb = StringBuilder()
         sb.append("RRULE:")
@@ -212,6 +205,11 @@ object RRuleFormat {
 
         sb.deleteCharAt(sb.length - 1) // Delete extra ";"
         return sb.toString()
+    }
+
+    companion object {
+        private val BYDAY_VALUES = arrayOf("SU", "MO", "TU", "WE", "TH", "FR", "SA")
+        private val DATE_FORMAT = SimpleDateFormat("yyyyMMdd'T'HHmmss", Locale.ENGLISH)
     }
 
 }

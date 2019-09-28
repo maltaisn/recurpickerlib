@@ -31,7 +31,7 @@ import java.util.*
  * @param context Context used to get string values.
  * @property dateFormat Date format used to format end date.
  */
-class RecurrenceFormat(context: Context, val dateFormat: DateFormat) {
+class RecurrenceFormatter(context: Context, val dateFormat: DateFormat) {
 
     private val res = context.resources
     private val calendar = Calendar.getInstance()

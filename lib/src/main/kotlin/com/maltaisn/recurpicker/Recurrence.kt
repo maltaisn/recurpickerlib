@@ -23,7 +23,7 @@ import androidx.annotation.IntDef
 import com.maltaisn.recurpicker.Recurrence.*
 import com.maltaisn.recurpicker.Recurrence.Companion.DATE_NONE
 import com.maltaisn.recurpicker.Recurrence.Period.*
-import com.maltaisn.recurpicker.format.RecurrenceFormat
+import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.*
@@ -73,7 +73,8 @@ class Recurrence private constructor(
         val endType: EndType,
         val endDate: Long,
         val endCount: Int,
-        val isDefault: Boolean) : Parcelable {
+        val isDefault: Boolean,
+        private val calendar: Calendar) : Parcelable {
 
     /**
      * Parcelable constructor.
@@ -87,7 +88,8 @@ class Recurrence private constructor(
             parcel.readSerializable() as EndType,
             parcel.readLong(),
             parcel.readInt(),
-            parcel.readByte() != 0.toByte())
+            parcel.readByte() != 0.toByte(),
+            Calendar.getInstance())
 
     /**
      * If repeating weekly, check if recurrence happens on certain [days] of the week.
@@ -112,17 +114,17 @@ class Recurrence private constructor(
                 && monthlyDay == other.monthlyDay
                 && endType == other.endType
                 && endCount == other.endCount
-                && getDaysInDate(startDate) == getDaysInDate(other.startDate)
-                && getDaysInDate(endDate) == getDaysInDate(other.endDate)
+                && getDaysInDate(startDate, calendar) == getDaysInDate(other.startDate, calendar)
+                && getDaysInDate(endDate, calendar) == getDaysInDate(other.endDate, calendar)
     }
 
-    override fun hashCode(): Int = Objects.hash(getDaysInDate(startDate), period, frequency,
-            weeklyDays, monthlyDay, endType, getDaysInDate(endDate), endCount, isDefault)
+    override fun hashCode(): Int = Objects.hash(getDaysInDate(startDate, calendar), period, frequency,
+            weeklyDays, monthlyDay, endType, getDaysInDate(endDate, calendar), endCount, isDefault)
 
     /**
      * Return a human readable string representation of the recurrence.
      * This is only for debug purposes and will not even work on release builds.
-     * [RecurrenceFormat] should be used instead.
+     * [RecurrenceFormatter] should be used instead.
      */
     override fun toString(): String {
         if (BuildConfig.DEBUG) {
@@ -217,7 +219,12 @@ class Recurrence private constructor(
     }
 
 
+    /**
+     * Builder for recurrence.
+     */
     class Builder {
+
+        private val calendar = Calendar.getInstance()
 
         /** @see Recurrence.startDate */
         var startDate: Long = DATE_NONE
@@ -333,7 +340,7 @@ class Recurrence private constructor(
 
             if (endType == EndType.BY_DATE) {
                 // Check if end date is not before start date.
-                val comparison = endDate.compareDay(startDate)
+                val comparison = endDate.compareDay(startDate, calendar)
                 require(comparison != -1) { "End date must be after start date" }
                 if (comparison == 0) {
                     period = NONE
@@ -376,7 +383,7 @@ class Recurrence private constructor(
             }
 
             return Recurrence(startDate, period, frequency, weeklyDays,
-                    monthlyDay, endType, endDate, endCount, isDefault)
+                    monthlyDay, endType, endDate, endCount, isDefault, calendar)
         }
     }
 
@@ -471,9 +478,6 @@ class Recurrence private constructor(
         /** Date value used for no end date. */
         const val DATE_NONE = Long.MIN_VALUE
 
-        /** Calendar used for checks when creating a recurrence. */
-        private val calendar = Calendar.getInstance()
-
 
         /**
          * Inline factory function to create a [Recurrence] without directly using the builder.
@@ -499,7 +503,7 @@ class Recurrence private constructor(
          * Returns `0` if [this] is on same day as [date].
          * Returns `1` if [this] is on a day after [date].
          */
-        internal fun Long.compareDay(date: Long): Int {
+        internal fun Long.compareDay(date: Long, calendar: Calendar): Int {
             calendar.timeInMillis = this
             val year1 = calendar[Calendar.YEAR]
             val day1 = calendar[Calendar.DAY_OF_YEAR]
@@ -517,7 +521,7 @@ class Recurrence private constructor(
             }
         }
 
-        private fun getDaysInDate(date: Long): Int {
+        private fun getDaysInDate(date: Long, calendar: Calendar): Int {
             calendar.timeInMillis = date
             return calendar[Calendar.YEAR] * 366 + calendar[Calendar.DAY_OF_YEAR]
         }

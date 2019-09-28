@@ -43,7 +43,7 @@ class RecurrenceFormatTest {
     @Mock
     private lateinit var resources: Resources
 
-    private lateinit var recurFormat: RecurrenceFormat
+    private lateinit var recurFormat: RecurrenceFormatter
 
     @Before
     fun setUp() {
@@ -70,7 +70,7 @@ class RecurrenceFormatTest {
         whenever(resources.getString(eq(R.string.rp_format_end_date), any())).thenAnswer { "until ${it.arguments[1]}" }
         whenever(resources.getQuantityString(eq(R.plurals.rp_format_end_count), any())).thenAnswer { "for ${it.arguments[1]} events" }
 
-        recurFormat = RecurrenceFormat(context, SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH))
+        recurFormat = RecurrenceFormatter(context, SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH))
     }
 
     @Test

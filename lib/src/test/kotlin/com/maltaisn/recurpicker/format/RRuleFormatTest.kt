@@ -26,6 +26,8 @@ import kotlin.test.assertEquals
 
 internal class RRuleFormatTest {
 
+    private val formatter = RRuleFormatter()
+
     @Test
     fun doesNotRepeat() {
         val r = Recurrence(dateFor("2019-01-01"), Period.NONE)
@@ -118,8 +120,8 @@ internal class RRuleFormatTest {
 
 
     private fun testRRule(r: Recurrence, rrule: String) {
-        assertEquals(rrule, RRuleFormat.format(r))
-        assertEquals(r, RRuleFormat.parse(rrule))
+        assertEquals(rrule, formatter.format(r))
+        assertEquals(r, formatter.parse(rrule))
     }
 
 }
