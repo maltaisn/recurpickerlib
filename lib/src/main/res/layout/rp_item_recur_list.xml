@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 Nicolas Maltais
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,12 +14,27 @@
   limitations under the License.
   -->
 
-<TextView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/rpRecurrenceListItemStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="?attr/rpPeriodSpinnerItemStyle"
-    tools:text="Repeat monthly"
-    tools:theme="@style/RecurrencePickerStyleTools"
-    />
+    android:clickable="true"
+    android:focusable="true"
+    tools:theme="@style/RecurrencePickerStyle"
+    >
+
+    <RadioButton
+        android:id="@+id/rp_recur_list_item_label"
+        style="?attr/rpRecurrenceListItemLabelStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:focusable="false"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        tools:text="Every 2 weeks on Sun, Mon, Tue, Sat"
+        />
+
+</FrameLayout>

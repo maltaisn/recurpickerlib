@@ -17,18 +17,24 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme"
-           parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">#424242</item>
+        <item name="colorPrimaryVariant">#212121</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#2962FF</item>
+        <item name="colorSecondaryVariant">#0039CB</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorError">#F44336</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#212121</item>
+        <item name="colorOnBackground">#212121</item>
 
         <item name="recurrencePickerStyle">@style/RecurrencePickerStyleCustom</item>
     </style>
 
     <!-- Recurrence picker theme -->
-    <style name="RecurrencePickerStyleCustom"
-           parent="RecurrencePickerStyle">
+    <style name="RecurrencePickerStyleCustom" parent="RecurrencePickerStyle">
         <!--
         You can customize the recurrence picker style here eg:
             <item name="colorHeaderBackground">?attr/colorPrimary</item>

@@ -112,4 +112,23 @@ internal class RecurrenceTest {
         assertEquals(dateFor("2019-01-01").compareDay(dateFor("2019-01-01") + 1000, cal), 0)
     }
 
+    @Test
+    fun compareDay_dateNone() {
+        val cal = Calendar.getInstance()
+        assertEquals(Recurrence.DATE_NONE.compareDay(Recurrence.DATE_NONE, cal), 0)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun compareDay_dateNone_illegal() {
+        val cal = Calendar.getInstance()
+        assertEquals(Recurrence.DATE_NONE.compareDay(dateFor("2019-01-01"), cal), -1)
+        assertEquals(dateFor("2019-01-01").compareDay(Recurrence.DATE_NONE, cal), 1)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun compareDay_dateNone_illegal2() {
+        val cal = Calendar.getInstance()
+        assertEquals(dateFor("2019-01-01").compareDay(Recurrence.DATE_NONE, cal), 1)
+    }
+
 }

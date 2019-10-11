@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 Nicolas Maltais
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,10 +14,15 @@
   limitations under the License.
   -->
 
-<com.maltaisn.recurpicker.RecurrencePickerView
+<androidx.recyclerview.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rp_recur_list_rcv"
+    style="?attr/rpRecurrenceListStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:theme="@style/RecurrencePickerStyleTools"
+    android:layout_height="match_parent"
+    tools:listitem="@layout/rp_item_recur_list"
+    tools:itemCount="5"
+    tools:theme="@style/RecurrencePickerStyle"
     />
+

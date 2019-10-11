@@ -32,6 +32,12 @@ internal class RecurrenceFinderTest {
         finder.find(r, 0)
     }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun noStartDate() {
+        val r = Recurrence(Recurrence.DATE_NONE, Period.DAILY)
+        finder.find(r, 0)
+    }
+
     @Test
     fun none() {
         val r = Recurrence(dateFor("2019-01-01"), Period.NONE)

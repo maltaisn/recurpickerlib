@@ -333,10 +333,10 @@ class Recurrence private constructor(
         /**
          * Build the recurrence object described by the builder.
          * This validates and normalizes all field values.
+         * FIXME weekly with start date none
          */
         fun build(): Recurrence {
             require(frequency >= 1) { "Frequency must be 1 or greater." }
-            require(startDate != DATE_NONE) { "Start date cannot be DATE_NONE." }
 
             if (period == WEEKLY) {
                 require(weeklyDays in 0..EVERY_DAY_OF_WEEK) { "Day of the week bit field has invalid value." }
@@ -515,6 +515,12 @@ class Recurrence private constructor(
          * Returns `1` if [this] is on a day after [date].
          */
         internal fun Long.compareDay(date: Long, calendar: Calendar): Int {
+            // Special cases since DATE_NONE makes calendar overflow.
+            when {
+                date == DATE_NONE && this == DATE_NONE -> return 0
+                date == DATE_NONE || this == DATE_NONE -> throw IllegalArgumentException("Cannot compare dates.")
+            }
+
             calendar.timeInMillis = this
             val year1 = calendar[Calendar.YEAR]
             val day1 = calendar[Calendar.DAY_OF_YEAR]
@@ -533,6 +539,7 @@ class Recurrence private constructor(
         }
 
         private fun getDaysInDate(date: Long, calendar: Calendar): Int {
+            if (date == DATE_NONE) return 0
             calendar.timeInMillis = date
             return calendar[Calendar.YEAR] * 366 + calendar[Calendar.DAY_OF_YEAR]
         }

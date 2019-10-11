@@ -41,7 +41,7 @@ class RecurrenceFinder {
      * to find a recurrence event if previous event dates are known. For example, finding the
      * 1000th event when the first 999 events are known.
      *
-     * @param r The recurrence.
+     * @param r The recurrence. The start date must not be [Recurrence.DATE_NONE].
      * @param base The base event date. May included in the returned list of events
      * depending on the [fromDate] value.
      * @param baseCount The number of events that have happened as of the [base] date. This
@@ -57,6 +57,7 @@ class RecurrenceFinder {
     fun findBasedOn(r: Recurrence, base: Long, baseCount: Int,
                     amount: Int, fromDate: Long = Recurrence.DATE_NONE): MutableList<Long> {
         require(amount >= 1) { "Amount must be 1 or greater" }
+        require(r.startDate != Recurrence.DATE_NONE) { "Recurrence must have a start date." }
 
         val list = mutableListOf<Long>()
 

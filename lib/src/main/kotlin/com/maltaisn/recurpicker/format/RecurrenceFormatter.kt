@@ -17,6 +17,7 @@
 package com.maltaisn.recurpicker.format
 
 import android.content.Context
+import android.content.res.Resources
 import com.maltaisn.recurpicker.R
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.*
@@ -31,17 +32,17 @@ import java.util.*
  * @param context Context used to get string values.
  * @property dateFormat Date format used to format end date.
  */
-class RecurrenceFormatter(context: Context, val dateFormat: DateFormat) {
+class RecurrenceFormatter(val dateFormat: DateFormat) {
 
-    private val res = context.resources
     private val calendar = Calendar.getInstance()
-
 
     /**
      * Format a recurrence to its localized string represention.
      * @param r recurrence to format
      */
-    fun format(r: Recurrence): String {
+    fun format(r: Recurrence, context: Context): String {
+        val res = context.resources
+
         // Generate first part of the text: does not repeat, every [freq] day/week/month/year.
         val recurSb = StringBuilder()
         recurSb.append(when (r.period) {
@@ -84,7 +85,7 @@ class RecurrenceFormatter(context: Context, val dateFormat: DateFormat) {
                     }
                     MonthlyDay.SAME_DAY_OF_WEEK -> {
                         // on every [nth] [Sunday]
-                        recurSb.append(getSameDayOfSameWeekString(r.startDate))
+                        recurSb.append(getSameDayOfSameWeekString(r.startDate, res))
                     }
                     MonthlyDay.LAST_DAY_OF_MONTH -> {
                         // on the last day of each month
@@ -116,7 +117,7 @@ class RecurrenceFormatter(context: Context, val dateFormat: DateFormat) {
      * same day of week of same week, eg: "on third Sunday" or "on last Friday"
      * @param date date to get it for
      */
-    internal fun getSameDayOfSameWeekString(date: Long): String {
+    internal fun getSameDayOfSameWeekString(date: Long, res: Resources): String {
         calendar.timeInMillis = date
 
         // Since strings are in a string array, can't be formatted directly

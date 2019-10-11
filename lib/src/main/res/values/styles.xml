@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 Nicolas Maltais
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,126 +16,28 @@
 <!-- @formatter:off -->
 <resources>
 
-    <style name="RecurrencePickerStyleTools" parent="RecurrencePickerStyle">
-        <item name="colorPrimary">#455a64</item>
-        <item name="colorPrimaryDark">#263238</item>
-        <item name="colorAccent">#2196f3</item>
-    </style>
-
     <style name="RecurrencePickerStyle">
-        <item name="rpColorPickerBackground">@android:color/transparent</item>
-        <item name="rpColorHeaderBackground">?attr/colorPrimary</item>
-
-        <item name="rpOptionListTitleStyle">@style/RpOptionListTitleStyle</item>
-        <item name="rpOptionItemStyle">@style/RpOptionItemStyle</item>
-        <item name="rpOptionItemSelectedColor">?attr/colorAccent</item>
-        <item name="rpOptionItemUnselectedColor">?android:attr/textColorPrimary</item>
-        <item name="rpOptionCheckStyle">@style/RpOptionCheckStyle</item>
-        <item name="rpOptionCheckSize">25dp</item>
-
-        <item name="rpLabelTextAppearance">@style/Base.TextAppearance.AppCompat.Subhead</item>
-        <item name="rpPeriodSpinnerStyle">@style/RpPeriodSpinnerStyle</item>
-        <item name="rpPeriodSpinnerItemStyle">@style/RpPeriodSpinnerItemStyle</item>
-        <item name="rpPeriodSpinnerDropdownItemStyle">@style/RpPeriodSpinnerDropdownItemStyle</item>
-        <item name="rpEndSpinnerStyle">@style/RpEndSpinnerStyle</item>
-        <item name="rpEndSpinnerItemStyle">@style/RpEndSpinnerItemStyle</item>
-        <item name="rpEndSpinnerDropdownItemStyle">@style/RpEndSpinnerItemStyle</item>
-        <item name="rpWeekButtonStyle">@style/RpWeekButtonStyle</item>
-        <item name="rpCancelButtonStyle">@style/RpCancelButtonStyle</item>
-        <item name="rpDoneButtonStyle">@style/RpDoneButtonStyle</item>
-
-        <item name="rpColorWeekButtonChecked">?attr/colorAccent</item>
-        <item name="rpColorWeekButtonUnchecked">@android:color/transparent</item>
-        <item name="rpColorWeekButtonStroke">?attr/colorAccent</item>
-        <item name="rpColorWeekButtonTextChecked">?android:attr/textColorPrimaryInverse</item>
-        <item name="rpColorWeekButtonTextUnchecked">?android:attr/textColorPrimary</item>
-        <item name="rpWeekButtonStrokeWidth">1dp</item>
-        <item name="rpWeekButtonSize">50dp</item>
-
-        <item name="rpPeriodSpinnerItemsText">@array/rp_period_spinner_items</item>
-        <item name="rpEndSpinnerItemsText">@array/rp_end_spinner_items</item>
-        <item name="rpEndSpinnerItemsTextAbbr">@array/rp_end_spinner_items_abbr</item>
-        <item name="rpWeekButtonsText">@array/rp_days_of_week_abbr</item>
-        <item name="rpOptionListNoneText">@null</item>
-        <item name="rpOptionListCustomText">@string/rp_custom</item>
+        <item name="rpRecurrenceListStyle">@style/RecurrenceListStyle</item>
+        <item name="rpRecurrenceListItemStyle">@style/RecurrenceListItemStyle</item>
+        <item name="rpRecurrenceListItemLabelStyle">@style/RecurrenceListItemLabelStyle</item>
     </style>
 
-    <style name="RpOptionListTitleStyle">
-        <item name="android:padding">5dp</item>
-        <item name="android:text">@string/rp_repeat_options</item>
-        <item name="android:textAppearance">?attr/rpLabelTextAppearance</item>
-        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:maxLines">1</item>
+    <style name="RecurrenceListStyle">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:clipToPadding">false</item>
     </style>
 
-    <style name="RpOptionItemStyle">
-        <item name="android:paddingStart">10dp</item>
-        <item name="android:paddingEnd">20dp</item>
-        <item name="android:textAppearance">?attr/rpLabelTextAppearance</item>
-    </style>
-
-    <style name="RpOptionCheckStyle">
-        <item name="android:src">@drawable/rp_ic_check</item>
-        <item name="tint">?attr/rpOptionItemSelectedColor</item>
-    </style>
-
-    <style name="RpPeriodSpinnerStyle">
-        <item name="backgroundTint">?android:attr/textColorSecondaryInverse</item>
-    </style>
-
-    <style name="RpEndSpinnerStyle">
-        <!-- Nothing -->
-    </style>
-
-    <style name="RpPeriodSpinnerItemStyle">
-        <item name="android:padding">10dp</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:textAppearance">?attr/rpLabelTextAppearance</item>
-        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="RpPeriodSpinnerDropdownItemStyle" parent="@style/RpPeriodSpinnerItemStyle">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
-
-    <style name="RpEndSpinnerItemStyle">
-        <item name="android:padding">10dp</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:textAppearance">?attr/rpLabelTextAppearance</item>
-    </style>
-
-    <style name="RpWeekButtonStyle">
-        <item name="android:textColor">@color/rp_color_week_button_text</item>
-        <item name="android:textAllCaps">true</item>
-    </style>
-
-    <style name="RpCancelButtonStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
+    <style name="RecurrenceListItemStyle">
         <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="android:text">@android:string/cancel</item>
-        <item name="android:layout_marginStart">5dp</item>
-        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
     </style>
 
-    <style name="RpDoneButtonStyle" parent="Widget.AppCompat.Button.Borderless.Colored">
-        <item name="android:background">?attr/selectableItemBackground</item>
-        <item name="android:text">@string/rp_done</item>
-        <item name="android:layout_marginStart">5dp</item>
-        <item name="android:layout_marginEnd">5dp</item>
+    <style name="RecurrenceListItemLabelStyle">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="android:paddingStart">16dp</item>
     </style>
-
-    <public name="RecurrencePickerStyle" type="style" />
-    <public name="RpOptionListTitleStyle" type="style" />
-    <public name="RpOptionItemStyle" type="style" />
-    <public name="RpOptionCheckStyle" type="style" />
-    <public name="RpPeriodSpinnerStyle" type="style" />
-    <public name="RpEndSpinnerStyle" type="style" />
-    <public name="RpPeriodSpinnerItemStyle" type="style" />
-    <public name="RpPeriodSpinnerDropdownItemStyle" type="style" />
-    <public name="RpEndSpinnerItemStyle" type="style" />
-    <public name="RpWeekButtonStyle" type="style" />
-    <public name="RpCancelButtonStyle" type="style" />
-    <public name="RpDoneButtonStyle" type="style" />
 
 </resources>
