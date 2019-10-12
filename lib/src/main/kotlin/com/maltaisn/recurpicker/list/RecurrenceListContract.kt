@@ -26,6 +26,7 @@ internal interface RecurrenceListContract {
 
     interface View {
         val settings: RecurrencePickerSettings
+        val startDate: Long
         val selectedRecurrence: Recurrence?
 
         fun exit()
@@ -36,7 +37,8 @@ internal interface RecurrenceListContract {
     }
 
     interface ItemView {
-        fun bindRecurrenceView(formatter: RecurrenceFormatter, recurrence: Recurrence, checked: Boolean)
+        fun bindRecurrenceView(formatter: RecurrenceFormatter, recurrence: Recurrence,
+                               startDate: Long, checked: Boolean)
         fun bindCustomView()
     }
 

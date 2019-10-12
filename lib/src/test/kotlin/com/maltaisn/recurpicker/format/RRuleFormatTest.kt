@@ -17,7 +17,6 @@
 package com.maltaisn.recurpicker.format
 
 import com.maltaisn.recurpicker.Recurrence
-import com.maltaisn.recurpicker.Recurrence.MonthlyDay
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.dateFor
 import org.junit.Test
@@ -30,92 +29,120 @@ internal class RRuleFormatTest {
 
     @Test
     fun doesNotRepeat() {
-        val r = Recurrence(dateFor("2019-01-01"), Period.NONE)
-        testRRule(r, "RRULE:DTSTART=20190101T000000;FREQ=NONE")
+        val r = Recurrence(Period.NONE)
+        testRRule(r, "RRULE:FREQ=NONE")
     }
 
     @Test
     fun daily_withFrequency() {
-        val r = Recurrence(dateFor("2018-01-09"), Period.DAILY) {
+        val r = Recurrence(Period.DAILY) {
             frequency = 5
         }
-        testRRule(r, "RRULE:DTSTART=20180109T000000;FREQ=DAILY;INTERVAL=5")
-    }
-
-    @Test
-    fun daily_default() {
-        val r = Recurrence(dateFor("2018-01-09"), Period.DAILY) {
-            isDefault = true
-        }
-        testRRule(r, "RRULE:DTSTART=20180109T000000;FREQ=DAILY;DEFAULT=1")
+        testRRule(r, "RRULE:FREQ=DAILY;INTERVAL=5")
     }
 
     @Test
     fun weekly() {
-        val r = Recurrence(dateFor("2019-09-27"), Period.WEEKLY) {
-            setWeekDays(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.THURSDAY)
+        val r = Recurrence(Period.WEEKLY) {
+            setDaysOfWeek(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.THURSDAY)
         }
-        testRRule(r, "RRULE:DTSTART=20190927T000000;FREQ=WEEKLY;BYDAY=MO,TU,TH")
+        testRRule(r, "RRULE:FREQ=WEEKLY;BYDAY=MO,TU,TH")
     }
 
     @Test
     fun weekly_allDays() {
-        val r = Recurrence(dateFor("2019-09-27"), Period.WEEKLY) {
+        val r = Recurrence(Period.WEEKLY) {
             frequency = 10
-            weeklyDays = Recurrence.EVERY_DAY_OF_WEEK
+            setDaysOfWeek(Recurrence.EVERY_DAY_OF_WEEK)
         }
-        testRRule(r, "RRULE:DTSTART=20190927T000000;FREQ=WEEKLY;INTERVAL=10;BYDAY=SU,MO,TU,WE,TH,FR,SA")
+        testRRule(r, "RRULE:FREQ=WEEKLY;INTERVAL=10;BYDAY=SU,MO,TU,WE,TH,FR,SA")
     }
 
     @Test
     fun monthly_same_day() {
-        val r = Recurrence(dateFor("2019-09-27"), Period.MONTHLY) {
-            monthlyDay = MonthlyDay.SAME_DAY_OF_MONTH
+        val r = Recurrence(Period.MONTHLY)
+        testRRule(r, "RRULE:FREQ=MONTHLY")
+    }
+
+    @Test
+    fun monthly_same_day_specific() {
+        val r = Recurrence(Period.MONTHLY) {
+            dayInMonth = 15
         }
-        testRRule(r, "RRULE:DTSTART=20190927T000000;FREQ=MONTHLY;BYMONTHDAY=27")
+        testRRule(r, "RRULE:FREQ=MONTHLY;BYMONTHDAY=15")
     }
 
     @Test
     fun monthly_same_week() {
-        val r1 = Recurrence(dateFor("2019-09-27"), Period.MONTHLY) {
-            monthlyDay = MonthlyDay.SAME_DAY_OF_WEEK
+        val r1 = Recurrence(Period.MONTHLY) {
+            setDayOfWeekInMonth(Recurrence.FRIDAY, 4)
         }
-        testRRule(r1, "RRULE:DTSTART=20190927T000000;FREQ=MONTHLY;BYDAY=4FR")
+        testRRule(r1, "RRULE:FREQ=MONTHLY;BYDAY=4FR")
 
-        val r2 = Recurrence(dateFor("2019-09-30"), Period.MONTHLY) {
-            monthlyDay = MonthlyDay.SAME_DAY_OF_WEEK
+        val r2 = Recurrence(Period.MONTHLY) {
+            setDayOfWeekInMonth(Recurrence.MONDAY, -1)
         }
-        testRRule(r2, "RRULE:DTSTART=20190930T000000;FREQ=MONTHLY;BYDAY=-1MO")
+        testRRule(r2, "RRULE:FREQ=MONTHLY;BYDAY=-1MO")
     }
 
     @Test
     fun monthly_last_day() {
-        val r = Recurrence(dateFor("2019-09-30"), Period.MONTHLY) {
-            monthlyDay = MonthlyDay.LAST_DAY_OF_MONTH
+        val r = Recurrence(Period.MONTHLY) {
+            dayInMonth = -1
         }
-        testRRule(r, "RRULE:DTSTART=20190930T000000;FREQ=MONTHLY;BYMONTHDAY=-1")
+        testRRule(r, "RRULE:FREQ=MONTHLY;BYMONTHDAY=-1")
     }
 
     @Test
     fun yearly() {
-        val r = Recurrence(dateFor("2000-03-15"), Period.YEARLY)
-        testRRule(r, "RRULE:DTSTART=20000315T000000;FREQ=YEARLY;BYMONTH=3;BYMONTHDAY=15")
+        val r = Recurrence(Period.YEARLY)
+        testRRule(r, "RRULE:FREQ=YEARLY")
     }
 
     @Test
     fun daily_endDate() {
-        val r = Recurrence(dateFor("2019-01-01"), Period.DAILY) {
+        val r = Recurrence(Period.DAILY) {
             endDate = dateFor("2020-01-01")
         }
-        testRRule(r, "RRULE:DTSTART=20190101T000000;FREQ=DAILY;UNTIL=20200101T000000")
+        testRRule(r, "RRULE:FREQ=DAILY;UNTIL=20200101T000000")
     }
 
     @Test
     fun daily_endCount() {
-        val r = Recurrence(dateFor("2019-01-01"), Period.DAILY) {
+        val r = Recurrence(Period.DAILY) {
             endCount = 42
         }
-        testRRule(r, "RRULE:DTSTART=20190101T000000;FREQ=DAILY;COUNT=42")
+        testRRule(r, "RRULE:FREQ=DAILY;COUNT=42")
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun parse_noHeader() {
+        formatter.parse("FREQ=DAILY")
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun parse_noPeriod() {
+        formatter.parse("RRULE:BYDAY=FR,SA")
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun parse_endDate_invalidFormat() {
+        formatter.parse("RRULE:UNTIL=2020-01-01")
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun parse_wrongPeriod() {
+        formatter.parse("RRULE:FREQ=HOURLY")
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun parse_wrongDayOfWeek_weekly() {
+        formatter.parse("RRULE:FREQ=WEEKLY;BYDAY=SUN,MON,TUE")
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun parse_wrongDayOfWeek_monthly() {
+        formatter.parse("RRULE:FREQ=MONTHLY;BYDAY=-1FRI")
     }
 
 

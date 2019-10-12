@@ -99,7 +99,8 @@ internal open class RecurrenceListPresenter : Presenter {
         if (recurrence == null) {
             itemView.bindCustomView()
         } else {
-            itemView.bindRecurrenceView(settings.formatter, recurrence, pos == checkedPos)
+            itemView.bindRecurrenceView(settings.formatter, recurrence,
+                    view!!.startDate, pos == checkedPos)
         }
     }
 

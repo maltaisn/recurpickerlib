@@ -17,7 +17,6 @@
 package com.maltaisn.recurpicker
 
 import com.maltaisn.recurpicker.Recurrence.Companion.compareDay
-import com.maltaisn.recurpicker.Recurrence.MonthlyDay
 import com.maltaisn.recurpicker.Recurrence.Period
 import org.junit.Test
 import java.util.*
@@ -30,9 +29,9 @@ internal class RecurrenceTest {
 
     @Test
     fun equals_hashCode_allFields() {
-        val r1 = Recurrence(dateFor("2019-09-24"), Period.WEEKLY) {
+        val r1 = Recurrence(Period.WEEKLY) {
             frequency = 17
-            setWeekDays(Recurrence.MONDAY, Recurrence.TUESDAY)
+            setDaysOfWeek(Recurrence.MONDAY, Recurrence.TUESDAY)
             endCount = 23
         }
         val r2 = Recurrence(r1)
@@ -42,9 +41,9 @@ internal class RecurrenceTest {
 
     @Test
     fun equals_hashCode_allFields2() {
-        val r1 = Recurrence(dateFor("2019-09-30"), Period.MONTHLY) {
+        val r1 = Recurrence(Period.MONTHLY) {
             frequency = 17
-            monthlyDay = MonthlyDay.LAST_DAY_OF_MONTH
+            dayInMonth = -1
             endDate = dateFor("2020-01-01")
         }
         val r2 = Recurrence(r1)
@@ -52,21 +51,12 @@ internal class RecurrenceTest {
         assertEquals(r1.hashCode(), r2.hashCode())
     }
 
-
     @Test
-    fun equals_hashCode_sameDay_differentStartDate() {
-        val r1 = Recurrence(dateFor("2019-01-01"), Period.DAILY)
-        val r2 = Recurrence(dateFor("2019-01-01") + 1000, Period.DAILY)
-        assertEquals(r1, r2)
-        assertEquals(r1.hashCode(), r2.hashCode())
-    }
-
-    @Test
-    fun equals_hashCode_sameDay_differentEndDate() {
-        val r1 = Recurrence(dateFor("2019-01-01"), Period.DAILY) {
+    fun equals_hashCode_differentEndDateOnSameDay() {
+        val r1 = Recurrence(Period.DAILY) {
             endDate = dateFor("2020-01-01")
         }
-        val r2 = Recurrence(dateFor("2019-01-01"), Period.DAILY) {
+        val r2 = Recurrence(Period.DAILY) {
             endDate = dateFor("2020-01-01") + 1000
         }
         assertEquals(r1, r2)
@@ -76,24 +66,37 @@ internal class RecurrenceTest {
     @Test
     fun toStringDebug() {
         assertTrue(BuildConfig.DEBUG)
-        assertEquals("Recurrence{ From Sep 24, 2019, does not repeat }",
-                Recurrence(dateFor("2019-09-24"), Period.NONE).toString())
-        assertEquals("Recurrence{ From Dec 30, 2001, on every 5 days }",
-                Recurrence(dateFor("2001-12-30"), Period.DAILY) { frequency = 5 }.toString())
-        assertEquals("Recurrence{ From Dec 30, 2001, on every year; until Dec 30, 2010 }",
-                Recurrence(dateFor("2001-12-30"), Period.YEARLY) { endDate = dateFor("2010-12-30") }.toString())
-        assertEquals("Recurrence{ From Dec 30, 2001, on every year; for 12 events }",
-                Recurrence(dateFor("2001-12-30"), Period.YEARLY) { endCount = 12 }.toString())
-        assertEquals("Recurrence{ From Dec 30, 2001, on every week on Sun, Wed }",
-                Recurrence(dateFor("2001-12-30"), Period.WEEKLY) { setWeekDays(Recurrence.SUNDAY, Recurrence.WEDNESDAY) }.toString())
-        assertEquals("Recurrence{ From Sep 24, 2019, on every month (on every fourth Tuesday) }",
-                Recurrence(dateFor("2019-09-24"), Period.MONTHLY) { monthlyDay = MonthlyDay.SAME_DAY_OF_WEEK }.toString())
+        assertEquals("Recurrence{ Does not repeat }",
+                Recurrence(Period.NONE).toString())
+        assertEquals("Recurrence{ On every 5 days }",
+                Recurrence(Period.DAILY) { frequency = 5 }.toString())
+        assertEquals("Recurrence{ On every year; until Dec 30, 2010 }",
+                Recurrence(Period.YEARLY) { endDate = dateFor("2010-12-30") }.toString())
+        assertEquals("Recurrence{ On every year; for 12 events }",
+                Recurrence(Period.YEARLY) { endCount = 12 }.toString())
+        assertEquals("Recurrence{ On every week on Sun, Wed }",
+                Recurrence(Period.WEEKLY) { setDaysOfWeek(Recurrence.SUNDAY, Recurrence.WEDNESDAY) }.toString())
+
+        assertEquals("Recurrence{ On every month (on Monday of the third week) }",
+                Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.MONDAY, 3) }.toString())
+        assertEquals("Recurrence{ On every month (on Saturday of the last week) }",
+                Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.SATURDAY, -1) }.toString())
+        assertEquals("Recurrence{ On every month (on Wednesday of the fourth to last week) }",
+                Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.WEDNESDAY, -4) }.toString())
+        assertEquals("Recurrence{ On every month (on the same day each month) }",
+                Recurrence(Period.MONTHLY).toString())
+        assertEquals("Recurrence{ On every month (on the last day of the month) }",
+                Recurrence(Period.MONTHLY) { dayInMonth = -1 }.toString())
+        assertEquals("Recurrence{ On every month (on 16 days before the end of the month) }",
+                Recurrence(Period.MONTHLY) { dayInMonth = -16 }.toString())
+        assertEquals("Recurrence{ On every month (on the 25 of each month) }",
+                Recurrence(Period.MONTHLY) { dayInMonth = 25 }.toString())
     }
 
     @Test
-    fun isRecurringOnDaysOfWeek() {
-        val r = Recurrence(dateFor("2019-09-24"), Period.WEEKLY) {
-            setWeekDays(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.FRIDAY)
+    fun isRecurringOnDaysOfWeek_weekly() {
+        val r = Recurrence(Period.WEEKLY) {
+            setDaysOfWeek(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.FRIDAY)
         }
         assertTrue(r.isRecurringOnDaysOfWeek(0))
         assertTrue(r.isRecurringOnDaysOfWeek(Recurrence.MONDAY))
@@ -101,6 +104,26 @@ internal class RecurrenceTest {
         assertFalse(r.isRecurringOnDaysOfWeek(Recurrence.EVERY_DAY_OF_WEEK))
         assertFalse(r.isRecurringOnDaysOfWeek(Recurrence.SATURDAY))
         assertFalse(r.isRecurringOnDaysOfWeek(Recurrence.MONDAY or Recurrence.SATURDAY))
+    }
+
+    @Test
+    fun isRecurringOnDaysOfWeek_monthly() {
+        val r = Recurrence(Period.MONTHLY) {
+            setDayOfWeekInMonth(Recurrence.SATURDAY, 1)
+        }
+        assertTrue(r.isRecurringOnDaysOfWeek(0))
+        assertTrue(r.isRecurringOnDaysOfWeek(Recurrence.SATURDAY))
+        assertFalse(r.isRecurringOnDaysOfWeek(Recurrence.EVERY_DAY_OF_WEEK))
+        assertFalse(r.isRecurringOnDaysOfWeek(Recurrence.MONDAY or Recurrence.SATURDAY))
+    }
+
+    @Test
+    fun dayOfWeekInMonth_weekInMonth() {
+        val r = Recurrence(Period.MONTHLY) {
+            setDayOfWeekInMonth(Recurrence.SATURDAY, -2)
+        }
+        assertEquals(Calendar.SATURDAY, r.dayOfWeekInMonth)
+        assertEquals(-2, r.weekInMonth)
     }
 
     @Test

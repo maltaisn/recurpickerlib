@@ -16,9 +16,11 @@
 
 package com.maltaisn.recurpicker
 
-import com.maltaisn.recurpicker.Recurrence.*
 import com.maltaisn.recurpicker.Recurrence.Companion.compareDay
+import com.maltaisn.recurpicker.Recurrence.EndType
+import com.maltaisn.recurpicker.Recurrence.Period
 import java.util.*
+import kotlin.math.abs
 
 
 /**
@@ -37,11 +39,12 @@ class RecurrenceFinder {
      * the base date so the algorithm knows when to stop. Starting [from a date][fromDate],
      * a certain [amount] of events are found and returned.
      *
-     * While using this method is a bit more complicated than using [find], it can be faster
-     * to find a recurrence event if previous event dates are known. For example, finding the
-     * 1000th event when the first 999 events are known.
+     * While using this method is a bit more complicated than using [find], it will be more
+     * performant to find a recurrence event if previous event dates are known. For example,
+     * finding the 1000th event when the first 999 events are known.
      *
-     * @param r The recurrence. The start date must not be [Recurrence.DATE_NONE].
+     * @param r The recurrence.
+     * @param startDate The start date of the recurring event, cannot be [Recurrence.DATE_NONE].
      * @param base The base event date. May included in the returned list of events
      * depending on the [fromDate] value.
      * @param baseCount The number of events that have happened as of the [base] date. This
@@ -54,14 +57,14 @@ class RecurrenceFinder {
      * Time of the day isn't taken into account, only the date.
      */
     @JvmOverloads
-    fun findBasedOn(r: Recurrence, base: Long, baseCount: Int,
+    fun findBasedOn(r: Recurrence, startDate: Long, base: Long, baseCount: Int,
                     amount: Int, fromDate: Long = Recurrence.DATE_NONE): MutableList<Long> {
         require(amount >= 1) { "Amount must be 1 or greater" }
-        require(r.startDate != Recurrence.DATE_NONE) { "Recurrence must have a start date." }
+        require(startDate != Recurrence.DATE_NONE) { "Start date cannot be none." }
 
         val list = mutableListOf<Long>()
 
-        val from = if (fromDate == Recurrence.DATE_NONE) r.startDate else fromDate
+        val from = if (fromDate == Recurrence.DATE_NONE) startDate else fromDate
         date.timeInMillis = base
 
         var count = baseCount - 1
@@ -69,8 +72,8 @@ class RecurrenceFinder {
 
         when (r.period) {
             Period.NONE -> {
-                if (r.startDate.compareDay(from, temp) != -1) {
-                    list += r.startDate
+                if (startDate.compareDay(from, temp) != -1) {
+                    list += startDate
                 }
             }
             Period.DAILY -> {
@@ -109,8 +112,8 @@ class RecurrenceFinder {
                             return list
                         }
 
-                        if ((!isFirstWeek || day >= startDay)
-                                && r.isRecurringOnDaysOfWeek(1 shl day)) {
+                        if ((!isFirstWeek || day >= startDay) && ((r.byDay == 1 && day == startDay)
+                                        || (r.byDay != 1 && r.isRecurringOnDaysOfWeek(1 shl day)))) {
                             // On first week, don't count events on days before start day.
                             if (!fromDateReached && date.timeInMillis.compareDay(from, temp) != -1) {
                                 // From date has been reached.
@@ -133,10 +136,9 @@ class RecurrenceFinder {
                 }
             }
             Period.MONTHLY -> {
-                // Save info on which day in the month the events happen.
-                val rday = date[Calendar.DAY_OF_WEEK]
-                val rmonthDay = date[Calendar.DAY_OF_MONTH]
-                val rweek = date[Calendar.DAY_OF_WEEK_IN_MONTH]
+                // If events happen on the same day of each month but day is 0,
+                // use the start date's day for the day of the month.
+                val monthDay = if (r.byMonthDay == 0) date[Calendar.DAY_OF_MONTH] else r.byMonthDay
 
                 loop@ while (true) {
                     if (list.size == amount || r.endType == EndType.BY_COUNT && count >= r.endCount
@@ -145,34 +147,23 @@ class RecurrenceFinder {
                         return list
                     }
 
-                    when (r.monthlyDay) {
-                        MonthlyDay.LAST_DAY_OF_MONTH -> {
-                            // Set date to the last day of the month.
-                            date[Calendar.DAY_OF_MONTH] = date.getActualMaximum(Calendar.DAY_OF_MONTH)
-                        }
-                        MonthlyDay.SAME_DAY_OF_MONTH -> {
-                            // Set date to the same day as start date.
-                            if (rmonthDay > date.getActualMaximum(Calendar.DAY_OF_MONTH)) {
-                                // The month doesn't have this day, eg: February doesn't have a 31.
-                                date.add(Calendar.MONTH, r.frequency)
-                                continue@loop
-                            } else {
-                                date[Calendar.DAY_OF_MONTH] = rmonthDay
-                            }
-                        }
-                        MonthlyDay.SAME_DAY_OF_WEEK -> {
-                            // Set to the middle of the month to make sure month doesn't change
-                            // when changing day of week and week of month below.
-                            date.set(Calendar.DAY_OF_MONTH, 15)
+                    if (r.byDay != 0) {
+                        // Set to the middle of the month to make sure month doesn't change
+                        // when changing day of week and week of month below.
+                        date.set(Calendar.DAY_OF_MONTH, 15)
+                        date[Calendar.DAY_OF_WEEK] = r.dayOfWeekInMonth
+                        date[Calendar.DAY_OF_WEEK_IN_MONTH] = r.weekInMonth
 
-                            if (rweek == 5) {
-                                // Last week of the month
-                                date[Calendar.DAY_OF_WEEK] = rday
-                                date[Calendar.DAY_OF_WEEK_IN_MONTH] = -1
-                            } else {
-                                date[Calendar.DAY_OF_WEEK] = rday
-                                date[Calendar.DAY_OF_WEEK_IN_MONTH] = rweek
-                            }
+                    } else {
+                        // Set date to the same day of each month.
+                        val maxDays = date.getActualMaximum(Calendar.DAY_OF_MONTH)
+                        if (abs(monthDay) > maxDays) {
+                            // The month doesn't have this day, eg: February doesn't have a 31.
+                            date.add(Calendar.MONTH, r.frequency)
+                            continue@loop
+                        } else {
+                            date[Calendar.DAY_OF_MONTH] =
+                                    if (monthDay > 0) monthDay else maxDays + monthDay + 1
                         }
                     }
 
@@ -191,9 +182,9 @@ class RecurrenceFinder {
             }
             Period.YEARLY -> {
                 // Check if start date is on Feb 29.
-                date.timeInMillis = r.startDate
+                date.timeInMillis = startDate
                 val isStartFeb29 = date.isLeapYear(date[Calendar.YEAR]) &&
-                        date[Calendar.DAY_OF_YEAR] == 60
+                        date[Calendar.DAY_OF_YEAR] == FEB_29
                 date.timeInMillis = base
 
                 while (true) {
@@ -218,7 +209,7 @@ class RecurrenceFinder {
                         if (isStartFeb29) {
                             // Adding years to a calendar on Feb 29 sets it to Feb 28, change that.
                             if (date.isLeapYear(date[Calendar.YEAR])) {
-                                date[Calendar.DAY_OF_YEAR] = 60
+                                date[Calendar.DAY_OF_YEAR] = FEB_29
                                 break
                             }
                         } else {
@@ -237,26 +228,28 @@ class RecurrenceFinder {
      * Note that the recurrence's start date is never included in the returned list.
      *
      * @param r The recurrence.
+     * @param startDate The start date of the recurring event, cannot be [Recurrence.DATE_NONE].
      * @param amount The number of events to find, must be at least 1.
      * @param fromDate The date from which to start finding recurrence events. Can be set
      * to [Recurrence.DATE_NONE] to find events from the start date of the recurrence.
      */
     @JvmOverloads
-    fun find(r: Recurrence, amount: Int, fromDate: Long = Recurrence.DATE_NONE): MutableList<Long> {
-        return findBasedOn(r, r.startDate, 1, amount, fromDate)
+    fun find(r: Recurrence, startDate: Long, amount: Int, fromDate: Long = Recurrence.DATE_NONE): MutableList<Long> {
+        return findBasedOn(r, startDate, startDate, 1, amount, fromDate)
     }
 
     /**
-     * Get event dates of a [recurrence][r] between a [start date][startDate] (inclusive)
-     * and an [end date][endDate] (exclusive).
+     * Get event dates of a [recurrence][r] between a [start date][start] (inclusive)
+     * and an [end date][end] (exclusive).
+     * @param startDate The start date of the recurring event, cannot be [Recurrence.DATE_NONE].
      */
-    fun findBetween(r: Recurrence, startDate: Long, endDate: Long): MutableList<Long> {
+    fun findBetween(r: Recurrence, startDate: Long, start: Long, end: Long): MutableList<Long> {
         val list = mutableListOf<Long>()
-        var lastDate = r.startDate
+        var lastDate = startDate
         var count = 1
         while (true) {
             // Find the next event based on the last.
-            val events = findBasedOn(r, lastDate, count, 2)
+            val events = findBasedOn(r, startDate, lastDate, count, 2)
 
             if (events.size == 1) {
                 // No more events.
@@ -264,14 +257,18 @@ class RecurrenceFinder {
             } else {
                 // Add event if after start date.
                 lastDate = events.last()
-                if (lastDate >= endDate) {
+                if (lastDate >= end) {
                     return list
-                } else if (lastDate >= startDate) {
+                } else if (lastDate >= start) {
                     list += lastDate
                 }
                 count++
             }
         }
+    }
+
+    companion object {
+        private const val FEB_29 = 60
     }
 
 }

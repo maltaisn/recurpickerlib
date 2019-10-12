@@ -17,7 +17,6 @@
 package com.maltaisn.recurpicker.format
 
 import com.maltaisn.recurpicker.Recurrence
-import com.maltaisn.recurpicker.Recurrence.MonthlyDay
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.dateFor
 import org.junit.Test
@@ -31,54 +30,73 @@ class RecurrenceSerializerTest {
 
     @Test
     fun read_version1() {
+        // Used to convert byte[] to hex string: https://stackoverflow.com/a/9855338/5288316
+
         val a1 = hexStringToByteArray("00000064010000016D6BB9C60000000000000000010000000000000000000000000000000000000000")
-        assertEquals(Recurrence(dateFor("2019-09-26"), Period.DAILY) {
-            isDefault = true
-        }, serializer.read(a1))
+        assertEquals(Recurrence(Period.DAILY), serializer.read(a1))
 
         val a2 = hexStringToByteArray("0000006400000000E8DF6BDA0000000001000000050000009400000000000000000000000000000000")
-        assertEquals(Recurrence(dateFor("2001-09-11"), Period.WEEKLY) {
+        assertEquals(Recurrence(Period.WEEKLY) {
             frequency = 5
-            setWeekDays(Recurrence.MONDAY, Recurrence.WEDNESDAY, Recurrence.SATURDAY)
+            setDaysOfWeek(Recurrence.MONDAY, Recurrence.WEDNESDAY, Recurrence.SATURDAY)
         }, serializer.read(a2))
 
         val a3 = hexStringToByteArray("000000640000000176B72ABC800000000200000002000000020000000100000000000001941B15C880")
-        assertEquals(Recurrence(dateFor("2020-12-31"), Period.MONTHLY) {
+        assertEquals(Recurrence(Period.MONTHLY) {
             frequency = 2
-            monthlyDay = MonthlyDay.LAST_DAY_OF_MONTH
+            dayInMonth = -1
             endDate = dateFor("2024-12-31")
         }, serializer.read(a3))
 
         val a4 = hexStringToByteArray("000000640000000176B72ABC80000000030000000100000000000000020000000C0000000000000000")
-        assertEquals(Recurrence(dateFor("2020-12-31"), Period.YEARLY) {
+        assertEquals(Recurrence(Period.YEARLY) {
             endCount = 12
         }, serializer.read(a4))
+
+        val a5 = hexStringToByteArray("00000064000000016941EC508000000002000000010000000100000000000000000000000000000000")
+        assertEquals(Recurrence(Period.MONTHLY) {
+            setDayOfWeekInMonth(Recurrence.SUNDAY, 1)
+        }, serializer.read(a5))
     }
 
     @Test
     fun read_write_version2() {
-        val r1 = Recurrence(dateFor("2019-09-26"), Period.DAILY) { isDefault = true }
+        val r1 = Recurrence(Period.DAILY)
         assertEquals(r1, serializer.read(serializer.write(r1)))
 
-        val r2 = Recurrence(dateFor("2001-09-11"), Period.WEEKLY) {
+        val r2 = Recurrence(Period.WEEKLY) {
             frequency = 5
-            setWeekDays(Recurrence.MONDAY, Recurrence.WEDNESDAY, Recurrence.SATURDAY)
+            setDaysOfWeek(Recurrence.MONDAY, Recurrence.WEDNESDAY, Recurrence.SATURDAY)
         }
         assertEquals(r2, serializer.read(serializer.write(r2)))
 
-        val r3 = Recurrence(dateFor("2020-12-31"), Period.MONTHLY) {
+        val r3 = Recurrence(Period.MONTHLY) {
             frequency = 2
-            monthlyDay = MonthlyDay.LAST_DAY_OF_MONTH
+            dayInMonth = -1
             endDate = dateFor("2024-12-31")
         }
         assertEquals(r3, serializer.read(serializer.write(r3)))
 
-        val r4 = Recurrence(dateFor("2020-12-31"), Period.YEARLY) {
+        val r4 = Recurrence(Period.YEARLY) {
             endCount = 12
         }
         assertEquals(r4, serializer.read(serializer.write(r4)))
     }
 
+    @Test(expected = IllegalArgumentException::class)
+    fun read_unknownVersion() {
+        serializer.read(hexStringToByteArray("00000000000000016941EC508000000002000000010000000100000000000000000000000000000000"))
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun read_badLength_version1() {
+        serializer.read(hexStringToByteArray("00000064000000016941"))
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun read_badLength_version2() {
+        serializer.read(hexStringToByteArray("00000065000000016941"))
+    }
 
     private fun hexStringToByteArray(s: String): ByteArray {
         val len = s.length

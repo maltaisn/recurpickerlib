@@ -17,8 +17,10 @@
 package com.maltaisn.recurpicker.format
 
 import com.maltaisn.recurpicker.Recurrence
-import com.maltaisn.recurpicker.Recurrence.*
+import com.maltaisn.recurpicker.Recurrence.EndType
+import com.maltaisn.recurpicker.Recurrence.Period
 import java.nio.ByteBuffer
+import java.util.*
 
 
 /**
@@ -26,7 +28,10 @@ import java.nio.ByteBuffer
  * Read is backward-compatible with previous versions.
  * Prefer [RRuleFormatter] to this format for serialization since its more flexible.
  */
+@Deprecated("Use RRuleFormatter instead.")
 class RecurrenceSerializer {
+
+    private val calendar = Calendar.getInstance()
 
     /**
      * Read a recurrence from a byte [array] and return it.
@@ -36,15 +41,28 @@ class RecurrenceSerializer {
         val bb = ByteBuffer.wrap(array)
         return when (bb.int) {
             VERSION_1 -> {
-                val isDefault = bb.get() == 1.toByte()
-                Recurrence(bb.long, Period.values()[bb.int + 1]) {
-                    this.isDefault = isDefault
+                require(bb.remaining() >= VERSION_1_LENGTH) { "Invalid length." }
+                bb.get()  // Discard default flag byte
+                val startDate = bb.long
+
+                Recurrence(Period.values()[bb.int + 1]) {
                     frequency = bb.int
 
                     val daySetting = bb.int
-                    weeklyDays = daySetting
-                    monthlyDay = MonthlyDay.values().getOrNull(daySetting)
-                            ?: MonthlyDay.SAME_DAY_OF_MONTH
+                    if (period == Period.WEEKLY) {
+                        setDaysOfWeek(daySetting)
+                    } else if (period == Period.MONTHLY) {
+                        when (daySetting) {
+                            0 -> dayInMonth = 0
+                            1 -> {
+                                calendar.timeInMillis = startDate
+                                var weekInMonth = calendar[Calendar.DAY_OF_WEEK_IN_MONTH]
+                                if (weekInMonth == 5) weekInMonth = -1
+                                setDayOfWeekInMonth(1 shl calendar[Calendar.DAY_OF_WEEK], weekInMonth)
+                            }
+                            2 -> dayInMonth = -1
+                        }
+                    }
 
                     val endType = EndType.values()[bb.int]
                     endCount = bb.int
@@ -56,42 +74,38 @@ class RecurrenceSerializer {
                 }
             }
             VERSION_2 -> {
-                Recurrence(bb.long, Period.values()[bb.get().toInt()]) {
+                require(bb.remaining() >= VERSION_2_LENGTH) { "Invalid length." }
+                Recurrence(Period.values()[bb.get().toInt()]) {
                     frequency = bb.int
-                    weeklyDays = bb.int
-                    monthlyDay = MonthlyDay.values()[bb.get().toInt()]
+                    byDay = bb.short.toInt()
+                    byMonthDay = bb.get().toInt()
 
                     val endType = EndType.values()[bb.get().toInt()]
                     endCount = bb.int
                     endDate = bb.long
                     this.endType = endType
-
-                    isDefault = bb.get() == 1.toByte()
                 }
             }
-            else -> error("Unknown recurrence schema version.")
+            else -> throw IllegalArgumentException("Unknown recurrence schema version.")
         }
     }
 
     /**
      * Write a [recurrence][r] to a byte array and return it.
      */
-    fun write(r: Recurrence): ByteArray = ByteBuffer.allocate(36).apply {
+    fun write(r: Recurrence): ByteArray = ByteBuffer.allocate(25).apply {
         putInt(VERSION)
-        putLong(r.startDate)
         put(r.period.ordinal.toByte())
         putInt(r.frequency)
-        putInt(r.weeklyDays)
-        put(r.monthlyDay.ordinal.toByte())
+        putShort(r.byDay.toShort())
+        put(r.byMonthDay.toByte())
         put(r.endType.ordinal.toByte())
         putInt(r.endCount)
         putLong(r.endDate)
-        put(if (r.isDefault) 1.toByte() else 0)
     }.array()
 
 
     companion object {
-
         /**
          * Version 1, from v1.0.0 to v1.6.0
          * - 0: int, version
@@ -99,32 +113,32 @@ class RecurrenceSerializer {
          * - 5: long, start date
          * - 13: int, period (-1=none, 0=daily, 1=weekly, 2=monthly, 3=yearly)
          * - 17: int, frequency
-         * - 21: int, day setting (both weekly and monthly additional options)
+         * - 21: int, day setting (both weekly and monthly additional options,
+         *      if monthly, 0=same_day, 1=same_week, 2=last_day)
          * - 25: int, end type (0=never, 1=date, 2=count)
          * - 29: int, end count
          * - 33: long, end date (0=none)
-         * - Length: 41
+         * - Length: 41, 37 excluding version
          */
         private const val VERSION_1 = 100
+        private const val VERSION_1_LENGTH = 37
 
         /**
-         * Version 1, from v2.0.0
+         * Version 2, from v2.0.0
          * - 0: int, version
-         * - 4: long, start date
-         * - 12: byte, period (0=none, 1=daily, 2=weekly, 3=monthly, 4=yearly)
-         * - 13: int, frequency
-         * - 17: int, weekly setting
-         * - 21: byte: monthly setting (0=same day, 1=same week, 2=last)
-         * - 22: byte, end type (0=never, 1=date, 2=count)
-         * - 23: int, end count
-         * - 27: long, end date (Long.MIN_VALUE=none)
-         * - 35: byte, default flag (0=false, 1=true)
-         * - Length: 36
+         * - 4: byte, period (0=none, 1=daily, 2=weekly, 3=monthly, 4=yearly)
+         * - 5: int, frequency
+         * - 9: short, byDay
+         * - 11: byte: byMonthDay
+         * - 12: byte, end type (0=never, 1=date, 2=count)
+         * - 13: int, end count
+         * - 17: long, end date (Long.MIN_VALUE=none)
+         * - Length: 25, 21 excluding version
          */
         private const val VERSION_2 = 101
+        private const val VERSION_2_LENGTH = 21
 
         private const val VERSION = VERSION_2
-
     }
 
 }

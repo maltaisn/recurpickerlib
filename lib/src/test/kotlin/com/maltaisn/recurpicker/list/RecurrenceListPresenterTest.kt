@@ -23,6 +23,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyBoolean
+import org.mockito.ArgumentMatchers.anyLong
 import org.mockito.junit.MockitoJUnitRunner
 import kotlin.test.assertEquals
 
@@ -36,8 +37,8 @@ internal class RecurrenceListPresenterTest {
     private val presenter = RecurrenceListPresenter()
     private val settings = RecurrencePickerSettings {
         presets = listOf(
-                Recurrence(Recurrence.DATE_NONE, Recurrence.Period.NONE) { isDefault = true },
-                Recurrence(Recurrence.DATE_NONE, Recurrence.Period.DAILY) { isDefault = true },
+                Recurrence(Recurrence.Period.NONE),
+                Recurrence(Recurrence.Period.DAILY),
                 null)
     }
 
@@ -60,7 +61,7 @@ internal class RecurrenceListPresenterTest {
 
     @Test
     fun getItemCount_withSelection() {
-        whenever(view.selectedRecurrence).thenReturn(Recurrence(Recurrence.DATE_NONE, Recurrence.Period.DAILY) {
+        whenever(view.selectedRecurrence).thenReturn(Recurrence(Recurrence.Period.DAILY) {
             frequency = 3
         })
 
@@ -71,25 +72,26 @@ internal class RecurrenceListPresenterTest {
 
     @Test
     fun bindItems() {
-        val selected = Recurrence(Recurrence.DATE_NONE, Recurrence.Period.DAILY) {
+        val selected = Recurrence(Recurrence.Period.DAILY) {
             frequency = 3
         }
         whenever(view.selectedRecurrence).thenReturn(selected)
+        whenever(view.startDate).thenReturn(Recurrence.DATE_NONE)
 
         presenter.attach(view, null)
 
         presenter.onBindItemView(itemView, 3)
         verify(itemView).bindCustomView()
-        verify(itemView, never()).bindRecurrenceView(any(), any(), anyBoolean())
+        verify(itemView, never()).bindRecurrenceView(any(), any(), anyLong(), anyBoolean())
 
         presenter.onBindItemView(itemView, 0)
-        verify(itemView).bindRecurrenceView(settings.formatter, selected, true)
+        verify(itemView).bindRecurrenceView(settings.formatter, selected, Recurrence.DATE_NONE, true)
 
         presenter.onBindItemView(itemView, 1)
-        verify(itemView).bindRecurrenceView(settings.formatter, settings.presets[0]!!, false)
+        verify(itemView).bindRecurrenceView(settings.formatter, settings.presets[0]!!, Recurrence.DATE_NONE, false)
 
         presenter.onBindItemView(itemView, 2)
-        verify(itemView).bindRecurrenceView(settings.formatter, settings.presets[1]!!, false)
+        verify(itemView).bindRecurrenceView(settings.formatter, settings.presets[1]!!, Recurrence.DATE_NONE, false)
     }
 
     @Test

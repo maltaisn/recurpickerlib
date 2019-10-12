@@ -54,6 +54,11 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
     /**
      *
      */
+    override val startDate: Long = Recurrence.DATE_NONE
+
+    /**
+     *
+     */
     override var selectedRecurrence: Recurrence? = null
 
 
@@ -129,8 +134,10 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
         }
 
         override fun bindRecurrenceView(formatter: RecurrenceFormatter,
-                                        recurrence: Recurrence, checked: Boolean) {
-            label.text = formatter.format(recurrence, requireContext())
+                                        recurrence: Recurrence,
+                                        startDate: Long,
+                                        checked: Boolean) {
+            label.text = formatter.format(requireContext(), recurrence)
             label.isChecked = checked
         }
 

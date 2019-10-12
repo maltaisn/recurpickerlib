@@ -51,11 +51,11 @@ class RecurrencePickerSettings private constructor(
 
         /** @see RecurrencePickerSettings.presets */
         var presets: List<Recurrence?> = arrayListOf(
-                Recurrence(Recurrence.DATE_NONE, Period.NONE) { isDefault = true },
-                Recurrence(Recurrence.DATE_NONE, Period.DAILY) { isDefault = true },
-                Recurrence(Recurrence.DATE_NONE, Period.WEEKLY) { isDefault = true },
-                Recurrence(Recurrence.DATE_NONE, Period.MONTHLY) { isDefault = true },
-                Recurrence(Recurrence.DATE_NONE, Period.YEARLY) { isDefault = true },
+                Recurrence(Period.NONE),
+                Recurrence(Period.DAILY),
+                Recurrence(Period.WEEKLY),
+                Recurrence(Period.MONTHLY),
+                Recurrence(Period.YEARLY),
                 null)
 
         fun build() = RecurrencePickerSettings(formatter, presets)

@@ -17,10 +17,10 @@
 package com.maltaisn.recurpicker.format
 
 import android.content.Context
-import android.content.res.Resources
 import com.maltaisn.recurpicker.R
 import com.maltaisn.recurpicker.Recurrence
-import com.maltaisn.recurpicker.Recurrence.*
+import com.maltaisn.recurpicker.Recurrence.EndType
+import com.maltaisn.recurpicker.Recurrence.Period
 import java.text.DateFormat
 import java.util.*
 
@@ -38,14 +38,22 @@ class RecurrenceFormatter(val dateFormat: DateFormat) {
 
     /**
      * Format a recurrence to its localized string represention.
-     * @param r recurrence to format
+     * @param context Context needed to access string resources, can be any context.
+     * @param r The recurrence to format
+     * @param startDate The start date of the event that uses the recurrence. This is optional
+     * and can be set to [Recurrence.DATE_NONE] to be unspecified. Specifying the start date will
+     * allow to avoid repeating information that will be shared by every event of the recurrence.
      */
-    fun format(r: Recurrence, context: Context): String {
+    fun format(context: Context, r: Recurrence, startDate: Long = Recurrence.DATE_NONE): String {
         val res = context.resources
 
+        if (startDate != Recurrence.DATE_NONE) {
+            calendar.timeInMillis = startDate
+        }
+
         // Generate first part of the text: does not repeat, every [freq] day/week/month/year.
-        val recurSb = StringBuilder()
-        recurSb.append(when (r.period) {
+        val sb = StringBuilder()
+        sb.append(when (r.period) {
             Period.NONE -> res.getString(R.string.rp_format_none)
             Period.DAILY -> res.getQuantityString(R.plurals.rp_format_day, r.frequency)
             Period.WEEKLY -> res.getQuantityString(R.plurals.rp_format_week, r.frequency)
@@ -54,11 +62,13 @@ class RecurrenceFormatter(val dateFormat: DateFormat) {
         }.replace("|", ""))
 
         // Day setting
-        if (!r.isDefault) {
-            if (r.period == Period.WEEKLY) {
-                // Make a list of days of week
-                val weekOptionStr = StringBuilder()
-                if (r.weeklyDays == Recurrence.EVERY_DAY_OF_WEEK) {
+        if (r.period == Period.WEEKLY) {
+            // Make a list of days of week
+            val weekOptionStr = StringBuilder()
+            if (r.byDay != 1 && (startDate == Recurrence.DATE_NONE
+                            || r.byDay != (1 or (1 shl calendar[Calendar.DAY_OF_WEEK])))) {
+                // If events happen on the same day of the week as start date's, don't specify the day.
+                if (r.byDay == Recurrence.EVERY_DAY_OF_WEEK) {
                     // on every day of the week
                     weekOptionStr.append(res.getString(R.string.rp_format_weekly_all))
 
@@ -73,59 +83,51 @@ class RecurrenceFormatter(val dateFormat: DateFormat) {
                     }
                     weekOptionStr.delete(weekOptionStr.length - 2, weekOptionStr.length)  // Remove extra separator
                 }
-                recurSb.append(' ')
-                recurSb.append(res.getString(R.string.rp_format_weekly_option, weekOptionStr.toString()))
+                sb.append(' ')
+                sb.append(res.getString(R.string.rp_format_weekly_option, weekOptionStr.toString()))
+            }
 
-            } else if (r.period == Period.MONTHLY) {
-                recurSb.append(" (")
-                when (r.monthlyDay) {
-                    MonthlyDay.SAME_DAY_OF_MONTH -> {
-                        // on the same day of each month
-                        recurSb.append(res.getString(R.string.rp_format_monthly_same_day))
-                    }
-                    MonthlyDay.SAME_DAY_OF_WEEK -> {
-                        // on every [nth] [Sunday]
-                        recurSb.append(getSameDayOfSameWeekString(r.startDate, res))
-                    }
-                    MonthlyDay.LAST_DAY_OF_MONTH -> {
-                        // on the last day of each month
-                        recurSb.append(res.getString(R.string.rp_format_monthly_last_day))
-                    }
+        } else if (r.period == Period.MONTHLY) {
+            if (r.byDay != 0 || r.byMonthDay != 0) {
+                // On the same day of the month as start date's, don't specific it.
+                sb.append(" (")
+                if (startDate != Recurrence.DATE_NONE && r.byMonthDay == calendar[Calendar.DAY_OF_MONTH]) {
+                    // on the same day of each month
+                    sb.append(res.getString(R.string.rp_format_monthly_same_day))
+
+                } else if (r.byMonthDay == -1) {
+                    // on the last day of each month
+                    sb.append(res.getString(R.string.rp_format_monthly_last_day))
+
+                } else if (r.byDay != 0) {
+                    // on every [nth] [day of the week]
+                    val weekInMonth = r.weekInMonth
+                    val daysStr = res.getIntArray(R.array.rp_format_monthly_same_week)
+                    val numbersStr = res.getStringArray(R.array.rp_format_monthly_ordinal)
+                    val weekNbStr = if (weekInMonth == -1) numbersStr[4] else numbersStr[weekInMonth - 1]
+                    sb.append(res.getString(daysStr[r.dayOfWeekInMonth - 1], weekNbStr))
+
+                } else {
+                    throw IllegalArgumentException("Unsupported value of Recurrence.byMonthDay")
                 }
-                recurSb.append(")")
+                sb.append(')')
             }
         }
 
         // End type
         if (r.endType != EndType.NEVER) {
-            recurSb.append("; ")
+            sb.append("; ")
             if (r.endType == EndType.BY_DATE) {
                 // until [date]
-                recurSb.append(res.getString(R.string.rp_format_end_date,
+                sb.append(res.getString(R.string.rp_format_end_date,
                         dateFormat.format(Date(r.endDate))))
             } else {
                 // for [endCount] event(s)
-                recurSb.append(res.getQuantityString(R.plurals.rp_format_end_count, r.endCount))
+                sb.append(res.getQuantityString(R.plurals.rp_format_end_count, r.endCount))
             }
         }
 
-        return recurSb.toString()
-    }
-
-    /**
-     * Get the text for a date to display on a monthly recurrence repeated on the
-     * same day of week of same week, eg: "on third Sunday" or "on last Friday"
-     * @param date date to get it for
-     */
-    internal fun getSameDayOfSameWeekString(date: Long, res: Resources): String {
-        calendar.timeInMillis = date
-
-        // Since strings are in a string array, can't be formatted directly
-        // so do it in the same its done in android.content.res.Resources
-        val daysStr = res.getIntArray(R.array.rp_format_monthly_same_week)
-        val numbersStr = res.getStringArray(R.array.rp_format_monthly_ordinal)
-        val weekNbStr = numbersStr[calendar[Calendar.DAY_OF_WEEK_IN_MONTH] - 1]
-        return res.getString(daysStr[calendar[Calendar.DAY_OF_WEEK] - 1], weekNbStr)
+        return sb.toString()
     }
 
 }

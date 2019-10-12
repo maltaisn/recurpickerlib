@@ -17,7 +17,8 @@
 package com.maltaisn.recurpicker.format
 
 import com.maltaisn.recurpicker.Recurrence
-import com.maltaisn.recurpicker.Recurrence.*
+import com.maltaisn.recurpicker.Recurrence.EndType
+import com.maltaisn.recurpicker.Recurrence.Period
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,17 +27,9 @@ import java.util.*
  * Utility class to write a [Recurrence] as a RRule and read it back.
  * See [RFC2445][https://tools.ietf.org/html/rfc2445#section-4.8.5.4] and
  * [RFC5545][https://tools.ietf.org/html/rfc5545#section-3.3.10].
- *
- * Note that this doesn't really follow the specifications since rules specify
- * a `DTSTART` attribute which should be part of the event not the recurrence rule.
- * There's also a `DEFAULT` attribute that obviously doesn't exist in the spec.
- * The `NONE` value for the `FREQ` attribute is not supported too.
- *
  * Start dates and end dates are formatted to a local time string.
  */
 class RRuleFormatter {
-
-    private val calendar = Calendar.getInstance()
 
     /**
      * Parse a RFC 5545 string recurrence rule and return a recurrence.
@@ -55,9 +48,6 @@ class RRuleFormatter {
             it.substring(0, pos) to it.substring(pos + 1)
         }
 
-        val startDateStr = requireNotNull(attributes["DTSTART"]) { "Recurrence rule must specify start date." }
-        val startDate = DATE_FORMAT.parse(startDateStr)!!.time
-
         val periodStr = requireNotNull(attributes["FREQ"]) { "Recurrence rule must specify period." }
         val period = when (periodStr) {
             "NONE" -> Period.NONE
@@ -65,42 +55,50 @@ class RRuleFormatter {
             "WEEKLY" -> Period.WEEKLY
             "MONTHLY" -> Period.MONTHLY
             "YEARLY" -> Period.YEARLY
-            else -> error("Unsupported recurrence period.")
+            else -> throw IllegalArgumentException("Unsupported recurrence period.")  // Secondly, minutely, hourly
         }
 
-        return Recurrence(startDate, period) {
+        return Recurrence(period) {
             frequency = attributes["INTERVAL"]?.toInt() ?: 1
 
             if (period == Period.WEEKLY) {
-                // Weekly days
-                weeklyDays = 0
-                val daysStr = requireNotNull(attributes["BYDAY"]) { "Weekly recurrence must specify days." }.split(',')
-                for (dayStr in daysStr) {
-                    weeklyDays = weeklyDays or (1 shl (BYDAY_VALUES.indexOf(dayStr) + 1))
+                // Days of the week
+                var days = 0
+                val daysAttr = attributes["BYDAY"]
+                if (daysAttr != null) {
+                    for (dayStr in daysAttr.split(',')) {
+                        val index = BYDAY_VALUES.indexOf(dayStr)
+                        require(index >= 0) { "Invalid day of week literal." }
+                        days = days or (1 shl (index + 1))
+                    }
+                    setDaysOfWeek(days)
                 }
 
             } else if (period == Period.MONTHLY) {
-                // Monthly day
-                val monthDayStr = attributes["BYMONTHDAY"]?.toInt()
-                monthlyDay = when (monthDayStr) {
-                    null -> MonthlyDay.SAME_DAY_OF_WEEK
-                    -1 -> MonthlyDay.LAST_DAY_OF_MONTH
-                    else -> MonthlyDay.SAME_DAY_OF_MONTH
+                // Monthly settings
+                val byDay = attributes["BYDAY"]
+                if (byDay != null) {
+                    val day = BYDAY_VALUES.indexOf(byDay.takeLast(2))
+                    require(day >= 0) { "Invalid day of week literal." }
+                    val week = byDay.dropLast(2).toInt()
+                    setDayOfWeekInMonth(1 shl (day + 1), week)
+                } else {
+                    dayInMonth = attributes["BYMONTHDAY"]?.toInt() ?: 0
                 }
             }
 
             // End type
             val endDateStr = attributes["UNTIL"]
             if (endDateStr != null) {
-                endDate = DATE_FORMAT.parse(endDateStr)!!.time
+                endDate = requireNotNull(DATE_FORMAT.parse(endDateStr)) {
+                    "Invalid end date format '${endDateStr}'."
+                }.time
             } else {
                 val endCountStr = attributes["COUNT"]
                 if (endCountStr != null) {
                     endCount = endCountStr.toInt()
                 }
             }
-
-            isDefault = attributes["DEFAULT"]?.equals("1") ?: false
         }
     }
 
@@ -110,11 +108,6 @@ class RRuleFormatter {
     fun format(r: Recurrence): String {
         val sb = StringBuilder()
         sb.append("RRULE:")
-
-        // Start date
-        sb.append("DTSTART=")
-        sb.append(DATE_FORMAT.format(r.startDate))
-        sb.append(';')
 
         // Period
         sb.append("FREQ=")
@@ -134,51 +127,27 @@ class RRuleFormatter {
             sb.append(';')
         }
 
-        // Day setting
-        when (r.period) {
-            Period.NONE, Period.DAILY -> {
+        // Additional settings
+        if (r.period == Period.WEEKLY) {
+            sb.append("BYDAY=")
+            for (i in 0..6) {
+                if (r.isRecurringOnDaysOfWeek(1 shl i + 1)) {
+                    sb.append(BYDAY_VALUES[i])
+                    sb.append(',')
+                }
             }
-            Period.WEEKLY -> {
+            sb.deleteCharAt(sb.length - 1) // Delete extra ","
+            sb.append(';')
+
+        } else if (r.period == Period.MONTHLY) {
+            if (r.byDay != 0) {
                 sb.append("BYDAY=")
-                for (i in 0..6) {
-                    if (r.isRecurringOnDaysOfWeek(1 shl i + 1)) {
-                        sb.append(BYDAY_VALUES[i])
-                        sb.append(',')
-                    }
-                }
-                sb.deleteCharAt(sb.length - 1) // Delete extra ","
+                sb.append(r.weekInMonth)
+                sb.append(BYDAY_VALUES[r.dayOfWeekInMonth - 1])
                 sb.append(';')
-            }
-            Period.MONTHLY -> {
-                calendar.timeInMillis = r.startDate
-                when (r.monthlyDay) {
-                    MonthlyDay.SAME_DAY_OF_MONTH -> {
-                        sb.append("BYMONTHDAY=")
-                        sb.append(calendar[Calendar.DAY_OF_MONTH])
-                    }
-                    MonthlyDay.SAME_DAY_OF_WEEK -> {
-                        val week = calendar[Calendar.DAY_OF_WEEK_IN_MONTH]
-                        sb.append("BYDAY=")
-                        if (week == 5) {
-                            sb.append("-1")
-                        } else {
-                            sb.append(week)
-                        }
-                        val dayOfWeek = calendar[Calendar.DAY_OF_WEEK]
-                        sb.append(BYDAY_VALUES[dayOfWeek - 1])
-                    }
-                    MonthlyDay.LAST_DAY_OF_MONTH -> {
-                        sb.append("BYMONTHDAY=-1")
-                    }
-                }
-                sb.append(';')
-            }
-            Period.YEARLY -> {
-                calendar.timeInMillis = r.startDate
-                sb.append("BYMONTH=")
-                sb.append(calendar[Calendar.MONTH] + 1)
-                sb.append(";BYMONTHDAY=")
-                sb.append(calendar[Calendar.DAY_OF_MONTH])
+            } else if (r.byMonthDay != 0) {
+                sb.append("BYMONTHDAY=")
+                sb.append(r.byMonthDay)
                 sb.append(';')
             }
         }
@@ -196,11 +165,6 @@ class RRuleFormatter {
                 sb.append(r.endCount)
                 sb.append(';')
             }
-        }
-
-        // Default flag
-        if (r.isDefault) {
-            sb.append("DEFAULT=1;")
         }
 
         sb.deleteCharAt(sb.length - 1) // Delete extra ";"
