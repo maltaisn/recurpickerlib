@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme.DayNight" parent="Base.AppTheme" tools:ignore="NewApi">
+        <item name="android:statusBarColor">?colorSurface</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+
+        <item name="toolbarThemeOverlay">@style/ThemeOverlay.MaterialComponents.Toolbar.Surface
+        </item>
+    </style>
+
+</resources>

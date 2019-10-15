@@ -2,32 +2,46 @@
 <!-- @formatter:off -->
 <resources>
 
-    <string name="rp_done" comment="Text of button to confirm the recurrence view.">Done</string>
+    <string name="rp_list_custom" comment="Recurrence in the list of preset">Custom…</string>
 
-    <string name="rp_repeat_options" comment="Title of the recurrence view.">Repeat options</string>
+    <string name="rp_picker_title">Custom recurrence</string>
+    <string name="rp_picker_subtitle_period">Repeats every</string>
+    <string name="rp_picker_subtitle_setting">Repeats on</string>
+    <string name="rp_picker_subtitle_end">Ends</string>
+    <string name="rp_picker_end_never">Never</string>
+    <string name="rp_picker_end_date">On</string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="one">After | occurrence</item>
+        <item quantity="other">After | occurrences</item>
+    </plurals>
+    <string name="rp_picker_done" comment="Text of button to confirm the recurrence view.">Done</string>
 
-    <string name="rp_custom" comment="Recurrence in the list of preset">Custom…</string>
-
-    <string name="rp_period_day" comment="Recurrence period option.">Repeat daily</string>
-    <string name="rp_period_week" comment="Recurrence period option.">Repeat weekly</string>
-    <string name="rp_period_month" comment="Recurrence period option.">Repeat monthly</string>
-    <string name="rp_period_year" comment="Recurrence period option.">Repeat yearly</string>
-
-    <string name="rp_end_never" comment="End type of a recurrence">Forever</string>
-    <string name="rp_end_date" comment="End type of a recurrence">Until a date</string>
-    <string name="rp_end_count" comment="End type of a recurrence">For a number of events</string>
-
-    <string name="rp_end_never_abbr" comment="Abbreviated form of string rp_end_never.">Forever</string>
-    <string name="rp_end_date_abbr" comment="Abbreviated form of string rp_end_date. Text goes before a date input (text [input])">Until</string>
-    <string name="rp_end_count_abbr" comment="Abbreviated form of string rp_end_count. Text goes before a number of events input (text [input])">For</string>
-    <plurals name="rp_end_count_event" comment="Text goes after the number of events input ([input] text)">
-        <item quantity="one">event</item>
-        <item quantity="few">events</item>
-        <item quantity="many">events</item>
-        <item quantity="other">events</item>
+    <plurals name="rp_picker_period_day">
+        <item quantity="one">day</item>
+        <item quantity="other">days</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="one">week</item>
+        <item quantity="other">weeks</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="one">month</item>
+        <item quantity="other">months</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="one">year</item>
+        <item quantity="other">years</item>
     </plurals>
 
-    <string-array name="rp_days_of_week_abbr">
+    <string name="rp_day_of_week_abbr1_sun">S</string>
+    <string name="rp_day_of_week_abbr1_mon">M</string>
+    <string name="rp_day_of_week_abbr1_tue">T</string>
+    <string name="rp_day_of_week_abbr1_wed">W</string>
+    <string name="rp_day_of_week_abbr1_thu">T</string>
+    <string name="rp_day_of_week_abbr1_fri">F</string>
+    <string name="rp_day_of_week_abbr1_sat">S</string>
+
+    <string-array name="rp_days_of_week_abbr3">
         <item comment="Used in a list of days of week.">Sun</item>
         <item comment="Used in a list of days of week.">Mon</item>
         <item comment="Used in a list of days of week.">Tue</item>
@@ -39,28 +53,28 @@
 
     <string name="rp_format_none" comment="Text for no recurrence.">Does not repeat</string>
     <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. The | character is required to separate the part the goes before the number and the part that goes after for user input labels, but it is never shown.">
-        <item quantity="one">Every |day</item>
-        <item quantity="few">Every |%d days</item>
-        <item quantity="many">Every |%d days</item>
-        <item quantity="other">Every |%d days</item>
+        <item quantity="one">Every day</item>
+        <item quantity="few">Every %d days</item>
+        <item quantity="many">Every %d days</item>
+        <item quantity="other">Every %d days</item>
     </plurals>
     <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency. The | character is required to separate the part the goes before the number and the part that goes after for user input labels, but it is never shown.">
-        <item quantity="one">Every |week</item>
-        <item quantity="few">Every |%d weeks</item>
-        <item quantity="many">Every |%d weeks</item>
-        <item quantity="other">Every |%d weeks</item>
+        <item quantity="one">Every week</item>
+        <item quantity="few">Every %d weeks</item>
+        <item quantity="many">Every %d weeks</item>
+        <item quantity="other">Every %d weeks</item>
     </plurals>
     <plurals name="rp_format_month"  comment="Text for a monthly recurrence. The number argument is the frequency. The | character is required to separate the part the goes before the number and the part that goes after for user input labels, but it is never shown.">
-        <item quantity="one">Every |month</item>
-        <item quantity="few">Every |%d months</item>
-        <item quantity="many">Every |%d months</item>
-        <item quantity="other">Every |%d months</item>
+        <item quantity="one">Every month</item>
+        <item quantity="few">Every %d months</item>
+        <item quantity="many">Every %d months</item>
+        <item quantity="other">Every %d months</item>
     </plurals>
     <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency. The | character is required to separate the part the goes before the number and the part that goes after for user input labels, but it is never shown.">
-        <item quantity="one">Every |year</item>
-        <item quantity="few">Every |%d years</item>
-        <item quantity="many">Every |%d years</item>
-        <item quantity="other">Every |%d years</item>
+        <item quantity="one">Every year</item>
+        <item quantity="few">Every %d years</item>
+        <item quantity="many">Every %d years</item>
+        <item quantity="other">Every %d years</item>
     </plurals>
 
     <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">on %s</string>

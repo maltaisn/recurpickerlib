@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright 2019 Nicolas Maltais
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
+    tools:theme="@style/Theme.MaterialComponents.Light"
+    >
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/rp_toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="?rpToolbarThemeOverlay"
+        app:liftOnScroll="true"
+        tools:theme="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+        >
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/rp_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:menu="@menu/rp_fragment_picker"
+            app:navigationIcon="?homeAsUpIndicator"
+            app:title="@string/rp_picker_title"
+            app:titleTextColor="?colorControlNormal"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/rp_picker_scv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="32dp"
+            android:theme="@style/RecurrencePickerStyle"
+            >
+
+            <TextView
+                android:id="@+id/rp_picker_period_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:labelFor="@id/rp_picker_freq_input"
+                android:text="@string/rp_picker_subtitle_period"
+                android:textAppearance="?rpPickerSubtitleTextAppearance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rp_picker_freq_input_layout"
+                style="?attr/rpPickerInputLayoutStyle"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_period_label"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rp_picker_freq_input"
+                    style="?attr/rpPickerInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    tools:text="10"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rp_picker_period_dropdown_layout"
+                style="?rpPickerDropdownLayoutStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
+                android:labelFor="@+id/rp_picker_period_dropdown"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_freq_input_layout"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_period_label"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/rp_picker_period_dropdown"
+                    style="?rpPickerDropdownStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:dropDownWidth="200dp"
+                    tools:text="weeks"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/rp_picker_period_div"
+                style="?rpPickerDividerStyle"
+                android:layout_width="0dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_freq_input_layout"
+                />
+
+            <TextView
+                android:id="@+id/rp_picker_setting_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:labelFor="@id/rp_picker_freq_input"
+                android:text="@string/rp_picker_subtitle_setting"
+                android:textAppearance="?rpPickerSubtitleTextAppearance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_period_div"
+                />
+
+            <ToggleButton
+                android:id="@+id/rp_picker_week_btn_sun"
+                style="?rpPickerWeekBtnStyle"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:textOff="@string/rp_day_of_week_abbr1_sun"
+                android:textOn="@string/rp_day_of_week_abbr1_sun"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_setting_label"
+                />
+
+            <ToggleButton
+                android:id="@+id/rp_picker_week_btn_mon"
+                style="?rpPickerWeekBtnStyle"
+                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:textOff="@string/rp_day_of_week_abbr1_mon"
+                android:textOn="@string/rp_day_of_week_abbr1_mon"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_sun"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_week_btn_sun"
+                />
+
+            <ToggleButton
+                android:id="@+id/rp_picker_week_btn_tue"
+                style="?rpPickerWeekBtnStyle"
+                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:textOff="@string/rp_day_of_week_abbr1_tue"
+                android:textOn="@string/rp_day_of_week_abbr1_tue"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_mon"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_week_btn_sun"
+                />
+
+            <ToggleButton
+                android:id="@+id/rp_picker_week_btn_wed"
+                style="?rpPickerWeekBtnStyle"
+                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:textOff="@string/rp_day_of_week_abbr1_wed"
+                android:textOn="@string/rp_day_of_week_abbr1_wed"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_tue"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_week_btn_sun"
+                />
+
+            <ToggleButton
+                android:id="@+id/rp_picker_week_btn_thu"
+                style="?rpPickerWeekBtnStyle"
+                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:textOff="@string/rp_day_of_week_abbr1_thu"
+                android:textOn="@string/rp_day_of_week_abbr1_thu"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_wed"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_week_btn_sun"
+                />
+
+            <ToggleButton
+                android:id="@+id/rp_picker_week_btn_fri"
+                style="?rpPickerWeekBtnStyle"
+                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:textOff="@string/rp_day_of_week_abbr1_fri"
+                android:textOn="@string/rp_day_of_week_abbr1_fri"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_thu"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_week_btn_sun"
+                />
+
+            <ToggleButton
+                android:id="@+id/rp_picker_week_btn_sat"
+                style="?rpPickerWeekBtnStyle"
+                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:textOff="@string/rp_day_of_week_abbr1_sat"
+                android:textOn="@string/rp_day_of_week_abbr1_sat"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_fri"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_week_btn_sun"
+                />
+
+            <View
+                android:id="@+id/rp_picker_weekly_div"
+                style="?rpPickerDividerStyle"
+                android:layout_width="0dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_week_btn_sun"
+                />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/rp_picker_weekly_group"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:constraint_referenced_ids="rp_picker_setting_label,rp_picker_weekly_div,rp_picker_week_btn_sun,rp_picker_week_btn_mon,rp_picker_week_btn_tue,rp_picker_week_btn_wed,rp_picker_week_btn_thu,rp_picker_week_btn_fri,rp_picker_week_btn_sat"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rp_picker_monthly_dropdown_layout"
+                style="?rpPickerDropdownLayoutStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:labelFor="@+id/rp_picker_monthly_dropdown"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_weekly_div"
+                >
+
+                <AutoCompleteTextView
+                    android:id="@+id/rp_picker_monthly_dropdown"
+                    style="?rpPickerDropdownStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:text="@string/rp_format_monthly_same_day"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/rp_picker_monthly_div"
+                style="?rpPickerDividerStyle"
+                android:layout_width="0dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_monthly_dropdown_layout"
+                />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/rp_picker_monthly_group"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:constraint_referenced_ids="rp_picker_monthly_dropdown_layout,rp_picker_monthly_div"
+                />
+
+            <TextView
+                android:id="@+id/rp_picker_end_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:labelFor="@id/rp_picker_freq_input"
+                android:text="@string/rp_picker_subtitle_end"
+                android:textAppearance="?rpPickerSubtitleTextAppearance"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_monthly_div"
+                />
+
+            <TextView
+                android:id="@+id/rp_picker_end_never_label"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:text="@string/rp_picker_end_never"
+                android:textAppearance="?rpTextAppearance"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_never_view"
+                app:layout_constraintEnd_toEndOf="@id/rp_picker_end_never_view"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_end_never_radio"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_never_view"
+                />
+
+            <View
+                android:id="@+id/rp_picker_end_never_view"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_end_label"
+                />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rp_picker_end_never_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:minWidth="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_never_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_never_view"
+                tools:checked="true"
+                />
+
+            <View
+                android:id="@+id/rp_picker_end_never_div"
+                style="?rpPickerDividerStyle"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/rp_picker_end_never_label"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_end_never_view"
+                />
+
+            <TextView
+                android:id="@+id/rp_picker_end_date_prefix_label"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:labelFor="@+id/rp_picker_end_date_input"
+                tools:text="On"
+                android:textAppearance="?rpTextAppearance"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_view"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_end_date_radio"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_date_view"
+                tools:ignore="LabelFor"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rp_picker_end_date_input_layout"
+                style="?attr/rpPickerInputLayoutStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_view"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_end_date_prefix_label"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_date_view"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rp_picker_end_date_input"
+                    style="?attr/rpPickerInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:inputType="none"
+                    tools:text="Nov 12, 2019"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/rp_picker_end_date_suffix_label"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical"
+                android:labelFor="@+id/rp_picker_end_date_input"
+                android:textAppearance="?rpTextAppearance"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_view"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_end_date_input_layout"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_date_view"
+                tools:ignore="LabelFor"
+                />
+
+            <View
+                android:id="@+id/rp_picker_end_date_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_input_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_never_div"
+                />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rp_picker_end_date_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:minWidth="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_date_view"
+                />
+
+            <View
+                android:id="@+id/rp_picker_end_date_div"
+                style="?rpPickerDividerStyle"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/rp_picker_end_date_prefix_label"
+                app:layout_constraintTop_toBottomOf="@id/rp_picker_end_date_view"
+                />
+
+            <TextView
+                android:id="@+id/rp_picker_end_count_prefix_label"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical"
+                android:labelFor="@+id/rp_picker_end_date_input"
+                android:textAppearance="?rpTextAppearance"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_view"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_end_count_radio"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_count_view"
+                tools:ignore="LabelFor"
+                tools:text="After"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rp_picker_end_count_input_layout"
+                style="?attr/rpPickerInputLayoutStyle"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_view"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_end_count_prefix_label"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_count_view"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rp_picker_end_count_input"
+                    style="?attr/rpPickerInputStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    tools:text="8"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/rp_picker_end_count_suffix_label"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center_vertical"
+                android:labelFor="@+id/rp_picker_end_date_input"
+                android:textAppearance="?rpTextAppearance"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/rp_picker_end_count_input_layout"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_count_view"
+                tools:ignore="LabelFor"
+                tools:text="occurences"
+                />
+
+            <View
+                android:id="@+id/rp_picker_end_count_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_input_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_date_div"
+                />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rp_picker_end_count_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:minWidth="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_end_count_view"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -266,6 +266,16 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
+    fun monthly_sameDay_fromDate() {
+        val r = Recurrence(Period.MONTHLY)
+        assertEquals(listOf(
+                dateFor("2020-06-01"),
+                dateFor("2020-07-01"),
+                dateFor("2020-08-01")
+        ), finder.find(r, dateFor("2019-01-01"), 3, dateFor("2020-05-05")))
+    }
+
+    @Test
     fun monthly_sameWeek_third() {
         val r = Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.TUESDAY, 3)

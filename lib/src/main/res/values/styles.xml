@@ -1,43 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  Copyright 2019 Nicolas Maltais
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="PrivateResource">
 
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
+    <style name="RecurrencePickerStyle" parent="RecurrencePickerStyle.Base" />
 
-      http://www.apache.org/licenses/LICENSE-2.0
+    <style name="RecurrencePickerStyle.Base">
+        <item name="rpTextAppearance">?textAppearanceBody1</item>
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-<!-- @formatter:off -->
-<resources>
+        <item name="rpToolbarThemeOverlay">@style/ThemeOverlay.MaterialComponents.Toolbar.Primary
+        </item>
 
-    <style name="RecurrencePickerStyle">
-        <item name="rpRecurrenceListStyle">@style/RecurrenceListStyle</item>
-        <item name="rpRecurrenceListItemStyle">@style/RecurrenceListItemStyle</item>
-        <item name="rpRecurrenceListItemLabelStyle">@style/RecurrenceListItemLabelStyle</item>
+        <item name="rpListStyle">@style/RpListStyle</item>
+        <item name="rpListItemStyle">@style/RpListItemStyle</item>
+        <item name="rpListItemLabelStyle">@style/RpListItemLabelStyle</item>
+
+        <item name="rpPickerDividerStyle">@style/RpPickerDividerStyle</item>
+        <item name="rpPickerSubtitleTextAppearance">@style/RpPickerSubtitleTextAppearance</item>
+        <item name="rpPickerInputLayoutStyle">@style/RpPickerInputLayoutStyle</item>
+        <item name="rpPickerInputStyle">@style/RpPickerInputStyle</item>
+        <item name="rpPickerDropdownLayoutStyle">@style/RpPickerDropdownLayoutStyle</item>
+        <item name="rpPickerDropdownStyle">@style/RpPickerDropdownStyle</item>
+        <item name="rpPickerWeekBtnStyle">@style/RpPickerWeekBtnStyle</item>
     </style>
 
-    <style name="RecurrenceListStyle">
+    <style name="RpListStyle">
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:clipToPadding">false</item>
     </style>
 
-    <style name="RecurrenceListItemStyle">
-        <item name="android:background">?attr/selectableItemBackground</item>
+    <style name="RpListItemStyle">
+        <item name="android:background">?selectableItemBackground</item>
         <item name="android:paddingStart">16dp</item>
         <item name="android:paddingEnd">16dp</item>
     </style>
 
-    <style name="RecurrenceListItemLabelStyle">
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+    <style name="RpListItemLabelStyle">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
         <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAppearance">?rpTextAppearance</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+    </style>
+
+    <style name="RpPickerDividerStyle">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?colorOnBackground</item>
+        <item name="android:alpha">0.12</item>
+    </style>
+
+    <style name="RpPickerSubtitleTextAppearance" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
+    </style>
+
+    <style name="RpPickerInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/mtrl_filled_background_color</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="RpPickerInputStyle">
+        <item name="android:textAppearance">?rpTextAppearance</item>
+        <item name="android:gravity">center</item>
+        <item name="boxStrokeColor">@null</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="RpPickerDropdownLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">@color/mtrl_filled_background_color</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="RpPickerDropdownStyle">
+        <item name="android:textAppearance">?rpTextAppearance</item>
+        <item name="boxStrokeColor">@null</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:inputType">none</item>
+        <item name="android:editable">false</item>
+    </style>
+
+    <style name="RpEndRadioStyle">
+        <item name="android:minWidth">0dp</item>
+    </style>
+
+    <style name="RpPickerWeekBtnStyle">
+        <item name="android:layout_width">@dimen/rp_toggle_btn_size</item>
+        <item name="android:layout_height">@dimen/rp_toggle_btn_size</item>
+        <item name="android:disabledAlpha">0.5</item>
+        <item name="android:textAppearance">?rpTextAppearance</item>
+        <item name="android:textColor">@color/rp_toggle_btn_text</item>
+        <item name="android:background">@drawable/rp_toggle_btn_background</item>
     </style>
 
 </resources>

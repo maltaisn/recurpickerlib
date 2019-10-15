@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright 2019 Nicolas Maltais
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,12 +16,26 @@
 <!-- @formatter:off -->
 <resources>
 
-    <attr name="recurrencePickerStyle" format="reference"/>
+    <attr name="recurrencePickerStyle" format="reference" />
 
     <declare-styleable name="RecurrencePicker">
-        <attr name="rpRecurrenceListStyle" format="reference" />
-        <attr name="rpRecurrenceListItemStyle" format="reference" />
-        <attr name="rpRecurrenceListItemLabelStyle" format="reference" />
+        <attr name="rpTextAppearance" format="reference" />
+
+        <attr name="rpToolbarThemeOverlay" format="reference" />
+
+        <!-- Recurrence list dialog -->
+        <attr name="rpListStyle" format="reference" />
+        <attr name="rpListItemStyle" format="reference" />
+        <attr name="rpListItemLabelStyle" format="reference" />
+
+        <!-- Recurrence picker fragment/dialog -->
+        <attr name="rpPickerDividerStyle" format="reference" />
+        <attr name="rpPickerSubtitleTextAppearance" format="reference" />
+        <attr name="rpPickerInputLayoutStyle" format="reference" />
+        <attr name="rpPickerInputStyle" format="reference" />
+        <attr name="rpPickerDropdownLayoutStyle" format="reference" />
+        <attr name="rpPickerDropdownStyle" format="reference" />
+        <attr name="rpPickerWeekBtnStyle" format="reference" />
     </declare-styleable>
 
 </resources>

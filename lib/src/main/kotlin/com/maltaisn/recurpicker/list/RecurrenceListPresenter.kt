@@ -34,6 +34,7 @@ internal open class RecurrenceListPresenter : Presenter {
 
 
     override fun attach(view: View, state: Bundle?) {
+        check(this.view == null) { "Presenter already attached." }
         this.view = view
 
         if (state == null) {

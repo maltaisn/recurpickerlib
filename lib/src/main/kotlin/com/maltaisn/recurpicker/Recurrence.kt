@@ -43,6 +43,7 @@ import kotlin.math.abs
  *
  * If period is [WEEKLY], this value is a bit field of the days of the week on which
  * a weekly recurrence occurs. Bit field valid flags are the [DaysOfWeek] constants.
+ * If value is `1` (i.e no flags set), events will happen on the same day of the week as start date's.
  *
  * If period is [MONTHLY], the first byte is a bit field with a single [DaysOfWeek] flag set
  * indicating on which day of the week the events happen. The second byte is a number

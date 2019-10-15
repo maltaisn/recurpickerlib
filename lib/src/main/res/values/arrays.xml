@@ -2,24 +2,22 @@
 <!-- @formatter:off -->
 <resources>
 
-    <string-array name="rp_period_spinner_items">
-        <item>@string/rp_period_day</item>
-        <item>@string/rp_period_week</item>
-        <item>@string/rp_period_month</item>
-        <item>@string/rp_period_year</item>
-    </string-array>
+    <integer-array name="rp_picker_week_btn_ids">
+        <item>@id/rp_picker_week_btn_sun</item>
+        <item>@id/rp_picker_week_btn_mon</item>
+        <item>@id/rp_picker_week_btn_tue</item>
+        <item>@id/rp_picker_week_btn_wed</item>
+        <item>@id/rp_picker_week_btn_thu</item>
+        <item>@id/rp_picker_week_btn_fri</item>
+        <item>@id/rp_picker_week_btn_sat</item>
+    </integer-array>
 
-    <string-array name="rp_end_spinner_items">
-        <item>@string/rp_end_never</item>
-        <item>@string/rp_end_date</item>
-        <item>@string/rp_end_count</item>
-    </string-array>
-
-    <string-array name="rp_end_spinner_items_abbr">
-        <item>@string/rp_end_never_abbr</item>
-        <item>@string/rp_end_date_abbr</item>
-        <item>@string/rp_end_count_abbr</item>
-    </string-array>
+    <integer-array name="rp_picker_periods">
+        <item>@plurals/rp_picker_period_day</item>
+        <item>@plurals/rp_picker_period_week</item>
+        <item>@plurals/rp_picker_period_month</item>
+        <item>@plurals/rp_picker_period_year</item>
+    </integer-array>
 
     <string-array name="rp_format_monthly_same_week">
         <item>@string/rp_format_monthly_sun</item>

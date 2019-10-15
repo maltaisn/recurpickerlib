@@ -41,7 +41,13 @@ class RecurrencePickerSettings private constructor(
          * The list of recurrence presets shown in the recurrence list dialog.
          * A `null` recurrence will result in the "Custom..." item being shown.
          */
-        val presets: List<Recurrence?>
+        val presets: List<Recurrence?>,
+
+        /**
+         * The recurrence shown by default in the recurrence picker.
+         * This is shown when no recurrence or a "Does not repeat" recurrence is selected.
+         */
+        val defaultPickerRecurrence: Recurrence
 ) : Parcelable {
 
     class Builder {
@@ -58,7 +64,10 @@ class RecurrencePickerSettings private constructor(
                 Recurrence(Period.YEARLY),
                 null)
 
-        fun build() = RecurrencePickerSettings(formatter, presets)
+        /** @see RecurrencePickerSettings.defaultPickerRecurrence */
+        var defaultPickerRecurrence: Recurrence = Recurrence(Period.DAILY)
+
+        fun build() = RecurrencePickerSettings(formatter, presets, defaultPickerRecurrence)
     }
 
     // Parcelable stuff

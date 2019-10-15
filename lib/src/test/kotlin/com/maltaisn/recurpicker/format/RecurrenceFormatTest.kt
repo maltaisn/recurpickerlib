@@ -22,13 +22,11 @@ import com.maltaisn.recurpicker.R
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.dateFor
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.eq
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import java.text.SimpleDateFormat
@@ -50,24 +48,23 @@ class RecurrenceFormatTest {
         whenever(context.resources).thenReturn(resources)
 
         // Mock all format strings, plurals and arrays used.
-        whenever(resources.getStringArray(R.array.rp_days_of_week_abbr)).thenReturn(
+        whenever(resources.getStringArray(R.array.rp_days_of_week_abbr3)).thenReturn(
                 arrayOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
         whenever(resources.getString(R.string.rp_format_none)).thenReturn("Does not repeat")
-        whenever(resources.getQuantityString(eq(R.plurals.rp_format_day), any())).thenAnswer { "Every ${it.arguments[1]} days" }
-        whenever(resources.getQuantityString(eq(R.plurals.rp_format_week), any())).thenAnswer { "Every ${it.arguments[1]} weeks" }
-        whenever(resources.getQuantityString(eq(R.plurals.rp_format_month), any())).thenAnswer { "Every ${it.arguments[1]} months" }
-        whenever(resources.getQuantityString(eq(R.plurals.rp_format_year), any())).thenAnswer { "Every ${it.arguments[1]} years" }
+        whenever(resources.getQuantityString(eq(R.plurals.rp_format_day), anyInt(), anyVararg())).thenAnswer { "Every ${it.arguments[2]} days" }
+        whenever(resources.getQuantityString(eq(R.plurals.rp_format_week), anyInt(), anyVararg())).thenAnswer { "Every ${it.arguments[2]} weeks" }
+        whenever(resources.getQuantityString(eq(R.plurals.rp_format_month), anyInt(), anyVararg())).thenAnswer { "Every ${it.arguments[2]} months" }
+        whenever(resources.getQuantityString(eq(R.plurals.rp_format_year), anyInt(), anyVararg())).thenAnswer { "Every ${it.arguments[2]} years" }
         whenever(resources.getString(eq(R.string.rp_format_weekly_option), any())).thenAnswer { "on ${it.arguments[1]}" }
         whenever(resources.getString(R.string.rp_format_weekly_all)).thenReturn("every day of the week")
         whenever(resources.getString(R.string.rp_format_monthly_same_day)).thenReturn("on the same day each month")
         whenever(resources.getString(R.string.rp_format_monthly_last_day)).thenReturn("on the last day of the month")
-        whenever(resources.getIntArray(R.array.rp_format_monthly_same_week)).thenReturn(
-                intArrayOf(R.string.rp_format_monthly_sun, 0, 0, 0, 0, 0, 0, 0))
-        whenever(resources.getString(eq(R.string.rp_format_monthly_sun), any())).thenAnswer { "on every ${it.arguments[1]} Sunday" }
+        whenever(resources.getStringArray(R.array.rp_format_monthly_same_week)).thenReturn(
+                arrayOf("on every %s Sunday", "", "", "", "", "", ""))
         whenever(resources.getStringArray(R.array.rp_format_monthly_ordinal)).thenReturn(
                 arrayOf("first", "second", "third", "fourth", "last"))
         whenever(resources.getString(eq(R.string.rp_format_end_date), any())).thenAnswer { "until ${it.arguments[1]}" }
-        whenever(resources.getQuantityString(eq(R.plurals.rp_format_end_count), any())).thenAnswer { "for ${it.arguments[1]} events" }
+        whenever(resources.getQuantityString(eq(R.plurals.rp_format_end_count), anyInt(), anyVararg())).thenAnswer { "for ${it.arguments[2]} events" }
 
         recurFormat = RecurrenceFormatter(SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH))
     }

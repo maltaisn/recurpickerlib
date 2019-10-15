@@ -17,7 +17,6 @@
 package com.maltaisn.recurpicker.list
 
 import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -42,58 +41,69 @@ import com.maltaisn.recurpicker.list.RecurrenceListContract.Presenter
  */
 class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
 
-    private lateinit var themeContext: Context
     private var presenter: Presenter? = null
 
     /**
-     * The dialog settings.
+     * The settings defining the recurrence list dialog behavior and content.
      */
     override lateinit var settings: RecurrencePickerSettings
         private set
 
     /**
-     *
+     * The start date of the event for which a recurrence is selected.
+     * This is not a required parameter and can be set to [Recurrence.DATE_NONE].
+     * It will however provide more consise recurrence formatting to text, see [RecurrenceFormatter.format].
      */
-    override val startDate: Long = Recurrence.DATE_NONE
+    override var startDate: Long = Recurrence.DATE_NONE
 
     /**
-     *
+     * The previously selected recurrence that will be selected initially. Can be set to `null`
+     * if no recurrence was selected previously. In this case, the first preset will be selected
+     * by default. If a recurrence is set, a preset will be selected if it's equal to any of them,
+     * and if it's not equal to any preset, an additional list item will be shown before the others.
      */
     override var selectedRecurrence: Recurrence? = null
 
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
+    override fun onCreateDialog(state: Bundle?): Dialog {
+        if (state != null) {
+            settings = state.getParcelable("settings")!!
+            selectedRecurrence = state.getParcelable("selectedRecurrence")!!
+        }
 
         // Wrap recurrence picker theme to context
+        val context = requireContext()
         val ta = context.obtainStyledAttributes(intArrayOf(R.attr.recurrencePickerStyle))
         val style = ta.getResourceId(0, R.style.RecurrencePickerStyle)
         ta.recycle()
-        themeContext = ContextThemeWrapper(context, style)
-    }
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        // Attach the presenter
-        presenter = RecurrenceListPresenter()
-        presenter?.attach(this, savedInstanceState)
+        val contextWrapper = ContextThemeWrapper(context, style)
+        val localInflater = LayoutInflater.from(contextWrapper)
 
         // Create the dialog
-        val builder = MaterialAlertDialogBuilder(themeContext)
-        val view = LayoutInflater.from(themeContext).inflate(
-                R.layout.rp_dialog_recur_list, null, false)
+        val builder = MaterialAlertDialogBuilder(contextWrapper)
+        val view = localInflater.inflate(R.layout.rp_dialog_list, null, false)
         builder.setView(view)
 
         // Recurrence list
-        val rcv: RecyclerView = view.findViewById(R.id.rp_recur_list_rcv)
-        rcv.layoutManager = LinearLayoutManager(themeContext)
+        val rcv: RecyclerView = view.findViewById(R.id.rp_list_rcv)
+        rcv.layoutManager = LinearLayoutManager(contextWrapper)
         rcv.adapter = Adapter()
+
+        // Attach the presenter
+        presenter = RecurrenceListPresenter()
+        presenter?.attach(this, state)
 
         return builder.create()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        presenter?.saveState(outState)
+    override fun onSaveInstanceState(state: Bundle) {
+        super.onSaveInstanceState(state)
+
+        state.putParcelable("settings", settings)
+        state.putLong("startDate", startDate)
+        state.putParcelable("selectedRecurrence", selectedRecurrence)
+
+        presenter?.saveState(state)
     }
 
     override fun onDestroy() {
@@ -113,7 +123,7 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
                 ViewHolder(LayoutInflater.from(parent.context)
-                        .inflate(R.layout.rp_item_recur_list, parent, false))
+                        .inflate(R.layout.rp_item_list, parent, false))
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             presenter?.onBindItemView(holder, position)
@@ -125,7 +135,7 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
     private inner class ViewHolder(view: View)
         : RecyclerView.ViewHolder(view), ItemView {
 
-        val label: RadioButton = view.findViewById(R.id.rp_recur_list_item_label)
+        val label: RadioButton = view.findViewById(R.id.rp_list_item_label)
 
         init {
             view.setOnClickListener {
@@ -142,7 +152,7 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
         }
 
         override fun bindCustomView() {
-            label.setText(R.string.rp_custom)
+            label.setText(R.string.rp_list_custom)
         }
     }
 
@@ -188,22 +198,19 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
          * Called if the recurrence list dialog is cancelled, either by
          * a click outside or by a back press.
          */
-        fun onRecurrenceListDialogCancelled()
+        fun onRecurrenceListDialogCancelled() = Unit
     }
 
 
     companion object {
         /**
          * Create a new instance of the dialog with [settings].
-         * The previously selected [recurrence] can be passed, or `null` if there's none selected.
-         * FIXME what if user wants to reuse dialog instance? have a way to set selected recurrence
+         * More settings can be set with the returned dialog instance later.
          */
         @JvmStatic
-        fun newInstance(settings: RecurrencePickerSettings,
-                        recurrence: Recurrence? = null): RecurrenceListDialog {
+        fun newInstance(settings: RecurrencePickerSettings): RecurrenceListDialog {
             val dialog = RecurrenceListDialog()
             dialog.settings = settings
-            dialog.selectedRecurrence = recurrence
             return dialog
         }
     }

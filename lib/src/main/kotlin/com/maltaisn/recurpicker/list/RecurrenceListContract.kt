@@ -16,21 +16,14 @@
 
 package com.maltaisn.recurpicker.list
 
-import android.os.Bundle
+import com.maltaisn.recurpicker.BaseContract
 import com.maltaisn.recurpicker.Recurrence
-import com.maltaisn.recurpicker.RecurrencePickerSettings
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
 
 
 internal interface RecurrenceListContract {
 
-    interface View {
-        val settings: RecurrencePickerSettings
-        val startDate: Long
-        val selectedRecurrence: Recurrence?
-
-        fun exit()
-
+    interface View : BaseContract.View {
         fun setRecurrenceResult(recurrence: Recurrence)
         fun setCustomResult()
         fun setCancelResult()
@@ -39,17 +32,11 @@ internal interface RecurrenceListContract {
     interface ItemView {
         fun bindRecurrenceView(formatter: RecurrenceFormatter, recurrence: Recurrence,
                                startDate: Long, checked: Boolean)
+
         fun bindCustomView()
     }
 
-    interface Presenter {
-        fun attach(view: View, state: Bundle?)
-        fun detach()
-
-        fun saveState(state: Bundle)
-
-        fun onCancel()
-
+    interface Presenter : BaseContract.Presenter<View> {
         val itemCount: Int
         fun onItemClicked(pos: Int)
         fun onBindItemView(itemView: ItemView, pos: Int)

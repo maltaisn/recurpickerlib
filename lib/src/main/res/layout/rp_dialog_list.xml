@@ -14,27 +14,15 @@
   limitations under the License.
   -->
 
-<FrameLayout
+<androidx.recyclerview.widget.RecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="?attr/rpRecurrenceListItemStyle"
+    android:id="@+id/rp_list_rcv"
+    style="?rpListStyle"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
+    android:layout_height="match_parent"
+    tools:listitem="@layout/rp_item_list"
+    tools:itemCount="5"
     tools:theme="@style/RecurrencePickerStyle"
-    >
+    />
 
-    <RadioButton
-        android:id="@+id/rp_recur_list_item_label"
-        style="?attr/rpRecurrenceListItemLabelStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="false"
-        android:focusable="false"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        tools:text="Every 2 weeks on Sun, Mon, Tue, Sat"
-        />
-
-</FrameLayout>
