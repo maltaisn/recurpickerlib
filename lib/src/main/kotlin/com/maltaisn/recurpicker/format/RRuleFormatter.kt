@@ -39,6 +39,8 @@ class RRuleFormatter {
      * supports a thin subset of the actual specification. For example if recurring
      * yearly but not on the same day as start date, this information is lost when parsing,
      * since yearly recurrence can only happen on the same day as start date.
+     *
+     * @throws IllegalArgumentException If recurrence rule cannot be parsed.
      */
     fun parse(rrule: String): Recurrence {
         require(rrule.startsWith("RRULE:")) { "Recurrence rule string is invalid." }
@@ -58,47 +60,51 @@ class RRuleFormatter {
             else -> throw IllegalArgumentException("Unsupported recurrence period.")  // Secondly, minutely, hourly
         }
 
-        return Recurrence(period) {
-            frequency = attributes["INTERVAL"]?.toInt() ?: 1
+        return try {
+            Recurrence(period) {
+                frequency = attributes["INTERVAL"]?.toInt() ?: 1
 
-            if (period == Period.WEEKLY) {
-                // Days of the week
-                var days = 0
-                val daysAttr = attributes["BYDAY"]
-                if (daysAttr != null) {
-                    for (dayStr in daysAttr.split(',')) {
-                        val index = BYDAY_VALUES.indexOf(dayStr)
-                        require(index >= 0) { "Invalid day of week literal." }
-                        days = days or (1 shl (index + 1))
+                if (period == Period.WEEKLY) {
+                    // Days of the week
+                    var days = 0
+                    val daysAttr = attributes["BYDAY"]
+                    if (daysAttr != null) {
+                        for (dayStr in daysAttr.split(',')) {
+                            val index = BYDAY_VALUES.indexOf(dayStr)
+                            require(index >= 0) { "Invalid day of week literal." }
+                            days = days or (1 shl (index + 1))
+                        }
+                        setDaysOfWeek(days)
                     }
-                    setDaysOfWeek(days)
+
+                } else if (period == Period.MONTHLY) {
+                    // Monthly settings
+                    val byDay = attributes["BYDAY"]
+                    if (byDay != null) {
+                        val day = BYDAY_VALUES.indexOf(byDay.takeLast(2))
+                        require(day >= 0) { "Invalid day of week literal." }
+                        val week = attributes["BYSETPOS"]?.toInt() ?: byDay.dropLast(2).toInt()
+                        setDayOfWeekInMonth(1 shl (day + 1), week)
+                    } else {
+                        dayInMonth = attributes["BYMONTHDAY"]?.toInt() ?: 0
+                    }
                 }
 
-            } else if (period == Period.MONTHLY) {
-                // Monthly settings
-                val byDay = attributes["BYDAY"]
-                if (byDay != null) {
-                    val day = BYDAY_VALUES.indexOf(byDay.takeLast(2))
-                    require(day >= 0) { "Invalid day of week literal." }
-                    val week = byDay.dropLast(2).toInt()
-                    setDayOfWeekInMonth(1 shl (day + 1), week)
+                // End type
+                val endDateStr = attributes["UNTIL"]
+                if (endDateStr != null) {
+                    endDate = requireNotNull(DATE_FORMAT.parse(endDateStr)) {
+                        "Invalid end date format '${endDateStr}'."
+                    }.time
                 } else {
-                    dayInMonth = attributes["BYMONTHDAY"]?.toInt() ?: 0
+                    val endCountStr = attributes["COUNT"]
+                    if (endCountStr != null) {
+                        endCount = endCountStr.toInt()
+                    }
                 }
             }
-
-            // End type
-            val endDateStr = attributes["UNTIL"]
-            if (endDateStr != null) {
-                endDate = requireNotNull(DATE_FORMAT.parse(endDateStr)) {
-                    "Invalid end date format '${endDateStr}'."
-                }.time
-            } else {
-                val endCountStr = attributes["COUNT"]
-                if (endCountStr != null) {
-                    endCount = endCountStr.toInt()
-                }
-            }
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException("Bad number format in recurrence rule.")
         }
     }
 

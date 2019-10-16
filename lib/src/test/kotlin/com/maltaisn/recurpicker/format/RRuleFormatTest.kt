@@ -86,6 +86,19 @@ internal class RRuleFormatTest {
     }
 
     @Test
+    fun monthly_same_week_bySetPos() {
+        val r1 = Recurrence(Period.MONTHLY) {
+            setDayOfWeekInMonth(Recurrence.FRIDAY, 4)
+        }
+        assertEquals(r1, formatter.parse("RRULE:FREQ=MONTHLY;BYDAY=FR;BYSETPOS=4"))
+
+        val r2 = Recurrence(Period.MONTHLY) {
+            setDayOfWeekInMonth(Recurrence.MONDAY, -1)
+        }
+        assertEquals(r2, formatter.parse("RRULE:FREQ=MONTHLY;BYDAY=MO;BYSETPOS=-1"))
+    }
+
+    @Test
     fun monthly_last_day() {
         val r = Recurrence(Period.MONTHLY) {
             dayInMonth = -1
