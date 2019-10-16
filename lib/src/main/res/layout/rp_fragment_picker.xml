@@ -89,7 +89,6 @@
                     style="?attr/rpPickerInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@null"
                     android:inputType="number"
                     android:maxLength="2"
                     tools:text="10"

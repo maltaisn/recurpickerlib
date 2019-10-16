@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="PrivateResource">
 
     <!-- Custom recurrence picker theme -->
     <style name="RecurrencePickerStyleCustom" parent="RecurrencePickerStyle">
         <!-- You can customize the recurrence picker style here. -->
 
+    </style>
+
+
+    <!-- Demo app styles -->
+    <style name="InputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/mtrl_filled_background_color</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintEnabled">false</item>
+    </style>
+
+    <style name="InputStyle">
+        <item name="android:textAppearance">?textAppearanceBody1</item>
+        <item name="android:gravity">center</item>
+        <item name="boxStrokeColor">@null</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="SubtitleTextAppearance" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
+    </style>
+
+    <style name="DividerStyle">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?colorOnBackground</item>
+        <item name="android:alpha">0.12</item>
     </style>
 
 </resources>

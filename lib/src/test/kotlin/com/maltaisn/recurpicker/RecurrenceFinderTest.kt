@@ -60,6 +60,13 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
+    fun none_fromDate_excludeStart() {
+        val r = Recurrence(Period.NONE)
+        assertEquals(emptyList<Long>(), finder.find(r,
+                dateFor("2019-01-01"), 10, dateFor("2019-01-01"), includeStart = false))
+    }
+
+    @Test
     fun daily() {
         val r = Recurrence(Period.DAILY)
         assertEquals(listOf(
@@ -132,6 +139,15 @@ internal class RecurrenceFinderTest {
                 dateFor("2019-01-05"),
                 dateFor("2019-01-06")
         ), finder.findBasedOn(r, dateFor("2019-01-01"), dateFor("2019-01-03"), 3, 1000, dateFor("2019-01-05")))
+    }
+
+    @Test
+    fun daily_excludeStart() {
+        val r = Recurrence(Period.DAILY)
+        assertEquals(listOf(
+                dateFor("2019-01-02"),
+                dateFor("2019-01-03")
+        ), finder.find(r, dateFor("2019-01-01"), 2, includeStart = false))
     }
 
     @Test
@@ -238,6 +254,26 @@ internal class RecurrenceFinderTest {
                 dateFor("2019-01-22"),
                 dateFor("2019-01-29")
         ), finder.findBasedOn(r, dateFor("2019-01-01"), dateFor("2019-01-15"), 3, 1000, dateFor("2019-01-22")))
+    }
+
+    @Test
+    fun weekly_excludeStart() {
+        val r = Recurrence(Period.WEEKLY)
+        assertEquals(listOf(
+                dateFor("2019-01-08"),
+                dateFor("2019-01-15")
+        ), finder.find(r, dateFor("2019-01-01"), 2, includeStart = false))
+    }
+
+    @Test
+    fun weekly_excludeStart_noEventOnStart() {
+        val r = Recurrence(Period.WEEKLY) {
+            setDaysOfWeek(Recurrence.WEDNESDAY, Recurrence.THURSDAY)
+        }
+        assertEquals(listOf(
+                dateFor("2019-01-02"),
+                dateFor("2019-01-03")
+        ), finder.find(r, dateFor("2019-01-01"), 2, includeStart = false))
     }
 
     @Test
@@ -397,6 +433,15 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
+    fun monthly_excludeStart() {
+        val r = Recurrence(Period.MONTHLY)
+        assertEquals(listOf(
+                dateFor("2019-02-01"),
+                dateFor("2019-03-01")
+        ), finder.find(r, dateFor("2019-01-01"), 2, includeStart = false))
+    }
+
+    @Test
     fun yearly() {
         val r = Recurrence(Period.YEARLY)
         assertEquals(listOf(
@@ -471,6 +516,25 @@ internal class RecurrenceFinderTest {
                 dateFor("2023-01-01")
         ), finder.findBasedOn(r, dateFor("2019-01-01"),
                 dateFor("2021-01-01"), 3, 1000, dateFor("2022-01-01")))
+    }
+
+    @Test
+    fun yearly_excludeStart() {
+        val r = Recurrence(Period.YEARLY)
+        assertEquals(listOf(
+                dateFor("2020-01-01"),
+                dateFor("2021-01-01")
+        ), finder.find(r, dateFor("2019-01-01"), 2, includeStart = false))
+    }
+
+    @Test
+    fun yearly_basedOn_excludeStart() {
+        val r = Recurrence(Period.YEARLY)
+        assertEquals(listOf(
+                dateFor("2022-01-01"),
+                dateFor("2023-01-01")
+        ), finder.findBasedOn(r, dateFor("2019-01-01"), dateFor("2021-01-01"),
+                2, 2, includeStart = false))
     }
 
     @Test

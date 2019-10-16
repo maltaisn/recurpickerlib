@@ -52,19 +52,26 @@ class RecurrenceFinder {
      * For example, if the base date is the start date, this should be 1 since only the event on
      * the start date has happened.
      * @param amount The number of events to find, must be at least 1.
-     * @param fromDate The date from which to start finding recurrence events. Can be set
+     *  @param fromDate The date from which to start finding recurrence events. Can be set
      * to [Recurrence.DATE_NONE] to find events from the start date of the recurrence.
-     * Time of the day isn't taken into account, only the date.
+     * @param includeStart Whether the [startDate] or [fromDate] should be included in the list of events.
      */
     @JvmOverloads
-    fun findBasedOn(r: Recurrence, startDate: Long, base: Long, baseCount: Int,
-                    amount: Int, fromDate: Long = Recurrence.DATE_NONE): MutableList<Long> {
+    fun findBasedOn(r: Recurrence, startDate: Long, base: Long, baseCount: Int, amount: Int,
+                    fromDate: Long = Recurrence.DATE_NONE, includeStart: Boolean = true): MutableList<Long> {
         require(amount >= 1) { "Amount must be 1 or greater" }
         require(startDate != Recurrence.DATE_NONE) { "Start date cannot be none." }
 
         val list = mutableListOf<Long>()
 
-        val from = if (fromDate == Recurrence.DATE_NONE) startDate else fromDate
+        var from = if (fromDate == Recurrence.DATE_NONE) base else fromDate
+        if (!includeStart) {
+            // Add one day to from date to exclude it.
+            temp.timeInMillis = from
+            temp.add(Calendar.DATE, 1)
+            from = temp.timeInMillis
+        }
+
         date.timeInMillis = base
 
         var count = baseCount - 1
@@ -73,6 +80,7 @@ class RecurrenceFinder {
         when (r.period) {
             Period.NONE -> {
                 if (startDate.compareDay(from, temp) != -1) {
+                    // Does not repeat, so only add the start event if after the from date.
                     list += startDate
                 }
             }
@@ -232,10 +240,13 @@ class RecurrenceFinder {
      * @param amount The number of events to find, must be at least 1.
      * @param fromDate The date from which to start finding recurrence events. Can be set
      * to [Recurrence.DATE_NONE] to find events from the start date of the recurrence.
+     * The date is inclusive meaning an event on this date will be included.
+     * @param includeStart Whether the [startDate] or [fromDate] should be included in the list of events.
      */
     @JvmOverloads
-    fun find(r: Recurrence, startDate: Long, amount: Int, fromDate: Long = Recurrence.DATE_NONE): MutableList<Long> {
-        return findBasedOn(r, startDate, startDate, 1, amount, fromDate)
+    fun find(r: Recurrence, startDate: Long, amount: Int,
+             fromDate: Long = Recurrence.DATE_NONE, includeStart: Boolean = true): MutableList<Long> {
+        return findBasedOn(r, startDate, startDate, 1, amount, fromDate, includeStart)
     }
 
     /**

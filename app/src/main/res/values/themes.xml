@@ -4,6 +4,8 @@
     <style name="AppTheme.DayNight" parent="Base.AppTheme" />
 
     <style name="Base.AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar" tools:ignore="NewApi">
+        <item name="android:forceDarkAllowed">false</item>
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorSecondary">@color/colorSecondary</item>
