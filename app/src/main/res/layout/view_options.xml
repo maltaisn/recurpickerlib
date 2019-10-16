@@ -73,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:cursorVisible="false"
                 android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:inputType="none"
                 tools:text="29 Dec. 2020"
                 />

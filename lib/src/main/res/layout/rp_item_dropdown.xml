@@ -23,6 +23,6 @@
     android:maxLines="1"
     android:textAppearance="?rpTextAppearance"
     android:padding="16dp"
-    tools:theme="@style/RecurrencePickerStyle"
+    tools:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
     tools:text="on the same day each month"
     />

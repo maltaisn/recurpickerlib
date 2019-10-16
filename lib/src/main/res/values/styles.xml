@@ -84,7 +84,9 @@
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:inputType">none</item>
-        <item name="android:editable">false</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:cursorVisible">false</item>
     </style>
 
     <style name="RpEndRadioStyle">

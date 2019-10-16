@@ -77,11 +77,11 @@
                 android:id="@+id/rp_picker_freq_input_layout"
                 style="?attr/rpPickerInputLayoutStyle"
                 android:layout_width="56dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/rp_picker_period_dropdown_layout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rp_picker_period_label"
+                app:layout_constraintTop_toTopOf="@id/rp_picker_period_dropdown_layout"
                 >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -89,6 +89,7 @@
                     style="?attr/rpPickerInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:imeOptions="actionDone"
                     android:inputType="number"
                     android:maxLength="2"
                     tools:text="10"
@@ -334,12 +335,12 @@
                 android:layout_marginStart="16dp"
                 android:gravity="center_vertical"
                 android:labelFor="@+id/rp_picker_end_date_input"
-                tools:text="On"
                 android:textAppearance="?rpTextAppearance"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_view"
                 app:layout_constraintStart_toEndOf="@id/rp_picker_end_date_radio"
                 app:layout_constraintTop_toTopOf="@id/rp_picker_end_date_view"
                 tools:ignore="LabelFor"
+                tools:text="On"
                 />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -362,6 +363,7 @@
                     android:layout_height="wrap_content"
                     android:cursorVisible="false"
                     android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:inputType="none"
                     tools:text="Nov 12, 2019"
                     />
@@ -445,6 +447,7 @@
                     style="?attr/rpPickerInputStyle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:imeOptions="actionDone"
                     android:inputType="number"
                     android:maxLength="3"
                     tools:text="8"

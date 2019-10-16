@@ -16,11 +16,14 @@
 
 package com.maltaisn.recurpicker.picker
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
@@ -126,6 +129,10 @@ class RecurrencePickerFragment : Fragment(),
         frequencyInput.addTextChangedListener {
             presenter?.onFrequencyChanged(it.toString())
         }
+        frequencyInput.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) frequencyInput.clearFocus()
+            false
+        }
 
         // Period
         periodDropdown = view.findViewById(R.id.rp_picker_period_dropdown)
@@ -134,15 +141,17 @@ class RecurrencePickerFragment : Fragment(),
         periodDropdown.setOnItemClickListener { _, _, position, _ ->
             presenter?.onPeriodItemSelected(position)
             periodDropdown.requestLayout()  // Force view to wrap width to new text
+            clearFocus()
         }
 
         // Days of the week
         weeklyGroup = view.findViewById(R.id.rp_picker_weekly_group)
         val weekBtnTa = resources.obtainTypedArray(R.array.rp_picker_week_btn_ids)
         weekBtns = List(weekBtnTa.length()) {
-            val btn = view.findViewById<ToggleButton>(weekBtnTa.getResourceId(it, 0))
+            val btn: ToggleButton = view.findViewById(weekBtnTa.getResourceId(it, 0))
             btn.setOnCheckedChangeListener { _, isChecked ->
                 presenter?.onWeekBtnChecked(it + 1, isChecked)
+                clearFocus()
             }
             btn
         }
@@ -156,12 +165,16 @@ class RecurrencePickerFragment : Fragment(),
         monthlyDropdown.setOnItemClickListener { _, _, position, _ ->
             presenter?.onMonthlySettingItemSelected(position)
             monthlyDropdown.requestLayout()  // Force view to wrap width to new text
+            clearFocus()
         }
 
         // End never
         endNeverView = view.findViewById(R.id.rp_picker_end_never_view)
         endNeverRadio = view.findViewById(R.id.rp_picker_end_never_radio)
-        val endNeverClick = View.OnClickListener { presenter?.onEndNeverClicked() }
+        val endNeverClick = View.OnClickListener {
+            presenter?.onEndNeverClicked()
+            clearFocus()
+        }
         endNeverView.setOnClickListener(endNeverClick)
         endNeverRadio.setOnClickListener(endNeverClick)
 
@@ -171,7 +184,10 @@ class RecurrencePickerFragment : Fragment(),
         endDateInput = view.findViewById(R.id.rp_picker_end_date_input)
         endDatePrefixLabel = view.findViewById(R.id.rp_picker_end_date_prefix_label)
         endDateSuffixLabel = view.findViewById(R.id.rp_picker_end_date_suffix_label)
-        val endDateClick = View.OnClickListener { presenter?.onEndDateClicked() }
+        val endDateClick = View.OnClickListener {
+            presenter?.onEndDateClicked()
+            clearFocus()
+        }
         endDateView.setOnClickListener(endDateClick)
         endDateRadio.setOnClickListener(endDateClick)
         endDateInput.setOnClickListener { presenter?.onEndDateInputClicked() }
@@ -182,13 +198,29 @@ class RecurrencePickerFragment : Fragment(),
         endCountInput = view.findViewById(R.id.rp_picker_end_count_input)
         endCountPrefixLabel = view.findViewById(R.id.rp_picker_end_count_prefix_label)
         endCountSuffixLabel = view.findViewById(R.id.rp_picker_end_count_suffix_label)
-        val endCountClick = View.OnClickListener { presenter?.onEndCountClicked() }
+        val endCountClick = View.OnClickListener {
+            presenter?.onEndCountClicked()
+            clearFocus()
+        }
         endCountView.setOnClickListener(endCountClick)
         endCountRadio.setOnClickListener(endCountClick)
         endCountInput.addTextChangedListener {
             presenter?.onEndCountChanged(it.toString())
         }
+        endCountInput.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) endCountInput.clearFocus()
+            false
+        }
+
         return view
+    }
+
+    private fun clearFocus() {
+        frequencyInput.clearFocus()
+        endCountInput.clearFocus()
+
+        val imm = requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
     override fun onViewStateRestored(state: Bundle?) {
