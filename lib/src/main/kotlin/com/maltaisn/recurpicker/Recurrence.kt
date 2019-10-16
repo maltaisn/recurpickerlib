@@ -146,11 +146,11 @@ class Recurrence private constructor(
                     sb.append("Does not repeat")
                 }
                 DAILY -> {
-                    sb.append("On every ")
+                    sb.append("Every ")
                     sb.append(toStringPlural("day", frequency, false))
                 }
                 WEEKLY -> {
-                    sb.append("On every ")
+                    sb.append("Every ")
                     sb.append(toStringPlural("week", frequency, false))
 
                     // Append a list of days of week
@@ -170,7 +170,7 @@ class Recurrence private constructor(
                     }
                 }
                 MONTHLY -> {
-                    sb.append("On every ")
+                    sb.append("Every ")
                     sb.append(toStringPlural("month", frequency, false))
 
                     // Append additional monthly setting
@@ -200,7 +200,7 @@ class Recurrence private constructor(
                     sb.append(')')
                 }
                 YEARLY -> {
-                    sb.append("On every ")
+                    sb.append("Every ")
                     sb.append(toStringPlural("year", frequency, false))
                 }
             }
