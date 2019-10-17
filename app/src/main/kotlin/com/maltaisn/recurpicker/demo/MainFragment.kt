@@ -37,19 +37,18 @@ import com.maltaisn.recurpicker.picker.RecurrencePickerFragment
 import java.text.DateFormat
 
 
+/**
+ * The main fragment.
+ *
+ * Child fragments use [Fragment.getParentFragment] to callback to this fragment.
+ * This way, callbacks are retained across configuration changes without memory leaks.
+ */
 class MainFragment : Fragment(), DateDialogFragment.Callback,
         RecurrenceListDialog.Callback, RecurrencePickerFragment.Callback {
 
     // Recurrence list and picker fragments
     private val listDialog by lazy { RecurrenceListDialog.newInstance(settings) }
-    private val pickerFragment by lazy {
-        val fragment = RecurrencePickerFragment.newInstance(settings)
-        // Set the picker's target fragment to this fragment so it can callback later.
-        // There's no need to do the same with the list dialog since it uses the child fragment manager.
-        // We can't use the child fragment manager for the picker since it needs to be on main backstack.
-        fragment.setTargetFragment(this, 0)
-        fragment
-    }
+    private val pickerFragment by lazy { RecurrencePickerFragment.newInstance(settings) }
 
     // Main fragment views
     private lateinit var selectedLabel: TextView
@@ -224,7 +223,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
     }
 
     private fun showListDialog() {
-        // Setup and show the recurrence list dialog. We use the child fragment manager.
+        // Setup and show the recurrence list dialog.
         listDialog.selectedRecurrence = selectedRecurrence
         listDialog.startDate = startDate
         listDialog.show(childFragmentManager, "recurrence-list-dialog")
@@ -232,12 +231,10 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
 
     private fun showPickerFragment() {
         // Setup and show the recurrence picker fragment.
-        // We use the same fragment manager since we want the picker fragment to be on back stack.
-        // Otherwise, it would be on its own back stack and back press would not work correctly.
         pickerFragment.selectedRecurrence = selectedRecurrence
         pickerFragment.startDate = startDate
-        requireFragmentManager().beginTransaction()
-                .add(R.id.picker_fragment_container, pickerFragment)
+        childFragmentManager.beginTransaction()
+                .add(R.id.picker_fragment_container, pickerFragment, "recurrence-picker")
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .addToBackStack(null)
                 .commit()

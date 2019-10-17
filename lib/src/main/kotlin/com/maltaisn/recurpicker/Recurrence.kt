@@ -103,6 +103,7 @@ class Recurrence private constructor(
     /**
      * If period is [WEEKLY], checks if events happen on certain [days] of the week.
      * Returns true only if recurrence happens on all of these days.
+     * To get the number of days set use `Integer.bitCount(recurrence.byDay)  - 1`.
      * If period is [MONTHLY], checks if events happen on a certain day of the week specified
      * by a single flag set in [days].
      * @param days A bit field of [DaysOfWeek] values.

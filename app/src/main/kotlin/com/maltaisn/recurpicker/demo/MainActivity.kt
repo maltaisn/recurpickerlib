@@ -22,9 +22,21 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
+    private val mainFragment by lazy { supportFragmentManager.findFragmentById(R.id.main_fragment)!! }
+
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
         setContentView(R.layout.activity_main)
+    }
+
+    override fun onBackPressed() {
+        if (mainFragment.childFragmentManager.backStackEntryCount > 0) {
+            // Pop backstack of child fragment first (which contains the recurrence picker fragment).
+            mainFragment.childFragmentManager.popBackStack()
+        } else {
+            // Pop main back stack.
+            super.onBackPressed()
+        }
     }
 
 }
