@@ -29,6 +29,8 @@ internal interface RecurrencePickerContract {
         fun clearFocus()
 
         fun setFrequencyView(frequency: String)
+        fun setFrequencyMaxLength(length: Int)
+
         fun setPeriodItems(frequency: Int)
         fun setSelectedPeriodItem(index: Int)
 
@@ -51,6 +53,7 @@ internal interface RecurrencePickerContract {
         fun setEndCountView(count: String)
         fun setEndCountViewEnabled(enabled: Boolean)
         fun setEndCountLabels(prefix: String, suffix: String)
+        fun setEndCountMaxLength(length: Int)
 
         fun setCancelResult()
         fun setConfirmResult(recurrence: Recurrence)

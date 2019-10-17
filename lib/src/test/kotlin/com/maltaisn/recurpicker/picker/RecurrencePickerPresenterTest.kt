@@ -43,6 +43,8 @@ internal class RecurrencePickerPresenterTest {
         defaultPickerRecurrence = Recurrence(Period.DAILY) {
             frequency = 3
             endDate = dateFor("2019-12-31")
+            maxFrequency = 10
+            maxEndCount = 100
         }
     }
 
@@ -75,10 +77,10 @@ internal class RecurrencePickerPresenterTest {
 
     @Test
     fun onFrequencyChanged() {
-        presenter.onFrequencyChanged("12")
-        verify(view).setPeriodItems(12)
+        presenter.onFrequencyChanged("6")
+        verify(view).setPeriodItems(6)
         verify(view).setSelectedPeriodItem(0)
-        assertEquals(12, createRecurrence().frequency)
+        assertEquals(6, createRecurrence().frequency)
     }
 
     @Test
@@ -92,6 +94,13 @@ internal class RecurrencePickerPresenterTest {
         presenter.onFrequencyChanged("foo")
         verify(view).setPeriodItems(1)
         verify(view).setSelectedPeriodItem(0)
+    }
+
+    @Test
+    fun onFrequencyChanged_outOfRange() {
+        presenter.onFrequencyChanged("12")
+        verify(view).setFrequencyView("10")
+        assertEquals(10, createRecurrence().frequency)
     }
 
     @Test
@@ -228,9 +237,9 @@ internal class RecurrencePickerPresenterTest {
     @Test
     fun onEndCountChanged() {
         presenter.onEndCountClicked()
-        presenter.onEndCountChanged("666")
+        presenter.onEndCountChanged("99")
         verify(view).setEndCountLabels(any(), any())
-        assertEquals(666, createRecurrence().endCount)
+        assertEquals(99, createRecurrence().endCount)
     }
 
     @Test
@@ -247,6 +256,14 @@ internal class RecurrencePickerPresenterTest {
         clearInvocations(view)
         presenter.onEndCountChanged("foo")
         verify(view).setEndCountLabels(any(), any())
+    }
+
+    @Test
+    fun onEndCountChanged_outOfRange() {
+        presenter.onEndCountClicked()
+        presenter.onEndCountChanged("120")
+        verify(view).setEndCountView("100")
+        assertEquals(100, createRecurrence().endCount)
     }
 
     private fun createRecurrence(): Recurrence {

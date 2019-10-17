@@ -82,7 +82,9 @@ internal class RecurrencePickerPresenter : Presenter {
 
         // Update view state
         view.apply {
-            setFrequencyView(frequency.toString())
+            updateFrequencyView()
+            setFrequencyMaxLength(settings.maxFrequency.toString().length)
+
             updatePeriodDropdown()
 
             updatePeriodSettingViews()
@@ -91,10 +93,13 @@ internal class RecurrencePickerPresenter : Presenter {
             setSelectedMonthlySettingItem(monthlySettingIndex)
 
             updateCheckedEndType()
+
             updateEndDateView()
             updateEndDateLabels()
-            setEndCountView(endCount.toString())
+
+            updateEndCountView()
             updateEndCountLabels()
+            setEndCountMaxLength(settings.maxEndCount.toString().length)
         }
     }
 
@@ -131,12 +136,17 @@ internal class RecurrencePickerPresenter : Presenter {
     }
 
     override fun onFrequencyChanged(frequencyStr: String) {
-        val newFrequency = try {
+        var newFrequency = try {
             frequencyStr.toInt()
         } catch (e: NumberFormatException) {
             1
         }
         if (newFrequency != frequency) {
+            if (newFrequency > settings.maxFrequency) {
+                newFrequency = settings.maxFrequency
+                frequency = newFrequency
+                updateFrequencyView()
+            }
             frequency = newFrequency
             updatePeriodDropdown()
         }
@@ -151,7 +161,7 @@ internal class RecurrencePickerPresenter : Presenter {
         }
         setDefaultEndDate(true)
         updatePeriodSettingViews()
-        view?.clearFocus()
+        clearFocus()
     }
 
     override fun onWeekBtnChecked(dayOfWeek: Int, checked: Boolean) {
@@ -160,30 +170,30 @@ internal class RecurrencePickerPresenter : Presenter {
         } else {
             daysOfWeek and (1 shl dayOfWeek).inv()
         }
-        view?.clearFocus()
+        clearFocus()
     }
 
     override fun onMonthlySettingItemSelected(index: Int) {
         monthlySettingIndex = index
-        view?.clearFocus()
+        clearFocus()
     }
 
     override fun onEndNeverClicked() {
         endType = EndType.NEVER
         updateCheckedEndType()
-        view?.clearFocus()
+        clearFocus()
     }
 
     override fun onEndDateClicked() {
         endType = EndType.BY_DATE
         updateCheckedEndType()
-        view?.clearFocus()
+        clearFocus()
     }
 
     override fun onEndCountClicked() {
         endType = EndType.BY_COUNT
         updateCheckedEndType()
-        view?.clearFocus()
+        clearFocus()
     }
 
     override fun onEndDateInputClicked() {
@@ -197,15 +207,24 @@ internal class RecurrencePickerPresenter : Presenter {
     }
 
     override fun onEndCountChanged(endCountStr: String) {
-        val newEndCount = try {
+        var newEndCount = try {
             endCountStr.toInt()
         } catch (e: NumberFormatException) {
             1
         }
         if (newEndCount != endCount) {
+            if (newEndCount > settings.maxEndCount) {
+                newEndCount = settings.maxEndCount
+                endCount = newEndCount
+                updateEndCountView()
+            }
             endCount = newEndCount
             updateEndCountLabels()
         }
+    }
+
+    private fun updateFrequencyView() {
+        view?.setFrequencyView(frequency.toString())
     }
 
     private fun updatePeriodDropdown() {
@@ -232,6 +251,10 @@ internal class RecurrencePickerPresenter : Presenter {
         val view = view ?: return
         val labelParts = view.endDateText.split('|').map { it.trim() }
         view.setEndDateLabels(labelParts.first(), labelParts.getOrNull(1) ?: "")
+    }
+
+    private fun updateEndCountView() {
+        view?.setEndCountView(endCount.toString())
     }
 
     private fun updateEndCountLabels() {
@@ -264,6 +287,14 @@ internal class RecurrencePickerPresenter : Presenter {
             endDate = cal.timeInMillis
             updateEndDateView()
         }
+    }
+
+    private fun clearFocus() {
+        view?.clearFocus()
+
+        // Update input views in case user has left them blank.
+        updateFrequencyView()
+        updateEndCountView()
     }
 
     private val isStartDateOnLastDay: Boolean

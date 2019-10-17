@@ -42,6 +42,8 @@ internal class RecurrencePickerPresenterAttachTest {
         defaultPickerRecurrence = Recurrence(Period.DAILY) {
             frequency = 3
             endDate = dateFor("2019-12-31")
+            maxFrequency = 10
+            maxEndCount = 100
         }
     }
 
@@ -87,6 +89,12 @@ internal class RecurrencePickerPresenterAttachTest {
         })
         presenter.attach(view, null)
         verify(view).setFrequencyView("749")
+    }
+
+    @Test
+    fun attach_verifyFrequencyMaxLength() {
+        presenter.attach(view, null)
+        verify(view).setFrequencyMaxLength(2)
     }
 
     @Test
@@ -293,6 +301,12 @@ internal class RecurrencePickerPresenterAttachTest {
         whenever(view.getEndCountTextFor(anyInt())).thenReturn(" p | s ")
         presenter.attach(view, null)
         verify(view).setEndCountLabels("p", "s")
+    }
+
+    @Test
+    fun attach_verifyEndCountMaxLength() {
+        presenter.attach(view, null)
+        verify(view).setEndCountMaxLength(3)
     }
 
     private fun verifyWeekBtnsChecked(vararg days: Int) {

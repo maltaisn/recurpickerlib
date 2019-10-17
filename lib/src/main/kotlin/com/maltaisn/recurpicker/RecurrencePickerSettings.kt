@@ -47,7 +47,13 @@ class RecurrencePickerSettings private constructor(
          * The recurrence shown by default in the recurrence picker.
          * This is shown when no recurrence or a "Does not repeat" recurrence is selected.
          */
-        val defaultPickerRecurrence: Recurrence
+        val defaultPickerRecurrence: Recurrence,
+
+        /** The maximum frequency that can be entered in the picker. Must be at least 1. */
+        val maxFrequency: Int,
+
+        /** The maximum end count that can be entered in the picker. Must be at least 1. */
+        val maxEndCount: Int
 ) : Parcelable {
 
     class Builder {
@@ -67,7 +73,22 @@ class RecurrencePickerSettings private constructor(
         /** @see RecurrencePickerSettings.defaultPickerRecurrence */
         var defaultPickerRecurrence: Recurrence = Recurrence(Period.DAILY)
 
-        fun build() = RecurrencePickerSettings(formatter, presets, defaultPickerRecurrence)
+        /** @see RecurrencePickerSettings.maxFrequency */
+        var maxFrequency: Int = 99
+            set(value) {
+                require(value >= 1) { "Max frequency must be at least 1." }
+                field = value
+            }
+
+        /** @see RecurrencePickerSettings.maxEndCount */
+        var maxEndCount: Int = 999
+            set(value) {
+                require(value >= 1) { "Max end count must be at least 1." }
+                field = value
+            }
+
+        fun build() = RecurrencePickerSettings(formatter, presets,
+                defaultPickerRecurrence, maxFrequency, maxEndCount)
     }
 
     // Parcelable stuff
@@ -75,6 +96,9 @@ class RecurrencePickerSettings private constructor(
         val bundle = Bundle()
         bundle.putSerializable("dateFormat", formatter.dateFormat)
         bundle.putParcelableArrayList("presets", ArrayList(presets))
+        bundle.putParcelable("defaultPickerRecurrence", defaultPickerRecurrence)
+        bundle.putInt("maxFrequency", maxFrequency)
+        bundle.putInt("maxEndCount", maxEndCount)
         parcel.writeBundle(bundle)
     }
 

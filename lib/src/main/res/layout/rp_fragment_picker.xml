@@ -90,7 +90,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
-                    android:maxLength="2"
                     tools:text="10"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -452,7 +451,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="number"
-                    android:maxLength="3"
                     tools:text="8"
                     />
             </com.google.android.material.textfield.TextInputLayout>

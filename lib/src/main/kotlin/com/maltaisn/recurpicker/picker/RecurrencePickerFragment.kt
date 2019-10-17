@@ -19,6 +19,7 @@ package com.maltaisn.recurpicker.picker
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -255,6 +256,11 @@ class RecurrencePickerFragment : Fragment(),
 
     override fun setFrequencyView(frequency: String) {
         frequencyInput.setText(frequency)
+        frequencyInput.setSelection(frequency.length)
+    }
+
+    override fun setFrequencyMaxLength(length: Int) {
+        frequencyInput.filters = arrayOf(InputFilter.LengthFilter(length))
     }
 
     override fun setPeriodItems(frequency: Int) {
@@ -337,6 +343,7 @@ class RecurrencePickerFragment : Fragment(),
 
     override fun setEndCountView(count: String) {
         endCountInput.setText(count)
+        endCountInput.setSelection(count.length)
     }
 
     override fun setEndCountViewEnabled(enabled: Boolean) {
@@ -347,6 +354,10 @@ class RecurrencePickerFragment : Fragment(),
         endCountPrefixLabel.text = prefix
         endCountSuffixLabel.text = suffix
         endCountPrefixLabel.isVisible = prefix.isNotEmpty()
+    }
+
+    override fun setEndCountMaxLength(length: Int) {
+        endCountInput.filters = arrayOf(InputFilter.LengthFilter(length))
     }
 
     override fun setCancelResult() {
