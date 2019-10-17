@@ -26,6 +26,8 @@ internal interface RecurrencePickerContract {
         val endDateText: String
         fun getEndCountTextFor(count: Int): String
 
+        fun clearFocus()
+
         fun setFrequencyView(frequency: String)
         fun setPeriodItems(frequency: Int)
         fun setSelectedPeriodItem(index: Int)

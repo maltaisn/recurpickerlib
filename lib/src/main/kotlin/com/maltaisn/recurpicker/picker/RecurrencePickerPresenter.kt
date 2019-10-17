@@ -149,6 +149,7 @@ internal class RecurrencePickerPresenter : Presenter {
             else -> Period.YEARLY
         }
         updatePeriodSettingViews()
+        view?.clearFocus()
     }
 
     override fun onWeekBtnChecked(dayOfWeek: Int, checked: Boolean) {
@@ -157,25 +158,30 @@ internal class RecurrencePickerPresenter : Presenter {
         } else {
             daysOfWeek and (1 shl dayOfWeek).inv()
         }
+        view?.clearFocus()
     }
 
     override fun onMonthlySettingItemSelected(index: Int) {
         monthlySettingIndex = index
+        view?.clearFocus()
     }
 
     override fun onEndNeverClicked() {
         endType = EndType.NEVER
         updateCheckedEndType()
+        view?.clearFocus()
     }
 
     override fun onEndDateClicked() {
         endType = EndType.BY_DATE
         updateCheckedEndType()
+        view?.clearFocus()
     }
 
     override fun onEndCountClicked() {
         endType = EndType.BY_COUNT
         updateCheckedEndType()
+        view?.clearFocus()
     }
 
     override fun onEndDateInputClicked() {

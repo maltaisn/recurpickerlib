@@ -141,7 +141,6 @@ class RecurrencePickerFragment : Fragment(),
         periodDropdown.setOnItemClickListener { _, _, position, _ ->
             presenter?.onPeriodItemSelected(position)
             periodDropdown.requestLayout()  // Force view to wrap width to new text
-            clearFocus()
         }
 
         // Days of the week
@@ -151,7 +150,6 @@ class RecurrencePickerFragment : Fragment(),
             val btn: ToggleButton = view.findViewById(weekBtnTa.getResourceId(it, 0))
             btn.setOnCheckedChangeListener { _, isChecked ->
                 presenter?.onWeekBtnChecked(it + 1, isChecked)
-                clearFocus()
             }
             btn
         }
@@ -164,17 +162,12 @@ class RecurrencePickerFragment : Fragment(),
         monthlyDropdown.setAdapter(monthlyAdapter)
         monthlyDropdown.setOnItemClickListener { _, _, position, _ ->
             presenter?.onMonthlySettingItemSelected(position)
-            monthlyDropdown.requestLayout()  // Force view to wrap width to new text
-            clearFocus()
         }
 
         // End never
         endNeverView = view.findViewById(R.id.rp_picker_end_never_view)
         endNeverRadio = view.findViewById(R.id.rp_picker_end_never_radio)
-        val endNeverClick = View.OnClickListener {
-            presenter?.onEndNeverClicked()
-            clearFocus()
-        }
+        val endNeverClick = View.OnClickListener { presenter?.onEndNeverClicked() }
         endNeverView.setOnClickListener(endNeverClick)
         endNeverRadio.setOnClickListener(endNeverClick)
 
@@ -184,10 +177,7 @@ class RecurrencePickerFragment : Fragment(),
         endDateInput = view.findViewById(R.id.rp_picker_end_date_input)
         endDatePrefixLabel = view.findViewById(R.id.rp_picker_end_date_prefix_label)
         endDateSuffixLabel = view.findViewById(R.id.rp_picker_end_date_suffix_label)
-        val endDateClick = View.OnClickListener {
-            presenter?.onEndDateClicked()
-            clearFocus()
-        }
+        val endDateClick = View.OnClickListener { presenter?.onEndDateClicked() }
         endDateView.setOnClickListener(endDateClick)
         endDateRadio.setOnClickListener(endDateClick)
         endDateInput.setOnClickListener { presenter?.onEndDateInputClicked() }
@@ -198,10 +188,7 @@ class RecurrencePickerFragment : Fragment(),
         endCountInput = view.findViewById(R.id.rp_picker_end_count_input)
         endCountPrefixLabel = view.findViewById(R.id.rp_picker_end_count_prefix_label)
         endCountSuffixLabel = view.findViewById(R.id.rp_picker_end_count_suffix_label)
-        val endCountClick = View.OnClickListener {
-            presenter?.onEndCountClicked()
-            clearFocus()
-        }
+        val endCountClick = View.OnClickListener { presenter?.onEndCountClicked() }
         endCountView.setOnClickListener(endCountClick)
         endCountRadio.setOnClickListener(endCountClick)
         endCountInput.addTextChangedListener {
@@ -215,10 +202,12 @@ class RecurrencePickerFragment : Fragment(),
         return view
     }
 
-    private fun clearFocus() {
+    override fun clearFocus() {
+        // Clear focus from input fields
         frequencyInput.clearFocus()
         endCountInput.clearFocus()
 
+        // Hide keyboard too
         val imm = requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
@@ -282,6 +271,7 @@ class RecurrencePickerFragment : Fragment(),
 
     override fun setSelectedPeriodItem(index: Int) {
         periodDropdown.setText(periodAdapter.getItem(index))
+        periodDropdown.requestLayout()  // Force view to wrap width to new text
     }
 
     override fun setWeekBtnsShown(shown: Boolean) {
@@ -387,6 +377,7 @@ class RecurrencePickerFragment : Fragment(),
         fun onRecurrencePickerCancelled() = Unit
     }
 
+    /** Custom AutoCompleteTextView adapter to disable filtering since we want it to act like a spinner. */
     private class DropdownAdapter(context: Context) :
             ArrayAdapter<String>(context, R.layout.rp_item_dropdown) {
         override fun getFilter(): Filter {

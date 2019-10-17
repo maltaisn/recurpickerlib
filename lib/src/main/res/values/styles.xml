@@ -69,6 +69,7 @@
         <item name="boxStrokeColor">@null</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
+        <item name="android:imeOptions">flagNoExtractUi|actionDone</item>
     </style>
 
     <style name="RpPickerDropdownLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
@@ -84,6 +85,7 @@
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:inputType">none|textNoSuggestions</item>
+        <item name="android:imeOptions">flagNoExtractUi</item>
         <item name="android:focusable">false</item>
         <item name="android:focusableInTouchMode">false</item>
         <item name="android:cursorVisible">false</item>

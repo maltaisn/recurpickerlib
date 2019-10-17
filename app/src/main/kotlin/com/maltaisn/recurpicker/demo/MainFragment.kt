@@ -41,8 +41,15 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         RecurrenceListDialog.Callback, RecurrencePickerFragment.Callback {
 
     // Recurrence list and picker fragments
-    private lateinit var listDialog: RecurrenceListDialog
-    private lateinit var pickerFragment: RecurrencePickerFragment
+    private val listDialog by lazy { RecurrenceListDialog.newInstance(settings) }
+    private val pickerFragment by lazy {
+        val fragment = RecurrencePickerFragment.newInstance(settings)
+        // Set the picker's target fragment to this fragment so it can callback later.
+        // There's no need to do the same with the list dialog since it uses the child fragment manager.
+        // We can't use the child fragment manager for the picker since it needs to be on main backstack.
+        fragment.setTargetFragment(this, 0)
+        fragment
+    }
 
     // Main fragment views
     private lateinit var selectedLabel: TextView
@@ -88,15 +95,6 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, state: Bundle?): View? {
-        // Create recurrence picker fragments
-        listDialog = RecurrenceListDialog.newInstance(settings)
-        pickerFragment = RecurrencePickerFragment.newInstance(settings)
-
-        // Set the picker's target fragment to this fragment so it can callback later.
-        // There's no need to do the same with the list dialog since it uses the child fragment manager.
-        // We can't use the child fragment manager for the picker since it needs to be on main backstack.
-        pickerFragment.setTargetFragment(this, 0)
-
         // Create the main fragment layout view.
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
