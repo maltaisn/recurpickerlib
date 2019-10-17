@@ -15,48 +15,68 @@
   -->
 
 <resources>
-    <string name="rp_picker_done">Klar</string>
-    <string name="rp_repeat_options">Repetera alternativ</string>
-    <string name="rp_list_custom">Egen…</string>
-    <string name="rp_period_day">Repetera dagligen</string>
-    <string name="rp_period_week">Repetera veckovis</string>
-    <string name="rp_period_month">Repetera månadsvis</string>
-    <string name="rp_period_year">Repetera årligen</string>
-    <string name="rp_end_never">Tills vidare</string>
-    <string name="rp_end_date">Ange slutdatum</string>
-    <string name="rp_end_count">Ange antal gånger</string>
-    <string name="rp_end_never_abbr">Tills vidare</string>
-    <string name="rp_end_date_abbr">Till</string>
-    <string name="rp_end_count_abbr">Vid</string>
-    <plurals name="rp_end_count_event">
-        <item quantity="one">tillfälle</item>
-        <item quantity="other">tillfällen</item>
+    <string name="rp_list_custom">Anpassad…</string>
+
+    <string name="rp_picker_done">Klart</string>
+    <string name="rp_picker_title">Anpassad upprepning</string>
+    <string name="rp_picker_subtitle_period">Upprepas varje</string>
+    <string name="rp_picker_subtitle_setting">Upprepa på</string>
+    <string name="rp_picker_subtitle_end">Upphör</string>
+    <string name="rp_picker_end_never">Aldrig</string>
+    <string name="rp_picker_end_date">Den</string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="one">Efter | förekomst</item>
+        <item quantity="other">Efter | förekomster</item>
     </plurals>
+    <plurals name="rp_picker_period_day">
+        <item quantity="one">dag</item>
+        <item quantity="other">dag</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="one">vecka</item>
+        <item quantity="other">vecka</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="one">månad</item>
+        <item quantity="other">månad</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="one">år</item>
+        <item quantity="other">år</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun">S</string>
+    <string name="rp_day_of_week_abbr1_mon">M</string>
+    <string name="rp_day_of_week_abbr1_tue">T</string>
+    <string name="rp_day_of_week_abbr1_wed">O</string>
+    <string name="rp_day_of_week_abbr1_thu">T</string>
+    <string name="rp_day_of_week_abbr1_fri">F</string>
+    <string name="rp_day_of_week_abbr1_sat">L</string>
+
     <string-array name="rp_days_of_week_abbr3">
-        <item>Sön</item>
-        <item>Mån</item>
-        <item>Tis</item>
-        <item>Ons</item>
-        <item>Tors</item>
-        <item>Fre</item>
-        <item>Lör</item>
+        <item>sön.</item>
+        <item>mån.</item>
+        <item>tis.</item>
+        <item>ons.</item>
+        <item>tor.s</item>
+        <item>fre.</item>
+        <item>lör.</item>
     </string-array>
-    <string name="rp_format_none">Upprepas inte</string>
+    <string name="rp_format_none">Inträffar inte igen</string>
     <plurals name="rp_format_day">
-        <item quantity="one">Varje |dag</item>
-        <item quantity="other">Var |%d dag</item>
+        <item quantity="one">Varje dag</item>
+        <item quantity="other">Var %d dag</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">Varje |vecka</item>
-        <item quantity="other">Var |%d vecka</item>
+        <item quantity="one">Varje vecka</item>
+        <item quantity="other">Var %d vecka</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="one">Varje |månad</item>
-        <item quantity="other">Var |%d månad</item>
+        <item quantity="one">Varje månad</item>
+        <item quantity="other">Var %d månad</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="one">Varje |år</item>
-        <item quantity="other">Var |%d år</item>
+        <item quantity="one">Varje år</item>
+        <item quantity="other">Var %d år</item>
     </plurals>
     <string name="rp_format_weekly_option">på %s</string>
     <string name="rp_format_weekly_all">Varje dag i veckan</string>

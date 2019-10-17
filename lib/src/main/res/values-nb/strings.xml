@@ -15,48 +15,69 @@
   -->
 
 <resources>
-    <string name="rp_picker_done">Ferdig</string>
-    <string name="rp_repeat_options">Gjenta alternativer</string>
+
     <string name="rp_list_custom">Tilpasset…</string>
-    <string name="rp_period_day">Gjenta daglig</string>
-    <string name="rp_period_week">Gjenta daglig</string>
-    <string name="rp_period_month">Gjenta månedlig</string>
-    <string name="rp_period_year">Gjenta årlig</string>
-    <string name="rp_end_never">Alltid</string>
-    <string name="rp_end_date">Inntil en dato</string>
-    <string name="rp_end_count">For en rekke arrangementer</string>
-    <string name="rp_end_never_abbr">Alltid</string>
-    <string name="rp_end_date_abbr">Inntil</string>
-    <string name="rp_end_count_abbr">For</string>
-    <plurals name="rp_end_count_event">
-        <item quantity="one">event</item>
-        <item quantity="other">events</item>
+
+    <string name="rp_picker_done">Ferdig</string>
+    <string name="rp_picker_title">Egendefinert gjentakelse</string>
+    <string name="rp_picker_subtitle_period">Gjentas hver(t)</string>
+    <string name="rp_picker_subtitle_setting">Gjentas på</string>
+    <string name="rp_picker_subtitle_end">Slutter</string>
+    <string name="rp_picker_end_never">Aldri</string>
+    <string name="rp_picker_end_date"></string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="one">Etter | forekomst</item>
+        <item quantity="other">Etter | forekomster</item>
     </plurals>
+    <plurals name="rp_picker_period_day">
+        <item quantity="one">dag</item>
+        <item quantity="other">dager</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="one">uke</item>
+        <item quantity="other">uker</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="one">måned</item>
+        <item quantity="other">måneder</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="one">år</item>
+        <item quantity="other">år</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun">S</string>
+    <string name="rp_day_of_week_abbr1_mon">M</string>
+    <string name="rp_day_of_week_abbr1_tue">T</string>
+    <string name="rp_day_of_week_abbr1_wed">O</string>
+    <string name="rp_day_of_week_abbr1_thu">T</string>
+    <string name="rp_day_of_week_abbr1_fri">F</string>
+    <string name="rp_day_of_week_abbr1_sat">L</string>
+
     <string-array name="rp_days_of_week_abbr3">
-        <item>Søn</item>
-        <item>Man</item>
-        <item>Tir</item>
-        <item>Ons</item>
-        <item>Tors</item>
-        <item>Fre</item>
-        <item>Lør</item>
+        <item>søn.</item>
+        <item>man.</item>
+        <item>tir.</item>
+        <item>ons.</item>
+        <item>tor.</item>
+        <item>fre.</item>
+        <item>lør.</item>
     </string-array>
     <string name="rp_format_none">Gjentar ikke</string>
     <plurals name="rp_format_day">
-        <item quantity="one">Alle |dager</item>
-        <item quantity="other">Alle |%d dager</item>
+        <item quantity="one">Alle dager</item>
+        <item quantity="other">Alle %d dager</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">Alle |uke</item>
-        <item quantity="other">Alle |%d uker</item>
+        <item quantity="one">Alle uke</item>
+        <item quantity="other">Alle %d uker</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="one">Alle |måned</item>
-        <item quantity="other">Alle |%d måneder</item>
+        <item quantity="one">Alle måned</item>
+        <item quantity="other">Alle %d måneder</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="one">Alle |år</item>
-        <item quantity="other">Alle |%d år</item>
+        <item quantity="one">Alle år</item>
+        <item quantity="other">Alle %d år</item>
     </plurals>
     <string name="rp_format_weekly_option">på %s</string>
     <string name="rp_format_weekly_all">alle dager i uken</string>

@@ -83,7 +83,7 @@
         <item name="boxStrokeColor">@null</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
-        <item name="android:inputType">none</item>
+        <item name="android:inputType">none|textNoSuggestions</item>
         <item name="android:focusable">false</item>
         <item name="android:focusableInTouchMode">false</item>
         <item name="android:cursorVisible">false</item>

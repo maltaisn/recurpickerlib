@@ -15,48 +15,68 @@
   -->
 
 <resources>
-    <string name="rp_picker_done">Klaar</string>
-    <string name="rp_repeat_options">Herhalingsopties</string>
     <string name="rp_list_custom">Aangepast…</string>
-    <string name="rp_period_day">Herhaal dagelijks</string>
-    <string name="rp_period_week">Herhaal wekelijks</string>
-    <string name="rp_period_month">Herhaal maandelijks</string>
-    <string name="rp_period_year">Herhaal jaarlijks</string>
-    <string name="rp_end_never">Altijd</string>
-    <string name="rp_end_date">Tot een bepaalde datum</string>
-    <string name="rp_end_count">Voor een bepaald aantal gebeurtenissen</string>
-    <string name="rp_end_never_abbr">Altijd</string>
-    <string name="rp_end_date_abbr">Tot</string>
-    <string name="rp_end_count_abbr">Voor</string>
-    <plurals name="rp_end_count_event">
-        <item quantity="one">gebeurtenis</item>
-        <item quantity="other">gebeurtenissen</item>
+
+    <string name="rp_picker_done">Gereed</string>
+    <string name="rp_picker_title">Herhaling aanpassen</string>
+    <string name="rp_picker_subtitle_period">Wordt herhaald voor elke</string>
+    <string name="rp_picker_subtitle_setting">Wordt herhaald op</string>
+    <string name="rp_picker_subtitle_end">Eindigt</string>
+    <string name="rp_picker_end_never">Nooit</string>
+    <string name="rp_picker_end_date">Op</string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="one">Na | keer</item>
+        <item quantity="other">Na | keer</item>
     </plurals>
+    <plurals name="rp_picker_period_day">
+        <item quantity="one">dag</item>
+        <item quantity="other">dagen</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="one">week</item>
+        <item quantity="other">weken</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="one">maand</item>
+        <item quantity="other">maanden</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="one">jaar</item>
+        <item quantity="other">jaar</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun">Z</string>
+    <string name="rp_day_of_week_abbr1_mon">M</string>
+    <string name="rp_day_of_week_abbr1_tue">D</string>
+    <string name="rp_day_of_week_abbr1_wed">W</string>
+    <string name="rp_day_of_week_abbr1_thu">D</string>
+    <string name="rp_day_of_week_abbr1_fri">V</string>
+    <string name="rp_day_of_week_abbr1_sat">Z</string>
+
     <string-array name="rp_days_of_week_abbr3">
-        <item>Zo</item>
-        <item>Ma</item>
-        <item>Di</item>
-        <item>Wo</item>
-        <item>Do</item>
-        <item>Vr</item>
-        <item>Za</item>
+        <item>zo</item>
+        <item>ma</item>
+        <item>di</item>
+        <item>wo</item>
+        <item>do</item>
+        <item>vr</item>
+        <item>za</item>
     </string-array>
-    <string name="rp_format_none">Herhaalt niet</string>
+    <string name="rp_format_none">Niet herhaald</string>
     <plurals name="rp_format_day">
-        <item quantity="one">Elke |dag</item>
-        <item quantity="other">Elke |%d dagen</item>
+        <item quantity="one">Elke dag</item>
+        <item quantity="other">Elke %d dagen</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">Elke |week</item>
-        <item quantity="other">Elke |%d weken</item>
+        <item quantity="one">Elke week</item>
+        <item quantity="other">Elke %d weken</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="one">Elke |maand</item>
-        <item quantity="other">Elke |%d maanden</item>
+        <item quantity="one">Elke maand</item>
+        <item quantity="other">Elke %d maanden</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="one">Elk |jaar</item>
-        <item quantity="other">Elk |%d jaar</item>
+        <item quantity="one">Elk jaar</item>
+        <item quantity="other">Elk %d jaar</item>
     </plurals>
     <string name="rp_format_weekly_option">op %s</string>
     <string name="rp_format_weekly_all">iedere dag van de week</string>

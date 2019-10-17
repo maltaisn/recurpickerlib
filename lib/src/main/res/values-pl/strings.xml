@@ -15,57 +15,86 @@
   -->
 
 <resources>
+    <string name="rp_list_custom">Custom…</string>
+
     <string name="rp_picker_done">Gotowe</string>
-    <string name="rp_repeat_options">Opcje powtarzania</string>
-    <string name="rp_list_custom">Niestandardowe…</string>
-    <string name="rp_period_day">Powtarzaj codziennie</string>
-    <string name="rp_period_week">Powtarzaj co tydzień</string>
-    <string name="rp_period_month">Powtarzaj co miesiąc</string>
-    <string name="rp_period_year">Powtarzaj co rok</string>
-    <string name="rp_end_never">Na zawsze</string>
-    <string name="rp_end_date">Do dnia</string>
-    <string name="rp_end_count">Przez ilość wystąpień</string>
-    <string name="rp_end_never_abbr">Na zawsze</string>
-    <string name="rp_end_date_abbr">Do</string>
-    <string name="rp_end_count_abbr">Przez</string>
-    <plurals name="rp_end_count_event">
-        <item quantity="one">wydarzenie</item>
-        <item quantity="few">wydarzenia</item>
-        <item quantity="other">wydarzenia</item>
+    <string name="rp_picker_title">Powtarzanie niestandardowe</string>
+    <string name="rp_picker_subtitle_period">Powtarzane co</string>
+    <string name="rp_picker_subtitle_setting">Powtarza się w</string>
+    <string name="rp_picker_subtitle_end">Koniec</string>
+    <string name="rp_picker_end_never">Nigdy</string>
+    <string name="rp_picker_end_date">W dniu</string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="one">Po | występieniu</item>
+        <item quantity="few">Po | występieniach</item>
+        <item quantity="many">Po | występieaniach</item>
+        <item quantity="other">Po | występieniach</item>
     </plurals>
+    <plurals name="rp_picker_period_day">
+        <item quantity="one">dnia</item>
+        <item quantity="few">dni</item>
+        <item quantity="many">dni</item>
+        <item quantity="other">dni</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="one">tygodnia</item>
+        <item quantity="few">tygodnie</item>
+        <item quantity="many">tygodnie</item>
+        <item quantity="other">tygodnie</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="one">miesiąca</item>
+        <item quantity="few">miesiące</item>
+        <item quantity="many">miesiące</item>
+        <item quantity="other">miesiące</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="one">roku</item>
+        <item quantity="few">lata</item>
+        <item quantity="many">lata</item>
+        <item quantity="other">lata</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun">N</string>
+    <string name="rp_day_of_week_abbr1_mon">P</string>
+    <string name="rp_day_of_week_abbr1_tue">W</string>
+    <string name="rp_day_of_week_abbr1_wed">Ś</string>
+    <string name="rp_day_of_week_abbr1_thu">C</string>
+    <string name="rp_day_of_week_abbr1_fri">P</string>
+    <string name="rp_day_of_week_abbr1_sat">S</string>
+
     <string-array name="rp_days_of_week_abbr3">
-        <item>Nie</item>
-        <item>Pon</item>
-        <item>Wto</item>
-        <item>Śro</item>
-        <item>Czw</item>
-        <item>Pią</item>
-        <item>Sob</item>
+        <item>nie.</item>
+        <item>pon.</item>
+        <item>wto.</item>
+        <item>śro.</item>
+        <item>czw.</item>
+        <item>pią.</item>
+        <item>sob.</item>
     </string-array>
     <string name="rp_format_none">Nie powtarza się</string>
     <plurals name="rp_format_day">
-        <item quantity="one">Każdego |dnia</item>
-        <item quantity="few">Każde |%d dni</item>
-        <item quantity="many">Każde |%d dni</item>
-        <item quantity="other">Każde |%d dni</item>
+        <item quantity="one">Każdego dnia</item>
+        <item quantity="few">Każde %d dni</item>
+        <item quantity="many">Każde %d dni</item>
+        <item quantity="other">Każde %d dni</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">Każdego |tygodnia</item>
-        <item quantity="few">Każde |%d tygodnie</item>
-        <item quantity="many">Każde |%d tygodnie</item>
-        <item quantity="other">Każde |%d tygodnie</item>
+        <item quantity="one">Każdego tygodnia</item>
+        <item quantity="few">Każde %d tygodnie</item>
+        <item quantity="many">Każde %d tygodnie</item>
+        <item quantity="other">Każde %d tygodnie</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="one">Każdego |miesiąca</item>
-        <item quantity="few">Każde |%d miesiące</item>
-        <item quantity="many">Każde |%d miesiące</item>
-        <item quantity="other">Każde |%d miesiące</item>
+        <item quantity="one">Każdego miesiąca</item>
+        <item quantity="few">Każde %d miesiące</item>
+        <item quantity="many">Każde %d miesiące</item>
+        <item quantity="other">Każde %d miesiące</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="one">Każdego |roku</item>
-        <item quantity="few">Każde |%d lata</item>
-        <item quantity="many">Każde |%d lata</item>
-        <item quantity="other">Każde |%d lata</item>
+        <item quantity="one">Każdego roku</item>
+        <item quantity="few">Każde %d lata</item>
+        <item quantity="many">Każde %d lata</item>
+        <item quantity="other">Każde %d lata</item>
     </plurals>
     <string name="rp_format_weekly_option">w %s</string>
     <string name="rp_format_weekly_all">każdego dnia tygodnia</string>

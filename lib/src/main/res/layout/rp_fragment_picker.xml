@@ -284,17 +284,24 @@
                 app:layout_constraintTop_toBottomOf="@id/rp_picker_monthly_div"
                 />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/rp_end_guideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="72dp"
+                />
+
             <TextView
                 android:id="@+id/rp_picker_end_never_label"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
                 android:gravity="center_vertical"
                 android:text="@string/rp_picker_end_never"
                 android:textAppearance="?rpTextAppearance"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_never_view"
                 app:layout_constraintEnd_toEndOf="@id/rp_picker_end_never_view"
-                app:layout_constraintStart_toEndOf="@id/rp_picker_end_never_radio"
+                app:layout_constraintStart_toEndOf="@id/rp_end_guideline"
                 app:layout_constraintTop_toTopOf="@id/rp_picker_end_never_view"
                 />
 
@@ -324,7 +331,7 @@
                 style="?rpPickerDividerStyle"
                 android:layout_width="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/rp_picker_end_never_label"
+                app:layout_constraintStart_toEndOf="@id/rp_end_guideline"
                 app:layout_constraintTop_toBottomOf="@id/rp_picker_end_never_view"
                 />
 
@@ -332,12 +339,12 @@
                 android:id="@+id/rp_picker_end_date_prefix_label"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
+                android:paddingEnd="8dp"
                 android:gravity="center_vertical"
                 android:labelFor="@+id/rp_picker_end_date_input"
                 android:textAppearance="?rpTextAppearance"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_view"
-                app:layout_constraintStart_toEndOf="@id/rp_picker_end_date_radio"
+                app:layout_constraintStart_toEndOf="@id/rp_end_guideline"
                 app:layout_constraintTop_toTopOf="@id/rp_picker_end_date_view"
                 tools:ignore="LabelFor"
                 tools:text="On"
@@ -348,7 +355,6 @@
                 style="?attr/rpPickerInputLayoutStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_view"
@@ -364,7 +370,7 @@
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:inputType="none"
+                    android:inputType="none|textNoSuggestions"
                     tools:text="Nov 12, 2019"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -373,7 +379,7 @@
                 android:id="@+id/rp_picker_end_date_suffix_label"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginStart="8dp"
+                android:paddingStart="8dp"
                 android:gravity="center_vertical"
                 android:labelFor="@+id/rp_picker_end_date_input"
                 android:textAppearance="?rpTextAppearance"
@@ -410,7 +416,7 @@
                 style="?rpPickerDividerStyle"
                 android:layout_width="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/rp_picker_end_date_prefix_label"
+                app:layout_constraintStart_toEndOf="@id/rp_end_guideline"
                 app:layout_constraintTop_toBottomOf="@id/rp_picker_end_date_view"
                 />
 
@@ -418,12 +424,12 @@
                 android:id="@+id/rp_picker_end_count_prefix_label"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
+                android:paddingEnd="8dp"
                 android:gravity="center_vertical"
                 android:labelFor="@+id/rp_picker_end_date_input"
                 android:textAppearance="?rpTextAppearance"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_view"
-                app:layout_constraintStart_toEndOf="@id/rp_picker_end_count_radio"
+                app:layout_constraintStart_toEndOf="@id/rp_end_guideline"
                 app:layout_constraintTop_toTopOf="@id/rp_picker_end_count_view"
                 tools:ignore="LabelFor"
                 tools:text="After"
@@ -434,7 +440,6 @@
                 style="?attr/rpPickerInputLayoutStyle"
                 android:layout_width="56dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_view"
@@ -458,7 +463,7 @@
                 android:id="@+id/rp_picker_end_count_suffix_label"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="8dp"
+                android:paddingStart="8dp"
                 android:gravity="center_vertical"
                 android:labelFor="@+id/rp_picker_end_date_input"
                 android:textAppearance="?rpTextAppearance"

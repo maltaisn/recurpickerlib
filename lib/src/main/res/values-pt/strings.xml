@@ -14,49 +14,69 @@
   limitations under the License.
   -->
 
-<resources>
-    <string name="rp_picker_done">Pronto!</string>
-    <string name="rp_repeat_options">Repetir as opções</string>
-    <string name="rp_list_custom">Personalizadas</string>
-    <string name="rp_period_day">Repetir diariamente</string>
-    <string name="rp_period_week">Repetir semanalmente</string>
-    <string name="rp_period_month">Repetir mensalmente</string>
-    <string name="rp_period_year">Repetir anualmente</string>
-    <string name="rp_end_never">Sempre</string>
-    <string name="rp_end_date">Até uma data</string>
-    <string name="rp_end_count">Um número de vezes</string>
-    <string name="rp_end_never_abbr">Sempre</string>
-    <string name="rp_end_date_abbr">Até</string>
-    <string name="rp_end_count_abbr">Para</string>
-    <plurals name="rp_end_count_event">
-        <item quantity="one">Evento</item>
-        <item quantity="other">Eventos</item>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ImpliedQuantity">
+    <string name="rp_list_custom">Personalizar…</string>
+
+    <string name="rp_picker_done">Concluído</string>
+    <string name="rp_picker_title">Recorrência personalizada</string>
+    <string name="rp_picker_subtitle_period">Repete a cada</string>
+    <string name="rp_picker_subtitle_setting">Repetir às/aos</string>
+    <string name="rp_picker_subtitle_end">Termina</string>
+    <string name="rp_picker_end_never">Nunca</string>
+    <string name="rp_picker_end_date">Em</string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="one">Após | ocorrência</item>
+        <item quantity="other">Após | ocorrências</item>
     </plurals>
+    <plurals name="rp_picker_period_day">
+        <item quantity="one">dias</item>
+        <item quantity="other">dias</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="one">semana</item>
+        <item quantity="other">semanas</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="one">mês</item>
+        <item quantity="other">meses</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="one">ano</item>
+        <item quantity="other">anos</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun">D</string>
+    <string name="rp_day_of_week_abbr1_mon">S</string>
+    <string name="rp_day_of_week_abbr1_tue">T</string>
+    <string name="rp_day_of_week_abbr1_wed">Q</string>
+    <string name="rp_day_of_week_abbr1_thu">Q</string>
+    <string name="rp_day_of_week_abbr1_fri">S</string>
+    <string name="rp_day_of_week_abbr1_sat">S</string>
+
     <string-array name="rp_days_of_week_abbr3">
-        <item>Domingo</item>
-        <item>Segunda</item>
-        <item>Terça</item>
-        <item>Quarta</item>
-        <item>Quinta</item>
-        <item>Sexta</item>
-        <item>Sábado</item>
+        <item>dom</item>
+        <item>seg</item>
+        <item>ter</item>
+        <item>qua</item>
+        <item>qui</item>
+        <item>sex</item>
+        <item>sáb</item>
     </string-array>
     <string name="rp_format_none">Não se repete</string>
     <plurals name="rp_format_day">
-        <item quantity="one">Todos os |dias</item>
-        <item quantity="other">Todos os |%d dias</item>
+        <item quantity="one">Todos os dias</item>
+        <item quantity="other">Todos os %d dias</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">Toda a |%d semana</item>
-        <item quantity="other">Todas as |%d semanas</item>
+        <item quantity="one">Toda a %d semana</item>
+        <item quantity="other">Todas as %d semanas</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="one">Todo |mês</item>
-        <item quantity="other">Todos os |%d meses</item>
+        <item quantity="one">Todo mês</item>
+        <item quantity="other">Todos os %d meses</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="one">Todo |ano</item>
-        <item quantity="other">Todos os |%d anos</item>
+        <item quantity="one">Todo ano</item>
+        <item quantity="other">Todos os %d anos</item>
     </plurals>
     <string name="rp_format_weekly_option">Até %s</string>
     <string name="rp_format_weekly_all">todos os dias da semana</string>
@@ -78,7 +98,7 @@
     </string-array>
     <string name="rp_format_end_date">Até %s</string>
     <plurals name="rp_format_end_count">
-        <item quantity="one">Para %d evento</item>
-        <item quantity="other">Para %d eventos</item>
+        <item quantity="one">para %d evento</item>
+        <item quantity="other">para %d eventos</item>
     </plurals>
 </resources>

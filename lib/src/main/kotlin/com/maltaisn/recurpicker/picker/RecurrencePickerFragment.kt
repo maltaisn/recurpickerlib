@@ -329,6 +329,7 @@ class RecurrencePickerFragment : Fragment(),
     override fun setEndDateLabels(prefix: String, suffix: String) {
         endDatePrefixLabel.text = prefix
         endDateSuffixLabel.text = suffix
+        endDatePrefixLabel.isVisible = prefix.isNotEmpty()
     }
 
     override fun showEndDateDialog(date: Long, minDate: Long) {
@@ -354,6 +355,7 @@ class RecurrencePickerFragment : Fragment(),
     override fun setEndCountLabels(prefix: String, suffix: String) {
         endCountPrefixLabel.text = prefix
         endCountSuffixLabel.text = suffix
+        endCountPrefixLabel.isVisible = prefix.isNotEmpty()
     }
 
     override fun setCancelResult() {

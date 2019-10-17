@@ -15,53 +15,77 @@
   -->
 
 <resources>
+    <string name="rp_list_custom">Vlastné…</string>
+
     <string name="rp_picker_done">Hotovo</string>
-    <string name="rp_repeat_options">Možnosti opakovaní</string>
-    <string name="rp_list_custom">Vlastné</string>
-    <string name="rp_period_day">Opakovať denne</string>
-    <string name="rp_period_week">Opakovať týždenne</string>
-    <string name="rp_period_month">Opakovať mesačne</string>
-    <string name="rp_period_year">Opakovať ročne</string>
-    <string name="rp_end_never">Neobmedzene</string>
-    <string name="rp_end_date">Do dátumu</string>
-    <string name="rp_end_count">Do počtu opakovaní</string>
-    <string name="rp_end_never_abbr">Neobmedzene</string>
-    <string name="rp_end_date_abbr">Do</string>
-    <string name="rp_end_count_abbr">Do</string>
-    <plurals name="rp_end_count_event">
-        <item quantity="one">udalosť</item>
-        <item quantity="few">udalosti</item>
-        <item quantity="other">udalostí</item>
+    <string name="rp_picker_title">Vlastné opakovanie</string>
+    <string name="rp_picker_subtitle_period">Interval opakovania</string>
+    <string name="rp_picker_subtitle_setting">Termín opakovania</string>
+    <string name="rp_picker_subtitle_end">Koniec</string>
+    <string name="rp_picker_end_never">Nikdy</string>
+    <string name="rp_picker_end_date"></string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="one">Po | opakovaní</item>
+        <item quantity="few">Po | opakovaniach</item>
+        <item quantity="other">Po | opakovaniach</item>
     </plurals>
+    <plurals name="rp_picker_period_day">
+        <item quantity="one">deň</item>
+        <item quantity="few">dni</item>
+        <item quantity="other">dní</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="one">týždeň</item>
+        <item quantity="few">týždne</item>
+        <item quantity="other">týždňov</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="one">mesiac</item>
+        <item quantity="few">mesiace</item>
+        <item quantity="other">mesiacov</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="one">rok</item>
+        <item quantity="few">roky</item>
+        <item quantity="other">rokov</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun">n</string>
+    <string name="rp_day_of_week_abbr1_mon">p</string>
+    <string name="rp_day_of_week_abbr1_tue">u</string>
+    <string name="rp_day_of_week_abbr1_wed">s</string>
+    <string name="rp_day_of_week_abbr1_thu">š</string>
+    <string name="rp_day_of_week_abbr1_fri">p</string>
+    <string name="rp_day_of_week_abbr1_sat">s</string>
+
     <string-array name="rp_days_of_week_abbr3">
-        <item>Ne</item>
-        <item>Pon</item>
-        <item>Ut</item>
-        <item>Str</item>
-        <item>Štv</item>
-        <item>Pia</item>
-        <item>Sob</item>
+        <item>ne</item>
+        <item>po</item>
+        <item>ut</item>
+        <item>st</item>
+        <item>št</item>
+        <item>pi</item>
+        <item>so</item>
     </string-array>
     <string name="rp_format_none">Neopakuje sa</string>
     <plurals name="rp_format_day">
-        <item quantity="one">Každý |deň</item>
-        <item quantity="few">Každé |%d dni</item>
-        <item quantity="other">Každých |%d dní</item>
+        <item quantity="one">Každý deň</item>
+        <item quantity="few">Každé %d dni</item>
+        <item quantity="other">Každých %d dní</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">Každý |týždeň</item>
-        <item quantity="few">Každé |%d týždne</item>
-        <item quantity="other">Každých |%d týždňov</item>
+        <item quantity="one">Každý týždeň</item>
+        <item quantity="few">Každé %d týždne</item>
+        <item quantity="other">Každých %d týždňov</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="one">Každý |mesiac</item>
-        <item quantity="few">Každé |%d mesiace</item>
-        <item quantity="other">Každých |%d mesiacov</item>
+        <item quantity="one">Každý mesiac</item>
+        <item quantity="few">Každé %d mesiace</item>
+        <item quantity="other">Každých %d mesiacov</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="one">Každý |rok</item>
-        <item quantity="few">Každé |%d roky</item>
-        <item quantity="other">Každých |%d rokov</item>
+        <item quantity="one">Každý rok</item>
+        <item quantity="few">Každé %d roky</item>
+        <item quantity="other">Každých %d rokov</item>
     </plurals>
     <string name="rp_format_weekly_option">v %s</string>
     <string name="rp_format_weekly_all">každý deň v týždni</string>

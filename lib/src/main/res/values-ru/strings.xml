@@ -14,54 +14,88 @@
   limitations under the License.
   -->
 
-<resources>
-    <string name="rp_picker_done">Готово</string>
-    <string name="rp_repeat_options">Опции повтора</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ImpliedQuantity">
+
     <string name="rp_list_custom">Дополнительно…</string>
-    <string name="rp_period_day">Повторять ежедневно</string>
-    <string name="rp_period_week">Повторять еженедельно</string>
-    <string name="rp_period_month">Повторять ежемесячно</string>
-    <string name="rp_period_year">Повторять ежегодно</string>
-    <string name="rp_end_never">Бессрочно</string>
-    <string name="rp_end_date">До даты</string>
-    <string name="rp_end_count">На N событий</string>
-    <string name="rp_end_never_abbr">Бессрочно</string>
-    <string name="rp_end_date_abbr">До</string>
-    <string name="rp_end_count_abbr">Количество</string>
-    <plurals name="rp_end_count_event">
-        <item quantity="one">событие</item>
-        <item quantity="few">событий</item>
-        <item quantity="other">событий</item>
+
+    <string name="rp_picker_done">Готово</string>
+    <string name="rp_picker_title">Повтор мероприятия</string>
+    <string name="rp_picker_subtitle_period">Повторяется раз в</string>
+    <string name="rp_picker_subtitle_setting">Когда повторяется</string>
+    <string name="rp_picker_subtitle_end">Заканчивается</string>
+    <string name="rp_picker_end_never">Никогда</string>
+    <string name="rp_picker_end_date"></string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="one">После | раза</item>
+        <item quantity="few">После | раз</item>
+        <item quantity="many">После | раз</item>
+        <item quantity="other">После | раз</item>
     </plurals>
+    <plurals name="rp_picker_period_day">
+        <item quantity="one">день</item>
+        <item quantity="few">дня</item>
+        <item quantity="many">дней</item>
+        <item quantity="other">дней</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="one">неделю</item>
+        <item quantity="few">недели</item>
+        <item quantity="many">недель</item>
+        <item quantity="other">недель</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="one">месяц</item>
+        <item quantity="few">месяца</item>
+        <item quantity="many">месяцев</item>
+        <item quantity="other">месяцев</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="one">год</item>
+        <item quantity="few">года</item>
+        <item quantity="other">лет</item>
+        <item quantity="many">лет</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun">вс</string>
+    <string name="rp_day_of_week_abbr1_mon">пн</string>
+    <string name="rp_day_of_week_abbr1_tue">вт</string>
+    <string name="rp_day_of_week_abbr1_wed">ср</string>
+    <string name="rp_day_of_week_abbr1_thu">чт</string>
+    <string name="rp_day_of_week_abbr1_fri">пт</string>
+    <string name="rp_day_of_week_abbr1_sat">сб</string>
+
     <string-array name="rp_days_of_week_abbr3">
-        <item>Вс</item>
-        <item>Пн</item>
-        <item>Вт</item>
-        <item>Ср</item>
-        <item>Чт</item>
-        <item>Пт</item>
-        <item>Сб</item>
+        <item>вс</item>
+        <item>пн</item>
+        <item>вт</item>
+        <item>ср</item>
+        <item>чт</item>
+        <item>пт</item>
+        <item>сб</item>
     </string-array>
     <string name="rp_format_none">Не повторяется</string>
     <plurals name="rp_format_day">
-        <item quantity="one">Каждый |%d день</item>
-        <item quantity="few">Каждые |%d дня</item>
-        <item quantity="other">Каждые |%d дней</item>
+        <item quantity="one">Каждый %d день</item>
+        <item quantity="few">Каждые %d дня</item>
+        <item quantity="many">Каждые %d дней</item>
+        <item quantity="other">Каждые %d дней</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="one">Каждую |%d неделю</item>
-        <item quantity="few">Каждые |%d недели</item>
-        <item quantity="other">Каждые |%d недель</item>
+        <item quantity="one">Каждую %d неделю</item>
+        <item quantity="few">Каждые %d недели</item>
+        <item quantity="many">Каждые %d недель</item>
+        <item quantity="other">Каждые %d недель</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="one">Каждый |%d месяц</item>
-        <item quantity="few">Каждые |%d месяца</item>
-        <item quantity="other">Каждые |%d месяцев</item>
+        <item quantity="one">Каждый %d месяц</item>
+        <item quantity="few">Каждые %d месяца</item>
+        <item quantity="many">Каждые %d месяцев</item>
+        <item quantity="other">Каждые %d месяцев</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="one">Каждый |%d год</item>
-        <item quantity="few">Каждые |%d года</item>
-        <item quantity="other">Каждые |%d лет</item>
+        <item quantity="one">Каждый %d год</item>
+        <item quantity="few">Каждые %d года</item>
+        <item quantity="other">Каждые %d лет</item>
+        <item quantity="many">Каждые %d лет</item>
     </plurals>
     <string name="rp_format_weekly_option">в %s</string>
     <string name="rp_format_weekly_all">все дни недели</string>
@@ -85,6 +119,7 @@
     <plurals name="rp_format_end_count">
         <item quantity="one">для %d события</item>
         <item quantity="few">для %d событий</item>
+        <item quantity="many">для %d событий</item>
         <item quantity="other">для %d событий</item>
     </plurals>
 </resources>

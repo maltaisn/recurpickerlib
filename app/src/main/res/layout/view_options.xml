@@ -74,7 +74,7 @@
                 android:cursorVisible="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:inputType="none"
+                android:inputType="none|textNoSuggestions"
                 tools:text="29 Dec. 2020"
                 />
         </com.google.android.material.textfield.TextInputLayout>

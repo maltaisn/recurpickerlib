@@ -15,54 +15,74 @@
   -->
 
 <resources>
-    <string name="rp_picker_done">U krye</string>
-	<string name="rp_repeat_options">Mundësitë e përsëritjes</string>
-    <string name="rp_list_custom">Sipas dëshirës…</string>
-	<string name="rp_period_day">Përsërit çdo ditë</string>
-	<string name="rp_period_week">Përsërit çdo javë</string>
-	<string name="rp_period_month">Përsërit çdo muaj</string>
-	<string name="rp_period_year">Përsërit çdo vit</string>
-	<string name="rp_end_never">Përgjithmonë</string>
-	<string name="rp_end_date">Deri më datën</string>
-	<string name="rp_end_count">Për disa herë</string>
-	<string name="rp_end_never_abbr">Përgjithmonë</string>
-	<string name="rp_end_date_abbr">Deri më</string>
-	<string name="rp_end_count_abbr">Për</string>
-	<plurals name="rp_end_count_event">
-		<item quantity="one">ndodhi</item>
-		<item quantity="other">raste</item>
+	<string name="rp_list_custom">Të personalizuarin…</string>
+
+	<string name="rp_picker_done">U krye</string>
+	<string name="rp_picker_title">Përsëritja a personalizuar</string>
+	<string name="rp_picker_subtitle_period">Përsëritet çdo</string>
+	<string name="rp_picker_subtitle_setting">Përsërit ditën</string>
+	<string name="rp_picker_subtitle_end">Mbaron</string>
+	<string name="rp_picker_end_never">Asnjëherë</string>
+	<string name="rp_picker_end_date">Më</string>
+	<plurals name="rp_picker_end_count">
+		<item quantity="one">Pas | ndodhie</item>
+		<item quantity="other">Pas | ndodhish</item>
 	</plurals>
-    <string-array name="rp_days_of_week_abbr3">
-		<item>Djelë</item>
-		<item>Hënë</item>
-		<item>Martë</item>
-		<item>Mërkurë</item>
-		<item>Enjte</item>
-		<item>Premte</item>
-		<item>Shtunë</item>
+	<plurals name="rp_picker_period_day">
+		<item quantity="one">ditë</item>
+		<item quantity="other">ditë</item>
+	</plurals>
+	<plurals name="rp_picker_period_week">
+		<item quantity="one">javë</item>
+		<item quantity="other">javë</item>
+	</plurals>
+	<plurals name="rp_picker_period_month">
+		<item quantity="one">muaj</item>
+		<item quantity="other">muaj</item>
+	</plurals>
+	<plurals name="rp_picker_period_year">
+		<item quantity="one">vit</item>
+		<item quantity="other">vit</item>
+	</plurals>
+	<string name="rp_day_of_week_abbr1_sun">d</string>
+	<string name="rp_day_of_week_abbr1_mon">h</string>
+	<string name="rp_day_of_week_abbr1_tue">m</string>
+	<string name="rp_day_of_week_abbr1_wed">m</string>
+	<string name="rp_day_of_week_abbr1_thu">e</string>
+	<string name="rp_day_of_week_abbr1_fri">p</string>
+	<string name="rp_day_of_week_abbr1_sat">sh</string>
+
+	<string-array name="rp_days_of_week_abbr3">
+		<item>Die</item>
+		<item>Hën</item>
+		<item>Mar</item>
+		<item>Mër</item>
+		<item>Enj</item>
+		<item>Pre</item>
+		<item>Sht</item>
 	</string-array>
 	<string name="rp_format_none">Nuk përsëritet</string>
 	<plurals name="rp_format_day">
-		<item quantity="one">Çdo |ditë</item>
-		<item quantity="other">Çdo |%d ditë</item>
+		<item quantity="one">Çdo ditë</item>
+		<item quantity="other">Çdo %d ditë</item>
 	</plurals>
 	<plurals name="rp_format_week">
-		<item quantity="one">Çdo |javë</item>
-		<item quantity="other">Çdo |%d javë</item>
+		<item quantity="one">Çdo javë</item>
+		<item quantity="other">Çdo %d javë</item>
 	</plurals>
 	<plurals name="rp_format_month">
-		<item quantity="one">Çdo |muaj</item>
-		<item quantity="other">Çdo |%d muaj</item>
+		<item quantity="one">Çdo muaj</item>
+		<item quantity="other">Çdo %d muaj</item>
 	</plurals>
 	<plurals name="rp_format_year">
-		<item quantity="one">Çdo |vit</item>
-		<item quantity="other">Çdo |%d vit</item>
+		<item quantity="one">Çdo vit</item>
+		<item quantity="other">Çdo %d vit</item>
 	</plurals>
 	<string name="rp_format_weekly_option">të %s</string>
 	<string name="rp_format_weekly_all">çdo ditë të javës</string>
 	<string name="rp_format_monthly_same_day">në të njëjtën ditë të çdo muaji</string>
 	<string name="rp_format_monthly_last_day">në ditën e fundit të muajit</string>
-	<string name="rp_format_monthly_sun">çdo të %s djelë</string>
+	<string name="rp_format_monthly_sun">çdo të %s dielë</string>
 	<string name="rp_format_monthly_mon">çdo të %s hënë</string>
 	<string name="rp_format_monthly_tue">çdo të %s martë</string>
 	<string name="rp_format_monthly_wed">çdo të %s mërkurë</string>

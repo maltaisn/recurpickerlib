@@ -15,22 +15,39 @@
   -->
 
 <resources>
-    <string name="rp_picker_done">完成</string>
-    <string name="rp_repeat_options">重複選項</string>
     <string name="rp_list_custom">自訂…</string>
-    <string name="rp_period_day">每日重複</string>
-    <string name="rp_period_week">每週重複</string>
-    <string name="rp_period_month">每月重複</string>
-    <string name="rp_period_year">每年重複</string>
-    <string name="rp_end_never">永遠</string>
-    <string name="rp_end_date">直到某天</string>
-    <string name="rp_end_count">經過數次事件後</string>
-    <string name="rp_end_never_abbr">永遠</string>
-    <string name="rp_end_date_abbr">直到</string>
-    <string name="rp_end_count_abbr">直到</string>
-    <plurals name="rp_end_count_event">
-        <item quantity="other">事件</item>
+
+    <string name="rp_picker_done">完成</string>
+    <string name="rp_picker_title">目订笛期</string>
+    <string name="rp_picker_subtitle_period">重复过期</string>
+    <string name="rp_picker_subtitle_setting">在這幾天重複</string>
+    <string name="rp_picker_subtitle_end">結束</string>
+    <string name="rp_picker_end_never">水不</string>
+    <string name="rp_picker_end_date">日期</string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="other">發生 | 次後</item>
     </plurals>
+    <plurals name="rp_picker_period_day">
+        <item quantity="other">天</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="other">週</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="other">月</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="other">年</item>
+    </plurals>
+
+    <string name="rp_day_of_week_abbr1_sun">日</string>
+    <string name="rp_day_of_week_abbr1_mon">一</string>
+    <string name="rp_day_of_week_abbr1_tue">二</string>
+    <string name="rp_day_of_week_abbr1_wed">三</string>
+    <string name="rp_day_of_week_abbr1_thu">四</string>
+    <string name="rp_day_of_week_abbr1_fri">五</string>
+    <string name="rp_day_of_week_abbr1_sat">六</string>
+
     <string-array name="rp_days_of_week_abbr3">
         <item>星期日</item>
         <item>星期一</item>
@@ -42,16 +59,16 @@
     </string-array>
     <string name="rp_format_none">不重複</string>
     <plurals name="rp_format_day">
-        <item quantity="other">每 |%d 天</item>
+        <item quantity="other">每 %d 天</item>
     </plurals>
     <plurals name="rp_format_week">
-        <item quantity="other">每 |%d 週</item>
+        <item quantity="other">每 %d 週</item>
     </plurals>
     <plurals name="rp_format_month">
-        <item quantity="other">每 |%d 月</item>
+        <item quantity="other">每 %d 月</item>
     </plurals>
     <plurals name="rp_format_year">
-        <item quantity="other">每 |%d 年</item>
+        <item quantity="other">每 %d 年</item>
     </plurals>
     <string name="rp_format_weekly_option">在 %s</string>
     <string name="rp_format_weekly_all">當週的每一天</string>
