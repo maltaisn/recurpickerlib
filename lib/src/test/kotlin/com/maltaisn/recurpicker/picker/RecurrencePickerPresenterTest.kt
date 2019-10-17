@@ -127,6 +127,30 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
+    fun setDefaultEndDate_daily() {
+        presenter.onPeriodItemSelected(0)
+        verify(view).setEndDateView("2019-11-02")
+    }
+
+    @Test
+    fun setDefaultEndDate_weekly() {
+        presenter.onPeriodItemSelected(1)
+        verify(view).setEndDateView("2019-11-14")
+    }
+
+    @Test
+    fun setDefaultEndDate_monthly() {
+        presenter.onPeriodItemSelected(2)
+        verify(view).setEndDateView("2019-12-31")
+    }
+
+    @Test
+    fun setDefaultEndDate_yearly() {
+        presenter.onPeriodItemSelected(3)
+        verify(view).setEndDateView("2021-10-31")
+    }
+
+    @Test
     fun onWeekBtnsChecked() {
         presenter.onPeriodItemSelected(1)  // Set period to weekly
         presenter.onWeekBtnChecked(Calendar.TUESDAY, true)

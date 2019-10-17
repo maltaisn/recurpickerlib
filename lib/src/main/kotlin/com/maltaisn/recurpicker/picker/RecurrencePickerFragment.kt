@@ -310,6 +310,7 @@ class RecurrencePickerFragment : Fragment(),
 
     override fun setEndDateView(date: String) {
         endDateInput.setText(date)
+        endDateInput.requestLayout()  // Force view to wrap width to new text
     }
 
     override fun setEndDateViewEnabled(enabled: Boolean) {

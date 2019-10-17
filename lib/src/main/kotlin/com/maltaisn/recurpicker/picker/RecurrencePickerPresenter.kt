@@ -65,8 +65,9 @@ internal class RecurrencePickerPresenter : Presenter {
             daysOfWeek = r.daysOfWeekOrDefault
             monthlySettingIndex = r.monthlySettingIndexOrDefault
             endType = r.endType
-            endDate = r.endDateOrDefault
+            endDate = r.endDate
             endCount = r.endCountOrDefault
+            setDefaultEndDate()
 
         } else {
             // Read saved state.
@@ -90,7 +91,7 @@ internal class RecurrencePickerPresenter : Presenter {
             setSelectedMonthlySettingItem(monthlySettingIndex)
 
             updateCheckedEndType()
-            setEndDateView(settings.formatter.dateFormat.format(endDate))
+            updateEndDateView()
             updateEndDateLabels()
             setEndCountView(endCount.toString())
             updateEndCountLabels()
@@ -148,6 +149,7 @@ internal class RecurrencePickerPresenter : Presenter {
             2 -> Period.MONTHLY
             else -> Period.YEARLY
         }
+        setDefaultEndDate(true)
         updatePeriodSettingViews()
         view?.clearFocus()
     }
@@ -191,7 +193,7 @@ internal class RecurrencePickerPresenter : Presenter {
 
     override fun onEndDateEntered(date: Long) {
         endDate = date
-        view?.setEndDateView(settings.formatter.dateFormat.format(date))
+        updateEndDateView()
     }
 
     override fun onEndCountChanged(endCountStr: String) {
@@ -222,6 +224,10 @@ internal class RecurrencePickerPresenter : Presenter {
         }
     }
 
+    private fun updateEndDateView() {
+        view?.setEndDateView(settings.formatter.dateFormat.format(endDate))
+    }
+
     private fun updateEndDateLabels() {
         val view = view ?: return
         val labelParts = view.endDateText.split('|').map { it.trim() }
@@ -242,6 +248,22 @@ internal class RecurrencePickerPresenter : Presenter {
         view?.setEndDateViewEnabled(isByDate)
         view?.setEndCountChecked(isByCount)
         view?.setEndCountViewEnabled(isByCount)
+    }
+
+    private fun setDefaultEndDate(force: Boolean = false) {
+        if (force || endDate == Recurrence.DATE_NONE) {
+            // Default two 2 periods after start date.
+            val cal = Calendar.getInstance()
+            cal.timeInMillis = view!!.startDate
+            cal.add(when (period) {
+                Period.DAILY -> Calendar.DATE
+                Period.WEEKLY -> Calendar.WEEK_OF_YEAR
+                Period.MONTHLY -> Calendar.MONTH
+                else -> Calendar.YEAR
+            }, 2)
+            endDate = cal.timeInMillis
+            updateEndDateView()
+        }
     }
 
     private val isStartDateOnLastDay: Boolean
@@ -285,20 +307,6 @@ internal class RecurrencePickerPresenter : Presenter {
             // Recurrence may have set day to 0, meaning the day should always be the same as start date's.
             // As a result of the rules above, some recurrences aren't supported by the picker, so use this as fallback.
             else -> 0
-        }
-
-    /**
-     * Returns the recurrence's end date. If not set, default to two weeks after the start date.
-     */
-    private val Recurrence.endDateOrDefault: Long
-        get() = if (this.endDate == Recurrence.DATE_NONE) {
-            // No end date set, default to 2 weeks after start date.
-            val endDateCal = Calendar.getInstance()
-            endDateCal.timeInMillis = view!!.startDate
-            endDateCal.add(Calendar.DATE, 14)
-            endDateCal.timeInMillis
-        } else {
-            this.endDate
         }
 
     /**
