@@ -52,10 +52,11 @@
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rp_picker_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:paddingBottom="32dp"
-            android:theme="@style/RecurrencePickerStyle"
+            tools:theme="@style/RecurrencePickerStyle"
             >
 
             <TextView
@@ -155,7 +156,7 @@
             <ToggleButton
                 android:id="@+id/rp_picker_week_btn_mon"
                 style="?rpPickerWeekBtnStyle"
-                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:layout_marginStart="@dimen/rp_week_btn_margin"
                 android:textOff="@string/rp_day_of_week_abbr1_mon"
                 android:textOn="@string/rp_day_of_week_abbr1_mon"
                 app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_sun"
@@ -165,7 +166,7 @@
             <ToggleButton
                 android:id="@+id/rp_picker_week_btn_tue"
                 style="?rpPickerWeekBtnStyle"
-                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:layout_marginStart="@dimen/rp_week_btn_margin"
                 android:textOff="@string/rp_day_of_week_abbr1_tue"
                 android:textOn="@string/rp_day_of_week_abbr1_tue"
                 app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_mon"
@@ -175,7 +176,7 @@
             <ToggleButton
                 android:id="@+id/rp_picker_week_btn_wed"
                 style="?rpPickerWeekBtnStyle"
-                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:layout_marginStart="@dimen/rp_week_btn_margin"
                 android:textOff="@string/rp_day_of_week_abbr1_wed"
                 android:textOn="@string/rp_day_of_week_abbr1_wed"
                 app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_tue"
@@ -185,7 +186,7 @@
             <ToggleButton
                 android:id="@+id/rp_picker_week_btn_thu"
                 style="?rpPickerWeekBtnStyle"
-                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:layout_marginStart="@dimen/rp_week_btn_margin"
                 android:textOff="@string/rp_day_of_week_abbr1_thu"
                 android:textOn="@string/rp_day_of_week_abbr1_thu"
                 app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_wed"
@@ -195,7 +196,7 @@
             <ToggleButton
                 android:id="@+id/rp_picker_week_btn_fri"
                 style="?rpPickerWeekBtnStyle"
-                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:layout_marginStart="@dimen/rp_week_btn_margin"
                 android:textOff="@string/rp_day_of_week_abbr1_fri"
                 android:textOn="@string/rp_day_of_week_abbr1_fri"
                 app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_thu"
@@ -205,7 +206,7 @@
             <ToggleButton
                 android:id="@+id/rp_picker_week_btn_sat"
                 style="?rpPickerWeekBtnStyle"
-                android:layout_marginStart="@dimen/rp_toggle_btn_margin"
+                android:layout_marginStart="@dimen/rp_week_btn_margin"
                 android:textOff="@string/rp_day_of_week_abbr1_sat"
                 android:textOn="@string/rp_day_of_week_abbr1_sat"
                 app:layout_constraintStart_toEndOf="@id/rp_picker_week_btn_fri"
@@ -337,9 +338,10 @@
                 android:id="@+id/rp_picker_end_date_prefix_label"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:paddingEnd="8dp"
                 android:gravity="center_vertical"
                 android:labelFor="@+id/rp_picker_end_date_input"
+                android:paddingStart="0dp"
+                android:paddingEnd="8dp"
                 android:textAppearance="?rpTextAppearance"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_view"
                 app:layout_constraintStart_toEndOf="@id/rp_end_guideline"
@@ -377,9 +379,10 @@
                 android:id="@+id/rp_picker_end_date_suffix_label"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:paddingStart="8dp"
                 android:gravity="center_vertical"
                 android:labelFor="@+id/rp_picker_end_date_input"
+                android:paddingStart="8dp"
+                android:paddingEnd="0dp"
                 android:textAppearance="?rpTextAppearance"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_date_view"
                 app:layout_constraintStart_toEndOf="@id/rp_picker_end_date_input_layout"
@@ -422,9 +425,10 @@
                 android:id="@+id/rp_picker_end_count_prefix_label"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:paddingEnd="8dp"
                 android:gravity="center_vertical"
                 android:labelFor="@+id/rp_picker_end_date_input"
+                android:paddingStart="0dp"
+                android:paddingEnd="8dp"
                 android:textAppearance="?rpTextAppearance"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_view"
                 app:layout_constraintStart_toEndOf="@id/rp_end_guideline"
@@ -459,9 +463,10 @@
                 android:id="@+id/rp_picker_end_count_suffix_label"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:paddingStart="8dp"
                 android:gravity="center_vertical"
                 android:labelFor="@+id/rp_picker_end_date_input"
+                android:paddingStart="8dp"
+                android:paddingEnd="0dp"
                 android:textAppearance="?rpTextAppearance"
                 app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_view"
                 app:layout_constraintEnd_toEndOf="parent"

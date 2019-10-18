@@ -16,7 +16,7 @@
 
 <resources>
 
-    <style name="RecurrencePickerStyle" parent="RecurrencePickerStyle.Base">
+    <style name="RecurrencePickerStyle" parent="RecurrencePickerStyleBase">
         <item name="rpToolbarThemeOverlay">@style/ThemeOverlay.MaterialComponents.Toolbar.Surface
         </item>
     </style>

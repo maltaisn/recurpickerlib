@@ -104,6 +104,16 @@
             app:layout_constraintTop_toBottomOf="@id/enable_list_check"
             />
 
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/use_picker_dialog_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="0dp"
+            android:text="@string/option_picker_dialog"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enable_picker_check"
+            />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/enable_dark_theme"
@@ -113,7 +123,7 @@
             android:text="@string/option_dark_theme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/enable_picker_check"
+            app:layout_constraintTop_toBottomOf="@id/use_picker_dialog_check"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

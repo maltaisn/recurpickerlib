@@ -19,17 +19,20 @@
     <string name="rp_list_custom">Nustatymai…</string>
 
     <string name="rp_picker_done">Atlikta</string>
+    <string name="rp_picker_cancel">Atšaukti</string>
     <string name="rp_picker_title">Tinkintas pasikartojimas</string>
     <string name="rp_picker_subtitle_period">Pasikartoja kas</string>
     <string name="rp_picker_subtitle_setting">Pasikartoja</string>
     <string name="rp_picker_subtitle_end">Baigiasi</string>
     <string name="rp_picker_end_never">Niekada</string>
-    <string name="rp_picker_end_date"></string>
+    <string name="rp_picker_end_date"> </string>
     <plurals name="rp_picker_end_count">
         <item quantity="one">Po | įvykio</item>
         <item quantity="few">Po | įvykių</item>
         <item quantity="other">Po | įvykių</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">dien</item>
         <item quantity="few">dienas</item>
@@ -112,4 +115,5 @@
         <item quantity="few">%d kartus</item>
         <item quantity="other">%d kartų</item>
     </plurals>
+
 </resources>

@@ -18,6 +18,7 @@
     <string name="rp_list_custom">Custom…</string>
 
     <string name="rp_picker_done">Gotowe</string>
+    <string name="rp_picker_cancel">Anuluj</string>
     <string name="rp_picker_title">Powtarzanie niestandardowe</string>
     <string name="rp_picker_subtitle_period">Powtarzane co</string>
     <string name="rp_picker_subtitle_setting">Powtarza się w</string>
@@ -30,6 +31,8 @@
         <item quantity="many">Po | występieaniach</item>
         <item quantity="other">Po | występieniach</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">dnia</item>
         <item quantity="few">dni</item>
@@ -121,4 +124,5 @@
         <item quantity="many">na %d wydarzenia</item>
         <item quantity="other">na %d wydarzenia</item>
     </plurals>
+
 </resources>

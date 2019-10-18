@@ -6,8 +6,9 @@
     <string name="subtitle_options">Options</string>
     <string name="subtitle_events">Recurrence events (%d%s)</string>
     <string name="option_start_date">Start date:</string>
-    <string name="option_show_list">Enable recurrence presets list</string>
-    <string name="option_show_picker">Enable custom recurrence picker</string>
+    <string name="option_show_list">Enable recurrence list</string>
+    <string name="option_show_picker">Enable recurrence picker</string>
+    <string name="option_picker_dialog">Use recurrence picker dialog</string>
     <string name="option_dark_theme">Dark theme</string>
     <string name="event_number">#%d</string>
 

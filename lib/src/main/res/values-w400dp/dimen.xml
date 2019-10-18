@@ -15,6 +15,6 @@
   -->
 
 <resources>
-    <dimen name="rp_toggle_btn_size">40dp</dimen>
-    <dimen name="rp_toggle_btn_margin">12dp</dimen>
+    <dimen name="rp_week_btn_size">40dp</dimen>
+    <dimen name="rp_week_btn_margin">12dp</dimen>
 </resources>

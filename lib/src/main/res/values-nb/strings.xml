@@ -19,16 +19,19 @@
     <string name="rp_list_custom">Tilpasset…</string>
 
     <string name="rp_picker_done">Ferdig</string>
+    <string name="rp_picker_cancel">Avbryt</string>
     <string name="rp_picker_title">Egendefinert gjentakelse</string>
     <string name="rp_picker_subtitle_period">Gjentas hver(t)</string>
     <string name="rp_picker_subtitle_setting">Gjentas på</string>
     <string name="rp_picker_subtitle_end">Slutter</string>
     <string name="rp_picker_end_never">Aldri</string>
-    <string name="rp_picker_end_date"></string>
+    <string name="rp_picker_end_date"> </string>
     <plurals name="rp_picker_end_count">
         <item quantity="one">Etter | forekomst</item>
         <item quantity="other">Etter | forekomster</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">dag</item>
         <item quantity="other">dager</item>
@@ -102,4 +105,5 @@
         <item quantity="one">til %d event</item>
         <item quantity="other">til %d events</item>
     </plurals>
+
 </resources>

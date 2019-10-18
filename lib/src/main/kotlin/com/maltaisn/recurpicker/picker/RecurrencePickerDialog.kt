@@ -16,21 +16,22 @@
 
 package com.maltaisn.recurpicker.picker
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.view.ContextThemeWrapper
-import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.maltaisn.recurpicker.R
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.RecurrencePickerSettings
@@ -39,14 +40,13 @@ import com.maltaisn.recurpicker.getCallback
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
 
 
-class RecurrencePickerFragment : Fragment(),
+class RecurrencePickerDialog : DialogFragment(),
         RecurrencePickerContract.View, DateDialogFragment.Callback {
 
     private var presenter: Presenter? = null
 
     private val dateDialog by lazy { DateDialogFragment() }
 
-    private lateinit var toolbar: Toolbar
     private lateinit var frequencyInput: EditText
 
     private lateinit var periodDropdown: AutoCompleteTextView
@@ -59,23 +59,20 @@ class RecurrencePickerFragment : Fragment(),
     private lateinit var monthlyDropdown: AutoCompleteTextView
     private lateinit var monthlyAdapter: ArrayAdapter<String>
 
-    private lateinit var endNeverView: View
-    private lateinit var endNeverRadio: RadioButton
+    private lateinit var endDropdown: AutoCompleteTextView
+    private lateinit var endAdapter: ArrayAdapter<String>
+    private lateinit var endAdapterList: MutableList<String>
 
-    private lateinit var endDateView: View
-    private lateinit var endDateRadio: RadioButton
-    private lateinit var endDatePrefixLabel: TextView
+    private lateinit var endDateGroup: Group
     private lateinit var endDateSuffixLabel: TextView
     private lateinit var endDateInput: EditText
 
-    private lateinit var endCountView: View
-    private lateinit var endCountRadio: RadioButton
-    private lateinit var endCountPrefixLabel: TextView
+    private lateinit var endCountGroup: Group
     private lateinit var endCountSuffixLabel: TextView
     private lateinit var endCountInput: EditText
 
     /**
-     * The settings defining the recurrence picker fragment behavior and content.
+     * The settings defining the recurrence picker dialog behavior and content.
      */
     override lateinit var settings: RecurrencePickerSettings
         private set
@@ -95,13 +92,19 @@ class RecurrencePickerFragment : Fragment(),
      */
     override var selectedRecurrence: Recurrence? = null
 
+    /**
+     * Whether to show the dialog title or not.
+     */
+    var showTitle = false
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?, state: Bundle?): View? {
+
+    @SuppressLint("InflateParams")
+    override fun onCreateDialog(state: Bundle?): Dialog {
         if (state != null) {
             settings = state.getParcelable("settings")!!
             startDate = state.getLong("startDate")
             selectedRecurrence = state.getParcelable("selectedRecurrence")!!
+            showTitle = state.getBoolean("showTitle")
         }
 
         // Wrap recurrence picker theme to context
@@ -110,20 +113,10 @@ class RecurrencePickerFragment : Fragment(),
         val style = ta.getResourceId(0, R.style.RecurrencePickerStyle)
         ta.recycle()
         val contextWrapper = ContextThemeWrapper(context, style)
-        val localInflater = inflater.cloneInContext(contextWrapper)
+        val localInflater = LayoutInflater.from(contextWrapper)
 
         // Inflate layout
-        val view = localInflater.inflate(R.layout.rp_fragment_picker, container, false)
-
-        // Toolbar
-        toolbar = view.findViewById(R.id.rp_toolbar)
-        toolbar.setOnMenuItemClickListener {
-            presenter?.onConfirm()
-            true
-        }
-        toolbar.setNavigationOnClickListener {
-            presenter?.onCancel()
-        }
+        val view = localInflater.inflate(R.layout.rp_dialog_picker, null, false)
 
         // Frequency
         frequencyInput = view.findViewById(R.id.rp_picker_freq_input)
@@ -165,33 +158,32 @@ class RecurrencePickerFragment : Fragment(),
             presenter?.onMonthlySettingItemSelected(position)
         }
 
-        // End never
-        endNeverView = view.findViewById(R.id.rp_picker_end_never_view)
-        endNeverRadio = view.findViewById(R.id.rp_picker_end_never_radio)
-        val endNeverClick = View.OnClickListener { presenter?.onEndNeverClicked() }
-        endNeverView.setOnClickListener(endNeverClick)
-        endNeverRadio.setOnClickListener(endNeverClick)
+        // End dropdown
+        endDropdown = view.findViewById(R.id.rp_picker_end_dropdown)
+        endAdapterList = mutableListOf(
+                getString(R.string.rp_picker_end_never),
+                getString(R.string.rp_picker_end_date_prefix_fallback),
+                getString(R.string.rp_picker_end_count_prefix_fallback))
+        endAdapter = DropdownAdapter(contextWrapper, endAdapterList)
+        endDropdown.setAdapter(endAdapter)
+        endDropdown.setOnItemClickListener { _, _, position, _ ->
+            when (position) {
+                0 -> presenter?.onEndNeverClicked()
+                1 -> presenter?.onEndDateClicked()
+                2 -> presenter?.onEndCountClicked()
+            }
+        }
 
         // End by date
-        endDateView = view.findViewById(R.id.rp_picker_end_date_view)
-        endDateRadio = view.findViewById(R.id.rp_picker_end_date_radio)
+        endDateGroup = view.findViewById(R.id.rp_picker_end_date_group)
         endDateInput = view.findViewById(R.id.rp_picker_end_date_input)
-        endDatePrefixLabel = view.findViewById(R.id.rp_picker_end_date_prefix_label)
         endDateSuffixLabel = view.findViewById(R.id.rp_picker_end_date_suffix_label)
-        val endDateClick = View.OnClickListener { presenter?.onEndDateClicked() }
-        endDateView.setOnClickListener(endDateClick)
-        endDateRadio.setOnClickListener(endDateClick)
         endDateInput.setOnClickListener { presenter?.onEndDateInputClicked() }
 
         // End by date
-        endCountView = view.findViewById(R.id.rp_picker_end_count_view)
-        endCountRadio = view.findViewById(R.id.rp_picker_end_count_radio)
+        endCountGroup = view.findViewById(R.id.rp_picker_end_count_group)
         endCountInput = view.findViewById(R.id.rp_picker_end_count_input)
-        endCountPrefixLabel = view.findViewById(R.id.rp_picker_end_count_prefix_label)
         endCountSuffixLabel = view.findViewById(R.id.rp_picker_end_count_suffix_label)
-        val endCountClick = View.OnClickListener { presenter?.onEndCountClicked() }
-        endCountView.setOnClickListener(endCountClick)
-        endCountRadio.setOnClickListener(endCountClick)
         endCountInput.addTextChangedListener {
             presenter?.onEndCountChanged(it.toString())
         }
@@ -200,7 +192,20 @@ class RecurrencePickerFragment : Fragment(),
             false
         }
 
-        return view
+        // Attach the presenter
+        presenter = RecurrencePickerPresenter()
+        presenter?.attach(this, state)
+
+        return MaterialAlertDialogBuilder(contextWrapper)
+                .setView(view)
+                .setTitle(if (showTitle) getString(R.string.rp_picker_title) else null)
+                .setPositiveButton(R.string.rp_picker_done) { _, _ -> presenter?.onConfirm() }
+                .setNegativeButton(R.string.rp_picker_cancel) { _, _ -> presenter?.onCancel() }
+                .create()
+    }
+
+    override fun onCancel(dialog: DialogInterface) {
+        presenter?.onCancel()
     }
 
     override fun clearFocus() {
@@ -210,15 +215,7 @@ class RecurrencePickerFragment : Fragment(),
 
         // Hide keyboard too
         val imm = requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
-    }
-
-    override fun onViewStateRestored(state: Bundle?) {
-        super.onViewStateRestored(state)
-
-        // Attach the presenter
-        presenter = RecurrencePickerPresenter()
-        presenter?.attach(this, state)
+        imm.hideSoftInputFromWindow(frequencyInput.windowToken, 0)
     }
 
     override fun onSaveInstanceState(state: Bundle) {
@@ -227,6 +224,7 @@ class RecurrencePickerFragment : Fragment(),
         state.putParcelable("settings", settings)
         state.putLong("startDate", startDate)
         state.putParcelable("selectedRecurrence", selectedRecurrence)
+        state.putBoolean("showTitle", showTitle)
 
         presenter?.saveState(state)
     }
@@ -251,7 +249,7 @@ class RecurrencePickerFragment : Fragment(),
 
 
     override fun exit() {
-        fragmentManager?.popBackStack()
+        dismiss()
     }
 
     override fun setFrequencyView(frequency: String) {
@@ -306,12 +304,11 @@ class RecurrencePickerFragment : Fragment(),
     }
 
     override fun setEndNeverChecked(checked: Boolean) {
-        endNeverRadio.isChecked = checked
+        setEndDropdownItemChecked(0, checked)
     }
 
     override fun setEndDateChecked(checked: Boolean) {
-        endDateRadio.isChecked = checked
-        endDateView.visibility = if (checked) View.INVISIBLE else View.VISIBLE
+        setEndDropdownItemChecked(1, checked)
     }
 
     override fun setEndDateView(date: String) {
@@ -320,13 +317,15 @@ class RecurrencePickerFragment : Fragment(),
     }
 
     override fun setEndDateViewEnabled(enabled: Boolean) {
-        endDateInput.isEnabled = enabled
+        // Not important
     }
 
     override fun setEndDateLabels(prefix: String, suffix: String) {
-        endDatePrefixLabel.text = prefix
+        if (prefix.isNotEmpty()) {
+            endAdapterList[1] = prefix
+            endAdapter.notifyDataSetChanged()
+        }
         endDateSuffixLabel.text = suffix
-        endDatePrefixLabel.isVisible = prefix.isNotEmpty()
     }
 
     override fun showEndDateDialog(date: Long, minDate: Long) {
@@ -337,8 +336,7 @@ class RecurrencePickerFragment : Fragment(),
     }
 
     override fun setEndCountChecked(checked: Boolean) {
-        endCountRadio.isChecked = checked
-        endCountView.visibility = if (checked) View.INVISIBLE else View.VISIBLE
+        setEndDropdownItemChecked(2, checked)
     }
 
     override fun setEndCountView(count: String) {
@@ -347,13 +345,15 @@ class RecurrencePickerFragment : Fragment(),
     }
 
     override fun setEndCountViewEnabled(enabled: Boolean) {
-        endCountInput.isEnabled = enabled
+        // Not important
     }
 
     override fun setEndCountLabels(prefix: String, suffix: String) {
-        endCountPrefixLabel.text = prefix
+        if (prefix.isNotEmpty()) {
+            endAdapterList[2] = prefix
+            endAdapter.notifyDataSetChanged()
+        }
         endCountSuffixLabel.text = suffix
-        endCountPrefixLabel.isVisible = prefix.isNotEmpty()
     }
 
     override fun setEndCountMaxLength(length: Int) {
@@ -368,15 +368,23 @@ class RecurrencePickerFragment : Fragment(),
         getCallback<RecurrencePickerCallback>()?.onRecurrenceCreated(recurrence)
     }
 
+    private fun setEndDropdownItemChecked(index: Int, checked: Boolean) {
+        if (checked) {
+            endDropdown.setText(endAdapterList[index])
+            endDropdown.requestLayout()  // Force view to wrap width to new text
+            endDateGroup.isVisible = (index == 1)
+            endCountGroup.isVisible = (index == 2)
+        }
+    }
 
     companion object {
         /**
-         * Create a new instance of the fragment with [settings].
-         * More settings can be set with the returned fragment instance later.
+         * Create a new instance of the dialog with [settings].
+         * More settings can be set with the returned dialog instance later.
          */
         @JvmStatic
-        fun newInstance(settings: RecurrencePickerSettings): RecurrencePickerFragment {
-            val dialog = RecurrencePickerFragment()
+        fun newInstance(settings: RecurrencePickerSettings): RecurrencePickerDialog {
+            val dialog = RecurrencePickerDialog()
             dialog.settings = settings
             return dialog
         }

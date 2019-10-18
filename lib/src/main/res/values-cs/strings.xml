@@ -19,6 +19,7 @@
     <string name="rp_list_custom">Vlastní…</string>
 
     <string name="rp_picker_done">Done</string>
+    <string name="rp_picker_cancel">Storno</string>
     <string name="rp_picker_title">Vlastní opakování</string>
     <string name="rp_picker_subtitle_period">Opakuje se po</string>
     <string name="rp_picker_subtitle_setting">Opakuje se dne</string>
@@ -30,6 +31,8 @@
         <item quantity="few">Po | výskytech</item>
         <item quantity="other">Po | výskytech</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">den</item>
         <item quantity="few">dny</item>
@@ -112,4 +115,5 @@
         <item quantity="few">do %d opakování</item>
         <item quantity="other">do %d opakování</item>
     </plurals>
+
 </resources>

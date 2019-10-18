@@ -18,6 +18,7 @@
     <string name="rp_list_custom">自訂…</string>
 
     <string name="rp_picker_done">完成</string>
+    <string name="rp_picker_cancel">取消</string>
     <string name="rp_picker_title">目订笛期</string>
     <string name="rp_picker_subtitle_period">重复过期</string>
     <string name="rp_picker_subtitle_setting">在這幾天重複</string>
@@ -27,6 +28,8 @@
     <plurals name="rp_picker_end_count">
         <item quantity="other">發生 | 次後</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="other">天</item>
     </plurals>
@@ -92,4 +95,5 @@
     <plurals name="rp_format_end_count">
         <item quantity="other">為了 %d 事件</item>
     </plurals>
+
 </resources>

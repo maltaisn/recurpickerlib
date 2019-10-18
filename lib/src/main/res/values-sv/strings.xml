@@ -18,6 +18,7 @@
     <string name="rp_list_custom">Anpassad…</string>
 
     <string name="rp_picker_done">Klart</string>
+    <string name="rp_picker_cancel">Avbryt</string>
     <string name="rp_picker_title">Anpassad upprepning</string>
     <string name="rp_picker_subtitle_period">Upprepas varje</string>
     <string name="rp_picker_subtitle_setting">Upprepa på</string>
@@ -28,6 +29,8 @@
         <item quantity="one">Efter | förekomst</item>
         <item quantity="other">Efter | förekomster</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">dag</item>
         <item quantity="other">dag</item>
@@ -101,4 +104,5 @@
         <item quantity="one">vid %d tillfälle</item>
         <item quantity="other">vid %d tillfällen</item>
     </plurals>
+
 </resources>

@@ -18,6 +18,7 @@
     <string name="rp_list_custom">Personalizar…</string>
 
     <string name="rp_picker_done">Concluído</string>
+    <string name="rp_picker_cancel">Cancelar</string>
     <string name="rp_picker_title">Recorrência personalizada</string>
     <string name="rp_picker_subtitle_period">Repete a cada</string>
     <string name="rp_picker_subtitle_setting">Repetir às/aos</string>
@@ -28,6 +29,8 @@
         <item quantity="one">Após | ocorrência</item>
         <item quantity="other">Após | ocorrências</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">dias</item>
         <item quantity="other">dias</item>
@@ -101,4 +104,5 @@
         <item quantity="one">para %d evento</item>
         <item quantity="other">para %d eventos</item>
     </plurals>
+
 </resources>

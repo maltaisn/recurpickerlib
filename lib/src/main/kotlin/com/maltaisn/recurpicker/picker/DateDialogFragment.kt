@@ -23,6 +23,7 @@ import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.maltaisn.recurpicker.Recurrence
+import com.maltaisn.recurpicker.getCallback
 import java.util.*
 
 
@@ -75,7 +76,7 @@ internal class DateDialogFragment : DialogFragment() {
                     calendar[Calendar.MINUTE] = 0
                     calendar[Calendar.SECOND] = 0
                     calendar[Calendar.MILLISECOND] = 0
-                    callback?.onDateDialogConfirmed(date)
+                    getCallback<Callback>()?.onDateDialogConfirmed(date)
                 }
                 .setNegativeButton(android.R.string.cancel) { dialog, _ -> onCancel(dialog) }
                 .create()
@@ -89,13 +90,8 @@ internal class DateDialogFragment : DialogFragment() {
     }
 
     override fun onCancel(dialog: DialogInterface) {
-        callback?.onDateDialogCancelled()
+        getCallback<Callback>()?.onDateDialogCancelled()
     }
-
-    private val callback: Callback?
-        get() = (parentFragment as? Callback)
-                ?: (targetFragment as? Callback)
-                ?: (activity as? Callback)
 
     interface Callback {
         fun onDateDialogConfirmed(date: Long)

@@ -36,6 +36,7 @@
         <attr name="rpPickerDropdownLayoutStyle" format="reference" />
         <attr name="rpPickerDropdownStyle" format="reference" />
         <attr name="rpPickerWeekBtnStyle" format="reference" />
+        <attr name="rpPickerDialogWeekBtnStyle" format="reference" />
     </declare-styleable>
 
 </resources>

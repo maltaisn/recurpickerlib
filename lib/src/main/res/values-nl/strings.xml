@@ -18,6 +18,7 @@
     <string name="rp_list_custom">Aangepast…</string>
 
     <string name="rp_picker_done">Gereed</string>
+    <string name="rp_picker_cancel">Annuleren</string>
     <string name="rp_picker_title">Herhaling aanpassen</string>
     <string name="rp_picker_subtitle_period">Wordt herhaald voor elke</string>
     <string name="rp_picker_subtitle_setting">Wordt herhaald op</string>
@@ -28,6 +29,8 @@
         <item quantity="one">Na | keer</item>
         <item quantity="other">Na | keer</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">dag</item>
         <item quantity="other">dagen</item>
@@ -101,4 +104,5 @@
         <item quantity="one">voor %d gebeurtenis</item>
         <item quantity="other">voor %d gebeurtenissen</item>
     </plurals>
+
 </resources>

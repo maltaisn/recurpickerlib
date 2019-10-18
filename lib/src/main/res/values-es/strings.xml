@@ -18,6 +18,7 @@
     <string name="rp_list_custom">Personalizar…</string>
 
     <string name="rp_picker_done">Hecho</string>
+    <string name="rp_picker_cancel">Cancelar</string>
     <string name="rp_picker_title">Periodicidad personalizada</string>
     <string name="rp_picker_subtitle_period">Se repite cada</string>
     <string name="rp_picker_subtitle_setting">Se repite el</string>
@@ -28,6 +29,8 @@
         <item quantity="one">Después de | ocurrencia</item>
         <item quantity="other">Después de | ocurrencias</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">día</item>
         <item quantity="other">días</item>
@@ -101,4 +104,5 @@
         <item quantity="one">por %d ocurrencia</item>
         <item quantity="other">por %d ocurrencias</item>
     </plurals>
+
 </resources>

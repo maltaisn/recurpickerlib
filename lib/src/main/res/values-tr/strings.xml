@@ -18,6 +18,7 @@
 	<string name="rp_list_custom">Özel…</string>
 
 	<string name="rp_picker_done">Bitti</string>
+    <string name="rp_picker_cancel">İptal</string>
 	<string name="rp_picker_title">Özel yineleme</string>
 	<string name="rp_picker_subtitle_period">Yînelenme sikliği</string>
 	<string name="rp_picker_subtitle_setting">Tekrarlama</string>
@@ -28,6 +29,8 @@
 		<item quantity="one">| yinelemeden sonra</item>
 		<item quantity="other">| yinelemeden sonra</item>
 	</plurals>
+    <string name="rp_picker_end_count_prefix_fallback">Sayısı</string>
+    <string name="rp_picker_end_date_prefix_fallback">Tarih</string>
 	<plurals name="rp_picker_period_day">
 		<item quantity="one">gün</item>
 		<item quantity="other">günler</item>
@@ -101,4 +104,5 @@
 		<item quantity="one">için %d etkinlik</item>
 		<item quantity="other">için %d etkinlikler</item>
 	</plurals>
+
 </resources>

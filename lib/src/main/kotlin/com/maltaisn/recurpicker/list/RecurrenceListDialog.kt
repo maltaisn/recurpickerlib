@@ -16,6 +16,7 @@
 
 package com.maltaisn.recurpicker.list
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
@@ -32,6 +33,7 @@ import com.maltaisn.recurpicker.R
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.RecurrencePickerSettings
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
+import com.maltaisn.recurpicker.getCallback
 import com.maltaisn.recurpicker.list.RecurrenceListContract.ItemView
 import com.maltaisn.recurpicker.list.RecurrenceListContract.Presenter
 
@@ -65,6 +67,7 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
     override var selectedRecurrence: Recurrence? = null
 
 
+    @SuppressLint("InflateParams")
     override fun onCreateDialog(state: Bundle?): Dialog {
         if (state != null) {
             settings = state.getParcelable("settings")!!
@@ -161,21 +164,16 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
     }
 
     override fun setRecurrenceResult(recurrence: Recurrence) {
-        callback?.onRecurrencePresetSelected(recurrence)
+        getCallback<Callback>()?.onRecurrencePresetSelected(recurrence)
     }
 
     override fun setCustomResult() {
-        callback?.onRecurrenceCustomClicked()
+        getCallback<Callback>()?.onRecurrenceCustomClicked()
     }
 
     override fun setCancelResult() {
-        callback?.onRecurrenceListDialogCancelled()
+        getCallback<Callback>()?.onRecurrenceListDialogCancelled()
     }
-
-    private val callback: Callback?
-        get() = (parentFragment as? Callback)
-                ?: (targetFragment as? Callback)
-                ?: (activity as? Callback)
 
 
     /**

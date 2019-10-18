@@ -19,18 +19,21 @@
     <string name="rp_list_custom">Дополнительно…</string>
 
     <string name="rp_picker_done">Готово</string>
+    <string name="rp_picker_cancel">Отмена</string>
     <string name="rp_picker_title">Повтор мероприятия</string>
     <string name="rp_picker_subtitle_period">Повторяется раз в</string>
     <string name="rp_picker_subtitle_setting">Когда повторяется</string>
     <string name="rp_picker_subtitle_end">Заканчивается</string>
     <string name="rp_picker_end_never">Никогда</string>
-    <string name="rp_picker_end_date"></string>
+    <string name="rp_picker_end_date"> </string>
     <plurals name="rp_picker_end_count">
         <item quantity="one">После | раза</item>
         <item quantity="few">После | раз</item>
         <item quantity="many">После | раз</item>
         <item quantity="other">После | раз</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">день</item>
         <item quantity="few">дня</item>
@@ -122,4 +125,5 @@
         <item quantity="many">для %d событий</item>
         <item quantity="other">для %d событий</item>
     </plurals>
+
 </resources>

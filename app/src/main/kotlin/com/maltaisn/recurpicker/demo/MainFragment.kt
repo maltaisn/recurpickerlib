@@ -33,6 +33,8 @@ import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.RecurrenceFinder
 import com.maltaisn.recurpicker.RecurrencePickerSettings
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
+import com.maltaisn.recurpicker.picker.RecurrencePickerCallback
+import com.maltaisn.recurpicker.picker.RecurrencePickerDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerFragment
 import java.text.DateFormat
 
@@ -44,17 +46,19 @@ import java.text.DateFormat
  * This way, callbacks are retained across configuration changes without memory leaks.
  */
 class MainFragment : Fragment(), DateDialogFragment.Callback,
-        RecurrenceListDialog.Callback, RecurrencePickerFragment.Callback {
+        RecurrenceListDialog.Callback, RecurrencePickerCallback {
 
     // Recurrence list and picker fragments
     private val listDialog by lazy { RecurrenceListDialog.newInstance(settings) }
     private val pickerFragment by lazy { RecurrencePickerFragment.newInstance(settings) }
+    private val pickerDialog by lazy { RecurrencePickerDialog.newInstance(settings) }
 
     // Main fragment views
     private lateinit var selectedLabel: TextView
     private lateinit var startDateInput: EditText
     private lateinit var enableListCheck: CheckBox
     private lateinit var enablePickerCheck: CheckBox
+    private lateinit var usePickerDialogCheck: CheckBox
     private lateinit var eventsSubtitle: TextView
     private lateinit var eventsAdapter: EventsAdapter
 
@@ -105,13 +109,16 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
             startDateDialog.show(childFragmentManager, "start-date-dialog")
         }
 
+        usePickerDialogCheck = view.findViewById(R.id.use_picker_dialog_check)
         enableListCheck = view.findViewById(R.id.enable_list_check)
         enablePickerCheck = view.findViewById(R.id.enable_picker_check)
+
         enableListCheck.setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked && !enablePickerCheck.isChecked) enablePickerCheck.isChecked = true
+            enablePickerCheck.isChecked = enablePickerCheck.isChecked || !isChecked
         }
         enablePickerCheck.setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked && !enableListCheck.isChecked) enableListCheck.isChecked = true
+            enableListCheck.isChecked = enableListCheck.isChecked || !isChecked
+            usePickerDialogCheck.isEnabled = isChecked
         }
 
         val darkThemeCheck: CheckBox = view.findViewById(R.id.enable_dark_theme)
@@ -230,14 +237,24 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
     }
 
     private fun showPickerFragment() {
-        // Setup and show the recurrence picker fragment.
-        pickerFragment.selectedRecurrence = selectedRecurrence
-        pickerFragment.startDate = startDate
-        childFragmentManager.beginTransaction()
-                .add(R.id.picker_fragment_container, pickerFragment, "recurrence-picker")
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .addToBackStack(null)
-                .commit()
+        // Setup and show the recurrence picker.
+        if (usePickerDialogCheck.isChecked) {
+            // Use the dialog picker.
+            pickerDialog.selectedRecurrence = selectedRecurrence
+            pickerDialog.startDate = startDate
+            //pickerDialog.showTitle = true
+            pickerDialog.show(childFragmentManager, "recurrence-picker-dialog")
+
+        } else {
+            // Use the fragment picker.
+            pickerFragment.selectedRecurrence = selectedRecurrence
+            pickerFragment.startDate = startDate
+            childFragmentManager.beginTransaction()
+                    .add(R.id.picker_fragment_container, pickerFragment, "recurrence-picker-fragment")
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .addToBackStack(null)
+                    .commit()
+        }
     }
 
     private fun resetRecurrenceEvents() {

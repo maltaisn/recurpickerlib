@@ -18,17 +18,20 @@
     <string name="rp_list_custom">Vlastné…</string>
 
     <string name="rp_picker_done">Hotovo</string>
+    <string name="rp_picker_cancel">Zrušiť</string>
     <string name="rp_picker_title">Vlastné opakovanie</string>
     <string name="rp_picker_subtitle_period">Interval opakovania</string>
     <string name="rp_picker_subtitle_setting">Termín opakovania</string>
     <string name="rp_picker_subtitle_end">Koniec</string>
     <string name="rp_picker_end_never">Nikdy</string>
-    <string name="rp_picker_end_date"></string>
+    <string name="rp_picker_end_date"> </string>
     <plurals name="rp_picker_end_count">
         <item quantity="one">Po | opakovaní</item>
         <item quantity="few">Po | opakovaniach</item>
         <item quantity="other">Po | opakovaniach</item>
     </plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
     <plurals name="rp_picker_period_day">
         <item quantity="one">deň</item>
         <item quantity="few">dni</item>
@@ -111,4 +114,5 @@
         <item quantity="few">do %d opakovaní</item>
         <item quantity="other">do %d opakovaní</item>
     </plurals>
+
 </resources>

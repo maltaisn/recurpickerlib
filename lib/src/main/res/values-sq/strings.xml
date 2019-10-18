@@ -18,6 +18,7 @@
 	<string name="rp_list_custom">Të personalizuarin…</string>
 
 	<string name="rp_picker_done">U krye</string>
+    <string name="rp_picker_cancel">Anulo</string>
 	<string name="rp_picker_title">Përsëritja a personalizuar</string>
 	<string name="rp_picker_subtitle_period">Përsëritet çdo</string>
 	<string name="rp_picker_subtitle_setting">Përsërit ditën</string>
@@ -28,6 +29,8 @@
 		<item quantity="one">Pas | ndodhie</item>
 		<item quantity="other">Pas | ndodhish</item>
 	</plurals>
+    <string name="rp_picker_end_count_prefix_fallback"> </string>
+    <string name="rp_picker_end_date_prefix_fallback"> </string>
 	<plurals name="rp_picker_period_day">
 		<item quantity="one">ditë</item>
 		<item quantity="other">ditë</item>
@@ -101,4 +104,5 @@
 		<item quantity="one">për %d raste</item>
 		<item quantity="other">për %d raste</item>
 	</plurals>
+
 </resources>

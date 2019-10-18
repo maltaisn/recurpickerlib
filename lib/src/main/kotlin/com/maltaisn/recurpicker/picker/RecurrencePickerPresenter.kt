@@ -92,14 +92,14 @@ internal class RecurrencePickerPresenter : Presenter {
             setMonthlySettingItems(isStartDateOnLastDay, startDayOfWeek, startWeekInMonth)
             setSelectedMonthlySettingItem(monthlySettingIndex)
 
-            updateCheckedEndType()
-
             updateEndDateView()
             updateEndDateLabels()
 
             updateEndCountView()
             updateEndCountLabels()
             setEndCountMaxLength(settings.maxEndCount.toString().length)
+
+            updateCheckedEndType()
         }
     }
 

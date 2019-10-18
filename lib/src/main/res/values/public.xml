@@ -28,5 +28,6 @@
     <public name="RpPickerDropdownStyle" type="style" />
     <public name="RpEndRadioStyle" type="style" />
     <public name="RpPickerWeekBtnStyle" type="style" />
+    <public name="RpPickerDialogWeekBtnStyle" type="style" />
 
 </resources>
