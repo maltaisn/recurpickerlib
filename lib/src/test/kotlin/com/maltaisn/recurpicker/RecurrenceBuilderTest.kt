@@ -188,7 +188,7 @@ internal class RecurrenceBuilderTest {
 
     @Test
     fun normalization_monthly_byDay() {
-        val r = Recurrence(Period.MONTHLY) {
+        Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.WEDNESDAY, -3)
             assertEquals(0, byMonthDay)
         }
@@ -196,7 +196,7 @@ internal class RecurrenceBuilderTest {
 
     @Test
     fun normalization_monthly_byMonthlyDay() {
-        val r = Recurrence(Period.MONTHLY) {
+        Recurrence(Period.MONTHLY) {
             dayInMonth = -23
             assertEquals(0, byDay)
         }

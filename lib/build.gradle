@@ -6,23 +6,9 @@ plugins {
 ext {
     // Auto generate version code based on version name
     libVersionCode = libVersion.split(/\./).collect { it.padLeft(2, "0") }.sum().toInteger()
-
-    publishedGroupId = "com.maltaisn"
-    libraryName = "recurrence-picker"
-    artifact = "recurpicker"
-    packagingType = "aar"
-
-    libraryDescription = "Recurrence picker view and dialog for Android"
-
-    siteUrl = "https://github.com/maltaisn/recurpickerlib"
-    gitUrl = "https://github.com/maltaisn/recurpickerlib.git"
-
-    developerId = "maltaisn"
-
-    licenseName = "The Apache Software License, Version 2.0"
-    licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0.txt"
-    allLicenses = ["Apache-2.0"]
+    allLicenses = [license]
 }
+
 
 android {
     compileSdkVersion 29
@@ -67,3 +53,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
 }
+
+tasks.withType(Javadoc).all { enabled = false }
+
+apply from: "maven-install.gradle"
+apply from: "bintray.gradle"
