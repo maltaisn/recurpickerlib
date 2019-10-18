@@ -1,5 +1,39 @@
 # v2.0.0
-- Coming soon
+- The library was completely rewritten in Kotlin with MVP architecture.
+- **`Recurrence`**:
+    - Now immutable, can be constructed with `Recurrence.Builder` in Java or constructor-like syntax in Kotlin.
+    - `startDate` field was removed since it's a property of the event, not the recurrence. 
+      `isDefault` field was also removed. The information set in these fields is now set in `byDay` and `byMonthDay`.
+    - `daySetting` was replaced with more standard `byDay` and `byMonthDay` fields.
+    - `period` and `endType` are now enums.
+- **`RecurrenceFinder`**:
+    - Replaces `Recurrence.find` methods.
+    - Since recurrences don't have a start date anymore, the methods of this class take a `startDate` parameter.
+    - Start date/base date is now included in the returned list of events by default. `includeStart` can be
+      set to false to prevent this.
+    - Fixed yearly recurrence on Feb 29 happening every year on Feb 28.
+- **`RRuleFormat`**:
+    - Now supports rule parsing.
+    - Start date and isDefault no longer included to follow standard.
+    - Backward-compatible with v1 RRule format.
+    - This is now the recommended way of serializing recurrence objects.
+- **`RecurrenceSerializer`**:
+    - Replaces `Recurrence(byte[])` and `Recurrence.toByteArray()`.
+    - Backward-compatible with v1 binary format.
+    - Deprecated in favor of RRule serialization.
+- **UI**:
+    - UI was completely changed to follow material design guidelines.
+      Google's material components and themes are used.
+    - Dark theme supported out of the box.
+    - UI Classes:
+        - `RecurrenceListDialog`: used to select a recurrence from a list of presets.
+        - `RecurrencePickerDialog`: used to create a custom recurrence.
+        - `RecurrencePickerFragment`: same as the dialog but as a fullscreen fragment.
+    - `RecurrencePickerView` was removed, use fragment instead.
+    - Navigation must now be done manually which is more flexible. For example:
+        - Parent fragment opens `RecurrenceListDialog`.
+        - User clicks on the "Custom..." item which sends the `onRecurrenceListCustomClicked` callback to parent fragment.
+        - Parent fragment decides to show the `RecurrencePickerFragment` on callback.
 
 ## v1.6.0
 - Added `Recurrence.findRecurrencesBetween` to find recurrences between two dates.
@@ -78,11 +112,11 @@
 - Removed `RecurrencePickerDialog.newInstance()`, it was useless
 - Renamed dialog callbacks to be less general ex. onCancelled becomes onRecurrencePickerCancelled
 
-## v1.2
+## v1.2.0
 - Setting to change default recurrences in list
 - Renamed some layout files, attributes and styles to follow conventions
 
-## v1.1
+## v1.1.0
 - Styling attributes for strings: spinner items, option list and days of week
 - Setting to change enabled periods and end types
 - Setting to disable default recurrences list and recurrence creator separatedly
@@ -90,7 +124,7 @@
 - Changed license from LGPLv3.0 to MIT
 - Added French translation
 
-## v1.0 (first release)
+# v1.0.0 (first release)
 - Recurrence picker view and dialog
 - Same recurrence options as all the other pickers
 - Default recurrences list and custom recurrence creator
