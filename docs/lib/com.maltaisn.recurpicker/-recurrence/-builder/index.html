@@ -1,0 +1,178 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>Recurrence.Builder - lib</title>
+    <link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">lib</a>&nbsp;/&nbsp;<a href="../../index.html">com.maltaisn.recurpicker</a>&nbsp;/&nbsp;<a
+        href="../index.html">Recurrence</a>&nbsp;/&nbsp;<a href="./index.html">Builder</a><br/>
+<br/>
+<h1>Builder</h1>
+<code><span class="keyword">class </span><span class="identifier">Builder</span></code>
+<p>Builder for recurrence.</p>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <p>Create a builder initialized for a recurrence with a <a
+                    href="-init-.html#com.maltaisn.recurpicker.Recurrence.Builder$<init>(com.maltaisn.recurpicker.Recurrence.Period)/period">period</a>.
+            </p>
+            <code><span class="identifier">Builder</span><span class="symbol">(</span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.Recurrence.Builder$<init>(com.maltaisn.recurpicker.Recurrence.Period)/period">period</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">Period</span><span
+                    class="symbol">)</span></code>
+            <p>Create a builder initialized with the values of another <a
+                    href="-init-.html#com.maltaisn.recurpicker.Recurrence.Builder$<init>(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</a>.
+            </p>
+            <code><span class="identifier">Builder</span><span class="symbol">(</span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.Recurrence.Builder$<init>(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</span><span
+                    class="symbol">:</span>&nbsp;<a href="../index.html"><span class="identifier">Recurrence</span></a><span
+                    class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Properties</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="day-in-month.html">dayInMonth</a></h4>
+        </td>
+        <td>
+            <p>If period is <a href="../-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, set the <a
+                    href="#">day</a> in the month on which events happen.</p>
+            <code><span class="keyword">var </span><span class="identifier">dayInMonth</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="end-count.html">endCount</a></h4>
+        </td>
+        <td>
+            <p>Setting this value will changing end type to by count.
+                Must be at least 1. If less than 1, the period will be set to <a
+                        href="../-period/-n-o-n-e.html">Period.NONE</a>.</p>
+            <code><span class="keyword">var </span><span class="identifier">endCount</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="end-date.html">endDate</a></h4>
+        </td>
+        <td>
+            <p>Setting this value will changing end type to by date.
+                If end date is <a href="../-d-a-t-e_-n-o-n-e.html">DATE_NONE</a>, recurrence end
+                type will be set to never.</p>
+            <code><span class="keyword">var </span><span class="identifier">endDate</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
+                    class="identifier">Long</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="end-type.html">endType</a></h4>
+        </td>
+        <td>
+            <p>This field doesn't have to be set directly most of the time,
+                since setting the end date or end count will set it automatically.</p>
+            <code><span class="keyword">var </span><span class="identifier">endType</span><span
+                    class="symbol">: </span><span class="identifier">EndType</span></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="frequency.html">frequency</a></h4>
+        </td>
+        <td>
+            <p>Frequency must be at least 1.</p>
+            <code><span class="keyword">var </span><span class="identifier">frequency</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="period.html">period</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">var </span><span class="identifier">period</span><span
+                    class="symbol">: </span><span class="identifier">Period</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="build.html">build</a></h4>
+        </td>
+        <td>
+            <p>Build the recurrence object described by the builder.
+                This validates and normalizes all field values.</p>
+            <code><span class="keyword">fun </span><span class="identifier">build</span><span
+                    class="symbol">(</span><span class="symbol">)</span><span
+                    class="symbol">: </span><a href="../index.html"><span class="identifier">Recurrence</span></a></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="set-day-of-week-in-month.html">setDayOfWeekInMonth</a></h4>
+        </td>
+        <td>
+            <p>If period is <a href="../-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, set <a href="#">byDay</a>
+                setting so that the recurrence
+                happens on a <a
+                        href="set-day-of-week-in-month.html#com.maltaisn.recurpicker.Recurrence.Builder$setDayOfWeekInMonth(kotlin.Int, kotlin.Int)/day">day</a>
+                of a week in the month. If both parameters are <code>0</code>,
+                the week number and day of the week will be the same as start date's.</p>
+            <code><span class="keyword">fun </span><span
+                    class="identifier">setDayOfWeekInMonth</span><span class="symbol">(</span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.Recurrence.Builder$setDayOfWeekInMonth(kotlin.Int, kotlin.Int)/day">day</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.Recurrence.Builder$setDayOfWeekInMonth(kotlin.Int, kotlin.Int)/week">week</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="set-days-of-week.html">setDaysOfWeek</a></h4>
+        </td>
+        <td>
+            <p>If period is <a href="../-period/-w-e-e-k-l-y.html">WEEKLY</a>, set <a
+                    href="#">byDay</a> field to a list of <a
+                    href="set-days-of-week.html#com.maltaisn.recurpicker.Recurrence.Builder$setDaysOfWeek(kotlin.IntArray)/days">days</a>
+                of the week.</p>
+            <code><span class="keyword">fun </span><span
+                    class="identifier">setDaysOfWeek</span><span class="symbol">(</span><span
+                    class="keyword">vararg</span> <span class="identifier"
+                                                        id="com.maltaisn.recurpicker.Recurrence.Builder$setDaysOfWeek(kotlin.IntArray)/days">days</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

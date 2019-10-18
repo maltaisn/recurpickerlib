@@ -1,0 +1,251 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RecurrenceListDialog - lib</title>
+    <link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a
+        href="../index.html">com.maltaisn.recurpicker.list</a>&nbsp;/&nbsp;<a href="./index.html">RecurrenceListDialog</a><br/>
+<br/>
+<h1>RecurrenceListDialog</h1>
+<code><span class="keyword">class </span><span
+        class="identifier">RecurrenceListDialog</span>&nbsp;<span class="symbol">:</span>&nbsp;<span
+        class="identifier">DialogFragment</span><span class="symbol">, </span><span
+        class="identifier">View</span></code>
+<p>Dialog fragment displaying a list of recurrence presets. This aims to provide
+    a simpler approach at choosing a recurrence for the user. Custom recurrence can later
+    be created with a "Custom..." item, defined by a <code>null</code> value in the presets list.
+    Custom recurrences can be created with either <a
+            href="../../com.maltaisn.recurpicker.picker/-recurrence-picker-fragment/index.html">RecurrencePickerFragment</a>
+    or <a href="../../com.maltaisn.recurpicker.picker/-recurrence-picker-dialog/index.html">RecurrencePickerDialog</a>.
+    Note: due to the MVP architecture, some interface methods are public but shouldn't be used.</p>
+<h3>Types</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-callback/index.html">Callback</a></h4>
+        </td>
+        <td>
+            <p>Interface to be implemented by either the parent fragment of the dialog, the target
+                fragment
+                or the parent activity. If none of these implements it, there won't be any
+                callback.</p>
+            <code><span class="keyword">interface </span><span
+                    class="identifier">Callback</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <p>Dialog fragment displaying a list of recurrence presets. This aims to provide
+                a simpler approach at choosing a recurrence for the user. Custom recurrence can
+                later
+                be created with a "Custom..." item, defined by a <code>null</code> value in the
+                presets list.
+                Custom recurrences can be created with either <a
+                        href="../../com.maltaisn.recurpicker.picker/-recurrence-picker-fragment/index.html">RecurrencePickerFragment</a>
+                or
+                <a href="../../com.maltaisn.recurpicker.picker/-recurrence-picker-dialog/index.html">RecurrencePickerDialog</a>.
+                Note: due to the MVP architecture, some interface methods are public but shouldn't
+                be used.</p>
+            <code><span class="identifier">RecurrenceListDialog</span><span
+                    class="symbol">(</span><span class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Properties</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="selected-recurrence.html">selectedRecurrence</a></h4>
+        </td>
+        <td>
+            <p>The previously selected recurrence that will be selected initially. Can be set to
+                <code>null</code>
+                if no recurrence was selected previously. In this case, the first preset will be
+                selected
+                by default. If a recurrence is set, a preset will be selected if it's equal to any
+                of them,
+                and if it's not equal to any preset, an additional list item will be shown before
+                the others.</p>
+            <code><span class="keyword">var </span><span
+                    class="identifier">selectedRecurrence</span><span class="symbol">: </span><a
+                    href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span
+                    class="identifier">Recurrence</span></a><span class="symbol">?</span></code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="settings.html">settings</a></h4>
+        </td>
+        <td>
+            <p>The settings defining the recurrence list dialog behavior and content.</p>
+            <code><span class="keyword">lateinit</span> <span class="keyword">var </span><span
+                    class="identifier">settings</span><span class="symbol">: </span><a
+                    href="../../com.maltaisn.recurpicker/-recurrence-picker-settings/index.html"><span
+                    class="identifier">RecurrencePickerSettings</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="start-date.html">startDate</a></h4>
+        </td>
+        <td>
+            <p>The start date of the event for which a recurrence is selected.
+                This is not a required parameter and can be set to <a
+                        href="../../com.maltaisn.recurpicker/-recurrence/-d-a-t-e_-n-o-n-e.html">Recurrence.DATE_NONE</a>.
+                It will however provide more consise recurrence formatting to text, see <a
+                        href="../../com.maltaisn.recurpicker.format/-recurrence-formatter/format.html">RecurrenceFormatter.format</a>.
+            </p>
+            <code><span class="keyword">var </span><span class="identifier">startDate</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
+                    class="identifier">Long</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="exit.html">exit</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">exit</span><span
+                    class="symbol">(</span><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="on-cancel.html">onCancel</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">onCancel</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.maltaisn.recurpicker.list.RecurrenceListDialog$onCancel(android.content.DialogInterface)/dialog">dialog</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://developer.android.com/reference/android/content/DialogInterface.html"><span
+                    class="identifier">DialogInterface</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="on-create-dialog.html">onCreateDialog</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span
+                    class="identifier">onCreateDialog</span><span class="symbol">(</span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.list.RecurrenceListDialog$onCreateDialog(android.os.Bundle)/state">state</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://developer.android.com/reference/android/os/Bundle.html"><span
+                    class="identifier">Bundle</span></a><span class="symbol">?</span><span
+                    class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://developer.android.com/reference/android/app/Dialog.html"><span
+                    class="identifier">Dialog</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="on-destroy.html">onDestroy</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span class="identifier">onDestroy</span><span
+                    class="symbol">(</span><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="on-save-instance-state.html">onSaveInstanceState</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span
+                    class="identifier">onSaveInstanceState</span><span class="symbol">(</span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.list.RecurrenceListDialog$onSaveInstanceState(android.os.Bundle)/state">state</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://developer.android.com/reference/android/os/Bundle.html"><span
+                    class="identifier">Bundle</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="set-cancel-result.html">setCancelResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span
+                    class="identifier">setCancelResult</span><span class="symbol">(</span><span
+                    class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="set-custom-result.html">setCustomResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span
+                    class="identifier">setCustomResult</span><span class="symbol">(</span><span
+                    class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="set-recurrence-result.html">setRecurrenceResult</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span
+                    class="identifier">setRecurrenceResult</span><span class="symbol">(</span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.list.RecurrenceListDialog$setRecurrenceResult(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span
+                    class="identifier">Recurrence</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="new-instance.html">newInstance</a></h4>
+        </td>
+        <td>
+            <p>Create a new instance of the dialog with <a
+                    href="new-instance.html#com.maltaisn.recurpicker.list.RecurrenceListDialog.Companion$newInstance(com.maltaisn.recurpicker.RecurrencePickerSettings)/settings">settings</a>.
+                More settings can be set with the returned dialog instance later.</p>
+            <code><span class="keyword">fun </span><span class="identifier">newInstance</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.maltaisn.recurpicker.list.RecurrenceListDialog.Companion$newInstance(com.maltaisn.recurpicker.RecurrencePickerSettings)/settings">settings</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="../../com.maltaisn.recurpicker/-recurrence-picker-settings/index.html"><span
+                    class="identifier">RecurrencePickerSettings</span></a><span
+                    class="symbol">)</span><span class="symbol">: </span><a
+                    href="./index.html"><span
+                    class="identifier">RecurrenceListDialog</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

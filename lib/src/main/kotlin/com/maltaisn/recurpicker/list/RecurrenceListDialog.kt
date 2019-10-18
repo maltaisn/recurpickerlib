@@ -36,10 +36,16 @@ import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import com.maltaisn.recurpicker.getCallback
 import com.maltaisn.recurpicker.list.RecurrenceListContract.ItemView
 import com.maltaisn.recurpicker.list.RecurrenceListContract.Presenter
+import com.maltaisn.recurpicker.picker.RecurrencePickerDialog
+import com.maltaisn.recurpicker.picker.RecurrencePickerFragment
 
 
 /**
- * TODO
+ * Dialog fragment displaying a list of recurrence presets. This aims to provide
+ * a simpler approach at choosing a recurrence for the user. Custom recurrence can later
+ * be created with a "Custom..." item, defined by a `null` value in the presets list.
+ * Custom recurrences can be created with either [RecurrencePickerFragment] or [RecurrencePickerDialog].
+ * Note: due to the MVP architecture, some interface methods are public but shouldn't be used.
  */
 class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
 

@@ -40,6 +40,11 @@ import com.maltaisn.recurpicker.getCallback
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
 
 
+/**
+ * Dialog fragment used to create a custom recurrence with nearly all available options.
+ * Provides all the options available in [RecurrencePickerFragment], only in a more compact way.
+ * Note: due to the MVP architecture, some interface methods are public but shouldn't be used.
+ */
 class RecurrencePickerDialog : DialogFragment(),
         RecurrencePickerContract.View, DateDialogFragment.Callback {
 

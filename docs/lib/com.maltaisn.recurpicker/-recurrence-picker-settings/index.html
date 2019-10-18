@@ -1,0 +1,177 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RecurrencePickerSettings - lib</title>
+    <link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker</a>&nbsp;/&nbsp;<a
+        href="./index.html">RecurrencePickerSettings</a><br/>
+<br/>
+<h1>RecurrencePickerSettings</h1>
+<code><span class="keyword">class </span><span class="identifier">RecurrencePickerSettings</span>&nbsp;<span
+        class="symbol">:</span>&nbsp;<a
+        href="https://developer.android.com/reference/android/os/Parcelable.html"><span
+        class="identifier">Parcelable</span></a></code>
+<p>A class for configuring the behavior of the recurrence list and picker dialogs.
+    The class is immutable, use the <a href="-builder/index.html">Builder</a> to create it.</p>
+<h3>Types</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-builder/index.html">Builder</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">class </span><span class="identifier">Builder</span></code>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h3>Properties</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="default-picker-recurrence.html">defaultPickerRecurrence</a></h4>
+        </td>
+        <td>
+            <p>The recurrence shown by default in the recurrence picker.
+                This is shown when no recurrence or a "Does not repeat" recurrence is selected.</p>
+            <code><span class="keyword">val </span><span
+                    class="identifier">defaultPickerRecurrence</span><span
+                    class="symbol">: </span><a href="../-recurrence/index.html"><span
+                    class="identifier">Recurrence</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="formatter.html">formatter</a></h4>
+        </td>
+        <td>
+            <p>The recurrence formatter used to format the recurrences shown in the recurrence list
+                dialog.
+                The date format is also used to format the end dates in the recurrence picker.</p>
+            <code><span class="keyword">val </span><span class="identifier">formatter</span><span
+                    class="symbol">: </span><a
+                    href="../../com.maltaisn.recurpicker.format/-recurrence-formatter/index.html"><span
+                    class="identifier">RecurrenceFormatter</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="max-end-count.html">maxEndCount</a></h4>
+        </td>
+        <td>
+            <p>The maximum end count that can be entered in the picker. Must be at least 1.</p>
+            <code><span class="keyword">val </span><span class="identifier">maxEndCount</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="max-frequency.html">maxFrequency</a></h4>
+        </td>
+        <td>
+            <p>The maximum frequency that can be entered in the picker. Must be at least 1.</p>
+            <code><span class="keyword">val </span><span class="identifier">maxFrequency</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="presets.html">presets</a></h4>
+        </td>
+        <td>
+            <p>The list of recurrence presets shown in the recurrence list dialog.
+                A <code>null</code> recurrence will result in the "Custom..." item being shown.</p>
+            <code><span class="keyword">val </span><span class="identifier">presets</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span
+                    class="identifier">List</span></a><span class="symbol">&lt;</span><a
+                    href="../-recurrence/index.html"><span
+                    class="identifier">Recurrence</span></a><span class="symbol">?</span><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="describe-contents.html">describeContents</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span
+                    class="identifier">describeContents</span><span class="symbol">(</span><span
+                    class="symbol">)</span><span class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="write-to-parcel.html">writeToParcel</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">fun </span><span
+                    class="identifier">writeToParcel</span><span class="symbol">(</span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.RecurrencePickerSettings$writeToParcel(android.os.Parcel, kotlin.Int)/parcel">parcel</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://developer.android.com/reference/android/os/Parcel.html"><span
+                    class="identifier">Parcel</span></a><span class="symbol">, </span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.RecurrencePickerSettings$writeToParcel(android.os.Parcel, kotlin.Int)/flags">flags</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
+                    class="identifier">Int</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-c-r-e-a-t-o-r.html">CREATOR</a></h4>
+        </td>
+        <td>
+            <code><span class="keyword">val </span><span class="identifier">CREATOR</span><span
+                    class="symbol">: </span><a
+                    href="https://developer.android.com/reference/android/os/Parcelable/Creator.html"><span
+                    class="identifier">Creator</span></a><span class="symbol">&lt;</span><a
+                    href="./index.html"><span class="identifier">RecurrencePickerSettings</span></a><span
+                    class="symbol">&gt;</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="invoke.html">invoke</a></h4>
+        </td>
+        <td>
+            <p>Utility function to create settings using constructor-like syntax.</p>
+            <code><span class="keyword">operator</span> <span class="keyword">fun </span><span
+                    class="identifier">invoke</span><span class="symbol">(</span><span
+                    class="identifier"
+                    id="com.maltaisn.recurpicker.RecurrencePickerSettings.Companion$invoke(kotlin.Function1((com.maltaisn.recurpicker.RecurrencePickerSettings.Builder, kotlin.Unit)))/init">init</span><span
+                    class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span
+                    class="symbol">.</span><span class="symbol">(</span><span
+                    class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
+                    class="identifier">Unit</span></a>&nbsp;<span
+                    class="symbol">=</span>&nbsp;{}<span class="symbol">)</span><span
+                    class="symbol">: </span><a href="./index.html"><span class="identifier">RecurrencePickerSettings</span></a></code>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

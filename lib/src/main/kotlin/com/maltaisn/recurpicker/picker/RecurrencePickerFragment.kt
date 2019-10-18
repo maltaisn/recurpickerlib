@@ -39,6 +39,12 @@ import com.maltaisn.recurpicker.getCallback
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
 
 
+/**
+ * Fragment used to create a custom recurrence with nearly all available options.
+ * Only some options of monthly recurrences are not available, like recurring on a day other than start date.
+ * This fragment can be shown directly or after [RecurrenceListDialog] was shown.
+ * Note: due to the MVP architecture, some interface methods are public but shouldn't be used.
+ */
 class RecurrencePickerFragment : Fragment(),
         RecurrencePickerContract.View, DateDialogFragment.Callback {
 

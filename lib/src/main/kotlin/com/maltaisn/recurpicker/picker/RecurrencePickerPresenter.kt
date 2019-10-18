@@ -21,11 +21,17 @@ import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.EndType
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.RecurrencePickerSettings
+import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.View
 import java.util.*
 
 
+/**
+ * Fragment used to create a custom recurrence with nearly all available options.
+ * Only some options of monthly recurrences are not available, like recurring on a day other than start date.
+ * This fragment can be shown directly or after [RecurrenceListDialog] was shown.
+ */
 internal class RecurrencePickerPresenter : Presenter {
 
     private var view: View? = null

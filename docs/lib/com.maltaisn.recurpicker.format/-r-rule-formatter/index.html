@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RRuleFormatter - lib</title>
+    <link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker.format</a>&nbsp;/&nbsp;<a
+        href="./index.html">RRuleFormatter</a><br/>
+<br/>
+<h1>RRuleFormatter</h1>
+<code><span class="keyword">class </span><span class="identifier">RRuleFormatter</span></code>
+<p>Utility class to write a <a href="../../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a>
+    as a RRule and read it back.
+    See <a href="https://tools.ietf.org/html/rfc2445#section-4.8.5.4">RFC2445</a> and
+    <a href="https://tools.ietf.org/html/rfc5545#section-3.3.10">RFC5545</a>.
+    Start dates and end dates are formatted to a local time string.</p>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <p>Utility class to write a <a
+                    href="../../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> as a
+                RRule and read it back.
+                See <a href="https://tools.ietf.org/html/rfc2445#section-4.8.5.4">RFC2445</a> and
+                <a href="https://tools.ietf.org/html/rfc5545#section-3.3.10">RFC5545</a>.
+                Start dates and end dates are formatted to a local time string.</p>
+            <code><span class="identifier">RRuleFormatter</span><span class="symbol">(</span><span
+                    class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="format.html">format</a></h4>
+        </td>
+        <td>
+            <p>Format a <a
+                    href="format.html#com.maltaisn.recurpicker.format.RRuleFormatter$format(com.maltaisn.recurpicker.Recurrence)/r">recurrence</a>
+                to a string recurrence rule and return it.</p>
+            <code><span class="keyword">fun </span><span class="identifier">format</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.maltaisn.recurpicker.format.RRuleFormatter$format(com.maltaisn.recurpicker.Recurrence)/r">r</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span
+                    class="identifier">Recurrence</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
+                    class="identifier">String</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="parse.html">parse</a></h4>
+        </td>
+        <td>
+            <p>Parse a RFC 5545 string recurrence rule and return a recurrence.
+                Note that this method is designed to parse only the output of <a href="format.html">format</a>.
+            </p>
+            <code><span class="keyword">fun </span><span class="identifier">parse</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.maltaisn.recurpicker.format.RRuleFormatter$parse(kotlin.String)/rrule">rrule</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
+                    class="identifier">String</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span
+                    class="identifier">Recurrence</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

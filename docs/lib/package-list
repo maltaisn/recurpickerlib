@@ -1,0 +1,7 @@
+$dokka.format:html
+$dokka.linkExtension:html
+
+com.maltaisn.recurpicker
+com.maltaisn.recurpicker.format
+com.maltaisn.recurpicker.list
+com.maltaisn.recurpicker.picker

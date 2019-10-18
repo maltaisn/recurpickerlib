@@ -1,0 +1,104 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>alltypes - lib</title>
+    <link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<h3>All Types</h3>
+<table>
+    <tbody>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker/-recurrence/index.html">com.maltaisn.recurpicker.Recurrence</a>
+        </h5>
+        <p>An object describing a recurrence rule.
+            All recurrence objects are immutable.</p>
+    </tr>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker/-recurrence-finder/index.html">com.maltaisn.recurpicker.RecurrenceFinder</a>
+        </h5>
+        <p>Utility object to find the dates of the events of a <a
+                href="../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> object.
+            All date parameters are given as millis since epoch time.</p>
+    </tr>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker.format/-recurrence-formatter/index.html">com.maltaisn.recurpicker.format.RecurrenceFormatter</a>
+        </h5>
+        <p>Formatter class for converting <a
+                href="../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> objects to
+            a human-readable string represention.
+            This is basically a localized version of <a
+                    href="../com.maltaisn.recurpicker/-recurrence/to-string.html">Recurrence.toString</a>.
+        </p>
+    </tr>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker.list/-recurrence-list-dialog/index.html">com.maltaisn.recurpicker.list.RecurrenceListDialog</a>
+        </h5>
+        <p>Dialog fragment displaying a list of recurrence presets. This aims to provide
+            a simpler approach at choosing a recurrence for the user. Custom recurrence can later
+            be created with a "Custom..." item, defined by a <code>null</code> value in the presets
+            list.
+            Custom recurrences can be created with either <a
+                    href="../com.maltaisn.recurpicker.picker/-recurrence-picker-fragment/index.html">RecurrencePickerFragment</a>
+            or <a href="../com.maltaisn.recurpicker.picker/-recurrence-picker-dialog/index.html">RecurrencePickerDialog</a>.
+            Note: due to the MVP architecture, some interface methods are public but shouldn't be
+            used.</p>
+    </tr>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker.picker/-recurrence-picker-callback/index.html">com.maltaisn.recurpicker.picker.RecurrencePickerCallback</a>
+        </h5>
+        <p>Interface to be implemented by either the parent fragment of this fragment, the target
+            fragment
+            or the parent activity. If none of these implements it, there won't be any callback.</p>
+    </tr>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker.picker/-recurrence-picker-dialog/index.html">com.maltaisn.recurpicker.picker.RecurrencePickerDialog</a>
+        </h5>
+        <p>Dialog fragment used to create a custom recurrence with nearly all available options.
+            Provides all the options available in <a
+                    href="../com.maltaisn.recurpicker.picker/-recurrence-picker-fragment/index.html">RecurrencePickerFragment</a>,
+            only in a more compact way.
+            Note: due to the MVP architecture, some interface methods are public but shouldn't be
+            used.</p>
+    </tr>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker.picker/-recurrence-picker-fragment/index.html">com.maltaisn.recurpicker.picker.RecurrencePickerFragment</a>
+        </h5>
+        <p>Fragment used to create a custom recurrence with nearly all available options.
+            Only some options of monthly recurrences are not available, like recurring on a day
+            other than start date.
+            This fragment can be shown directly or after <a href="#">RecurrenceListDialog</a> was
+            shown.
+            Note: due to the MVP architecture, some interface methods are public but shouldn't be
+            used.</p>
+    </tr>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker/-recurrence-picker-settings/index.html">com.maltaisn.recurpicker.RecurrencePickerSettings</a>
+        </h5>
+        <p>A class for configuring the behavior of the recurrence list and picker dialogs.
+            The class is immutable, use the <a
+                    href="../com.maltaisn.recurpicker/-recurrence-picker-settings/-builder/index.html">Builder</a>
+            to create it.</p>
+    </tr>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker.format/-recurrence-serializer/index.html">com.maltaisn.recurpicker.format.RecurrenceSerializer</a>
+        </h5>
+        <p>Utility class to write a <a href="../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a>
+            as a byte array and read it back.
+            Read is backward-compatible with previous versions.
+            Prefer <a href="../com.maltaisn.recurpicker.format/-r-rule-formatter/index.html">RRuleFormatter</a>
+            to this format for serialization since its more flexible.</p>
+    </tr>
+    <tr>
+        <h5><a href="../com.maltaisn.recurpicker.format/-r-rule-formatter/index.html">com.maltaisn.recurpicker.format.RRuleFormatter</a>
+        </h5>
+        <p>Utility class to write a <a href="../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a>
+            as a RRule and read it back.
+            See <a href="https://tools.ietf.org/html/rfc2445#section-4.8.5.4">RFC2445</a> and
+            <a href="https://tools.ietf.org/html/rfc5545#section-3.3.10">RFC5545</a>.
+            Start dates and end dates are formatted to a local time string.</p>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>

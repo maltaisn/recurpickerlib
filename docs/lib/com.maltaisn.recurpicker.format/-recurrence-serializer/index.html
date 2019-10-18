@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+    <meta charset="UTF-8">
+    <title>RecurrenceSerializer - lib</title>
+    <link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker.format</a>&nbsp;/&nbsp;<a
+        href="./index.html">RecurrenceSerializer</a><br/>
+<br/>
+<h1>RecurrenceSerializer</h1>
+<code><span class="keyword">class </span><s><span class="identifier">RecurrenceSerializer</span></s></code><br/>
+<strong>Deprecated:</strong> Use RRuleFormatter instead.<br/>
+<br/>
+<p>Utility class to write a <a href="../../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a>
+    as a byte array and read it back.
+    Read is backward-compatible with previous versions.
+    Prefer <a href="../-r-rule-formatter/index.html">RRuleFormatter</a> to this format for
+    serialization since its more flexible.</p>
+<h3>Constructors</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
+        </td>
+        <td>
+            <p>Utility class to write a <a
+                    href="../../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> as a
+                byte array and read it back.
+                Read is backward-compatible with previous versions.
+                Prefer <a href="../-r-rule-formatter/index.html">RRuleFormatter</a> to this format
+                for serialization since its more flexible.</p>
+            <code><span class="identifier">RecurrenceSerializer</span><span
+                    class="symbol">(</span><span class="symbol">)</span></code></td>
+    </tr>
+    </tbody>
+</table>
+<h3>Functions</h3>
+<table>
+    <tbody>
+    <tr>
+        <td>
+            <h4><a href="read.html">read</a></h4>
+        </td>
+        <td>
+            <p>Read a recurrence from a byte <a
+                    href="read.html#com.maltaisn.recurpicker.format.RecurrenceSerializer$read(kotlin.ByteArray)/array">array</a>
+                and return it.
+                The encoded recurrence object must start at index 0 in the array.</p>
+            <code><span class="keyword">fun </span><span class="identifier">read</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.maltaisn.recurpicker.format.RecurrenceSerializer$read(kotlin.ByteArray)/array">array</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span
+                    class="identifier">ByteArray</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span
+                    class="identifier">Recurrence</span></a></code></td>
+    </tr>
+    <tr>
+        <td>
+            <h4><a href="write.html">write</a></h4>
+        </td>
+        <td>
+            <p>Write a <a
+                    href="write.html#com.maltaisn.recurpicker.format.RecurrenceSerializer$write(com.maltaisn.recurpicker.Recurrence)/r">recurrence</a>
+                to a byte array and return it.</p>
+            <code><span class="keyword">fun </span><span class="identifier">write</span><span
+                    class="symbol">(</span><span class="identifier"
+                                                 id="com.maltaisn.recurpicker.format.RecurrenceSerializer$write(com.maltaisn.recurpicker.Recurrence)/r">r</span><span
+                    class="symbol">:</span>&nbsp;<a
+                    href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span
+                    class="identifier">Recurrence</span></a><span class="symbol">)</span><span
+                    class="symbol">: </span><a
+                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html"><span
+                    class="identifier">ByteArray</span></a></code></td>
+    </tr>
+    </tbody>
+</table>
+</BODY>
+</HTML>
