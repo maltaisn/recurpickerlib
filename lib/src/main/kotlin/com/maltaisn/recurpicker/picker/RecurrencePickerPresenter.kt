@@ -136,18 +136,23 @@ internal class RecurrencePickerPresenter : Presenter {
     }
 
     override fun onFrequencyChanged(frequencyStr: String) {
-        var newFrequency = try {
+        val newFrequency = try {
             frequencyStr.toInt()
         } catch (e: NumberFormatException) {
             1
         }
         if (newFrequency != frequency) {
-            if (newFrequency > settings.maxFrequency) {
-                newFrequency = settings.maxFrequency
-                frequency = newFrequency
-                updateFrequencyView()
+            when {
+                newFrequency > settings.maxFrequency -> {
+                    frequency = settings.maxFrequency
+                    updateFrequencyView()
+                }
+                newFrequency == 0 -> {
+                    frequency = 1
+                    updateFrequencyView()
+                }
+                else -> frequency = newFrequency
             }
-            frequency = newFrequency
             updatePeriodDropdown()
         }
     }
@@ -207,18 +212,23 @@ internal class RecurrencePickerPresenter : Presenter {
     }
 
     override fun onEndCountChanged(endCountStr: String) {
-        var newEndCount = try {
+        val newEndCount = try {
             endCountStr.toInt()
         } catch (e: NumberFormatException) {
             1
         }
         if (newEndCount != endCount) {
-            if (newEndCount > settings.maxEndCount) {
-                newEndCount = settings.maxEndCount
-                endCount = newEndCount
-                updateEndCountView()
+            when {
+                newEndCount > settings.maxEndCount -> {
+                    endCount = settings.maxEndCount
+                    updateEndCountView()
+                }
+                newEndCount == 0 -> {
+                    endCount = 1
+                    updateEndCountView()
+                }
+                else -> endCount = newEndCount
             }
-            endCount = newEndCount
             updateEndCountLabels()
         }
     }

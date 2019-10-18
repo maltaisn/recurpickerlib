@@ -97,10 +97,17 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onFrequencyChanged_outOfRange() {
+    fun onFrequencyChanged_tooBig() {
         presenter.onFrequencyChanged("12")
         verify(view).setFrequencyView("10")
         assertEquals(10, createRecurrence().frequency)
+    }
+
+    @Test
+    fun onFrequencyChanged_tooSmall() {
+        presenter.onFrequencyChanged("0")
+        verify(view).setFrequencyView("1")
+        assertEquals(1, createRecurrence().frequency)
     }
 
     @Test
@@ -259,11 +266,21 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onEndCountChanged_outOfRange() {
+    fun onEndCountChanged_tooBig() {
         presenter.onEndCountClicked()
+        clearInvocations(view)
         presenter.onEndCountChanged("120")
         verify(view).setEndCountView("100")
         assertEquals(100, createRecurrence().endCount)
+    }
+
+    @Test
+    fun onEndCountChanged_tooSmall() {
+        presenter.onEndCountClicked()
+        clearInvocations(view)
+        presenter.onEndCountChanged("0")
+        verify(view).setEndCountView("1")
+        assertEquals(1, createRecurrence().endCount)
     }
 
     private fun createRecurrence(): Recurrence {
