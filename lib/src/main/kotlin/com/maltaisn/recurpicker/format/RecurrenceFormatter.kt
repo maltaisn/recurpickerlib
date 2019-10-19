@@ -45,6 +45,7 @@ class RecurrenceFormatter(val dateFormat: DateFormat) {
      * and can be set to [Recurrence.DATE_NONE] to be unspecified. Specifying the start date will
      * allow to avoid repeating information that will be shared by every event of the recurrence.
      */
+    @JvmOverloads
     fun format(context: Context, r: Recurrence, startDate: Long = Recurrence.DATE_NONE): String {
         val res = context.resources
 
@@ -90,7 +91,7 @@ class RecurrenceFormatter(val dateFormat: DateFormat) {
 
         } else if (r.period == Period.MONTHLY) {
             if (r.byDay != 0 || r.byMonthDay != 0) {
-                // On the same day of the month as start date's, don't specific it.
+                // On the same day of the month as start date's, don't specify it.
                 sb.append(" (")
                 if (startDate != Recurrence.DATE_NONE && r.byMonthDay == calendar[Calendar.DAY_OF_MONTH]) {
                     // on the same day of each month

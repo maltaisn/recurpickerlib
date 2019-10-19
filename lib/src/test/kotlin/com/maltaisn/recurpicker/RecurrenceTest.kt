@@ -67,7 +67,7 @@ internal class RecurrenceTest {
     fun toStringDebug() {
         if (BuildConfig.DEBUG) {
             assertEquals("Recurrence{ Does not repeat }",
-                    Recurrence(Period.NONE).toString())
+                    Recurrence.DOES_NOT_REPEAT.toString())
             assertEquals("Recurrence{ Every 5 days }",
                     Recurrence(Period.DAILY) { frequency = 5 }.toString())
             assertEquals("Recurrence{ Every year; until Dec 30, 2010 }",

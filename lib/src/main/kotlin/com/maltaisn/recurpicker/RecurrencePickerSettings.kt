@@ -38,8 +38,7 @@ class RecurrencePickerSettings private constructor(
         val formatter: RecurrenceFormatter,
 
         /**
-         * The list of recurrence presets shown in the recurrence list dialog.
-         * A `null` recurrence will result in the "Custom..." item being shown.
+         *
          */
         val presets: List<Recurrence?>,
 
@@ -63,7 +62,7 @@ class RecurrencePickerSettings private constructor(
 
         /** @see RecurrencePickerSettings.presets */
         var presets: List<Recurrence?> = arrayListOf(
-                Recurrence(Period.NONE),
+                Recurrence.DOES_NOT_REPEAT,
                 Recurrence(Period.DAILY),
                 Recurrence(Period.WEEKLY),
                 Recurrence(Period.MONTHLY),

@@ -156,7 +156,7 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
                                         recurrence: Recurrence,
                                         startDate: Long,
                                         checked: Boolean) {
-            label.text = formatter.format(requireContext(), recurrence)
+            label.text = formatter.format(requireContext(), recurrence, startDate)
             label.isChecked = checked
         }
 
@@ -170,39 +170,15 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
     }
 
     override fun setRecurrenceResult(recurrence: Recurrence) {
-        getCallback<Callback>()?.onRecurrencePresetSelected(recurrence)
+        getCallback<RecurrenceListCallback>()?.onRecurrencePresetSelected(recurrence)
     }
 
     override fun setCustomResult() {
-        getCallback<Callback>()?.onRecurrenceCustomClicked()
+        getCallback<RecurrenceListCallback>()?.onRecurrenceCustomClicked()
     }
 
     override fun setCancelResult() {
-        getCallback<Callback>()?.onRecurrenceListDialogCancelled()
-    }
-
-
-    /**
-     * Interface to be implemented by either the parent fragment of the dialog, the target fragment
-     * or the parent activity. If none of these implements it, there won't be any callback.
-     */
-    interface Callback {
-        /**
-         * Called if a [recurrence] preset is selected in the list.
-         */
-        fun onRecurrencePresetSelected(recurrence: Recurrence)
-
-        /**
-         * Called if the "Custom..." item is selected in the list.
-         * This is a good place to show the recurrence picker.
-         */
-        fun onRecurrenceCustomClicked()
-
-        /**
-         * Called if the recurrence list dialog is cancelled, either by
-         * a click outside or by a back press.
-         */
-        fun onRecurrenceListDialogCancelled() = Unit
+        getCallback<RecurrenceListCallback>()?.onRecurrenceListDialogCancelled()
     }
 
 

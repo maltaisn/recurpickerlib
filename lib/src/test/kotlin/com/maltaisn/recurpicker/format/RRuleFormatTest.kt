@@ -29,7 +29,7 @@ internal class RRuleFormatTest {
 
     @Test
     fun doesNotRepeat() {
-        val r = Recurrence(Period.NONE)
+        val r = Recurrence.DOES_NOT_REPEAT
         testRRule(r, "RRULE:FREQ=NONE")
     }
 

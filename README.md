@@ -16,7 +16,8 @@ Version 1.5.0 and above use AndroidX.
 Version 2.0.0 and above are written in Kotlin but should support Java well.
 
 ## Documentation
-All documentation is on the [wiki](https://github.com/maltaisn/recurpickerlib/wiki)
+KDocs is available [here](https://maltaisn.github.io/recurpickerlib/lib/index.html).
+More documentation and examples is available on the [wiki](https://github.com/maltaisn/recurpickerlib/wiki)
 
 ## Changelog
 View [changelog](CHANGELOG.md).

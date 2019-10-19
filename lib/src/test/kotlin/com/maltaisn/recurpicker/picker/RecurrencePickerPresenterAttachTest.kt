@@ -76,7 +76,7 @@ internal class RecurrencePickerPresenterAttachTest {
 
     @Test
     fun attach_verifyDefaultIsUsed_periodNone() {
-        whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.NONE))
+        whenever(view.selectedRecurrence).thenReturn(Recurrence.DOES_NOT_REPEAT)
         presenter.attach(view, null)
         verify(view).setEndDateView("2019-12-31")
         // We'll assume the rest is set correctly too...

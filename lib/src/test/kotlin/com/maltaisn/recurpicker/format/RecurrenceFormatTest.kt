@@ -71,7 +71,7 @@ class RecurrenceFormatTest {
 
     @Test
     fun format_doesNotRepeat() {
-        val r = Recurrence(Period.NONE)
+        val r = Recurrence.DOES_NOT_REPEAT
         assertEquals("Does not repeat", recurFormat.format(context, r))
     }
 

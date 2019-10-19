@@ -452,6 +452,12 @@ class Recurrence private constructor(
         /** Date value used for no end date. */
         const val DATE_NONE = Long.MIN_VALUE
 
+        /**
+         * A recurrence that doesn't repeat. When finding events for this recurrence,
+         * only the start date event will be returned.
+         */
+        @JvmField
+        val DOES_NOT_REPEAT = Recurrence(NONE)
 
         /**
          * Inline factory function to create a [Recurrence] without directly using the builder.

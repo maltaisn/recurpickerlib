@@ -41,7 +41,7 @@ internal class RecurrenceFinderTest {
 
     @Test
     fun none() {
-        val r = Recurrence(Period.NONE)
+        val r = Recurrence.DOES_NOT_REPEAT
         assertEquals(listOf(
                 dateFor("2019-01-01")
         ), finder.find(r, dateFor("2019-01-01"), 10))
@@ -49,19 +49,19 @@ internal class RecurrenceFinderTest {
 
     @Test
     fun none_fromDate() {
-        val r1 = Recurrence(Period.NONE)
+        val r1 = Recurrence.DOES_NOT_REPEAT
         assertEquals(listOf(
                 dateFor("2019-01-01")
         ), finder.find(r1, dateFor("2019-01-01"), 10, dateFor("2019-01-01")))
 
-        val r2 = Recurrence(Period.NONE)
+        val r2 = Recurrence.DOES_NOT_REPEAT
         assertEquals(emptyList<Long>(), finder.find(r2,
                 dateFor("2019-01-01"), 10, dateFor("2019-01-02")))
     }
 
     @Test
     fun none_fromDate_excludeStart() {
-        val r = Recurrence(Period.NONE)
+        val r = Recurrence.DOES_NOT_REPEAT
         assertEquals(emptyList<Long>(), finder.find(r,
                 dateFor("2019-01-01"), 10, dateFor("2019-01-01"), includeStart = false))
     }

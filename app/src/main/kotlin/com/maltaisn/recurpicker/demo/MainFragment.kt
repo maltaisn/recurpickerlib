@@ -32,6 +32,7 @@ import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.RecurrenceFinder
 import com.maltaisn.recurpicker.RecurrencePickerSettings
+import com.maltaisn.recurpicker.list.RecurrenceListCallback
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerCallback
 import com.maltaisn.recurpicker.picker.RecurrencePickerDialog
@@ -46,7 +47,7 @@ import java.text.DateFormat
  * This way, callbacks are retained across configuration changes without memory leaks.
  */
 class MainFragment : Fragment(), DateDialogFragment.Callback,
-        RecurrenceListDialog.Callback, RecurrencePickerCallback {
+        RecurrenceListCallback, RecurrencePickerCallback {
 
     // Recurrence list and picker fragments
     private val listDialog by lazy { RecurrenceListDialog.newInstance(settings) }
@@ -64,7 +65,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
 
     // Recurrence presets used in the recurrence list dialog.
     private val recurrencePresets = mutableListOf(
-            Recurrence(Period.NONE),
+            Recurrence.DOES_NOT_REPEAT,
             Recurrence(Period.DAILY),
             Recurrence(Period.WEEKLY),
             Recurrence(Period.MONTHLY),
@@ -87,7 +88,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
     private var startDate = System.currentTimeMillis()
 
     // The currently selected recurrence.
-    private var selectedRecurrence = Recurrence(Period.NONE)
+    private var selectedRecurrence = Recurrence.DOES_NOT_REPEAT
 
     // The list of recurrence events found.
     private var recurrenceEvents = mutableListOf<Long>()
