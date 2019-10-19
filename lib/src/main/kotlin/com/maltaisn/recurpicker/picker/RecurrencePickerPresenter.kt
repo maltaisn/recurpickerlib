@@ -372,8 +372,10 @@ internal class RecurrencePickerPresenter : Presenter {
         endCount = this@RecurrencePickerPresenter.endCount
         endType = this@RecurrencePickerPresenter.endType
 
-        if (period == Period.WEEKLY) {
+        if (period == Period.WEEKLY && daysOfWeek != (1 shl startDateCal[Calendar.DAY_OF_WEEK])) {
+            // If recurring on the same day of the week as start date's, leave default value.
             setDaysOfWeek(daysOfWeek)
+
         } else if (period == Period.MONTHLY) {
             when (monthlySettingIndex) {
                 1 -> setDayOfWeekInMonth(1 shl startDayOfWeek, startWeekInMonth)

@@ -283,6 +283,20 @@ internal class RecurrencePickerPresenterTest {
         assertEquals(1, createRecurrence().endCount)
     }
 
+    @Test
+    fun createRecurrence_weekly_sameDayAsStartDate() {
+        presenter.onPeriodItemSelected(1)
+        assertEquals(1, createRecurrence().byDay)
+    }
+
+    @Test
+    fun createRecurrence_weekly_notSameDayAsStartDate() {
+        presenter.onPeriodItemSelected(1)
+        presenter.onWeekBtnChecked(Calendar.THURSDAY, false)
+        presenter.onWeekBtnChecked(Calendar.MONDAY, true)
+        assertEquals(Recurrence.MONDAY + 1, createRecurrence().byDay)
+    }
+
     private fun createRecurrence(): Recurrence {
         // Create the recurrence, capture it, and return it.
         presenter.onConfirm()
