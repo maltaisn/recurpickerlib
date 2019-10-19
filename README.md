@@ -13,11 +13,18 @@ Replace `X.Y.Z` with lastest version number:
 
 If you haven't migrated to AndroidX, use version 1.4.5. 
 Version 1.5.0 and above use AndroidX.
+
 Version 2.0.0 and above are written in Kotlin but should support Java well.
+Note that v2 introduces major breaking changes, see the changelog for more info.
 
 ## Documentation
 KDocs is available [here](https://maltaisn.github.io/recurpickerlib/lib/index.html).
 More documentation and examples is available on the [wiki](https://github.com/maltaisn/recurpickerlib/wiki)
+- [Using the library](https://github.com/maltaisn/recurpickerlib/wiki/Using-the-library)
+- [Building a recurrence](https://github.com/maltaisn/recurpickerlib/wiki/Building-a-recurrence)
+- [Formatting a recurrence](https://github.com/maltaisn/recurpickerlib/wiki/Formatting-a-recurrence)
+- [Recurrence serialization](https://github.com/maltaisn/recurpickerlib/wiki/Recurrence-serialization)
+- [Styling the fragments](https://github.com/maltaisn/recurpickerlib/wiki/Styling-the-fragments)
 
 ## Changelog
 View [changelog](CHANGELOG.md).

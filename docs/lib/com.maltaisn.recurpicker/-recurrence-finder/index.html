@@ -1,181 +1,64 @@
 <HTML>
 <HEAD>
-    <meta charset="UTF-8">
-    <title>RecurrenceFinder - lib</title>
-    <link rel="stylesheet" href="../../../style.css">
+<meta charset="UTF-8">
+<title>RecurrenceFinder - lib</title>
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker</a>&nbsp;/&nbsp;<a
-        href="./index.html">RecurrenceFinder</a><br/>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker</a>&nbsp;/&nbsp;<a href="./index.html">RecurrenceFinder</a><br/>
 <br/>
 <h1>RecurrenceFinder</h1>
 <code><span class="keyword">class </span><span class="identifier">RecurrenceFinder</span></code>
-<p>Utility object to find the dates of the events of a <a href="../-recurrence/index.html">Recurrence</a>
-    object.
-    All date parameters are given as millis since epoch time.</p>
+<p>Utility object to find the dates of the events of a <a href="../-recurrence/index.html">Recurrence</a> object.
+All date parameters are given as millis since epoch time.</p>
 <h3>Constructors</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
-        </td>
-        <td>
-            <p>Utility object to find the dates of the events of a <a
-                    href="../-recurrence/index.html">Recurrence</a> object.
-                All date parameters are given as millis since epoch time.</p>
-            <code><span class="identifier">RecurrenceFinder</span><span class="symbol">(</span><span
-                    class="symbol">)</span></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Utility object to find the dates of the events of a <a href="../-recurrence/index.html">Recurrence</a> object.
+All date parameters are given as millis since epoch time.</p>
+<code><span class="identifier">RecurrenceFinder</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
 </table>
 <h3>Functions</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="find.html">find</a></h4>
-        </td>
-        <td>
-            <p>Get an <a
-                    href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</a>
-                of event dates of a <a
-                        href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">recurrence</a>
-                after a <a
-                        href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">date</a>.
-                Note that the recurrence's start date is never included in the returned list.</p>
-            <code><span class="keyword">fun </span><span class="identifier">find</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">r</span><span
-                    class="symbol">:</span>&nbsp;<a href="../-recurrence/index.html"><span
-                    class="identifier">Recurrence</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/startDate">startDate</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">fromDate</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Recurrence.DATE_NONE<span
-                    class="symbol">, </span><span class="identifier"
-                                                  id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/includeStart">includeStart</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span
-                    class="symbol">)</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span
-                    class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">&gt;</span></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="find-based-on.html">findBasedOn</a></h4>
-        </td>
-        <td>
-            <p>Get event dates of a <a
-                    href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">recurrence</a>
-                based on a <a
-                        href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/base">previous
-                    event date</a> of the
-                same recurrence. If the recurrence has an end by count rule, it's important to also
-                supply the <a
-                        href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/baseCount">base
-                    count</a> to indicate how many events have happened as of
-                the base date so the algorithm knows when to stop. Starting <a
-                        href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">from
-                    a date</a>,
-                a certain <a
-                        href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</a>
-                of events are found and returned.</p>
-            <code><span class="keyword">fun </span><span class="identifier">findBasedOn</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">r</span><span
-                    class="symbol">:</span>&nbsp;<a href="../-recurrence/index.html"><span
-                    class="identifier">Recurrence</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/startDate">startDate</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/base">base</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/baseCount">baseCount</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">fromDate</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Recurrence.DATE_NONE<span
-                    class="symbol">, </span><span class="identifier"
-                                                  id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/includeStart">includeStart</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span
-                    class="symbol">)</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span
-                    class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">&gt;</span></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="find-between.html">findBetween</a></h4>
-        </td>
-        <td>
-            <p>Get event dates of a <a
-                    href="find-between.html#com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/r">recurrence</a>
-                between a <a
-                        href="find-between.html#com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/start">start
-                    date</a> (inclusive)
-                and an <a
-                        href="find-between.html#com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/end">end
-                    date</a> (exclusive).</p>
-            <code><span class="keyword">fun </span><span class="identifier">findBetween</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/r">r</span><span
-                    class="symbol">:</span>&nbsp;<a href="../-recurrence/index.html"><span
-                    class="identifier">Recurrence</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/startDate">startDate</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/start">start</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/end">end</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span
-                    class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">&gt;</span></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="find.html">find</a></h4>
+</td>
+<td>
+<p>Get an <a href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</a> of event dates of a <a href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">recurrence</a> after a <a href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">date</a>.
+Note that the recurrence's start date is never included in the returned list.</p>
+<code><span class="keyword">fun </span><span class="identifier">find</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">r</span><span class="symbol">:</span>&nbsp;<a href="../-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/startDate">startDate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">fromDate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Recurrence.DATE_NONE<span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/includeStart">includeStart</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="find-based-on.html">findBasedOn</a></h4>
+</td>
+<td>
+<p>Get event dates of a <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">recurrence</a> based on a <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/base">previous event date</a> of the
+same recurrence. If the recurrence has an end by count rule, it's important to also
+supply the <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/baseCount">base count</a> to indicate how many events have happened as of
+the base date so the algorithm knows when to stop. Starting <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">from a date</a>,
+a certain <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</a> of events are found and returned.</p>
+<code><span class="keyword">fun </span><span class="identifier">findBasedOn</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">r</span><span class="symbol">:</span>&nbsp;<a href="../-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/startDate">startDate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/base">base</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/baseCount">baseCount</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">fromDate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Recurrence.DATE_NONE<span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/includeStart">includeStart</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="find-between.html">findBetween</a></h4>
+</td>
+<td>
+<p>Get event dates of a <a href="find-between.html#com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/r">recurrence</a> between a <a href="find-between.html#com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/start">start date</a> (inclusive)
+and an <a href="find-between.html#com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/end">end date</a> (exclusive).</p>
+<code><span class="keyword">fun </span><span class="identifier">findBetween</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/r">r</span><span class="symbol">:</span>&nbsp;<a href="../-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/startDate">startDate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/start">start</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$findBetween(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Long)/end">end</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
 </table>
 </BODY>
 </HTML>
