@@ -1,33 +1,23 @@
 <HTML>
 <HEAD>
-    <meta charset="UTF-8">
-    <title>RRuleFormatter.parse - lib</title>
-    <link rel="stylesheet" href="../../../style.css">
+<meta charset="UTF-8">
+<title>RRuleFormatter.parse - lib</title>
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker.format</a>&nbsp;/&nbsp;<a
-        href="index.html">RRuleFormatter</a>&nbsp;/&nbsp;<a href="./parse.html">parse</a><br/>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker.format</a>&nbsp;/&nbsp;<a href="index.html">RRuleFormatter</a>&nbsp;/&nbsp;<a href="./parse.html">parse</a><br/>
 <br/>
 <h1>parse</h1>
 <a name="com.maltaisn.recurpicker.format.RRuleFormatter$parse(kotlin.String)"></a>
-<code><span class="keyword">fun </span><span class="identifier">parse</span><span
-        class="symbol">(</span><span class="identifier"
-                                     id="com.maltaisn.recurpicker.format.RRuleFormatter$parse(kotlin.String)/rrule">rrule</span><span
-        class="symbol">:</span>&nbsp;<a
-        href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-        class="identifier">String</span></a><span class="symbol">)</span><span
-        class="symbol">: </span><a
-        href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span class="identifier">Recurrence</span></a></code>
+<code><span class="keyword">fun </span><span class="identifier">parse</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.format.RRuleFormatter$parse(kotlin.String)/rrule">rrule</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span class="identifier">Recurrence</span></a></code>
 <p>Parse a RFC 5545 string recurrence rule and return a recurrence.
-    Note that this method is designed to parse only the output of <a href="format.html">format</a>.
-</p>
-<p>Other recurrence rules may not parse correctly since <a
-        href="../../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> only
-    supports a thin subset of the actual specification. For example if recurring
-    yearly but not on the same day as start date, this information is lost when parsing,
-    since yearly recurrence can only happen on the same day as start date.</p>
+Note that this method is designed to parse only the output of <a href="format.html">format</a>.</p>
+<p>Other recurrence rules may not parse correctly since <a href="../../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> only
+supports a thin subset of the actual specification. For example if recurring
+yearly but not on the same day as start date, this information is lost when parsing,
+since yearly recurrence can only happen on the same day as start date.</p>
 <h3>Exceptions</h3>
 <p><a name="IllegalArgumentException"></a>
-    <code>IllegalArgumentException</code> - If recurrence rule cannot be parsed.</p>
+<code>IllegalArgumentException</code> - If recurrence rule cannot be parsed.</p>
 </BODY>
 </HTML>

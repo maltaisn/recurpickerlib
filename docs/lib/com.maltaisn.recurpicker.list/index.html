@@ -1,8 +1,8 @@
 <HTML>
 <HEAD>
-    <meta charset="UTF-8">
-    <title>com.maltaisn.recurpicker.list - lib</title>
-    <link rel="stylesheet" href="../../style.css">
+<meta charset="UTF-8">
+<title>com.maltaisn.recurpicker.list - lib</title>
+<link rel="stylesheet" href="../../style.css">
 </HEAD>
 <BODY>
 <a href="../index.html">lib</a>&nbsp;/&nbsp;<a href="./index.html">com.maltaisn.recurpicker.list</a><br/>
@@ -10,29 +10,30 @@
 <h2>Package com.maltaisn.recurpicker.list</h2>
 <h3>Types</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="-recurrence-list-dialog/index.html">RecurrenceListDialog</a></h4>
-        </td>
-        <td>
-            <p>Dialog fragment displaying a list of recurrence presets. This aims to provide
-                a simpler approach at choosing a recurrence for the user. Custom recurrence can
-                later
-                be created with a "Custom..." item, defined by a <code>null</code> value in the
-                presets list.
-                Custom recurrences can be created with either <a
-                        href="../com.maltaisn.recurpicker.picker/-recurrence-picker-fragment/index.html">RecurrencePickerFragment</a>
-                or
-                <a href="../com.maltaisn.recurpicker.picker/-recurrence-picker-dialog/index.html">RecurrencePickerDialog</a>.
-                Note: due to the MVP architecture, some interface methods are public but shouldn't
-                be used.</p>
-            <code><span class="keyword">class </span><span
-                    class="identifier">RecurrenceListDialog</span>&nbsp;<span
-                    class="symbol">:</span>&nbsp;<span class="identifier">DialogFragment</span><span
-                    class="symbol">, </span><span class="identifier">View</span></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="-recurrence-list-callback/index.html">RecurrenceListCallback</a></h4>
+</td>
+<td>
+<p>Call back for the <a href="-recurrence-list-dialog/index.html">RecurrenceListDialog</a>.
+Interface to be implemented by either the parent fragment of the dialog, the target fragment
+or the parent activity. If none of these implements it, there won't be any callback.</p>
+<code><span class="keyword">interface </span><span class="identifier">RecurrenceListCallback</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-recurrence-list-dialog/index.html">RecurrenceListDialog</a></h4>
+</td>
+<td>
+<p>Dialog fragment displaying a list of recurrence presets. This aims to provide
+a simpler approach at choosing a recurrence for the user. Custom recurrence can later
+be created with a "Custom..." item, defined by a <code>null</code> value in the presets list.
+Custom recurrences can be created with either <a href="../com.maltaisn.recurpicker.picker/-recurrence-picker-fragment/index.html">RecurrencePickerFragment</a> or <a href="../com.maltaisn.recurpicker.picker/-recurrence-picker-dialog/index.html">RecurrencePickerDialog</a>.
+Note: due to the MVP architecture, some interface methods are public but shouldn't be used.</p>
+<code><span class="keyword">class </span><span class="identifier">RecurrenceListDialog</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">DialogFragment</span><span class="symbol">, </span><span class="identifier">View</span></code></td>
+</tr>
+</tbody>
 </table>
 </BODY>
 </HTML>

@@ -1,621 +1,303 @@
 <HTML>
 <HEAD>
-    <meta charset="UTF-8">
-    <title>RecurrencePickerFragment - lib</title>
-    <link rel="stylesheet" href="../../../style.css">
+<meta charset="UTF-8">
+<title>RecurrencePickerFragment - lib</title>
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker.picker</a>&nbsp;/&nbsp;<a
-        href="./index.html">RecurrencePickerFragment</a><br/>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker.picker</a>&nbsp;/&nbsp;<a href="./index.html">RecurrencePickerFragment</a><br/>
 <br/>
 <h1>RecurrencePickerFragment</h1>
-<code><span class="keyword">class </span><span class="identifier">RecurrencePickerFragment</span>&nbsp;<span
-        class="symbol">:</span>&nbsp;<span class="identifier">Fragment</span><span
-        class="symbol">, </span><span class="identifier">View</span><span
-        class="symbol">, </span><span class="identifier">Callback</span></code>
+<code><span class="keyword">class </span><span class="identifier">RecurrencePickerFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Fragment</span><span class="symbol">, </span><span class="identifier">View</span><span class="symbol">, </span><span class="identifier">Callback</span></code>
 <p>Fragment used to create a custom recurrence with nearly all available options.
-    Only some options of monthly recurrences are not available, like recurring on a day other than
-    start date.
-    This fragment can be shown directly or after <a href="#">RecurrenceListDialog</a> was shown.
-    Note: due to the MVP architecture, some interface methods are public but shouldn't be used.</p>
+Only some options of monthly recurrences are not available, like recurring on a day other than start date.
+This fragment can be shown directly or after <a href="#">RecurrenceListDialog</a> was shown.
+Note: due to the MVP architecture, some interface methods are public but shouldn't be used.</p>
 <h3>Constructors</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="-init-.html">&lt;init&gt;</a></h4>
-        </td>
-        <td>
-            <p>Fragment used to create a custom recurrence with nearly all available options.
-                Only some options of monthly recurrences are not available, like recurring on a day
-                other than start date.
-                This fragment can be shown directly or after <a href="#">RecurrenceListDialog</a>
-                was shown.
-                Note: due to the MVP architecture, some interface methods are public but shouldn't
-                be used.</p>
-            <code><span class="identifier">RecurrencePickerFragment</span><span
-                    class="symbol">(</span><span class="symbol">)</span></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Fragment used to create a custom recurrence with nearly all available options.
+Only some options of monthly recurrences are not available, like recurring on a day other than start date.
+This fragment can be shown directly or after <a href="#">RecurrenceListDialog</a> was shown.
+Note: due to the MVP architecture, some interface methods are public but shouldn't be used.</p>
+<code><span class="identifier">RecurrencePickerFragment</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
 </table>
 <h3>Properties</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="end-date-text.html">endDateText</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">val </span><span class="identifier">endDateText</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="selected-recurrence.html">selectedRecurrence</a></h4>
-        </td>
-        <td>
-            <p>The previously selected recurrence that will be shown initially. Can be set to <code>null</code>
-                if no recurrence was selected previously. In this case, a simple daily recurrence
-                will
-                be shown.</p>
-            <code><span class="keyword">var </span><span
-                    class="identifier">selectedRecurrence</span><span class="symbol">: </span><a
-                    href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span
-                    class="identifier">Recurrence</span></a><span class="symbol">?</span></code>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="settings.html">settings</a></h4>
-        </td>
-        <td>
-            <p>The settings defining the recurrence picker fragment behavior and content.</p>
-            <code><span class="keyword">lateinit</span> <span class="keyword">var </span><span
-                    class="identifier">settings</span><span class="symbol">: </span><a
-                    href="../../com.maltaisn.recurpicker/-recurrence-picker-settings/index.html"><span
-                    class="identifier">RecurrencePickerSettings</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="start-date.html">startDate</a></h4>
-        </td>
-        <td>
-            <p>The start date of the event for which a recurrence is created.
-                This is a required parameter and cannot be set to <a
-                        href="../../com.maltaisn.recurpicker/-recurrence/-d-a-t-e_-n-o-n-e.html">Recurrence.DATE_NONE</a>.
-                The date is used to know on which day of the week and on which week of the month
-                the events will happen. It's also the minimum date for the end date.</p>
-            <code><span class="keyword">var </span><span class="identifier">startDate</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="end-date-text.html">endDateText</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">endDateText</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="selected-recurrence.html">selectedRecurrence</a></h4>
+</td>
+<td>
+<p>The previously selected recurrence that will be shown initially. Can be set to <code>null</code>
+if no recurrence was selected previously. In this case, a simple daily recurrence will
+be shown.</p>
+<code><span class="keyword">var </span><span class="identifier">selectedRecurrence</span><span class="symbol">: </span><a href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="settings.html">settings</a></h4>
+</td>
+<td>
+<p>The settings defining the recurrence picker fragment behavior and content.</p>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">settings</span><span class="symbol">: </span><a href="../../com.maltaisn.recurpicker/-recurrence-picker-settings/index.html"><span class="identifier">RecurrencePickerSettings</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="start-date.html">startDate</a></h4>
+</td>
+<td>
+<p>The start date of the event for which a recurrence is created.
+This is a required parameter and cannot be set to <a href="../../com.maltaisn.recurpicker/-recurrence/-d-a-t-e_-n-o-n-e.html">Recurrence.DATE_NONE</a>.
+The date is used to know on which day of the week and on which week of the month
+the events will happen. It's also the minimum date for the end date.</p>
+<code><span class="keyword">var </span><span class="identifier">startDate</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+</tbody>
 </table>
 <h3>Functions</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="clear-focus.html">clearFocus</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span class="identifier">clearFocus</span><span
-                    class="symbol">(</span><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="exit.html">exit</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span class="identifier">exit</span><span
-                    class="symbol">(</span><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="get-end-count-text-for.html">getEndCountTextFor</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">getEndCountTextFor</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$getEndCountTextFor(kotlin.Int)/count">count</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a><span class="symbol">!</span></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="on-create-view.html">onCreateView</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span class="identifier">onCreateView</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)/inflater">inflater</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://developer.android.com/reference/android/view/LayoutInflater.html"><span
-                    class="identifier">LayoutInflater</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)/container">container</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://developer.android.com/reference/android/view/ViewGroup.html"><span
-                    class="identifier">ViewGroup</span></a><span class="symbol">?</span><span
-                    class="symbol">, </span><span class="identifier"
-                                                  id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)/state">state</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://developer.android.com/reference/android/os/Bundle.html"><span
-                    class="identifier">Bundle</span></a><span class="symbol">?</span><span
-                    class="symbol">)</span><span class="symbol">: </span><a
-                    href="https://developer.android.com/reference/android/view/View.html"><span
-                    class="identifier">View</span></a><span class="symbol">?</span></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="on-date-dialog-confirmed.html">onDateDialogConfirmed</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">onDateDialogConfirmed</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onDateDialogConfirmed(kotlin.Long)/date">date</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="on-destroy-view.html">onDestroyView</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">onDestroyView</span><span class="symbol">(</span><span
-                    class="symbol">)</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="on-save-instance-state.html">onSaveInstanceState</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">onSaveInstanceState</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onSaveInstanceState(android.os.Bundle)/state">state</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://developer.android.com/reference/android/os/Bundle.html"><span
-                    class="identifier">Bundle</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="on-view-state-restored.html">onViewStateRestored</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">onViewStateRestored</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onViewStateRestored(android.os.Bundle)/state">state</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://developer.android.com/reference/android/os/Bundle.html"><span
-                    class="identifier">Bundle</span></a><span class="symbol">?</span><span
-                    class="symbol">)</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-cancel-result.html">setCancelResult</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setCancelResult</span><span class="symbol">(</span><span
-                    class="symbol">)</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-confirm-result.html">setConfirmResult</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setConfirmResult</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setConfirmResult(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span
-                    class="identifier">Recurrence</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-count-checked.html">setEndCountChecked</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setEndCountChecked</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountChecked(kotlin.Boolean)/checked">checked</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-count-labels.html">setEndCountLabels</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span class="identifier">setEndCountLabels</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountLabels(kotlin.String, kotlin.String)/prefix">prefix</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountLabels(kotlin.String, kotlin.String)/suffix">suffix</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-count-max-length.html">setEndCountMaxLength</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setEndCountMaxLength</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountMaxLength(kotlin.Int)/length">length</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-count-view.html">setEndCountView</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setEndCountView</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountView(kotlin.String)/count">count</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-count-view-enabled.html">setEndCountViewEnabled</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setEndCountViewEnabled</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountViewEnabled(kotlin.Boolean)/enabled">enabled</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-date-checked.html">setEndDateChecked</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span class="identifier">setEndDateChecked</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateChecked(kotlin.Boolean)/checked">checked</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-date-labels.html">setEndDateLabels</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setEndDateLabels</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateLabels(kotlin.String, kotlin.String)/prefix">prefix</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateLabels(kotlin.String, kotlin.String)/suffix">suffix</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-date-view.html">setEndDateView</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setEndDateView</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateView(kotlin.String)/date">date</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-date-view-enabled.html">setEndDateViewEnabled</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setEndDateViewEnabled</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateViewEnabled(kotlin.Boolean)/enabled">enabled</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-end-never-checked.html">setEndNeverChecked</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setEndNeverChecked</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndNeverChecked(kotlin.Boolean)/checked">checked</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-frequency-max-length.html">setFrequencyMaxLength</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setFrequencyMaxLength</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setFrequencyMaxLength(kotlin.Int)/length">length</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-frequency-view.html">setFrequencyView</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setFrequencyView</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setFrequencyView(kotlin.String)/frequency">frequency</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-monthly-setting-items.html">setMonthlySettingItems</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setMonthlySettingItems</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setMonthlySettingItems(kotlin.Boolean, kotlin.Int, kotlin.Int)/showLastDay">showLastDay</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setMonthlySettingItems(kotlin.Boolean, kotlin.Int, kotlin.Int)/dayOfWeekInMonth">dayOfWeekInMonth</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setMonthlySettingItems(kotlin.Boolean, kotlin.Int, kotlin.Int)/weekInMonth">weekInMonth</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-monthly-setting-shown.html">setMonthlySettingShown</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setMonthlySettingShown</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setMonthlySettingShown(kotlin.Boolean)/shown">shown</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-period-items.html">setPeriodItems</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setPeriodItems</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setPeriodItems(kotlin.Int)/frequency">frequency</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-selected-monthly-setting-item.html">setSelectedMonthlySettingItem</a>
-            </h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span class="identifier">setSelectedMonthlySettingItem</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setSelectedMonthlySettingItem(kotlin.Int)/index">index</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-selected-period-item.html">setSelectedPeriodItem</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setSelectedPeriodItem</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setSelectedPeriodItem(kotlin.Int)/index">index</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-week-btn-checked.html">setWeekBtnChecked</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span class="identifier">setWeekBtnChecked</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setWeekBtnChecked(kotlin.Int, kotlin.Boolean)/dayOfWeek">dayOfWeek</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setWeekBtnChecked(kotlin.Int, kotlin.Boolean)/checked">checked</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="set-week-btns-shown.html">setWeekBtnsShown</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">setWeekBtnsShown</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setWeekBtnsShown(kotlin.Boolean)/shown">shown</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="show-end-date-dialog.html">showEndDateDialog</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span class="identifier">showEndDateDialog</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$showEndDateDialog(kotlin.Long, kotlin.Long)/date">date</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$showEndDateDialog(kotlin.Long, kotlin.Long)/minDate">minDate</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="clear-focus.html">clearFocus</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">clearFocus</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="exit.html">exit</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">exit</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="get-end-count-text-for.html">getEndCountTextFor</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">getEndCountTextFor</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$getEndCountTextFor(kotlin.Int)/count">count</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-create-view.html">onCreateView</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onCreateView</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)/inflater">inflater</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/view/LayoutInflater.html"><span class="identifier">LayoutInflater</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)/container">container</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/view/ViewGroup.html"><span class="identifier">ViewGroup</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)/state">state</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/view/View.html"><span class="identifier">View</span></a><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-date-dialog-confirmed.html">onDateDialogConfirmed</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onDateDialogConfirmed</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onDateDialogConfirmed(kotlin.Long)/date">date</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-destroy-view.html">onDestroyView</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onDestroyView</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-save-instance-state.html">onSaveInstanceState</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onSaveInstanceState</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onSaveInstanceState(android.os.Bundle)/state">state</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-view-state-restored.html">onViewStateRestored</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onViewStateRestored</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$onViewStateRestored(android.os.Bundle)/state">state</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-cancel-result.html">setCancelResult</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setCancelResult</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-confirm-result.html">setConfirmResult</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setConfirmResult</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setConfirmResult(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</span><span class="symbol">:</span>&nbsp;<a href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-count-checked.html">setEndCountChecked</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndCountChecked</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountChecked(kotlin.Boolean)/checked">checked</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-count-labels.html">setEndCountLabels</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndCountLabels</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountLabels(kotlin.String, kotlin.String)/prefix">prefix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountLabels(kotlin.String, kotlin.String)/suffix">suffix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-count-max-length.html">setEndCountMaxLength</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndCountMaxLength</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountMaxLength(kotlin.Int)/length">length</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-count-view.html">setEndCountView</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndCountView</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountView(kotlin.String)/count">count</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-count-view-enabled.html">setEndCountViewEnabled</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndCountViewEnabled</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndCountViewEnabled(kotlin.Boolean)/enabled">enabled</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-date-checked.html">setEndDateChecked</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndDateChecked</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateChecked(kotlin.Boolean)/checked">checked</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-date-labels.html">setEndDateLabels</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndDateLabels</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateLabels(kotlin.String, kotlin.String)/prefix">prefix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateLabels(kotlin.String, kotlin.String)/suffix">suffix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-date-view.html">setEndDateView</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndDateView</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateView(kotlin.String)/date">date</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-date-view-enabled.html">setEndDateViewEnabled</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndDateViewEnabled</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndDateViewEnabled(kotlin.Boolean)/enabled">enabled</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-never-checked.html">setEndNeverChecked</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndNeverChecked</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setEndNeverChecked(kotlin.Boolean)/checked">checked</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-frequency-max-length.html">setFrequencyMaxLength</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setFrequencyMaxLength</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setFrequencyMaxLength(kotlin.Int)/length">length</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-frequency-view.html">setFrequencyView</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setFrequencyView</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setFrequencyView(kotlin.String)/frequency">frequency</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-monthly-setting-items.html">setMonthlySettingItems</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setMonthlySettingItems</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setMonthlySettingItems(kotlin.Boolean, kotlin.Int, kotlin.Int)/showLastDay">showLastDay</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setMonthlySettingItems(kotlin.Boolean, kotlin.Int, kotlin.Int)/dayOfWeekInMonth">dayOfWeekInMonth</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setMonthlySettingItems(kotlin.Boolean, kotlin.Int, kotlin.Int)/weekInMonth">weekInMonth</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-monthly-setting-shown.html">setMonthlySettingShown</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setMonthlySettingShown</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setMonthlySettingShown(kotlin.Boolean)/shown">shown</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-period-items.html">setPeriodItems</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setPeriodItems</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setPeriodItems(kotlin.Int)/frequency">frequency</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-selected-monthly-setting-item.html">setSelectedMonthlySettingItem</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setSelectedMonthlySettingItem</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setSelectedMonthlySettingItem(kotlin.Int)/index">index</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-selected-period-item.html">setSelectedPeriodItem</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setSelectedPeriodItem</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setSelectedPeriodItem(kotlin.Int)/index">index</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-week-btn-checked.html">setWeekBtnChecked</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setWeekBtnChecked</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setWeekBtnChecked(kotlin.Int, kotlin.Boolean)/dayOfWeek">dayOfWeek</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setWeekBtnChecked(kotlin.Int, kotlin.Boolean)/checked">checked</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-week-btns-shown.html">setWeekBtnsShown</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setWeekBtnsShown</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$setWeekBtnsShown(kotlin.Boolean)/shown">shown</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="show-end-date-dialog.html">showEndDateDialog</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">showEndDateDialog</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$showEndDateDialog(kotlin.Long, kotlin.Long)/date">date</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment$showEndDateDialog(kotlin.Long, kotlin.Long)/minDate">minDate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
 </table>
 <h3>Companion Object Functions</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="new-instance.html">newInstance</a></h4>
-        </td>
-        <td>
-            <p>Create a new instance of the fragment with <a
-                    href="new-instance.html#com.maltaisn.recurpicker.picker.RecurrencePickerFragment.Companion$newInstance(com.maltaisn.recurpicker.RecurrencePickerSettings)/settings">settings</a>.
-                More settings can be set with the returned fragment instance later.</p>
-            <code><span class="keyword">fun </span><span class="identifier">newInstance</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment.Companion$newInstance(com.maltaisn.recurpicker.RecurrencePickerSettings)/settings">settings</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="../../com.maltaisn.recurpicker/-recurrence-picker-settings/index.html"><span
-                    class="identifier">RecurrencePickerSettings</span></a><span
-                    class="symbol">)</span><span class="symbol">: </span><a
-                    href="./index.html"><span class="identifier">RecurrencePickerFragment</span></a></code>
-        </td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="new-instance.html">newInstance</a></h4>
+</td>
+<td>
+<p>Create a new instance of the fragment with <a href="new-instance.html#com.maltaisn.recurpicker.picker.RecurrencePickerFragment.Companion$newInstance(com.maltaisn.recurpicker.RecurrencePickerSettings)/settings">settings</a>.
+More settings can be set with the returned fragment instance later.</p>
+<code><span class="keyword">fun </span><span class="identifier">newInstance</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerFragment.Companion$newInstance(com.maltaisn.recurpicker.RecurrencePickerSettings)/settings">settings</span><span class="symbol">:</span>&nbsp;<a href="../../com.maltaisn.recurpicker/-recurrence-picker-settings/index.html"><span class="identifier">RecurrencePickerSettings</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RecurrencePickerFragment</span></a></code></td>
+</tr>
+</tbody>
 </table>
 </BODY>
 </HTML>

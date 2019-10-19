@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>RecurrenceListCallback - lib</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker.list</a>&nbsp;/&nbsp;<a href="./index.html">RecurrenceListCallback</a><br/>
+<br/>
+<h1>RecurrenceListCallback</h1>
+<code><span class="keyword">interface </span><span class="identifier">RecurrenceListCallback</span></code>
+<p>Call back for the <a href="../-recurrence-list-dialog/index.html">RecurrenceListDialog</a>.
+Interface to be implemented by either the parent fragment of the dialog, the target fragment
+or the parent activity. If none of these implements it, there won't be any callback.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-recurrence-custom-clicked.html">onRecurrenceCustomClicked</a></h4>
+</td>
+<td>
+<p>Called if the "Custom..." item is selected in the list.
+This is a good place to show the recurrence picker.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onRecurrenceCustomClicked</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-recurrence-list-dialog-cancelled.html">onRecurrenceListDialogCancelled</a></h4>
+</td>
+<td>
+<p>Called if the recurrence list dialog is cancelled, either by
+a click outside or by a back press.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onRecurrenceListDialogCancelled</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-recurrence-preset-selected.html">onRecurrencePresetSelected</a></h4>
+</td>
+<td>
+<p>Called if a <a href="on-recurrence-preset-selected.html#com.maltaisn.recurpicker.list.RecurrenceListCallback$onRecurrencePresetSelected(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</a> preset is selected in the list.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onRecurrencePresetSelected</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.list.RecurrenceListCallback$onRecurrencePresetSelected(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</span><span class="symbol">:</span>&nbsp;<a href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,56 +1,37 @@
 <HTML>
 <HEAD>
-    <meta charset="UTF-8">
-    <title>RecurrencePickerCallback - lib</title>
-    <link rel="stylesheet" href="../../../style.css">
+<meta charset="UTF-8">
+<title>RecurrencePickerCallback - lib</title>
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker.picker</a>&nbsp;/&nbsp;<a
-        href="./index.html">RecurrencePickerCallback</a><br/>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker.picker</a>&nbsp;/&nbsp;<a href="./index.html">RecurrencePickerCallback</a><br/>
 <br/>
 <h1>RecurrencePickerCallback</h1>
-<code><span class="keyword">interface </span><span
-        class="identifier">RecurrencePickerCallback</span></code>
+<code><span class="keyword">interface </span><span class="identifier">RecurrencePickerCallback</span></code>
 <p>Interface to be implemented by either the parent fragment of this fragment, the target fragment
-    or the parent activity. If none of these implements it, there won't be any callback.</p>
+or the parent activity. If none of these implements it, there won't be any callback.</p>
 <h3>Functions</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="on-recurrence-created.html">onRecurrenceCreated</a></h4>
-        </td>
-        <td>
-            <p>Called if the "Done" button is clicked and a custom <a
-                    href="on-recurrence-created.html#com.maltaisn.recurpicker.picker.RecurrencePickerCallback$onRecurrenceCreated(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</a>
-                is created.</p>
-            <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span
-                    class="identifier">onRecurrenceCreated</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.picker.RecurrencePickerCallback$onRecurrenceCreated(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span
-                    class="identifier">Recurrence</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="on-recurrence-picker-cancelled.html">onRecurrencePickerCancelled</a></h4>
-        </td>
-        <td>
-            <p>Called if the recurrence picker fragment back arrow is clicked,
-                or if the recurrence picker dialog is cancelled by click outside or "Cancel"
-                button.</p>
-            <code><span class="keyword">open</span> <span class="keyword">fun </span><span
-                    class="identifier">onRecurrencePickerCancelled</span><span
-                    class="symbol">(</span><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-recurrence-created.html">onRecurrenceCreated</a></h4>
+</td>
+<td>
+<p>Called if the "Done" button is clicked and a custom <a href="on-recurrence-created.html#com.maltaisn.recurpicker.picker.RecurrencePickerCallback$onRecurrenceCreated(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</a> is created.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onRecurrenceCreated</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.picker.RecurrencePickerCallback$onRecurrenceCreated(com.maltaisn.recurpicker.Recurrence)/recurrence">recurrence</span><span class="symbol">:</span>&nbsp;<a href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-recurrence-picker-cancelled.html">onRecurrencePickerCancelled</a></h4>
+</td>
+<td>
+<p>Called if the recurrence picker fragment back arrow is clicked,
+or if the recurrence picker dialog is cancelled by click outside or "Cancel" button.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onRecurrencePickerCancelled</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
 </table>
 </BODY>
 </HTML>

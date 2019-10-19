@@ -1,446 +1,301 @@
 <HTML>
 <HEAD>
-    <meta charset="UTF-8">
-    <title>Recurrence - lib</title>
-    <link rel="stylesheet" href="../../../style.css">
+<meta charset="UTF-8">
+<title>Recurrence - lib</title>
+<link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker</a>&nbsp;/&nbsp;<a
-        href="./index.html">Recurrence</a><br/>
+<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker</a>&nbsp;/&nbsp;<a href="./index.html">Recurrence</a><br/>
 <br/>
 <h1>Recurrence</h1>
-<code><span class="keyword">class </span><span class="identifier">Recurrence</span>&nbsp;<span
-        class="symbol">:</span>&nbsp;<a
-        href="https://developer.android.com/reference/android/os/Parcelable.html"><span
-        class="identifier">Parcelable</span></a></code>
+<code><span class="keyword">class </span><span class="identifier">Recurrence</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcelable.html"><span class="identifier">Parcelable</span></a></code>
 <p>An object describing a recurrence rule.
-    All recurrence objects are immutable.</p>
+All recurrence objects are immutable.</p>
 <h3>Types</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="-builder/index.html">Builder</a></h4>
-        </td>
-        <td>
-            <p>Builder for recurrence.</p>
-            <code><span class="keyword">class </span><span class="identifier">Builder</span></code>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-end-type/index.html">EndType</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">enum</span> <span class="keyword">class </span><span
-                    class="identifier">EndType</span></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-period/index.html">Period</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">enum</span> <span class="keyword">class </span><span
-                    class="identifier">Period</span></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="-builder/index.html">Builder</a></h4>
+</td>
+<td>
+<p>Builder for recurrence.</p>
+<code><span class="keyword">class </span><span class="identifier">Builder</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-end-type/index.html">EndType</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">EndType</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-period/index.html">Period</a></h4>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">Period</span></code></td>
+</tr>
+</tbody>
 </table>
 <h3>Annotations</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="-days-of-week/index.html">DaysOfWeek</a></h4>
-        </td>
-        <td>
-            <p>Int def for the <a href="by-day.html">byDay</a> bit field property.</p>
-            <code><span class="keyword">annotation</span> <span class="keyword">class </span><span
-                    class="identifier">DaysOfWeek</span></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="-days-of-week/index.html">DaysOfWeek</a></h4>
+</td>
+<td>
+<p>Int def for the <a href="by-day.html">byDay</a> bit field property.</p>
+<code><span class="keyword">annotation</span> <span class="keyword">class </span><span class="identifier">DaysOfWeek</span></code></td>
+</tr>
+</tbody>
 </table>
 <h3>Properties</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="by-day.html">byDay</a></h4>
-        </td>
-        <td>
-            <p>First bit is <code>1</code> if the value is used, <code>0</code> otherwise.</p>
-            <code><span class="keyword">val </span><span class="identifier">byDay</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="by-month-day.html">byMonthDay</a></h4>
-        </td>
-        <td>
-            <p>If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, the day of the month
-                on which the events happen.
-                The number must be between -31 and 31. If the value is <code>0</code> (the default),
-                the events will happen on the same day of the month as the start date's.
-                Negative numbers start counting from the end of the month.</p>
-            <code><span class="keyword">val </span><span class="identifier">byMonthDay</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="day-of-week-in-month.html">dayOfWeekInMonth</a></h4>
-        </td>
-        <td>
-            <p>If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, get the day of the
-                week on which the events happen.
-                Returns <code>0</code> if undefined or events happen on a particular day of the
-                month instead.
-                Returns a <code>Calendar.SUNDAY-SATURDAY</code> constant otherwise.</p>
-            <code><span class="keyword">val </span><span
-                    class="identifier">dayOfWeekInMonth</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="end-count.html">endCount</a></h4>
-        </td>
-        <td>
-            <p>The number of events before the end of the recurrence if end type is
-                <a href="-end-type/-b-y_-c-o-u-n-t.html">EndType.BY_COUNT</a>. If not, end count is
-                always <code>0</code>. Since the start date is exclusive,
-                the number of events never includes the start date event.</p>
-            <code><span class="keyword">val </span><span class="identifier">endCount</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="end-date.html">endDate</a></h4>
-        </td>
-        <td>
-            <p>The end date if end type is <a
-                    href="-end-type/-b-y_-d-a-t-e.html">EndType.BY_DATE</a>. If not, end date is
-                always <a href="-d-a-t-e_-n-o-n-e.html">DATE_NONE</a>. The end date is inclusive so
-                the last event might be on the end date.</p>
-            <code><span class="keyword">val </span><span class="identifier">endDate</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="end-type.html">endType</a></h4>
-        </td>
-        <td>
-            <p>The rule for the recurrence end, see <a href="-end-type/index.html">EndType</a>.</p>
-            <code><span class="keyword">val </span><span class="identifier">endType</span><span
-                    class="symbol">: </span><span class="identifier">EndType</span></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="frequency.html">frequency</a></h4>
-        </td>
-        <td>
-            <p>The recurrence frequency i.e after how many periods to repeat the event.
-                For example, if period is daily and frequency is 2, events will happen every 2 days.
-                Frequency of <a href="-period/-n-o-n-e.html">Period.NONE</a> recurrences is always
-                1.</p>
-            <code><span class="keyword">val </span><span class="identifier">frequency</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="period.html">period</a></h4>
-        </td>
-        <td>
-            <p>The time period over which the recurrence happens.</p>
-            <code><span class="keyword">val </span><span class="identifier">period</span><span
-                    class="symbol">: </span><span class="identifier">Period</span></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="week-in-month.html">weekInMonth</a></h4>
-        </td>
-        <td>
-            <p>If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, get the week of the
-                month on which the events happen.
-                Returns <code>0</code> if undefined or events happen on a particular day of the
-                month instead.</p>
-            <code><span class="keyword">val </span><span class="identifier">weekInMonth</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="by-day.html">byDay</a></h4>
+</td>
+<td>
+<p>First bit is <code>1</code> if the value is used, <code>0</code> otherwise.</p>
+<code><span class="keyword">val </span><span class="identifier">byDay</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="by-month-day.html">byMonthDay</a></h4>
+</td>
+<td>
+<p>If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, the day of the month on which the events happen.
+The number must be between -31 and 31. If the value is <code>0</code> (the default),
+the events will happen on the same day of the month as the start date's.
+Negative numbers start counting from the end of the month.</p>
+<code><span class="keyword">val </span><span class="identifier">byMonthDay</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="day-of-week-in-month.html">dayOfWeekInMonth</a></h4>
+</td>
+<td>
+<p>If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, get the day of the week on which the events happen.
+Returns <code>0</code> if undefined or events happen on a particular day of the month instead.
+Returns a <code>Calendar.SUNDAY-SATURDAY</code> constant otherwise.</p>
+<code><span class="keyword">val </span><span class="identifier">dayOfWeekInMonth</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="end-count.html">endCount</a></h4>
+</td>
+<td>
+<p>The number of events before the end of the recurrence if end type is
+<a href="-end-type/-b-y_-c-o-u-n-t.html">EndType.BY_COUNT</a>. If not, end count is always <code>0</code>. Since the start date is exclusive,
+the number of events never includes the start date event.</p>
+<code><span class="keyword">val </span><span class="identifier">endCount</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="end-date.html">endDate</a></h4>
+</td>
+<td>
+<p>The end date if end type is <a href="-end-type/-b-y_-d-a-t-e.html">EndType.BY_DATE</a>. If not, end date is
+always <a href="-d-a-t-e_-n-o-n-e.html">DATE_NONE</a>. The end date is inclusive so the last event might be on the end date.</p>
+<code><span class="keyword">val </span><span class="identifier">endDate</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="end-type.html">endType</a></h4>
+</td>
+<td>
+<p>The rule for the recurrence end, see <a href="-end-type/index.html">EndType</a>.</p>
+<code><span class="keyword">val </span><span class="identifier">endType</span><span class="symbol">: </span><span class="identifier">EndType</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="frequency.html">frequency</a></h4>
+</td>
+<td>
+<p>The recurrence frequency i.e after how many periods to repeat the event.
+For example, if period is daily and frequency is 2, events will happen every 2 days.
+Frequency of <a href="-period/-n-o-n-e.html">Period.NONE</a> recurrences is always 1.</p>
+<code><span class="keyword">val </span><span class="identifier">frequency</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="period.html">period</a></h4>
+</td>
+<td>
+<p>The time period over which the recurrence happens.</p>
+<code><span class="keyword">val </span><span class="identifier">period</span><span class="symbol">: </span><span class="identifier">Period</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="week-in-month.html">weekInMonth</a></h4>
+</td>
+<td>
+<p>If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, get the week of the month on which the events happen.
+Returns <code>0</code> if undefined or events happen on a particular day of the month instead.</p>
+<code><span class="keyword">val </span><span class="identifier">weekInMonth</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
 </table>
 <h3>Functions</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="describe-contents.html">describeContents</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">describeContents</span><span class="symbol">(</span><span
-                    class="symbol">)</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="equals.html">equals</a></h4>
-        </td>
-        <td>
-            <p>Note: since two recurrences with dates at different times of the day will produce the
-                same
-                events, they are considered equal, even though the dates may not have the same
-                value.
-                Same applies for <a href="hash-code.html">hashCode</a>.</p>
-            <code><span class="keyword">fun </span><span class="identifier">equals</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.Recurrence$equals(kotlin.Any)/other">other</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span
-                    class="identifier">Any</span></a><span class="symbol">?</span><span
-                    class="symbol">)</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="hash-code.html">hashCode</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span class="identifier">hashCode</span><span
-                    class="symbol">(</span><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="is-recurring-on-days-of-week.html">isRecurringOnDaysOfWeek</a></h4>
-        </td>
-        <td>
-            <p>If period is <a href="-period/-w-e-e-k-l-y.html">WEEKLY</a>, checks if events happen
-                on certain <a
-                        href="is-recurring-on-days-of-week.html#com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</a>
-                of the week.
-                Returns true only if recurrence happens on all of these days.
-                To get the number of days set use <code>Integer.bitCount(recurrence.byDay) -
-                    1</code>.
-                If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, checks if events
-                happen on a certain day of the week specified
-                by a single flag set in <a
-                        href="is-recurring-on-days-of-week.html#com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</a>.
-            </p>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">isRecurringOnDaysOfWeek</span><span
-                    class="symbol">(</span><span class="identifier"
-                                                 id="com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span
-                    class="identifier">Boolean</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="to-string.html">toString</a></h4>
-        </td>
-        <td>
-            <p>Return a human readable string representation of the recurrence.
-                This is only for debug purposes and will not even work on release builds.
-                <a href="../../com.maltaisn.recurpicker.format/-recurrence-formatter/index.html">RecurrenceFormatter</a>
-                should be used instead.</p>
-            <code><span class="keyword">fun </span><span class="identifier">toString</span><span
-                    class="symbol">(</span><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span
-                    class="identifier">String</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="write-to-parcel.html">writeToParcel</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">fun </span><span
-                    class="identifier">writeToParcel</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.Recurrence$writeToParcel(android.os.Parcel, kotlin.Int)/parcel">parcel</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://developer.android.com/reference/android/os/Parcel.html"><span
-                    class="identifier">Parcel</span></a><span class="symbol">, </span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.Recurrence$writeToParcel(android.os.Parcel, kotlin.Int)/flags">flags</span><span
-                    class="symbol">:</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a><span class="symbol">)</span><span
-                    class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="describe-contents.html">describeContents</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">describeContents</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="equals.html">equals</a></h4>
+</td>
+<td>
+<p>Note: since two recurrences with dates at different times of the day will produce the same
+events, they are considered equal, even though the dates may not have the same value.
+Same applies for <a href="hash-code.html">hashCode</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">equals</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence$equals(kotlin.Any)/other">other</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="hash-code.html">hashCode</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hashCode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="is-recurring-on-days-of-week.html">isRecurringOnDaysOfWeek</a></h4>
+</td>
+<td>
+<p>If period is <a href="-period/-w-e-e-k-l-y.html">WEEKLY</a>, checks if events happen on certain <a href="is-recurring-on-days-of-week.html#com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</a> of the week.
+Returns true only if recurrence happens on all of these days.
+To get the number of days set use <code>Integer.bitCount(recurrence.byDay)  - 1</code>.
+If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, checks if events happen on a certain day of the week specified
+by a single flag set in <a href="is-recurring-on-days-of-week.html#com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">isRecurringOnDaysOfWeek</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="to-string.html">toString</a></h4>
+</td>
+<td>
+<p>Return a human readable string representation of the recurrence.
+This is only for debug purposes and will not even work on release builds.
+<a href="../../com.maltaisn.recurpicker.format/-recurrence-formatter/index.html">RecurrenceFormatter</a> should be used instead.</p>
+<code><span class="keyword">fun </span><span class="identifier">toString</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="write-to-parcel.html">writeToParcel</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">writeToParcel</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence$writeToParcel(android.os.Parcel, kotlin.Int)/parcel">parcel</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Parcel.html"><span class="identifier">Parcel</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence$writeToParcel(android.os.Parcel, kotlin.Int)/flags">flags</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
 </table>
 <h3>Companion Object Properties</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="-c-r-e-a-t-o-r.html">CREATOR</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">val </span><span class="identifier">CREATOR</span><span
-                    class="symbol">: </span><a
-                    href="https://developer.android.com/reference/android/os/Parcelable/Creator.html"><span
-                    class="identifier">Creator</span></a><span class="symbol">&lt;</span><a
-                    href="./index.html"><span class="identifier">Recurrence</span></a><span
-                    class="symbol">&gt;</span></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-d-a-t-e_-n-o-n-e.html">DATE_NONE</a></h4>
-        </td>
-        <td>
-            <p>Date value used for no end date.</p>
-            <code><span class="keyword">const</span> <span class="keyword">val </span><span
-                    class="identifier">DATE_NONE</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span
-                    class="identifier">Long</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-e-v-e-r-y_-d-a-y_-o-f_-w-e-e-k.html">EVERY_DAY_OF_WEEK</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">const</span> <span class="keyword">val </span><span
-                    class="identifier">EVERY_DAY_OF_WEEK</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-f-r-i-d-a-y.html">FRIDAY</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">const</span> <span class="keyword">val </span><span
-                    class="identifier">FRIDAY</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-m-o-n-d-a-y.html">MONDAY</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">const</span> <span class="keyword">val </span><span
-                    class="identifier">MONDAY</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-s-a-t-u-r-d-a-y.html">SATURDAY</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">const</span> <span class="keyword">val </span><span
-                    class="identifier">SATURDAY</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-s-u-n-d-a-y.html">SUNDAY</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">const</span> <span class="keyword">val </span><span
-                    class="identifier">SUNDAY</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-t-h-u-r-s-d-a-y.html">THURSDAY</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">const</span> <span class="keyword">val </span><span
-                    class="identifier">THURSDAY</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-t-u-e-s-d-a-y.html">TUESDAY</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">const</span> <span class="keyword">val </span><span
-                    class="identifier">TUESDAY</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    <tr>
-        <td>
-            <h4><a href="-w-e-d-n-e-s-d-a-y.html">WEDNESDAY</a></h4>
-        </td>
-        <td>
-            <code><span class="keyword">const</span> <span class="keyword">val </span><span
-                    class="identifier">WEDNESDAY</span><span class="symbol">: </span><a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span
-                    class="identifier">Int</span></a></code></td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="-c-r-e-a-t-o-r.html">CREATOR</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">CREATOR</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/os/Parcelable/Creator.html"><span class="identifier">Creator</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">Recurrence</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-d-a-t-e_-n-o-n-e.html">DATE_NONE</a></h4>
+</td>
+<td>
+<p>Date value used for no end date.</p>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">DATE_NONE</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-d-o-e-s_-n-o-t_-r-e-p-e-a-t.html">DOES_NOT_REPEAT</a></h4>
+</td>
+<td>
+<p>A recurrence that doesn't repeat. When finding events for this recurrence,
+only the start date event will be returned.</p>
+<code><span class="keyword">val </span><span class="identifier">DOES_NOT_REPEAT</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Recurrence</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-e-v-e-r-y_-d-a-y_-o-f_-w-e-e-k.html">EVERY_DAY_OF_WEEK</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">EVERY_DAY_OF_WEEK</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-f-r-i-d-a-y.html">FRIDAY</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">FRIDAY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-m-o-n-d-a-y.html">MONDAY</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">MONDAY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-s-a-t-u-r-d-a-y.html">SATURDAY</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">SATURDAY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-s-u-n-d-a-y.html">SUNDAY</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">SUNDAY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-t-h-u-r-s-d-a-y.html">THURSDAY</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">THURSDAY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-t-u-e-s-d-a-y.html">TUESDAY</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">TUESDAY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-w-e-d-n-e-s-d-a-y.html">WEDNESDAY</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">WEDNESDAY</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
 </table>
 <h3>Companion Object Functions</h3>
 <table>
-    <tbody>
-    <tr>
-        <td>
-            <h4><a href="invoke.html">invoke</a></h4>
-        </td>
-        <td>
-            <p>Inline factory function to create a <a href="./index.html">Recurrence</a> without
-                directly using the builder.</p>
-            <code><span class="keyword">operator</span> <span class="keyword">fun </span><span
-                    class="identifier">invoke</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.Recurrence.Companion$invoke(com.maltaisn.recurpicker.Recurrence.Period, kotlin.Function1((com.maltaisn.recurpicker.Recurrence.Builder, kotlin.Unit)))/period">period</span><span
-                    class="symbol">:</span>&nbsp;<span class="identifier">Period</span><span
-                    class="symbol">, </span><span class="identifier"
-                                                  id="com.maltaisn.recurpicker.Recurrence.Companion$invoke(com.maltaisn.recurpicker.Recurrence.Period, kotlin.Function1((com.maltaisn.recurpicker.Recurrence.Builder, kotlin.Unit)))/build">build</span><span
-                    class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span
-                    class="symbol">.</span><span class="symbol">(</span><span
-                    class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a>&nbsp;<span
-                    class="symbol">=</span>&nbsp;{}<span class="symbol">)</span><span
-                    class="symbol">: </span><a href="./index.html"><span class="identifier">Recurrence</span></a></code>
-            <p>Inline factory function to create a modified copy of a <a href="./index.html">Recurrence</a>
-                without directly using the builder.</p>
-            <code><span class="keyword">operator</span> <span class="keyword">fun </span><span
-                    class="identifier">invoke</span><span class="symbol">(</span><span
-                    class="identifier"
-                    id="com.maltaisn.recurpicker.Recurrence.Companion$invoke(com.maltaisn.recurpicker.Recurrence, kotlin.Function1((com.maltaisn.recurpicker.Recurrence.Builder, kotlin.Unit)))/recurrence">recurrence</span><span
-                    class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Recurrence</span></a><span
-                    class="symbol">, </span><span class="identifier"
-                                                  id="com.maltaisn.recurpicker.Recurrence.Companion$invoke(com.maltaisn.recurpicker.Recurrence, kotlin.Function1((com.maltaisn.recurpicker.Recurrence.Builder, kotlin.Unit)))/build">build</span><span
-                    class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span
-                    class="symbol">.</span><span class="symbol">(</span><span
-                    class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a
-                    href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span
-                    class="identifier">Unit</span></a>&nbsp;<span
-                    class="symbol">=</span>&nbsp;{}<span class="symbol">)</span><span
-                    class="symbol">: </span><a href="./index.html"><span class="identifier">Recurrence</span></a></code>
-        </td>
-    </tr>
-    </tbody>
+<tbody>
+<tr>
+<td>
+<h4><a href="invoke.html">invoke</a></h4>
+</td>
+<td>
+<p>Inline factory function to create a <a href="./index.html">Recurrence</a> without directly using the builder.</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Companion$invoke(com.maltaisn.recurpicker.Recurrence.Period, kotlin.Function1((com.maltaisn.recurpicker.Recurrence.Builder, kotlin.Unit)))/period">period</span><span class="symbol">:</span>&nbsp;<span class="identifier">Period</span><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Companion$invoke(com.maltaisn.recurpicker.Recurrence.Period, kotlin.Function1((com.maltaisn.recurpicker.Recurrence.Builder, kotlin.Unit)))/build">build</span><span class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{}<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Recurrence</span></a></code>
+<p>Inline factory function to create a modified copy of a <a href="./index.html">Recurrence</a> without directly using the builder.</p>
+<code><span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">invoke</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Companion$invoke(com.maltaisn.recurpicker.Recurrence, kotlin.Function1((com.maltaisn.recurpicker.Recurrence.Builder, kotlin.Unit)))/recurrence">recurrence</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Recurrence</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Companion$invoke(com.maltaisn.recurpicker.Recurrence, kotlin.Function1((com.maltaisn.recurpicker.Recurrence.Builder, kotlin.Unit)))/build">build</span><span class="symbol">:</span>&nbsp;<span class="identifier">Builder</span><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{}<span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Recurrence</span></a></code></td>
+</tr>
+</tbody>
 </table>
 </BODY>
 </HTML>
