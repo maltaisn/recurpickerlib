@@ -18,11 +18,10 @@ package com.maltaisn.recurpicker
 
 import android.os.Parcel
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.maltaisn.recurpicker.Recurrence.MonthlyDay
 import com.maltaisn.recurpicker.Recurrence.Period
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.test.assertEquals
 
 
@@ -31,15 +30,17 @@ internal class RecurrenceParcelTest {
 
     @Test
     fun parcelTest() {
-        testParcel(Recurrence(dateFor("2018-01-01"), Period.DAILY) {
+        testParcel(Recurrence(Period.DAILY) {
             frequency = 5
-            endDate = dateFor("2020-01-01")
+            endDate = GregorianCalendar(2019, Calendar.JANUARY, 7).timeInMillis
         })
-        testParcel(Recurrence(dateFor("2018-01-01"), Period.MONTHLY) {
-            monthlyDay = MonthlyDay.SAME_DAY_OF_WEEK
-            endCount = 30
+        testParcel(Recurrence(Period.MONTHLY) {
+            byMonthDay = 12
+            endCount = 5
         })
-        testParcel(Recurrence(dateFor("2020-01-01"), Period.YEARLY) { isDefault = true })
+        testParcel(Recurrence(Period.YEARLY) {
+            frequency = 10
+        })
     }
 
     private fun testParcel(r: Recurrence) {
@@ -53,6 +54,5 @@ internal class RecurrenceParcelTest {
         assertEquals(r, r2)
     }
 
-    private fun dateFor(date: String) = SimpleDateFormat("yyyy-MM-dd").parse(date)!!.time
 
 }

@@ -110,6 +110,9 @@ class RecurrencePickerSettings private constructor(
                 val bundle = parcel.readBundle(RecurrencePickerSettings::class.java.classLoader)!!
                 formatter = RecurrenceFormatter(bundle.getSerializable("dateFormat") as DateFormat)
                 presets = bundle.getParcelableArrayList("presets")!!
+                defaultPickerRecurrence = bundle.getParcelable("defaultPickerRecurrence")!!
+                maxFrequency = bundle.getInt("maxFrequency")
+                maxEndCount = bundle.getInt("maxEndCount")
             }
 
             override fun newArray(size: Int) = arrayOfNulls<RecurrencePickerSettings>(size)

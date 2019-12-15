@@ -1,3 +1,7 @@
+### v2.0.1
+- Fixed `RecurrencePickerSettings` not being unparceled completely.
+- Updated versions of dependencies.
+
 # v2.0.0
 - The library was completely rewritten in Kotlin with MVP architecture.
 - **`Recurrence`**:
