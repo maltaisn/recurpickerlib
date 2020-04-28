@@ -26,6 +26,7 @@ import kotlin.math.abs
 /**
  * Utility object to find the dates of the events of a [Recurrence] object.
  * All date parameters are given as millis since epoch time.
+ * This class is not thread-safe.
  */
 class RecurrenceFinder {
 

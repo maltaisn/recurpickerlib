@@ -29,8 +29,8 @@ import java.util.*
 /**
  * Formatter class for converting [Recurrence] objects to a human-readable string represention.
  * This is basically a localized version of [Recurrence.toString].
+ * This class is not thread-safe.
  *
- * @param context Context used to get string values.
  * @property dateFormat Date format used to format end date.
  */
 class RecurrenceFormatter(val dateFormat: DateFormat) {

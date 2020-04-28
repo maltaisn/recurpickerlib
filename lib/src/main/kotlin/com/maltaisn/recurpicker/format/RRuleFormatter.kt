@@ -28,6 +28,8 @@ import java.util.*
  * See [RFC2445][https://tools.ietf.org/html/rfc2445#section-4.8.5.4] and
  * [RFC5545][https://tools.ietf.org/html/rfc5545#section-3.3.10].
  * Start dates and end dates are formatted to a local time string.
+ *
+ * This class is thread-safe.
  */
 class RRuleFormatter {
 

@@ -27,6 +27,7 @@ import java.util.*
  * Utility class to write a [Recurrence] as a byte array and read it back.
  * Read is backward-compatible with previous versions.
  * Prefer [RRuleFormatter] to this format for serialization since its more flexible.
+ * This class is not thread-safe.
  */
 @Deprecated("Use RRuleFormatter instead.")
 class RecurrenceSerializer {
