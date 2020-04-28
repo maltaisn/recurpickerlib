@@ -19,10 +19,12 @@ package com.maltaisn.recurpicker
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
+import android.util.Log
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.RecurrencePickerSettings.Builder
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -38,7 +40,11 @@ class RecurrencePickerSettings private constructor(
         val formatter: RecurrenceFormatter,
 
         /**
-         *
+         * List of recurrence presets displayed in the recurrence list dialog.
+         * A `null` recurrence will be replaced by a "Custom..." item to customize recurrence.
+         * Hence, to disable the custom recurrence picker, set no `null` items.
+         * The default is a list of recurrences equivalent to "Does not repeat", "Daily",
+         * "Weekly", "Monthly", "Yearly", null ("Custom...").
          */
         val presets: List<Recurrence?>,
 
@@ -93,7 +99,7 @@ class RecurrencePickerSettings private constructor(
     // Parcelable stuff
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         val bundle = Bundle()
-        bundle.putSerializable("dateFormat", formatter.dateFormat)
+        bundle.putRecurrenceFormatter(formatter)
         bundle.putParcelableArrayList("presets", ArrayList(presets))
         bundle.putParcelable("defaultPickerRecurrence", defaultPickerRecurrence)
         bundle.putInt("maxFrequency", maxFrequency)
@@ -108,7 +114,7 @@ class RecurrencePickerSettings private constructor(
         val CREATOR = object : Parcelable.Creator<RecurrencePickerSettings> {
             override fun createFromParcel(parcel: Parcel) = RecurrencePickerSettings {
                 val bundle = parcel.readBundle(RecurrencePickerSettings::class.java.classLoader)!!
-                formatter = RecurrenceFormatter(bundle.getSerializable("dateFormat") as DateFormat)
+                formatter = bundle.getRecurrenceFormatter()
                 presets = bundle.getParcelableArrayList("presets")!!
                 defaultPickerRecurrence = bundle.getParcelable("defaultPickerRecurrence")!!
                 maxFrequency = bundle.getInt("maxFrequency")
@@ -122,6 +128,37 @@ class RecurrencePickerSettings private constructor(
          * Utility function to create settings using constructor-like syntax.
          */
         inline operator fun invoke(init: Builder.() -> Unit = {}) = Builder().apply(init).build()
-    }
 
+
+        private fun Bundle.getRecurrenceFormatter(): RecurrenceFormatter {
+            val dateFormat = try {
+                this.getSerializable("dateFormat") as DateFormat
+            } catch (e: Exception) {
+                // Very rarely and on API >= 28, Bundle will fail to get serialized DateFormat.
+                // This issue is related to: https://stackoverflow.com/a/54155356/5288316.
+                // Luckily, DateFormat is most often a SimpleDateFormat, which can be saved
+                // using a string. Note that the naming of the key is important here. I had
+                // initially named the key "dateFormatPattern", which led getString to fail
+                // like getSerializable did!
+                if (this.containsKey("dfPattern")) {
+                    SimpleDateFormat(this.getString("dfPattern", ""), Locale.getDefault())
+                } else {
+                    // Ok, date format was lost for good. Use default.
+                    Log.e(TAG, "RecurrencePickerSettings formatter's date format lost during unparcelization.")
+                    DateFormat.getDateInstance()
+                }
+            }
+            return RecurrenceFormatter(dateFormat)
+        }
+
+        private fun Bundle.putRecurrenceFormatter(formatter: RecurrenceFormatter) {
+            val dateFormat = formatter.dateFormat
+            this.putSerializable("dateFormat", dateFormat)
+            if (dateFormat is SimpleDateFormat) {
+                this.putString("dfPattern", dateFormat.toPattern())
+            }
+        }
+
+        private val TAG = RecurrencePickerSettings::class.java.simpleName
+    }
 }

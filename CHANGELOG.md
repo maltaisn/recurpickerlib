@@ -1,3 +1,7 @@
+### v2.0.2
+- Fixed rare crashes happening in `RecurrencePickerSettings` unparcelization due to
+Android bug on API >= 28.
+
 ### v2.0.1
 - Fixed `RecurrencePickerSettings` not being unparceled completely.
 - Updated versions of dependencies.
