@@ -2,6 +2,9 @@ plugins {
     id "com.android.library"
     id "kotlin-android"
     id "org.jetbrains.dokka"
+    id "com.github.dcendents.android-maven"
+    id "com.jfrog.bintray"
+    id "com.github.breadmoirai.github-release"
 }
 
 ext {
@@ -62,5 +65,6 @@ dokka {
 
 tasks.withType(Javadoc).all { enabled = false }
 
-apply from: "maven-install.gradle"
-apply from: "bintray.gradle"
+if (file("publishing.gradle").exists()) {
+    apply from: "publishing.gradle"
+}

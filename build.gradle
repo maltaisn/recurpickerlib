@@ -9,6 +9,7 @@ buildscript {
 
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayPluginVersion"
         classpath "com.github.dcendents:android-maven-gradle-plugin:$mavenPluginVersion"
+        classpath "com.github.breadmoirai:github-release:$githubReleasePluginVersion"
 
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
     }
