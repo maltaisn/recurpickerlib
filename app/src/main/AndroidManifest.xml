@@ -22,9 +22,10 @@
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.DayNight"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning,MissingApplicationIcon">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name="com.maltaisn.recurpicker.demo.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden">

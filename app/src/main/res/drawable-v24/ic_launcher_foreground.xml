@@ -1,0 +1,40 @@
+<!--
+  Copyright 2020 Nicolas Maltais
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M7.8,16.7V9H9V7h1l1,1h3V7h1l9,9v8h-9z">
+    <aapt:attr name="android:fillColor">
+      <gradient 
+          android:startY="9"
+          android:startX="9"
+          android:endY="21"
+          android:endX="21"
+          android:type="linear">
+        <item android:offset="0" android:color="#66000000"/>
+        <item android:offset="1" android:color="#00000000"/>
+      </gradient>
+    </aapt:attr>
+  </path>
+  <path
+      android:pathData="M15.5,16h-7v-5.5h7M14,7v1h-4V7H9v1h-0.5a1,1 0,0 0,-1 1v7a1,1 0,0 0,1 1h7a1,1 0,0 0,1 -1V9c0,-0.6 -0.5,-1 -1,-1H15V7m-0.5,5.5H12V15h2.5z"
+      android:fillColor="#f5f5f5"/>
+</vector>

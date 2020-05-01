@@ -65,6 +65,4 @@ dokka {
 
 tasks.withType(Javadoc).all { enabled = false }
 
-if (file("publishing.gradle").exists()) {
-    apply from: "publishing.gradle"
-}
+apply from: "publishing.gradle"
