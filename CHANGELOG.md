@@ -1,3 +1,6 @@
+### v2.0.3
+- Fixed weekly recurrence missing events on the first week on OEM Samsung devices.
+
 ### v2.0.2
 - Fixed rare crashes happening in `RecurrencePickerSettings` unparcelization due to
 Android bug on API >= 28.
