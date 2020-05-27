@@ -110,21 +110,17 @@ class RecurrenceFinder {
                 val startDay = date[Calendar.DAY_OF_WEEK]
                 var isFirstWeek = true
 
-                val cal = date.clone() as GregorianCalendar
-
                 // Set date to beginning of the week
                 date[Calendar.DAY_OF_WEEK] = Calendar.SUNDAY
-
-                /*
-                    The above statment will return a date that is the start of the current week in
-                    most devices like google pixel. But in devices from OEMs like samsung it will
-                    return the start date for the next week ie a future date.
-                    This causes the return list of dates returned to miss dates in the first week
-                    when selecting a WEEKLY frequency that NEVER ends
-                    So if a future date is returned then move back by 7 days to solve this.
-                 */
-                if(cal.before(date))
+                if (date.timeInMillis > base) {
+                    // The above statement will give a date that is the start of the current week in
+                    // most devices like Google Pixel. But in devices from OEMs like Samsung it will
+                    // return the start date for the next week i.e. a future date.
+                    // This causes the return list of dates returned to miss dates in the first week
+                    // when selecting a WEEKLY frequency that NEVER ends.
+                    // So if a future date is returned then move back by 7 days to solve this.
                     date.add(Calendar.DATE, -7)
+                }
 
                 while (true) {
                     for (day in 1..7) {
