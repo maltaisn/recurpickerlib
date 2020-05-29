@@ -127,8 +127,8 @@ class Recurrence private constructor(
                 && getDaysInDate(endDate, calendar) == getDaysInDate(other.endDate, calendar)
     }
 
-    override fun hashCode(): Int = Objects.hash(period, frequency, byDay, byMonthDay,
-            endType, getDaysInDate(endDate, calendar), endCount)
+    override fun hashCode(): Int = arrayOf(period, frequency, byDay, byMonthDay,
+            endType, getDaysInDate(endDate, calendar), endCount).contentHashCode()
 
     /**
      * Return a human readable string representation of the recurrence.
@@ -329,7 +329,7 @@ class Recurrence private constructor(
         }
 
         /**
-         * If period is [MONTHLY], set the [day] in the month on which events happen.
+         * If period is [MONTHLY], set the day in the month on which events happen.
          * @see Recurrence.byMonthDay
          */
         var dayInMonth: Int

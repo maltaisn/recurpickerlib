@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
     defaultConfig {
         applicationId "com.maltaisn.recurpicker.demo"
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
         versionCode 1
         versionName "1.0"
     }

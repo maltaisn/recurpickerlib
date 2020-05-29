@@ -16,6 +16,7 @@
 
 package com.maltaisn.recurpicker.demo
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -101,6 +102,11 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
                               container: ViewGroup?, state: Bundle?): View? {
         // Create the main fragment layout view.
         val view = inflater.inflate(R.layout.fragment_main, container, false)
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            // Fixes bug with MaterialCardView and Canvas.clipPath() on API < 18.
+            view.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        }
 
         // Set up options views
         val startDateDialog = DateDialogFragment()

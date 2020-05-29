@@ -1,3 +1,7 @@
+## v2.1.0
+- Backported to API 14.
+- Fixed day of week toggle buttons color on API < 23, but they don't have shadow anymore.
+
 ### v2.0.3
 - Fixed weekly recurrence missing events on the first week on OEM Samsung devices.
 

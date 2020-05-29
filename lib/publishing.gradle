@@ -21,7 +21,7 @@ bintray {
         desc = libraryDescription
         websiteUrl = siteUrl
         vcsUrl = gitUrl
-        licenses = allLicenses
+        licenses = [license]
         publish = true
         publicDownloadNumbers = true
         version {

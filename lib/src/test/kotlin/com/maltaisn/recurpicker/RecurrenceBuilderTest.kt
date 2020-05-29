@@ -123,7 +123,7 @@ internal class RecurrenceBuilderTest {
 
     @Test
     fun convertEndType_periodIsNone() {
-        val r = Recurrence(Period.NONE) { endCount == 12 }
+        val r = Recurrence(Period.NONE) { endCount = 12 }
         assertEquals(EndType.NEVER, r.endType)
     }
 

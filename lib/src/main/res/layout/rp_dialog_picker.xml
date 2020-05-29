@@ -53,6 +53,7 @@
             android:layout_width="56dp"
             android:layout_height="0dp"
             android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             app:layout_constraintBottom_toBottomOf="@id/rp_picker_period_dropdown_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/rp_picker_period_dropdown_layout"
@@ -74,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:labelFor="@+id/rp_picker_period_dropdown"
             app:layout_constraintStart_toEndOf="@id/rp_picker_freq_input_layout"
@@ -87,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:dropDownWidth="200dp"
                 tools:text="weeks"
+                tools:ignore="LabelFor"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,59 +118,52 @@
             app:layout_constraintTop_toBottomOf="@id/rp_picker_period_div"
             />
 
-        <ToggleButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/rp_picker_week_btn_sun"
             style="?rpPickerDialogWeekBtnStyle"
-            android:textOff="@string/rp_day_of_week_abbr1_sun"
-            android:textOn="@string/rp_day_of_week_abbr1_sun"
+            android:text="@string/rp_day_of_week_abbr1_sun"
             tools:ignore="MissingConstraints"
             />
 
-        <ToggleButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/rp_picker_week_btn_mon"
             style="?rpPickerDialogWeekBtnStyle"
-            android:textOff="@string/rp_day_of_week_abbr1_mon"
-            android:textOn="@string/rp_day_of_week_abbr1_mon"
+            android:text="@string/rp_day_of_week_abbr1_mon"
             tools:ignore="MissingConstraints"
             />
 
-        <ToggleButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/rp_picker_week_btn_tue"
             style="?rpPickerDialogWeekBtnStyle"
-            android:textOff="@string/rp_day_of_week_abbr1_tue"
-            android:textOn="@string/rp_day_of_week_abbr1_tue"
+            android:text="@string/rp_day_of_week_abbr1_tue"
             tools:ignore="MissingConstraints"
             />
 
-        <ToggleButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/rp_picker_week_btn_wed"
             style="?rpPickerDialogWeekBtnStyle"
-            android:textOff="@string/rp_day_of_week_abbr1_wed"
-            android:textOn="@string/rp_day_of_week_abbr1_wed"
+            android:text="@string/rp_day_of_week_abbr1_wed"
             tools:ignore="MissingConstraints"
             />
 
-        <ToggleButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/rp_picker_week_btn_thu"
             style="?rpPickerDialogWeekBtnStyle"
-            android:textOff="@string/rp_day_of_week_abbr1_thu"
-            android:textOn="@string/rp_day_of_week_abbr1_thu"
+            android:text="@string/rp_day_of_week_abbr1_thu"
             tools:ignore="MissingConstraints"
             />
 
-        <ToggleButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/rp_picker_week_btn_fri"
             style="?rpPickerDialogWeekBtnStyle"
-            android:textOff="@string/rp_day_of_week_abbr1_fri"
-            android:textOn="@string/rp_day_of_week_abbr1_fri"
+            android:text="@string/rp_day_of_week_abbr1_fri"
             tools:ignore="MissingConstraints"
             />
 
-        <ToggleButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/rp_picker_week_btn_sat"
             style="?rpPickerDialogWeekBtnStyle"
-            android:textOff="@string/rp_day_of_week_abbr1_sat"
-            android:textOn="@string/rp_day_of_week_abbr1_sat"
+            android:text="@string/rp_day_of_week_abbr1_sat"
             tools:ignore="MissingConstraints"
             />
 
@@ -213,6 +209,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
             android:labelFor="@+id/rp_picker_monthly_dropdown"
             app:layout_constraintStart_toStartOf="parent"
@@ -225,6 +222,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:text="@string/rp_format_monthly_same_day"
+                tools:ignore="LabelFor"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -266,6 +264,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
             android:layout_marginTop="8dp"
             android:labelFor="@+id/rp_picker_end_dropdown"
             app:layout_constraintStart_toStartOf="parent"
@@ -278,6 +277,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:text="@string/rp_picker_end_never"
+                tools:ignore="LabelFor"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -287,6 +287,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_dropdown_layout"
             app:layout_constraintStart_toEndOf="@id/rp_picker_end_dropdown_layout"
             app:layout_constraintTop_toTopOf="@id/rp_picker_end_dropdown_layout"
@@ -313,6 +314,8 @@
             android:labelFor="@+id/rp_picker_end_date_input"
             android:paddingStart="8dp"
             android:paddingEnd="0dp"
+            android:paddingRight="0dp"
+            android:paddingLeft="8dp"
             android:textAppearance="?rpTextAppearance"
             app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_dropdown_layout"
             app:layout_constraintStart_toEndOf="@id/rp_picker_end_date_input_layout"
@@ -335,6 +338,7 @@
             android:layout_width="56dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_dropdown_layout"
             app:layout_constraintStart_toEndOf="@id/rp_picker_end_dropdown_layout"
             app:layout_constraintTop_toTopOf="@id/rp_picker_end_dropdown_layout"
@@ -357,7 +361,9 @@
             android:gravity="center_vertical"
             android:labelFor="@+id/rp_picker_end_date_input"
             android:paddingStart="8dp"
+            android:paddingLeft="8dp"
             android:paddingEnd="0dp"
+            android:paddingRight="0dp"
             android:textAppearance="?rpTextAppearance"
             app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_dropdown_layout"
             app:layout_constraintEnd_toEndOf="parent"

@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!-- @formatter:off -->
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="PrivateResource">
 
-    <style name="RecurrencePickerStyle" parent="RecurrencePickerStyleBase" />
-
     <style name="RecurrencePickerStyleBase">
         <item name="rpTextAppearance">?textAppearanceBody1</item>
 
@@ -27,22 +25,31 @@
         <item name="rpPickerDialogWeekBtnStyle">@style/RpPickerDialogWeekBtnStyle</item>
     </style>
 
+    <public name="RecurrencePickerStyle" type="style" />
+    <style name="RecurrencePickerStyle" parent="RecurrencePickerStyleBase" />
+
+    <public name="RpListStyle" type="style" />
     <style name="RpListStyle">
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
         <item name="android:clipToPadding">false</item>
     </style>
 
+    <public name="RpListItemStyle" type="style" />
     <style name="RpListItemStyle">
         <item name="android:background">?selectableItemBackground</item>
         <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingRight">16dp</item>
     </style>
 
+    <public name="RpListItemLabelStyle" type="style" />
     <style name="RpListItemLabelStyle">
         <item name="android:minWidth">0dp</item>
         <item name="android:minHeight">0dp</item>
         <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:gravity">center_vertical</item>
@@ -51,16 +58,19 @@
         <item name="android:clickable">false</item>
     </style>
 
+    <public name="RpPickerDividerStyle" type="style" />
     <style name="RpPickerDividerStyle">
         <item name="android:layout_height">1dp</item>
         <item name="android:background">?colorOnBackground</item>
         <item name="android:alpha">0.12</item>
     </style>
 
+    <public name="RpPickerSubtitleTextAppearance" type="style" />
     <style name="RpPickerSubtitleTextAppearance" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">@color/material_on_surface_emphasis_medium</item>
     </style>
 
+    <public name="RpPickerInputLayoutStyle" type="style" />
     <style name="RpPickerInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxBackgroundColor">@color/mtrl_filled_background_color</item>
         <item name="boxStrokeWidth">0dp</item>
@@ -68,6 +78,7 @@
         <item name="hintEnabled">false</item>
     </style>
 
+    <public name="RpPickerInputStyle" type="style" />
     <style name="RpPickerInputStyle">
         <item name="android:textAppearance">?rpTextAppearance</item>
         <item name="android:gravity">center</item>
@@ -77,6 +88,7 @@
         <item name="android:imeOptions">flagNoExtractUi|actionDone</item>
     </style>
 
+    <public name="RpPickerDropdownLayoutStyle" type="style" />
     <style name="RpPickerDropdownLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxBackgroundColor">@color/mtrl_filled_background_color</item>
         <item name="boxStrokeWidth">0dp</item>
@@ -84,6 +96,7 @@
         <item name="hintEnabled">false</item>
     </style>
 
+    <public name="RpPickerDropdownStyle" type="style" />
     <style name="RpPickerDropdownStyle">
         <item name="android:textAppearance">?rpTextAppearance</item>
         <item name="boxStrokeColor">@null</item>
@@ -96,22 +109,37 @@
         <item name="android:cursorVisible">false</item>
     </style>
 
+    <public name="RpEndRadioStyle" type="style" />
     <style name="RpEndRadioStyle">
         <item name="android:minWidth">0dp</item>
     </style>
 
-    <style name="RpPickerWeekBtnStyle">
+    <public name="RpPickerWeekBtnStyle" type="style" />
+    <style name="RpPickerWeekBtnStyle" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">@dimen/rp_week_btn_size</item>
         <item name="android:layout_height">@dimen/rp_week_btn_size</item>
-        <item name="android:disabledAlpha">0.5</item>
+        <item name="android:checkable">true</item>
         <item name="android:textAppearance">?rpTextAppearance</item>
-        <item name="android:textColor">@color/rp_toggle_btn_text</item>
-        <item name="android:background">@drawable/rp_toggle_btn_background</item>
+        <item name="android:textColor">@color/rp_week_btn_text</item>
+        <item name="backgroundTint">@color/rp_week_btn_color</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="shapeAppearanceOverlay">@style/RpShapeAppearanceOverlayRound</item>
+        <item name="android:stateListAnimator" tools:ignore="NewApi">@null</item>
     </style>
 
+    <public name="RpPickerDialogWeekBtnStyle" type="style" />
     <style name="RpPickerDialogWeekBtnStyle" parent="RpPickerWeekBtnStyle">
         <item name="android:layout_width">@dimen/rp_week_btn_size_dialog</item>
         <item name="android:layout_height">@dimen/rp_week_btn_size_dialog</item>
+    </style>
+
+    <style name="RpShapeAppearanceOverlayRound">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
 </resources>

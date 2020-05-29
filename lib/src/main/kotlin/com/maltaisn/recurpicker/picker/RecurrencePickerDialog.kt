@@ -25,12 +25,16 @@ import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.maltaisn.recurpicker.R
 import com.maltaisn.recurpicker.Recurrence
@@ -58,7 +62,7 @@ class RecurrencePickerDialog : DialogFragment(),
     private lateinit var periodAdapter: ArrayAdapter<String>
 
     private lateinit var weeklyGroup: Group
-    private lateinit var weekBtns: List<ToggleButton>
+    private lateinit var weekBtns: List<MaterialButton>
 
     private lateinit var monthlyGroup: Group
     private lateinit var monthlyDropdown: AutoCompleteTextView
@@ -146,8 +150,8 @@ class RecurrencePickerDialog : DialogFragment(),
         weeklyGroup = view.findViewById(R.id.rp_picker_weekly_group)
         val weekBtnTa = resources.obtainTypedArray(R.array.rp_picker_week_btn_ids)
         weekBtns = List(weekBtnTa.length()) {
-            val btn: ToggleButton = view.findViewById(weekBtnTa.getResourceId(it, 0))
-            btn.setOnCheckedChangeListener { _, isChecked ->
+            val btn: MaterialButton = view.findViewById(weekBtnTa.getResourceId(it, 0))
+            btn.addOnCheckedChangeListener { _, isChecked ->
                 presenter?.onWeekBtnChecked(it + 1, isChecked)
             }
             btn
