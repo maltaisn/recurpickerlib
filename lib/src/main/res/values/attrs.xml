@@ -13,30 +13,51 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<!-- @formatter:off -->
 <resources>
 
     <attr name="recurrencePickerStyle" format="reference" />
 
     <declare-styleable name="RecurrencePicker">
+
+        <!-- Text appearance used for most views in the fragments. -->
         <attr name="rpTextAppearance" format="reference" />
 
+        <!-- Theme overlay for the toolbar of the recurrence picker fragment. -->
         <attr name="rpToolbarThemeOverlay" format="reference" />
 
-        <!-- Recurrence list dialog -->
+        <!-- Style for the recurrence list dialog's RecyclerView. -->
         <attr name="rpListStyle" format="reference" />
+
+        <!-- Style for a recurrence list dialog's preset item layout (a FrameLayout). -->
         <attr name="rpListItemStyle" format="reference" />
+
+        <!-- Style for a recurrence list dialog's preset item view (a RadioButton). -->
         <attr name="rpListItemLabelStyle" format="reference" />
 
-        <!-- Recurrence picker fragment/dialog -->
+        <!-- Style for dividers shown in the recurrence picker fragment and dialog. -->
         <attr name="rpPickerDividerStyle" format="reference" />
+
+        <!-- Text appearance used for the recurrence picker subtitles. -->
         <attr name="rpPickerSubtitleTextAppearance" format="reference" />
+
+        <!-- Style for the number input layouts (TextInputLayout). -->
         <attr name="rpPickerInputLayoutStyle" format="reference" />
+
+        <!-- Style for the number inputs (TextInputEditText). -->
         <attr name="rpPickerInputStyle" format="reference" />
+
+        <!-- Style for the dropdown layouts (a TextInputLayout). -->
         <attr name="rpPickerDropdownLayoutStyle" format="reference" />
+
+        <!-- Style for the dropdowns (TextInputEditText). -->
         <attr name="rpPickerDropdownStyle" format="reference" />
+
+        <!-- Style for the day of the week buttons in recurrence picker fragment (MaterialButton). -->
         <attr name="rpPickerWeekBtnStyle" format="reference" />
+
+        <!-- Style for the day of the week buttons in recurrence picker dialog (MaterialButton). -->
         <attr name="rpPickerDialogWeekBtnStyle" format="reference" />
+
     </declare-styleable>
 
 </resources>
