@@ -54,6 +54,7 @@ internal class DateDialogFragment : DialogFragment() {
                 calendar[Calendar.DATE], null)
 
         try {
+            @Suppress("DEPRECATION")
             val cal = datePicker.calendarView
             if (cal != null) {
                 cal.setDate(date + 100000000, false, true)

@@ -95,6 +95,7 @@ internal class DateDialogFragment : DialogFragment() {
         try {
             // Fixes date picker showing year 1964 or 2100 initially when in spinner mode (API < 21).
             // See https://stackoverflow.com/a/19125686
+            @Suppress("DEPRECATION")
             val cal = datePicker.calendarView
             if (cal != null) {
                 // Add approximatively 1 day (arbitrary).
