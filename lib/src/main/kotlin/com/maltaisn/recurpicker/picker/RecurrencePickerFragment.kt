@@ -25,6 +25,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.Group
@@ -207,6 +208,14 @@ class RecurrencePickerFragment : Fragment(),
             if (actionId == EditorInfo.IME_ACTION_DONE) endCountInput.clearFocus()
             false
         }
+
+        // Back press callback
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        exit()
+                    }
+                })
 
         return view
     }

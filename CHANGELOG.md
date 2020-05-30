@@ -1,3 +1,6 @@
+### v2.1.1
+- `RecurrencePickerFragment` now handles back press by itself.
+
 ## v2.1.0
 - Backported to API 14.
 - Fixed day of week toggle buttons color on API < 23 (but they don't have shadow anymore).

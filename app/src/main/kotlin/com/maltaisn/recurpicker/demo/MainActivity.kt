@@ -37,17 +37,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        val mainFragment = supportFragmentManager.findFragmentByTag(MAIN_FRAGMENT_TAG)
-        if (mainFragment != null && mainFragment.childFragmentManager.backStackEntryCount > 0) {
-            // Pop backstack of child fragment first (which contains the recurrence picker fragment).
-            mainFragment.childFragmentManager.popBackStack()
-        } else {
-            // Pop main back stack.
-            super.onBackPressed()
-        }
-    }
-
     companion object {
         private const val MAIN_FRAGMENT_TAG = "main_fragment"
     }
