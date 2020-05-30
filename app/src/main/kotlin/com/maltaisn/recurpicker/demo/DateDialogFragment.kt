@@ -16,52 +16,79 @@
 
 package com.maltaisn.recurpicker.demo
 
+import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.*
 
 
-// Dialog used to choose the start date.
+/**
+ * Dialog used to choose the start date.
+ * This is mostly the same as [com.maltaisn.recurpicker.picker.DateDialogFragment].
+ */
 internal class DateDialogFragment : DialogFragment() {
 
     var date: Long = System.currentTimeMillis()
 
-    override fun onCreateDialog(state: Bundle?): Dialog {
-        if (state != null) {
-            date = state.getLong("date")
-        }
+    private var _datePicker: DatePicker? = null
+    private val datePicker get() = _datePicker!!
 
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = date
+    private val calendar = Calendar.getInstance()
+
+
+    @SuppressLint("InflateParams")
+    override fun onCreateDialog(state: Bundle?): Dialog {
+        calendar.timeInMillis = state?.getLong("date") ?: date
+        calendar.setToStartOfDay()
 
         val context = requireContext()
 
-        val datePicker = DatePicker(context)
-        datePicker.init(calendar[Calendar.YEAR], calendar[Calendar.MONTH], calendar[Calendar.DATE]) { _, year, month, day ->
-            calendar.set(year, month, day)
-            date = calendar.timeInMillis
-        }
+        val view = LayoutInflater.from(context).inflate(R.layout.dialog_date, null, false)
+        _datePicker = view.findViewById(R.id.date_picker)
+        datePicker.init(calendar[Calendar.YEAR], calendar[Calendar.MONTH],
+                calendar[Calendar.DATE], null)
+
+        try {
+            val cal = datePicker.calendarView
+            if (cal != null) {
+                cal.setDate(date + 100000000, false, true)
+                cal.setDate(date, false, true)
+            }
+        } catch (e: UnsupportedOperationException) {}
 
         return MaterialAlertDialogBuilder(context)
                 .setView(datePicker)
                 .setPositiveButton(android.R.string.ok) { _, _ ->
-                    calendar.timeInMillis = date
-                    calendar[Calendar.HOUR_OF_DAY] = 0
-                    calendar[Calendar.MINUTE] = 0
-                    calendar[Calendar.SECOND] = 0
-                    calendar[Calendar.MILLISECOND] = 0
-                    callback?.onDateDialogConfirmed(date)
+                    calendar.set(datePicker.year, datePicker.month, datePicker.dayOfMonth)
+                    calendar.setToStartOfDay()
+                    callback?.onDateDialogConfirmed(calendar.timeInMillis)
                 }
-                .setNegativeButton(android.R.string.cancel, null)
+                .setNegativeButton(android.R.string.cancel) { dialog, _ -> onCancel(dialog) }
                 .create()
+    }
+
+    private fun Calendar.setToStartOfDay() {
+        this[Calendar.HOUR_OF_DAY] = 0
+        this[Calendar.MINUTE] = 0
+        this[Calendar.SECOND] = 0
+        this[Calendar.MILLISECOND] = 0
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        _datePicker = null
     }
 
     override fun onSaveInstanceState(state: Bundle) {
         super.onSaveInstanceState(state)
-        state.putLong("date", date)
+
+        calendar.set(datePicker.year, datePicker.month, datePicker.dayOfMonth)
+        state.putLong("date", calendar.timeInMillis)
     }
 
     private val callback: Callback?

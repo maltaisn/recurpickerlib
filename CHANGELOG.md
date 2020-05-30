@@ -1,6 +1,11 @@
 ## v2.1.0
 - Backported to API 14.
-- Fixed day of week toggle buttons color on API < 23, but they don't have shadow anymore.
+- Fixed day of week toggle buttons color on API < 23 (but they don't have shadow anymore).
+- Fixed end date not being set at start of the day (time 00:00:00.000).
+- Fixed end date selection not working on API 21.
+- Fixed end date picker not keeping all state on configuration change. For example if year selection
+was active, date picker is reset to day selection on configuration change.
+- Fixed end date picker initially showing year 1964 or 2100 on API < 21.
 
 ### v2.0.3
 - Fixed weekly recurrence missing events on the first week on OEM Samsung devices.
