@@ -118,7 +118,7 @@
             />
 
         <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/enable_dark_theme"
+            android:id="@+id/enable_dark_theme_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:minHeight="0dp"

@@ -18,25 +18,38 @@ package com.maltaisn.recurpicker.demo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.maltaisn.recurpicker.demo.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainFragment by lazy { supportFragmentManager.findFragmentById(R.id.main_fragment)!! }
-
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
-        setContentView(R.layout.activity_main)
+
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        if (supportFragmentManager.findFragmentByTag(MAIN_FRAGMENT_TAG) == null) {
+            supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragment_container, MainFragment(), MAIN_FRAGMENT_TAG)
+                    .commit()
+        }
     }
 
     override fun onBackPressed() {
-        if (mainFragment.childFragmentManager.backStackEntryCount > 0) {
+        val mainFragment = supportFragmentManager.findFragmentByTag(MAIN_FRAGMENT_TAG)
+        if (mainFragment != null && mainFragment.childFragmentManager.backStackEntryCount > 0) {
             // Pop backstack of child fragment first (which contains the recurrence picker fragment).
             mainFragment.childFragmentManager.popBackStack()
         } else {
             // Pop main back stack.
             super.onBackPressed()
         }
+    }
+
+    companion object {
+        private const val MAIN_FRAGMENT_TAG = "main_fragment"
     }
 
 }

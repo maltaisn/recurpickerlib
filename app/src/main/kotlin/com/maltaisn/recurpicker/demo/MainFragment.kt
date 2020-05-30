@@ -21,9 +21,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -33,6 +30,8 @@ import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.RecurrenceFinder
 import com.maltaisn.recurpicker.RecurrencePickerSettings
+import com.maltaisn.recurpicker.demo.databinding.FragmentMainBinding
+import com.maltaisn.recurpicker.demo.databinding.ItemEventBinding
 import com.maltaisn.recurpicker.list.RecurrenceListCallback
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerCallback
@@ -55,14 +54,13 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
     private val pickerFragment by lazy { RecurrencePickerFragment.newInstance(settings) }
     private val pickerDialog by lazy { RecurrencePickerDialog.newInstance(settings) }
 
-    // Main fragment views
-    private lateinit var selectedLabel: TextView
-    private lateinit var startDateInput: EditText
-    private lateinit var enableListCheck: CheckBox
-    private lateinit var enablePickerCheck: CheckBox
-    private lateinit var usePickerDialogCheck: CheckBox
-    private lateinit var eventsSubtitle: TextView
-    private lateinit var eventsAdapter: EventsAdapter
+    // View bindings
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!.contentLayout
+    private val selectedBinding get() = binding.selectedCard
+    private val optionsBinding get() = binding.optionsCard
+
+    private var eventsAdapter: EventsAdapter? = null
 
     // Recurrence presets used in the recurrence list dialog.
     private val recurrencePresets = mutableListOf(
@@ -100,36 +98,36 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?, state: Bundle?): View? {
-        // Create the main fragment layout view.
         val view = inflater.inflate(R.layout.fragment_main, container, false)
+        _binding = FragmentMainBinding.bind(view)  // Note: inflate doesn't work here?
+        return view
+    }
 
+    override fun onViewCreated(view: View, state: Bundle?) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
             // Fixes bug with MaterialCardView and Canvas.clipPath() on API < 18.
             view.setLayerType(View.LAYER_TYPE_SOFTWARE, null)
         }
 
         // Set up options views
-        val startDateDialog = DateDialogFragment()
-        startDateInput = view.findViewById(R.id.start_date_input)
+        val startDateInput = optionsBinding.startDateInput
+        val startDateDialog by lazy { DateDialogFragment() }
         startDateInput.setOnClickListener {
             startDateDialog.date = startDate
-            startDateDialog.show(childFragmentManager, "start-date-dialog")
+            startDateDialog.show(childFragmentManager, "start_date_dialog")
         }
 
-        usePickerDialogCheck = view.findViewById(R.id.use_picker_dialog_check)
-        enableListCheck = view.findViewById(R.id.enable_list_check)
-        enablePickerCheck = view.findViewById(R.id.enable_picker_check)
-
+        val enableListCheck = optionsBinding.enableListCheck
+        val enablePickerCheck = optionsBinding.enablePickerCheck
         enableListCheck.setOnCheckedChangeListener { _, isChecked ->
             enablePickerCheck.isChecked = enablePickerCheck.isChecked || !isChecked
         }
         enablePickerCheck.setOnCheckedChangeListener { _, isChecked ->
             enableListCheck.isChecked = enableListCheck.isChecked || !isChecked
-            usePickerDialogCheck.isEnabled = isChecked
+            optionsBinding.usePickerDialogCheck.isEnabled = isChecked
         }
 
-        val darkThemeCheck: CheckBox = view.findViewById(R.id.enable_dark_theme)
-        darkThemeCheck.setOnCheckedChangeListener { _, isChecked ->
+        optionsBinding.enableDarkThemeCheck.setOnCheckedChangeListener { _, isChecked ->
             // Enable or disable dark theme without restarting the app.
             AppCompatDelegate.setDefaultNightMode(if (isChecked) {
                 AppCompatDelegate.MODE_NIGHT_YES
@@ -139,13 +137,10 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         }
 
         // Set up selected recurrence views
-        selectedLabel = view.findViewById(R.id.selected_label)
-        val selectedForeground: View = view.findViewById(R.id.selected_foreground)
-        selectedForeground.setOnClickListener { chooseRecurrence() }
+        selectedBinding.selectedForeground.setOnClickListener { chooseRecurrence() }
 
         // Set up events list views
-        eventsSubtitle = view.findViewById(R.id.events_subtitle)
-        val eventsRcv: RecyclerView = view.findViewById(R.id.events_rcv)
+        val eventsRcv = binding.eventsView.eventsRcv
 
         val layoutManager = LinearLayoutManager(requireContext())
         eventsRcv.layoutManager = layoutManager
@@ -176,8 +171,6 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         updateStartDateInput()
         updateSelectedLabel()
         updateRecurrenceCount()
-
-        return view
     }
 
     override fun onSaveInstanceState(state: Bundle) {
@@ -189,6 +182,13 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         state.putLongArray("recurrenceEvents", recurrenceEvents.toLongArray())
         state.putBoolean("isDoneFinding", isDoneFinding)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        eventsAdapter = null
+    }
+
 
     override fun onDateDialogConfirmed(date: Long) {
         // Start date has been selected. Update it and its view.
@@ -223,11 +223,12 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
 
     private fun chooseRecurrence() {
         // Show the correct fragment depending on which is enabled.
-        if (enableListCheck.isChecked) {
+        if (optionsBinding.enableListCheck.isChecked) {
             // Add or remove the `null` item which shows a "Custom..." item in the list dialog.
-            if (enablePickerCheck.isChecked && null !in recurrencePresets) {
+            val enablePicker = optionsBinding.enablePickerCheck.isChecked
+            if (enablePicker && null !in recurrencePresets) {
                 recurrencePresets.add(null)
-            } else if (!enablePickerCheck.isChecked && null in recurrencePresets) {
+            } else if (!enablePicker && null in recurrencePresets) {
                 recurrencePresets.remove(null)
             }
             showListDialog()
@@ -240,24 +241,24 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         // Setup and show the recurrence list dialog.
         listDialog.selectedRecurrence = selectedRecurrence
         listDialog.startDate = startDate
-        listDialog.show(childFragmentManager, "recurrence-list-dialog")
+        listDialog.show(childFragmentManager, "recurrence_list_dialog")
     }
 
     private fun showPickerFragment() {
         // Setup and show the recurrence picker.
-        if (usePickerDialogCheck.isChecked) {
+        if (optionsBinding.usePickerDialogCheck.isChecked) {
             // Use the dialog picker.
             pickerDialog.selectedRecurrence = selectedRecurrence
             pickerDialog.startDate = startDate
-            //pickerDialog.showTitle = true
-            pickerDialog.show(childFragmentManager, "recurrence-picker-dialog")
+            pickerDialog.showTitle = true
+            pickerDialog.show(childFragmentManager, "recurrence_picker_dialog")
 
         } else {
             // Use the fragment picker.
             pickerFragment.selectedRecurrence = selectedRecurrence
             pickerFragment.startDate = startDate
             childFragmentManager.beginTransaction()
-                    .add(R.id.picker_fragment_container, pickerFragment, "recurrence-picker-fragment")
+                    .add(R.id.picker_fragment_container, pickerFragment, "recurrence_picker_fragment")
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                     .addToBackStack(null)
                     .commit()
@@ -268,7 +269,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         // Clear the list of found events and notify the adapter
         val sizeBefore = recurrenceEvents.size
         recurrenceEvents.clear()
-        eventsAdapter.notifyItemRangeRemoved(0, sizeBefore)
+        eventsAdapter?.notifyItemRangeRemoved(0, sizeBefore)
 
         // Find initial events
         isDoneFinding = false
@@ -297,7 +298,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         isDoneFinding = (recurrenceEvents.size - sizeBefore) < LOAD_BATCH_SIZE
 
         // Notify the adapter and update the count.
-        eventsAdapter.notifyItemRangeInserted(sizeBefore, recurrenceEvents.size - sizeBefore)
+        eventsAdapter?.notifyItemRangeInserted(sizeBefore, recurrenceEvents.size - sizeBefore)
         updateRecurrenceCount()
     }
 
@@ -306,27 +307,27 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         // Append a "+" suffix when not all events have been found.
         val n = recurrenceEvents.size
         val suffix = if (isDoneFinding) "" else "+"
-        eventsSubtitle.text = requireContext().getString(R.string.subtitle_events, n, suffix)
+        binding.eventsView.eventsSubtitle.text = requireContext().getString(R.string.subtitle_events, n, suffix)
     }
 
     private fun updateSelectedLabel() {
         // Use the RecurrenceFormatter specified in the settings to format the selected recurrence and display it.
-        selectedLabel.text = settings.formatter.format(requireContext(), selectedRecurrence, startDate)
+        selectedBinding.selectedLabel.text = settings.formatter
+                .format(requireContext(), selectedRecurrence, startDate)
     }
 
     private fun updateStartDateInput() {
         // Use the date format specified in the settings to format the start date and display it.
-        startDateInput.setText(settings.formatter.dateFormat.format(startDate))
+        optionsBinding.startDateInput.setText(settings.formatter.dateFormat.format(startDate))
     }
 
     // View holder used to display a recurrence event item in the recycler view.
-    private class EventViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val numberLabel: TextView = view.findViewById(R.id.event_number_label)
-        private val dateLabel: TextView = view.findViewById(R.id.event_date_label)
+    private class EventViewHolder(private val binding: ItemEventBinding) :
+            RecyclerView.ViewHolder(binding.root) {
 
         fun bind(number: String, date: String) {
-            numberLabel.text = number
-            dateLabel.text = date
+            binding.eventNumberLabel.text = number
+            binding.eventDateLabel.text = date
         }
     }
 
@@ -334,7 +335,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         override fun getItemCount() = recurrenceEvents.size
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-                EventViewHolder(layoutInflater.inflate(R.layout.item_event, parent, false))
+                EventViewHolder(ItemEventBinding.inflate(layoutInflater, parent, false))
 
         override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
             // Bind view holder with the event number and date.
