@@ -18,6 +18,7 @@ package com.maltaisn.recurpicker
 
 import com.maltaisn.recurpicker.Recurrence.Period
 import org.junit.Test
+import java.util.TimeZone
 import kotlin.test.assertEquals
 
 
@@ -571,6 +572,28 @@ internal class RecurrenceFinderTest {
                 dateFor("2019-01-07")
         ), finder.findBetween(r, dateFor("2019-01-01"),
                 dateFor("2019-01-04"), dateFor("2019-01-10")))
+    }
+
+    @Test
+    fun timeZone() {
+        finder.timeZone = TimeZone.getTimeZone("GMT+07:00")
+        val r = Recurrence(Period.WEEKLY) {
+            setDaysOfWeek(Recurrence.THURSDAY)
+        }
+        assertEquals(listOf(
+            dateFor("2020-07-30T00:00:00.000+07:00"),
+            dateFor("2020-08-06T00:00:00.000+07:00")
+        ), finder.find(r, dateFor("2020-07-29T00:00:00.000+07:00"), 2))
+    }
+
+    @Test
+    fun find_keep_original_time_of_day() {
+        val r = Recurrence(Period.DAILY)
+        assertEquals(listOf(
+            dateFor("2020-07-29T07:34:12.001"),
+            dateFor("2020-07-30T07:34:12.001"),
+            dateFor("2020-07-31T07:34:12.001")
+        ), finder.find(r, dateFor("2020-07-29T07:34:12.001"), 3))
     }
 
 }

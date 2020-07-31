@@ -19,16 +19,29 @@ package com.maltaisn.recurpicker
 import com.maltaisn.recurpicker.Recurrence.Companion.compareDay
 import com.maltaisn.recurpicker.Recurrence.EndType
 import com.maltaisn.recurpicker.Recurrence.Period
-import java.util.*
+import java.util.Calendar
+import java.util.GregorianCalendar
+import java.util.TimeZone
 import kotlin.math.abs
-
 
 /**
  * Utility object to find the dates of the events of a [Recurrence] object.
- * All date parameters are given as millis since epoch time.
+ * All date parameters are given as millis since UTC epoch time.
  * This class is not thread-safe.
  */
 class RecurrenceFinder {
+
+    /**
+     * The timezone used for finding recurrence events.
+     * Note that changing this doesn't change the fact that all date parameters are in **UTC** millis since epoch time.
+     */
+    var timeZone = TimeZone.getDefault()
+        set(value) {
+            field = value
+            date.timeZone = timeZone
+            temp.timeZone = timeZone
+        }
+
 
     private val date = GregorianCalendar()
     private val temp = GregorianCalendar()

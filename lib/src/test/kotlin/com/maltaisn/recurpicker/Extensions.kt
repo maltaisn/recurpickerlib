@@ -16,10 +16,37 @@
 
 package com.maltaisn.recurpicker
 
+import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.TimeZone
 
+val patterns = listOf(
+    "yyyy-MM-dd'T'HH:mm:ss.SSSXXX" to TimeZone.getTimeZone("GMT"),
+    "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" to TimeZone.getTimeZone("GMT"),
+    "yyyy-MM-dd'T'HH:mm:ss.SSS" to TimeZone.getDefault(),
+    "yyyy-MM-dd" to TimeZone.getDefault()
+)
 
 /**
- * Get millis date for a string [date] of format `yyyy-MM-dd`.
+ * Get UTC millis since epoch time for date patterns:
+ * - `2020-01-05`: in UTC time zone, time is set to 00:00:00.000.
+ * - `2020-01-05T09:12:11.000`: in local time zone.
+ * - `2020-01-05T09:12:11.000Z`: in GMT time zone.
+ * - `2020-01-05T09:12:11.000-07:00`: in specified time zone.
+ * Throws an error if date can't be parsed according to any of these patterns.
  */
-internal fun dateFor(date: String) = SimpleDateFormat("yyyy-MM-dd").parse(date)!!.time
+internal fun dateFor(date: String): Long {
+    val dateFormat = SimpleDateFormat()
+    for ((pattern, timeZone) in patterns) {
+        if (timeZone != null) {
+            dateFormat.timeZone = timeZone
+        }
+        dateFormat.applyPattern(pattern)
+        return try {
+            dateFormat.parse(date)?.time ?: continue
+        } catch (e: ParseException) {
+            continue
+        }
+    }
+    throw IllegalArgumentException("Invalid date literal")
+}
