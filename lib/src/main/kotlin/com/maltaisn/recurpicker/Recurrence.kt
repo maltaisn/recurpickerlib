@@ -285,12 +285,8 @@ class Recurrence private constructor(
          * since setting the end date or end count will set it automatically.
          * @see Recurrence.endType
          */
-        @Suppress("RedundantSetter")
         @set:JvmSynthetic
         var endType: EndType = EndType.NEVER
-            set(value) {
-                field = value // Default setter needed to avoid collision when using JvmSynthetic?
-            }
 
         /**
          * Setting this value will changing end type to by date.

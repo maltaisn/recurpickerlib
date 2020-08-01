@@ -66,10 +66,12 @@ class RecurrencePickerSettings private constructor(
     class Builder {
 
         /** @see RecurrencePickerSettings.formatter */
+        @set:JvmSynthetic
         var formatter: RecurrenceFormatter = RecurrenceFormatter(DateFormat.getDateInstance())
 
         /** @see RecurrencePickerSettings.presets */
-        var presets: List<Recurrence?> = arrayListOf(
+        @set:JvmSynthetic
+        var presets: List<Recurrence?> = mutableListOf(
             Recurrence.DOES_NOT_REPEAT,
             Recurrence(Period.DAILY),
             Recurrence(Period.WEEKLY),
@@ -78,9 +80,11 @@ class RecurrencePickerSettings private constructor(
             null)
 
         /** @see RecurrencePickerSettings.defaultPickerRecurrence */
+        @set:JvmSynthetic
         var defaultPickerRecurrence: Recurrence = Recurrence(Period.DAILY)
 
         /** @see RecurrencePickerSettings.maxFrequency */
+        @set:JvmSynthetic
         var maxFrequency: Int = 99
             set(value) {
                 require(value >= 1) { "Max frequency must be at least 1." }
@@ -88,11 +92,18 @@ class RecurrencePickerSettings private constructor(
             }
 
         /** @see RecurrencePickerSettings.maxEndCount */
+        @set:JvmSynthetic
         var maxEndCount: Int = 999
             set(value) {
                 require(value >= 1) { "Max end count must be at least 1." }
                 field = value
             }
+
+        fun setFormatter(formatter: RecurrenceFormatter) = apply { this.formatter = formatter }
+        fun setPresets(presets: List<Recurrence?>) = apply { this.presets = presets }
+        fun setDefaultPickerRecurrence(recurrence: Recurrence) = apply { defaultPickerRecurrence = recurrence }
+        fun setMaxFrequency(frequency: Int) = apply { maxFrequency = frequency }
+        fun setMaxEndCount(count: Int) = apply { maxEndCount = count }
 
         fun build() = RecurrencePickerSettings(formatter, presets,
             defaultPickerRecurrence, maxFrequency, maxEndCount)

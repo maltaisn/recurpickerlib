@@ -16,23 +16,26 @@
 
 package com.maltaisn.recurpicker;
 
+
+import com.maltaisn.recurpicker.format.RecurrenceFormatter;
+
 import org.junit.Test;
 
-public class RecurrenceBuilderTestJava {
+import java.text.DateFormat;
+import java.util.Arrays;
+
+public class RecurrencePickerSettingsTestJava {
 
     @Test
     public void should_allow_builder_from_java() {
         // Not really a test, but if it compiles then it's fine.
-        Recurrence r1 = new Recurrence.Builder(Recurrence.Period.WEEKLY)
-                .setFrequency(3)
-                .setDaysOfWeek(Recurrence.FRIDAY, Recurrence.SATURDAY)
-                .setEndType(Recurrence.EndType.BY_COUNT)
-                .setEndCount(10)
+        RecurrencePickerSettings settings = new RecurrencePickerSettings.Builder()
+                .setMaxEndCount(999)
+                .setMaxFrequency(99)
+                .setFormatter(new RecurrenceFormatter(DateFormat.getDateInstance()))
+                .setPresets(Arrays.asList(Recurrence.DOES_NOT_REPEAT, null))
+                .setDefaultPickerRecurrence(new Recurrence.Builder(Recurrence.Period.DAILY).build())
                 .build();
-        Recurrence r2 = new Recurrence.Builder(Recurrence.Period.MONTHLY)
-                .setDayInMonth(-1)
-                .setEndDate(TestDateExtensionsKt.dateFor("2020-09-30"))
-                .build();
-        Recurrence r3 = Recurrence.DOES_NOT_REPEAT;
     }
+
 }
