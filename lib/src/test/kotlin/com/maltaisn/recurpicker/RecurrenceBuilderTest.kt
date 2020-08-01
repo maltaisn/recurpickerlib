@@ -154,7 +154,17 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun convertEndType_periodIsNone() {
+    fun `should build same recurrence if period is none`() {
+        val r1 = Recurrence(Period.MONTHLY) {
+            dayInMonth = 15
+            endCount = 0
+        }
+        val r2 = Recurrence.DOES_NOT_REPEAT
+        assertSame(r1, r2)
+    }
+
+    @Test
+    fun `should not set end count on recurrence with none period`() {
         val r = Recurrence(Period.NONE) { endCount = 12 }
         assertEquals(EndType.NEVER, r.endType)
     }

@@ -261,6 +261,7 @@ class Recurrence private constructor(
          * Frequency must be at least 1.
          * @see Recurrence.frequency
          */
+        @set:JvmSynthetic
         var frequency: Int = 1
             set(value) {
                 require(value >= 1) { "Frequency must be 1 or greater." }
@@ -284,13 +285,19 @@ class Recurrence private constructor(
          * since setting the end date or end count will set it automatically.
          * @see Recurrence.endType
          */
+        @Suppress("RedundantSetter")
+        @set:JvmSynthetic
         var endType: EndType = EndType.NEVER
+            set(value) {
+                field = value // Default setter needed to avoid collision when using JvmSynthetic?
+            }
 
         /**
          * Setting this value will changing end type to by date.
          * If end date is [DATE_NONE], recurrence end type will be set to never.
          * @see Recurrence.endDate
          */
+        @set:JvmSynthetic
         var endDate: Long = DATE_NONE
             set(value) {
                 endType = if (value == DATE_NONE) EndType.NEVER else EndType.BY_DATE
@@ -302,6 +309,7 @@ class Recurrence private constructor(
          * Must be at least 1. If less than 1, the period will be set to [Period.NONE].
          * @see Recurrence.endCount
          */
+        @set:JvmSynthetic
         var endCount: Int = 0
             set(value) {
                 endType = EndType.BY_COUNT
@@ -330,12 +338,17 @@ class Recurrence private constructor(
             endType = recurrence.endType
         }
 
+        fun setFrequency(frequency: Int) = apply { this.frequency = frequency }
+        fun setEndType(endType: EndType) = apply { this.endType = endType }
+        fun setEndDate(endDate: Long) = apply { this.endDate = endDate }
+        fun setEndCount(endCount: Int) = apply { this.endCount = endCount }
+
         /**
          * If period is [WEEKLY], set [byDay] field to a list of [days] of the week.
          */
-        fun setDaysOfWeek(@DaysOfWeek vararg days: Int) {
+        fun setDaysOfWeek(@DaysOfWeek vararg days: Int) = apply {
             check(period == WEEKLY) { "Period must be weekly to set the list of days of the week." }
-            byDay = 1
+            byDay = 0x01
             @SuppressLint("WrongConstant")
             for (day in days) {
                 require(day in 0..EVERY_DAY_OF_WEEK) { "Day of the week flag is invalid." }
@@ -347,6 +360,7 @@ class Recurrence private constructor(
          * If period is [MONTHLY], set the day in the month on which events happen.
          * @see Recurrence.byMonthDay
          */
+        @set:JvmSynthetic
         var dayInMonth: Int
             get() = byMonthDay
             set(value) {
@@ -356,6 +370,8 @@ class Recurrence private constructor(
                 byMonthDay = value
             }
 
+        fun setDayInMonth(dayInMonth: Int) = apply { this.dayInMonth = dayInMonth }
+
         /**
          * If period is [MONTHLY], set [byDay] setting so that the recurrence
          * happens on a [day] of a week in the month. If both parameters are `0`,
@@ -364,7 +380,7 @@ class Recurrence private constructor(
          * @param week On which week of the month the events will happen, starting from `1`.
          * From -4 to 4, negative values count the week number from the end of the month.
          */
-        fun setDayOfWeekInMonth(day: Int, week: Int) {
+        fun setDayOfWeekInMonth(day: Int, week: Int) = apply {
             check(period == MONTHLY) { "Period must be monthly to set the day of week in month." }
             require(Integer.bitCount(day) == 1 && day in SUNDAY..SATURDAY) { "Day of the week flag is invalid." }
             require(week.absoluteValue <= MAX_WEEKS_IN_MONTH && week != 0) { "Week of the month is invalid." }
@@ -392,11 +408,14 @@ class Recurrence private constructor(
                 endType = EndType.NEVER
             }
 
-            // Normalize unused fields by setting them to default values so equals work correctly.
-            var endDate = endDate
-            var endCount = endCount
-            if (period == NONE || endType != EndType.BY_DATE) endDate = DATE_NONE
-            if (period == NONE || endType != EndType.BY_COUNT) endCount = 0
+            if (period == NONE) {
+                // All recurrence with NONE period are the same.
+                return DOES_NOT_REPEAT
+            }
+
+            // Set unused fields to default values so equals work correctly.
+            val endDate = if (endType == EndType.BY_DATE) endDate else DATE_NONE
+            val endCount = if (endType == EndType.BY_COUNT) endCount else 0
 
             return Recurrence(period, frequency, byDay, byMonthDay, endType, endDate, endCount, calendar)
         }
@@ -459,7 +478,7 @@ class Recurrence private constructor(
         const val FRIDAY = 1 shl Calendar.FRIDAY
         const val SATURDAY = 1 shl Calendar.SATURDAY
 
-        const val EVERY_DAY_OF_WEEK = 0b11111111
+        const val EVERY_DAY_OF_WEEK = 0b11111111 // LSB is 1 to follow byDay layout so it can be used for comparison.
 
         /** Date value used for no end date. */
         const val DATE_NONE = Long.MIN_VALUE
@@ -469,7 +488,8 @@ class Recurrence private constructor(
          * only the start date event will be returned.
          */
         @JvmField
-        val DOES_NOT_REPEAT = Recurrence(NONE)
+        val DOES_NOT_REPEAT = Recurrence(NONE, 1, 0, 0,
+            EndType.NEVER, DATE_NONE, 0, Calendar.getInstance())
 
         private const val MAX_DAYS_IN_YEAR = 366
         private const val MAX_DAYS_IN_MONTH = 31

@@ -1,6 +1,9 @@
 ### v2.1.2
 - Added support for changing time zone in `RecurrenceFinder`.
 - `RecurrenceFinder` now returns an empty list instead of an exception when trying to find 0 events.
+- Better `Recurrence.Builder` syntax when used from Java.
+- Fixed recurrence builder allowing creation of non-equal recurrences of period `NONE`, leading to equality issues.
+All recurrences built with `NONE` period now return the same `Recurrence.DOES_NOT_REPEAT` instance.
 
 ### v2.1.1
 - `RecurrencePickerFragment` now handles back press by itself.
