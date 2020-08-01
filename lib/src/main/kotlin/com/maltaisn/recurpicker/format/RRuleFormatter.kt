@@ -124,6 +124,9 @@ class RRuleFormatter {
 
     /**
      * Format a [recurrence][r] to a string recurrence rule and return it.
+     * Note that a valid RRule should technically include the DTSTART attribute, but since this attribute is not
+     * part of the [Recurrence] class, it is omitted. This function will also generate the string `RRULE:FREQ=NONE`
+     * for recurrence with a period of [Period.NONE], even though this isn't part of the standard.
      */
     fun format(r: Recurrence): String {
         val sb = StringBuilder()

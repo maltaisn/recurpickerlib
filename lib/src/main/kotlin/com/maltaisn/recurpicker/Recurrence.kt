@@ -115,7 +115,8 @@ class Recurrence private constructor(
     /**
      * If period is [WEEKLY], checks if events happen on certain [days] of the week.
      * Returns true only if recurrence happens on all of these days.
-     * To get the number of days set use `Integer.bitCount(recurrence.byDay)  - 1`.
+     * To get the number of days set use `Integer.bitCount(recurrence.byDay)  - 1`
+     * (or `recurrence.byDay.countOneBits() - 1` in Kotlin).
      * If period is [MONTHLY], checks if events happen on a certain day of the week specified
      * by a single flag set in [days].
      * @param days A bit field of [DaysOfWeek] values.
@@ -378,7 +379,7 @@ class Recurrence private constructor(
          */
         fun setDayOfWeekInMonth(day: Int, week: Int) = apply {
             check(period == MONTHLY) { "Period must be monthly to set the day of week in month." }
-            require(Integer.bitCount(day) == 1 && day in SUNDAY..SATURDAY) { "Day of the week flag is invalid." }
+            require(day.countOneBits() == 1 && day in SUNDAY..SATURDAY) { "Day of the week flag is invalid." }
             require(week.absoluteValue <= MAX_WEEKS_IN_MONTH && week != 0) { "Week of the month is invalid." }
             byDay = 0x01 or day or ((week + MAX_WEEKS_IN_MONTH) shl Byte.SIZE_BITS)
             byMonthDay = 0

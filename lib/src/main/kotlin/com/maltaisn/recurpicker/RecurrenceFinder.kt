@@ -57,7 +57,8 @@ class RecurrenceFinder {
      * same recurrence. If the recurrence has an end by count rule, it's important to also
      * supply the [base count][baseCount] to indicate how many events have happened as of
      * the base date so the algorithm knows when to stop. Starting [from a date][fromDate],
-     * a certain [amount] of events are found and returned.
+     * a certain [amount] of events are found and returned. All events will have the same
+     * time of the day as the [startDate].
      *
      * While using this method is a bit more complicated than using [find], it will be more
      * performant to find a recurrence event if previous event dates are known. For example,
@@ -121,11 +122,12 @@ class RecurrenceFinder {
 
     /**
      * Get an [amount] of event dates of a [recurrence][r] after a [date][fromDate].
-     * Note that the recurrence's start date is never included in the returned list.
+     * All events will have the same time of the day as the [startDate].
+     * See [findBasedOn] for more information.
      *
      * @param r The recurrence.
      * @param startDate The start date of the recurring event, cannot be [Recurrence.DATE_NONE].
-     * @param amount The number of events to find, must be at least 1.
+     * @param amount The maximum number of events to find, must be at least 0.
      * @param fromDate The date from which to start finding recurrence events. Can be set
      * to [Recurrence.DATE_NONE] to find events from the start date of the recurrence.
      * The date is inclusive meaning an event on this date will be included.
