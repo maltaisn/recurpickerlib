@@ -51,19 +51,19 @@ internal class RecurrenceListPresenterTest {
     }
 
     @Test
-    fun getItemCount_detached() {
+    fun `should return zero item count when detached`() {
         assertEquals(0, presenter.itemCount)
     }
 
     @Test
-    fun getItemCount_noSelection() {
+    fun `should return item count equal to number of presets`() {
         presenter.attach(view, null)
 
         assertEquals(settings.presets.size, presenter.itemCount)
     }
 
     @Test
-    fun getItemCount_withSelection() {
+    fun `should return item count equal to number of presets plus one when there's a selection`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Recurrence.Period.DAILY) {
             frequency = 3
         })
@@ -74,7 +74,7 @@ internal class RecurrenceListPresenterTest {
     }
 
     @Test
-    fun bindItems() {
+    fun `should bind items`() {
         val selected = Recurrence(Recurrence.Period.DAILY) {
             frequency = 3
         }
@@ -98,7 +98,7 @@ internal class RecurrenceListPresenterTest {
     }
 
     @Test
-    fun itemClick_recurrence() {
+    fun `should set result when item is clicked`() {
         presenter.attach(view, null)
         presenter.onItemClicked(0)
 
@@ -107,7 +107,7 @@ internal class RecurrenceListPresenterTest {
     }
 
     @Test
-    fun itemClick_custom() {
+    fun `should set custom result when customize item is clicked`() {
         presenter.attach(view, null)
         presenter.onItemClicked(2)
 
@@ -116,7 +116,7 @@ internal class RecurrenceListPresenterTest {
     }
 
     @Test
-    fun cancel() {
+    fun `should set cancel result when cancelled`() {
         presenter.attach(view, null)
         presenter.onCancel()
 

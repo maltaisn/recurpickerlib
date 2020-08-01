@@ -21,6 +21,7 @@ import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.dateFor
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 @Suppress("DEPRECATION")
 class RecurrenceSerializerTest {
@@ -28,7 +29,7 @@ class RecurrenceSerializerTest {
     private val serializer = RecurrenceSerializer()
 
     @Test
-    fun read_version1() {
+    fun `should read serialized recurrence (version 1)`() {
         // Used to convert byte[] to hex string: https://stackoverflow.com/a/9855338/5288316
 
         val a1 = hexStringToByteArray("00000064010000016D6BB9C600000000000000000" +
@@ -64,7 +65,7 @@ class RecurrenceSerializerTest {
     }
 
     @Test
-    fun read_write_version2() {
+    fun `should read serialized recurrence (version 2)`() {
         val r1 = Recurrence(Period.DAILY)
         assertEquals(r1, serializer.read(serializer.write(r1)))
 
@@ -87,20 +88,26 @@ class RecurrenceSerializerTest {
         assertEquals(r4, serializer.read(serializer.write(r4)))
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun read_unknownVersion() {
-        serializer.read(hexStringToByteArray("00000000000000016941EC5080000000020000000" +
-                "10000000100000000000000000000000000000000"))
+    @Test
+    fun `should fail to read serialized recurrence (unknown version)`() {
+        assertFailsWith<java.lang.IllegalArgumentException> {
+            serializer.read(hexStringToByteArray("00000000000000016941EC5080000000020000000" +
+                    "10000000100000000000000000000000000000000"))
+        }
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun read_badLength_version1() {
-        serializer.read(hexStringToByteArray("00000064000000016941"))
+    @Test
+    fun `should fail to read serialized recurrence of bad length (version 1)`() {
+        assertFailsWith<java.lang.IllegalArgumentException> {
+            serializer.read(hexStringToByteArray("00000064000000016941"))
+        }
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun read_badLength_version2() {
-        serializer.read(hexStringToByteArray("00000065000000016941"))
+    @Test
+    fun `should fail to read serialized recurrence of bad length (version 2)`() {
+        assertFailsWith<java.lang.IllegalArgumentException> {
+            serializer.read(hexStringToByteArray("00000065000000016941"))
+        }
     }
 
     private fun hexStringToByteArray(s: String): ByteArray {

@@ -21,19 +21,20 @@ import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.dateFor
 import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 internal class RRuleFormatTest {
 
     private val formatter = RRuleFormatter()
 
     @Test
-    fun doesNotRepeat() {
+    fun `should test 'does not repeat' recurrence`() {
         val r = Recurrence.DOES_NOT_REPEAT
         testRRule(r, "RRULE:FREQ=NONE")
     }
 
     @Test
-    fun daily_withFrequency() {
+    fun `should test daily recurrence with frequency 5`() {
         val r = Recurrence(Period.DAILY) {
             frequency = 5
         }
@@ -41,7 +42,7 @@ internal class RRuleFormatTest {
     }
 
     @Test
-    fun weekly() {
+    fun `should test weekly recurrence with days set`() {
         val r = Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.THURSDAY)
         }
@@ -49,7 +50,7 @@ internal class RRuleFormatTest {
     }
 
     @Test
-    fun weekly_allDays() {
+    fun `should test weekly recurrence set on all days with frequency 2`() {
         val r = Recurrence(Period.WEEKLY) {
             frequency = 10
             setDaysOfWeek(Recurrence.EVERY_DAY_OF_WEEK)
@@ -58,13 +59,13 @@ internal class RRuleFormatTest {
     }
 
     @Test
-    fun monthly_same_day() {
+    fun `should test default monthly recurrence`() {
         val r = Recurrence(Period.MONTHLY)
         testRRule(r, "RRULE:FREQ=MONTHLY")
     }
 
     @Test
-    fun monthly_same_day_specific() {
+    fun `should test monthly recurrence set on a specific day`() {
         val r = Recurrence(Period.MONTHLY) {
             dayInMonth = 15
         }
@@ -72,7 +73,7 @@ internal class RRuleFormatTest {
     }
 
     @Test
-    fun monthly_same_week() {
+    fun `should test monthly recurrence set on a specific day of a week in month`() {
         val r1 = Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.FRIDAY, 4)
         }
@@ -85,7 +86,7 @@ internal class RRuleFormatTest {
     }
 
     @Test
-    fun monthly_same_week_bySetPos() {
+    fun `should parse monthly recurrence using BYSETPOS to describe monthly recurrence on same week`() {
         val r1 = Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.FRIDAY, 4)
         }
@@ -98,7 +99,7 @@ internal class RRuleFormatTest {
     }
 
     @Test
-    fun monthly_last_day() {
+    fun `should test monthly recurrence on last day of month`() {
         val r = Recurrence(Period.MONTHLY) {
             dayInMonth = -1
         }
@@ -106,13 +107,13 @@ internal class RRuleFormatTest {
     }
 
     @Test
-    fun yearly() {
+    fun `should test yearly recurrence`() {
         val r = Recurrence(Period.YEARLY)
         testRRule(r, "RRULE:FREQ=YEARLY")
     }
 
     @Test
-    fun daily_endDate() {
+    fun `should test daily recurrence with end date`() {
         val r = Recurrence(Period.DAILY) {
             endDate = dateFor("2020-01-01")
         }
@@ -120,41 +121,53 @@ internal class RRuleFormatTest {
     }
 
     @Test
-    fun daily_endCount() {
+    fun `should test daily recurrence with end count`() {
         val r = Recurrence(Period.DAILY) {
             endCount = 42
         }
         testRRule(r, "RRULE:FREQ=DAILY;COUNT=42")
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun parse_noHeader() {
-        formatter.parse("FREQ=DAILY")
+    @Test
+    fun `should fail to parse rrule with missing signature`() {
+        assertFailsWith<IllegalArgumentException> {
+            formatter.parse("FREQ=DAILY")
+        }
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun parse_noPeriod() {
-        formatter.parse("RRULE:BYDAY=FR,SA")
+    @Test
+    fun `should fail to parse rrule with no FREQ attribute set`() {
+        assertFailsWith<IllegalArgumentException> {
+            formatter.parse("RRULE:BYDAY=FR,SA")
+        }
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun parse_endDate_invalidFormat() {
-        formatter.parse("RRULE:UNTIL=2020-01-01")
+    @Test
+    fun `should fail to parse rrule with invalid end date format`() {
+        assertFailsWith<IllegalArgumentException> {
+            formatter.parse("RRULE:UNTIL=2020-01-01")
+        }
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun parse_wrongPeriod() {
-        formatter.parse("RRULE:FREQ=HOURLY")
+    @Test
+    fun `should fail to parse rrule with unsupported FREQ attribute value`() {
+        assertFailsWith<IllegalArgumentException> {
+            formatter.parse("RRULE:FREQ=HOURLY")
+        }
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun parse_wrongDayOfWeek_weekly() {
-        formatter.parse("RRULE:FREQ=WEEKLY;BYDAY=SUN,MON,TUE")
+    @Test
+    fun `should fail to parse rrule with invalid day of the week literals`() {
+        assertFailsWith<IllegalArgumentException> {
+            formatter.parse("RRULE:FREQ=WEEKLY;BYDAY=SUN,MON,TUE")
+        }
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun parse_wrongDayOfWeek_monthly() {
-        formatter.parse("RRULE:FREQ=MONTHLY;BYDAY=-1FRI")
+    @Test
+    fun `should fail to parse rrule with invalid BYDAY value`() {
+        assertFailsWith<IllegalArgumentException> {
+            formatter.parse("RRULE:FREQ=MONTHLY;BYDAY=-1FRI")
+        }
     }
 
     private fun testRRule(r: Recurrence, rrule: String) {

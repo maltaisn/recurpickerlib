@@ -26,7 +26,7 @@ import kotlin.test.assertTrue
 internal class RecurrenceTest {
 
     @Test
-    fun equals_hashCode_allFields() {
+    fun `should return true for equals and same hash code`() {
         val r1 = Recurrence(Period.WEEKLY) {
             frequency = 17
             setDaysOfWeek(Recurrence.MONDAY, Recurrence.TUESDAY)
@@ -38,7 +38,7 @@ internal class RecurrenceTest {
     }
 
     @Test
-    fun equals_hashCode_allFields2() {
+    fun `should return true for equals and same hash code 2`() {
         val r1 = Recurrence(Period.MONTHLY) {
             frequency = 17
             dayInMonth = -1
@@ -50,19 +50,19 @@ internal class RecurrenceTest {
     }
 
     @Test
-    fun equals_hashCode_differentEndDateOnSameDay() {
+    fun `should return true for equals and same hash code (end date on same day but different time)`() {
         val r1 = Recurrence(Period.DAILY) {
-            endDate = dateFor("2020-01-01")
+            endDate = dateFor("2020-01-01T10:00:00.000")
         }
         val r2 = Recurrence(Period.DAILY) {
-            endDate = dateFor("2020-01-01") + 1000
+            endDate = dateFor("2020-01-01T23:00:00.000")
         }
         assertEquals(r1, r2)
         assertEquals(r1.hashCode(), r2.hashCode())
     }
 
     @Test
-    fun toStringDebug() {
+    fun `should create string representation in debug builds`() {
         if (BuildConfig.DEBUG) {
             assertEquals("Recurrence{ Does not repeat }",
                 Recurrence.DOES_NOT_REPEAT.toString())
@@ -93,7 +93,7 @@ internal class RecurrenceTest {
     }
 
     @Test
-    fun isRecurringOnDaysOfWeek_weekly() {
+    fun `should check if weekly recurrence is recurring on days of week`() {
         val r = Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.FRIDAY)
         }
@@ -106,7 +106,7 @@ internal class RecurrenceTest {
     }
 
     @Test
-    fun isRecurringOnDaysOfWeek_monthly() {
+    fun `should check if monthly recurrence is recurring on day of week`() {
         val r = Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.SATURDAY, 1)
         }
@@ -117,39 +117,16 @@ internal class RecurrenceTest {
     }
 
     @Test
-    fun dayOfWeekInMonth_weekInMonth() {
+    fun `should return day of week in month and week in month for monthly recurrence`() {
         val r = Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.SATURDAY, -2)
         }
         assertEquals(Calendar.SATURDAY, r.dayOfWeekInMonth)
         assertEquals(-2, r.weekInMonth)
     }
-
+    
     @Test
-    fun compareDay() {
-        val cal = Calendar.getInstance()
-        assertEquals(dateFor("2018-01-01").compareDay(dateFor("2019-01-01"), cal), -1)
-        assertEquals(dateFor("2019-01-01").compareDay(dateFor("2018-01-01"), cal), 1)
-        assertEquals(dateFor("2019-01-01").compareDay(dateFor("2019-01-01"), cal), 0)
-        assertEquals(dateFor("2019-01-01").compareDay(dateFor("2019-01-01") + 1000, cal), 0)
-    }
-
-    @Test
-    fun compareDay_dateNone() {
-        val cal = Calendar.getInstance()
-        assertEquals(Recurrence.DATE_NONE.compareDay(Recurrence.DATE_NONE, cal), 0)
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun compareDay_dateNone_illegal() {
-        val cal = Calendar.getInstance()
-        assertEquals(Recurrence.DATE_NONE.compareDay(dateFor("2019-01-01"), cal), -1)
-        assertEquals(dateFor("2019-01-01").compareDay(Recurrence.DATE_NONE, cal), 1)
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun compareDay_dateNone_illegal2() {
-        val cal = Calendar.getInstance()
-        assertEquals(dateFor("2019-01-01").compareDay(Recurrence.DATE_NONE, cal), 1)
+    fun `should have frequency set to 1 for 'does not repeat' recurrence`() {
+        assertEquals(1, Recurrence.DOES_NOT_REPEAT.frequency)
     }
 }

@@ -21,11 +21,13 @@ import com.maltaisn.recurpicker.Recurrence.EndType
 import com.maltaisn.recurpicker.Recurrence.Period
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+import kotlin.test.assertSame
 
 internal class RecurrenceBuilderTest {
 
     @Test
-    fun settingEndCount_shouldSetEndType() {
+    fun `should set end type when setting end count`() {
         Recurrence(Period.DAILY) {
             assertEquals(EndType.NEVER, endType)
             endCount = 15
@@ -34,7 +36,7 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun settingEndDate_shouldSetEndType() {
+    fun `should set end type when setting end date`() {
         Recurrence(Period.WEEKLY) {
             assertEquals(EndType.NEVER, endType)
             endDate = dateFor("2018-01-15")
@@ -42,63 +44,92 @@ internal class RecurrenceBuilderTest {
         }
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrow_wrongFrequency_negative() {
-        Recurrence(Period.DAILY) { frequency = -1 }
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrow_wrongFrequency_zero() {
-        Recurrence(Period.DAILY) { frequency = 0 }
-    }
-
-    @Test(expected = IllegalStateException::class)
-    fun shouldThrow_setDaysOfWeek_notWeekly() {
-        Recurrence(Period.YEARLY) { setDaysOfWeek(Recurrence.SUNDAY) }
-    }
-
-    @Test(expected = IllegalStateException::class)
-    fun shouldThrow_setDaysOfWeek_invalidFlag() {
-        Recurrence(Period.YEARLY) { setDaysOfWeek(Int.MAX_VALUE) }
-    }
-
-    @Test(expected = IllegalStateException::class)
-    fun shouldThrow_setDayOfWeekInMonth_notMonthly() {
-        Recurrence(Period.DAILY) { setDayOfWeekInMonth(Recurrence.SATURDAY, 3) }
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrow_setDayOfWeekInMonth_wrongDay() {
-        Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(0b110101, 3) }
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrow_setDayOfWeekInMonth_wrongWeek_zero() {
-        Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.WEDNESDAY, 0) }
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrow_setDayOfWeekInMonth_wrongWeek_outOfRange() {
-        Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.WEDNESDAY, 5) }
-    }
-
-    @Test(expected = IllegalStateException::class)
-    fun shouldThrow_dayInMonth_notMonthly() {
-        Recurrence(Period.WEEKLY) { dayInMonth = 15 }
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrow_dayInMonth_outOfRange() {
-        Recurrence(Period.MONTHLY) { dayInMonth = 32 }
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun shouldThrow_dayInMonth_outOfRange2() {
-        Recurrence(Period.MONTHLY) { dayInMonth = -32 }
+    @Test
+    fun `should fail to set negative frequency`() {
+        assertFailsWith<IllegalArgumentException> {
+            Recurrence(Period.DAILY) { frequency = -1 }
+        }
     }
 
     @Test
-    fun convertPeriod_weekly_allDays_freq1_shouldBeDaily() {
+    fun `should fail to set zero frequency`() {
+        assertFailsWith<IllegalArgumentException> {
+            Recurrence(Period.DAILY) { frequency = 0 }
+        }
+    }
+
+    @Test
+    fun `should fail to set days of the week for non-weekly period`() {
+        assertFailsWith<IllegalStateException> {
+            Recurrence(Period.YEARLY) { setDaysOfWeek(Recurrence.SUNDAY) }
+        }
+    }
+
+    @Test
+    fun `should fail to set invalid days of the week`() {
+        assertFailsWith<IllegalStateException> {
+            Recurrence(Period.YEARLY) { setDaysOfWeek(Int.MAX_VALUE) }
+        }
+    }
+
+    @Test
+    fun `should fail to set day of week in month for non-monthly period`() {
+        assertFailsWith<IllegalStateException> {
+            Recurrence(Period.DAILY) { setDayOfWeekInMonth(Recurrence.SATURDAY, 3) }
+        }
+    }
+
+    @Test
+    fun `should fail to set multiple day of week in month`() {
+        assertFailsWith<IllegalArgumentException> {
+            Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(0b110101, 3) }
+        }
+    }
+
+    @Test
+    fun `should fail to set invalid day of week in month`() {
+        assertFailsWith<IllegalArgumentException> {
+            Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(3242342, 3) }
+        }
+    }
+
+    @Test
+    fun `should fail to set week in month to zero`() {
+        assertFailsWith<IllegalArgumentException> {
+            Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.WEDNESDAY, 0) }
+        }
+    }
+
+    @Test
+    fun `should fail to set week in month out of range`() {
+        assertFailsWith<IllegalArgumentException> {
+            Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.WEDNESDAY, 5) }
+        }
+    }
+
+    @Test
+    fun `should fail to set day in month for non-monthly period`() {
+        assertFailsWith<IllegalStateException> {
+            Recurrence(Period.WEEKLY) { dayInMonth = 15 }
+        }
+    }
+
+    @Test
+    fun `should fail to set out of range day in month (positive)`() {
+        assertFailsWith<IllegalArgumentException> {
+            Recurrence(Period.MONTHLY) { dayInMonth = 32 }
+        }
+    }
+
+    @Test
+    fun `should fail to set out of range day in month (negative)`() {
+        assertFailsWith<IllegalArgumentException> {
+            Recurrence(Period.MONTHLY) { dayInMonth = -32 }
+        }
+    }
+
+    @Test
+    fun `should convert weekly on every day of the week to daily (if frequency is 1)`() {
         val r = Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.EVERY_DAY_OF_WEEK)
         }
@@ -106,7 +137,7 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun convertPeriod_weekly_allDays_freq2_shouldBeDaily() {
+    fun `should not convert weekly on every day of the week to daily (if frequency is over 1)`() {
         val r = Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.EVERY_DAY_OF_WEEK)
             frequency = 2
@@ -115,7 +146,7 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun convertPeriod_endCountTooLow_shouldBeNone() {
+    fun `should make 'does not repeat' recurrence when end count is less than 1`() {
         val r1 = Recurrence(Period.DAILY) { endCount = 0 }
         val r2 = Recurrence(Period.DAILY) { endCount = -1 }
         assertEquals(Period.NONE, r1.period)
@@ -129,13 +160,14 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun convertEndType_endDateIsNone_shouldBeNever() {
-        val r = Recurrence(Period.YEARLY) { endDate = Recurrence.DATE_NONE }
+    fun `should not set end date on recurrence with none period`() {
+        val r = Recurrence(Period.NONE) { endDate = dateFor("2019-01-01") }
+        assertEquals(Recurrence.DATE_NONE, r.endDate)
         assertEquals(EndType.NEVER, r.endType)
     }
 
     @Test
-    fun normalization_endDate_endCount_endsNever() {
+    fun `should not set end count or end date if changing end type to never after setting them`() {
         val r = Recurrence(Period.YEARLY) {
             endCount = 12
             endDate = dateFor("2019-01-01")
@@ -147,7 +179,7 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun normalization_endCount_endsByDate() {
+    fun `should not set end count if changing end type to date after setting it`() {
         val r = Recurrence(Period.YEARLY) {
             endDate = dateFor("2019-01-01")
             endCount = 10
@@ -159,7 +191,7 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun normalization_endDate_endsByCount() {
+    fun `should not set end date if changing end type to count after setting it`() {
         val r = Recurrence(Period.YEARLY) {
             endDate = dateFor("2019-01-01")
             endCount = 10
@@ -171,7 +203,7 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun setDaysOfWeek_notAdditive() {
+    fun `should overwrite previously set days of week when using setDaysOfWeek`() {
         val r = Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.SATURDAY, Recurrence.MONDAY)
             setDaysOfWeek(Recurrence.TUESDAY, Recurrence.WEDNESDAY, Recurrence.FRIDAY)
@@ -180,7 +212,7 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun setDayOfWeekInMonth() {
+    fun `should set day of week in month`() {
         val r1 = Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.SATURDAY, -1) }
         val r2 = Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.SATURDAY, 3) }
         assertEquals(0b0000001110000001, r1.byDay)
@@ -188,23 +220,25 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun normalization_monthly_byDay() {
+    fun `should not set byMonthDay field when setting day of week in month for monthly period`() {
         Recurrence(Period.MONTHLY) {
+            dayInMonth = 12
             setDayOfWeekInMonth(Recurrence.WEDNESDAY, -3)
             assertEquals(0, byMonthDay)
         }
     }
 
     @Test
-    fun normalization_monthly_byMonthlyDay() {
+    fun `should not set byDay field when setting day in month for monthly period`() {
         Recurrence(Period.MONTHLY) {
+            setDayOfWeekInMonth(Recurrence.WEDNESDAY, -3)
             dayInMonth = -23
             assertEquals(0, byDay)
         }
     }
 
     @Test
-    fun copyConstructor() {
+    fun `should copy all recurrence fields when using builder copy constructor`() {
         val r1 = Recurrence(Period.WEEKLY) {
             frequency = 3
             endType = EndType.BY_COUNT
@@ -221,7 +255,7 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun directBuilderUse() {
+    fun `should allow direct builder use without inline DSL`() {
         val builder = Builder(Period.DAILY)
         builder.frequency = 3
         builder.endCount = 15
@@ -231,7 +265,7 @@ internal class RecurrenceBuilderTest {
     }
 
     @Test
-    fun everyDayOfWeekConstant() {
+    fun `every day of week constant should include all days`() {
         assertEquals(1 or Recurrence.SUNDAY or Recurrence.MONDAY or Recurrence.TUESDAY or Recurrence.WEDNESDAY or
                 Recurrence.THURSDAY or Recurrence.FRIDAY or Recurrence.SATURDAY, Recurrence.EVERY_DAY_OF_WEEK)
     }

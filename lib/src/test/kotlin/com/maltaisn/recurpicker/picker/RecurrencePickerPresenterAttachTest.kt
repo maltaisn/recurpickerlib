@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("MaxLineLength")
+
 package com.maltaisn.recurpicker.picker
 
 import com.maltaisn.recurpicker.Recurrence
@@ -31,6 +33,7 @@ import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.junit.MockitoJUnitRunner
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import kotlin.test.assertFailsWith
 
 @RunWith(MockitoJUnitRunner::class)
 internal class RecurrencePickerPresenterAttachTest {
@@ -53,20 +56,24 @@ internal class RecurrencePickerPresenterAttachTest {
         on { getEndCountTextFor(anyInt()) } doReturn "p|s"
     }
 
-    @Test(expected = IllegalStateException::class)
-    fun attach_shouldThrowNoStartDate() {
+    @Test
+    fun `should throw if no start date is set`() {
         whenever(view.startDate).thenReturn(Recurrence.DATE_NONE)
-        presenter.attach(view, null)
-    }
-
-    @Test(expected = IllegalStateException::class)
-    fun attach_shouldThrowAttachTwice() {
-        presenter.attach(view, null)
-        presenter.attach(view, null)
+        assertFailsWith<IllegalStateException> {
+            presenter.attach(view, null)
+        }
     }
 
     @Test
-    fun attach_verifyDefaultIsUsed_noSelection() {
+    fun `should throw if attached twice`() {
+        presenter.attach(view, null)
+        assertFailsWith<IllegalStateException> {
+            presenter.attach(view, null)
+        }
+    }
+
+    @Test
+    fun `should use default values when no selection is passed`() {
         whenever(view.selectedRecurrence).thenReturn(null)
         presenter.attach(view, null)
         verify(view).setEndDateView("2019-12-31")
@@ -74,7 +81,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyDefaultIsUsed_periodNone() {
+    fun `should use default values when selection is set to 'does not repeat'`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence.DOES_NOT_REPEAT)
         presenter.attach(view, null)
         verify(view).setEndDateView("2019-12-31")
@@ -82,7 +89,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyFrequency() {
+    fun `should set frequency correctly`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.DAILY) {
             frequency = 749
         })
@@ -91,13 +98,13 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyFrequencyMaxLength() {
+    fun `should set frequency max length to the one set in settings`() {
         presenter.attach(view, null)
         verify(view).setFrequencyMaxLength(2)
     }
 
     @Test
-    fun attach_verifyPeriodDropdown_daily() {
+    fun `should set the period items and selected item for daily frequency 1`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.DAILY))
         presenter.attach(view, null)
         verify(view).setPeriodItems(1)
@@ -105,7 +112,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyPeriodDropdown_monthly() {
+    fun `should set the period items and selected item for monthly frequency 67`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.MONTHLY) { frequency = 67 })
         presenter.attach(view, null)
         verify(view).setPeriodItems(67)
@@ -113,14 +120,14 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyWeekBtnsChecked_defaultDay() {
+    fun `should check day of week button to default day for default weekly recurrence`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.WEEKLY))
         presenter.attach(view, null)
         verifyWeekBtnsChecked(Calendar.TUESDAY)
     }
 
     @Test
-    fun attach_verifyWeekBtnsChecked_customDays() {
+    fun `should check correct day of week buttons for weekly recurrence with multiple set days`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.SUNDAY, Recurrence.WEDNESDAY, Recurrence.THURSDAY)
         })
@@ -129,7 +136,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyNoSettingsShown() {
+    fun `should hide weekly and monthly settings for daily recurrence`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.DAILY))
         presenter.attach(view, null)
         verify(view).setWeekBtnsShown(false)
@@ -137,7 +144,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyWeeklySettingsShown() {
+    fun `show only show weekly settings for weekly recurrence`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.WEEKLY))
         presenter.attach(view, null)
         verify(view).setWeekBtnsShown(true)
@@ -145,7 +152,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyMonthlySettingsShown() {
+    fun `should only show monthly settings for monthly recurrence`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.MONTHLY))
         presenter.attach(view, null)
         verify(view).setWeekBtnsShown(false)
@@ -153,7 +160,15 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyMonthlyDropdown() {
+    fun `should hide weekly and monthly settings for yearly recurrence`() {
+        whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.YEARLY))
+        presenter.attach(view, null)
+        verify(view).setWeekBtnsShown(false)
+        verify(view).setMonthlySettingShown(false)
+    }
+
+    @Test
+    fun `should set correct monthly settings for 'same day of month' recurrence`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.MONTHLY))
         presenter.attach(view, null)
         verify(view).setMonthlySettingItems(false, Calendar.TUESDAY, 3)
@@ -161,7 +176,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyMonthlyDropdown_sameWeek() {
+    fun `should set correct monthly settings for 'same day of week in month' recurrence`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.SATURDAY, 4)
         })
@@ -172,7 +187,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyMonthlyDropdown_lastDay() {
+    fun `should set correct monthly settings for 'last day of month' recurrence`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.MONTHLY) {
             dayInMonth = -1
         })
@@ -183,7 +198,17 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyMonthlyDropdown_sameDayDifferentThanStartDate() {
+    fun `should fallback to 'same day of month' when setting 'nth day from last day of month' recurrence`() {
+        whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.MONTHLY) {
+            dayInMonth = -15
+        })
+        presenter.attach(view, null)
+        verify(view).setMonthlySettingItems(false, Calendar.TUESDAY, 3)
+        verify(view).setSelectedMonthlySettingItem(0)
+    }
+
+    @Test
+    fun `should fallback to 'same day of month' when setting day in month to a different day than start date's`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.MONTHLY) {
             dayInMonth = 31
         })
@@ -192,7 +217,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyMonthlyDropdown_sameWeekDifferentThanStartDate() {
+    fun `should fallback to 'same day of month' when setting day of week in month month to a different day than start date's`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Calendar.WEDNESDAY, 3)
         })
@@ -201,7 +226,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyMonthlyDropdown_lastDayDifferentThanStartDate() {
+    fun `should fallback to 'same day of month' when setting day in month to a different day than start date's (last day)`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.MONTHLY) {
             dayInMonth = -1
         })
@@ -210,7 +235,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyEndNeverChecked() {
+    fun `should check end never if recurrence never ends`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.YEARLY))
         presenter.attach(view, null)
         verify(view).setEndNeverChecked(true)
@@ -219,7 +244,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyEndDateChecked() {
+    fun `should check end by date if recurrence ends by date`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.YEARLY) {
             endDate = dateFor("2100-01-01")
         })
@@ -230,7 +255,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyEndCountChecked() {
+    fun `should check end by count if recurrence ends by count`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.YEARLY) {
             endCount = 13
         })
@@ -241,7 +266,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyEndDateViews() {
+    fun `should setup end date views if ending by date`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.YEARLY) {
             endDate = dateFor("2100-01-01")
         })
@@ -251,7 +276,7 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyEndCountViews() {
+    fun `should setup end count views if ending by count`() {
         whenever(view.selectedRecurrence).thenReturn(Recurrence(Period.YEARLY) {
             endCount = 13
         })
@@ -261,49 +286,49 @@ internal class RecurrencePickerPresenterAttachTest {
     }
 
     @Test
-    fun attach_verifyEndDateLabels_prefix() {
+    fun `should set end date labels prefix`() {
         whenever(view.endDateText).thenReturn(" p ")
         presenter.attach(view, null)
         verify(view).setEndDateLabels("p", "")
     }
 
     @Test
-    fun attach_verifyEndDateLabels_suffix() {
+    fun `should set end date labels suffix`() {
         whenever(view.endDateText).thenReturn(" | s ")
         presenter.attach(view, null)
         verify(view).setEndDateLabels("", "s")
     }
 
     @Test
-    fun attach_verifyEndDateLabels_prefix_suffix() {
+    fun `should set end date labels prefix and suffix`() {
         whenever(view.endDateText).thenReturn(" p | s ")
         presenter.attach(view, null)
         verify(view).setEndDateLabels("p", "s")
     }
 
     @Test
-    fun attach_verifyEndCountLabels_prefix() {
+    fun `should set end count labels prefix`() {
         whenever(view.getEndCountTextFor(anyInt())).thenReturn(" p ")
         presenter.attach(view, null)
         verify(view).setEndCountLabels("p", "")
     }
 
     @Test
-    fun attach_verifyEndCountLabels_suffix() {
+    fun `should set end count labels suffix`() {
         whenever(view.getEndCountTextFor(anyInt())).thenReturn(" | s ")
         presenter.attach(view, null)
         verify(view).setEndCountLabels("", "s")
     }
 
     @Test
-    fun attach_verifyEndCountLabels_prefix_suffix() {
+    fun `should set end count labels prefix and suffix`() {
         whenever(view.getEndCountTextFor(anyInt())).thenReturn(" p | s ")
         presenter.attach(view, null)
         verify(view).setEndCountLabels("p", "s")
     }
 
     @Test
-    fun attach_verifyEndCountMaxLength() {
+    fun `should set end count max length to the one set in settings`() {
         presenter.attach(view, null)
         verify(view).setEndCountMaxLength(3)
     }

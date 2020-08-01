@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("MaxLineLength")
+
 package com.maltaisn.recurpicker.picker
 
 import com.maltaisn.recurpicker.Recurrence
@@ -67,21 +69,21 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onCancel() {
+    fun `should set cancel result and exit when cancelled`() {
         presenter.onCancel()
         verify(view).setCancelResult()
         verify(view).exit()
     }
 
     @Test
-    fun onConfirm() {
+    fun `should set confirm result and exit when confirmed`() {
         presenter.onConfirm()
         verify(view).setConfirmResult(settings.defaultPickerRecurrence)
         verify(view).exit()
     }
 
     @Test
-    fun onFrequencyChanged() {
+    fun `should update frequency views and create recurrence with right frequency after changing frequency`() {
         presenter.onFrequencyChanged("6")
         verify(view).setPeriodItems(6)
         verify(view).setSelectedPeriodItem(0)
@@ -89,34 +91,34 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onFrequencyChanged_notChanged() {
+    fun `should not update frequency views when setting frequency to current value`() {
         presenter.onFrequencyChanged("3")
         verify(view, never()).setPeriodItems(anyInt())
     }
 
     @Test
-    fun onFrequencyChanged_invalid() {
+    fun `should update frequency views with frequency 1 when setting invalid frequency literal`() {
         presenter.onFrequencyChanged("foo")
         verify(view).setPeriodItems(1)
         verify(view).setSelectedPeriodItem(0)
     }
 
     @Test
-    fun onFrequencyChanged_tooBig() {
+    fun `should set frequency views and create recurrence with max frequency when using frequency above maximum`() {
         presenter.onFrequencyChanged("12")
         verify(view).setFrequencyView("10")
         assertEquals(10, createRecurrence().frequency)
     }
 
     @Test
-    fun onFrequencyChanged_tooSmall() {
+    fun `should set frequency views and create recurrence with frequency 1 when using zero frequency`() {
         presenter.onFrequencyChanged("0")
         verify(view).setFrequencyView("1")
         assertEquals(1, createRecurrence().frequency)
     }
 
     @Test
-    fun onPeriodItemSelected_daily() {
+    fun `should hide weekly and monthly settings when selecting daily period`() {
         presenter.onPeriodItemSelected(0)
         verify(view).setWeekBtnsShown(false)
         verify(view).setMonthlySettingShown(false)
@@ -124,7 +126,7 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onPeriodItemSelected_weekly() {
+    fun `should show weekly settings when selecting weekly period`() {
         presenter.onPeriodItemSelected(1)
         verify(view).setWeekBtnsShown(true)
         verify(view).setMonthlySettingShown(false)
@@ -132,7 +134,7 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onPeriodItemSelected_monthly() {
+    fun `should show monthly settings when selecting monthly period`() {
         presenter.onPeriodItemSelected(2)
         verify(view).setWeekBtnsShown(false)
         verify(view).setMonthlySettingShown(true)
@@ -140,7 +142,7 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onPeriodItemSelected_yearly() {
+    fun `should hide weekly and monthly settings when selecting yearly period`() {
         presenter.onPeriodItemSelected(3)
         verify(view).setWeekBtnsShown(false)
         verify(view).setMonthlySettingShown(false)
@@ -148,31 +150,31 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun setDefaultEndDate_daily() {
+    fun `should update end date to 3 days after start date when selecting daily period`() {
         presenter.onPeriodItemSelected(0)
         verify(view).setEndDateView("2019-11-02")
     }
 
     @Test
-    fun setDefaultEndDate_weekly() {
+    fun `should update end date to 3 weeks after start date when selecting weekly period`() {
         presenter.onPeriodItemSelected(1)
         verify(view).setEndDateView("2019-11-14")
     }
 
     @Test
-    fun setDefaultEndDate_monthly() {
+    fun `should update end date to 3 months after start date when selecting monthly period`() {
         presenter.onPeriodItemSelected(2)
         verify(view).setEndDateView("2019-12-31")
     }
 
     @Test
-    fun setDefaultEndDate_yearly() {
+    fun `should update end date to 3 years after start date when selecting yearly period`() {
         presenter.onPeriodItemSelected(3)
         verify(view).setEndDateView("2021-10-31")
     }
 
     @Test
-    fun onWeekBtnsChecked() {
+    fun `should create recurrence with right days of week set when checking day of week buttons`() {
         presenter.onPeriodItemSelected(1) // Set period to weekly
         presenter.onWeekBtnChecked(Calendar.TUESDAY, true)
         presenter.onWeekBtnChecked(Calendar.THURSDAY, false)
@@ -185,14 +187,14 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onMonthlySettingSelected_sameDay() {
+    fun `should create monthly recurrence on same day of month as start date when selecting 'same day of month'`() {
         presenter.onPeriodItemSelected(2) // Set period to monthly
         presenter.onMonthlySettingItemSelected(0)
         assertEquals(0, createRecurrence().byMonthDay)
     }
 
     @Test
-    fun onMonthlySettingSelected_sameWeek() {
+    fun `should create monthly recurrence on same day of week in month as start date when selecting 'same day of week in month'`() {
         presenter.onPeriodItemSelected(2) // Set period to monthly
         presenter.onMonthlySettingItemSelected(1)
 
@@ -202,21 +204,21 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onMonthlySettingSelected_lastDay() {
+    fun `should create monthly recurrence on last day of month when selecting 'last day of month'`() {
         presenter.onPeriodItemSelected(2) // Set period to monthly
         presenter.onMonthlySettingItemSelected(2)
         assertEquals(-1, createRecurrence().byMonthDay)
     }
 
     @Test
-    fun onEndNeverClicked() {
+    fun `should create recurrence that never ends when selecting 'end never'`() {
         presenter.onEndNeverClicked()
         verify(view).setEndNeverChecked(true)
         assertEquals(Recurrence.EndType.NEVER, createRecurrence().endType)
     }
 
     @Test
-    fun onEndDateClicked() {
+    fun `should create recurrence that ends by date when selecting 'end by date'`() {
         presenter.onEndNeverClicked() // Set to never, because already set to end by date.
         presenter.onEndDateClicked()
         verify(view).setEndDateChecked(true)
@@ -225,7 +227,7 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onEndCountClicked() {
+    fun `should create recurrence that ends by count when selecting 'end by count'`() {
         presenter.onEndCountClicked()
         verify(view).setEndCountChecked(true)
         verify(view).setEndCountViewEnabled(true)
@@ -233,13 +235,13 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onEndDateInputClicked() {
+    fun `should show end date dialog when end date input is clicked`() {
         presenter.onEndDateInputClicked()
         verify(view).showEndDateDialog(settings.defaultPickerRecurrence.endDate, view.startDate)
     }
 
     @Test
-    fun onEndDateEntered() {
+    fun `should update end date views and use entered end date when creating recurrence after changing end date`() {
         val date = dateFor("2033-01-01")
         presenter.onEndDateEntered(date)
         verify(view).setEndDateView("2033-01-01")
@@ -247,7 +249,7 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onEndCountChanged() {
+    fun `should update end count views and use entered end count when creating recurrence after changing end count`() {
         presenter.onEndCountClicked()
         presenter.onEndCountChanged("99")
         verify(view).setEndCountLabels(any(), any())
@@ -255,23 +257,24 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onEndCountChanged_notChanged() {
+    fun `should not update end count views when setting end count to current value`() {
         presenter.onEndCountClicked()
         presenter.onEndCountChanged("1")
         verify(view, never()).setEndCountLabels(any(), any())
     }
 
     @Test
-    fun onEndCountChanged_invalid() {
+    fun `should update end count views with end count 1 when setting invalid end count`() {
         presenter.onEndCountClicked()
-        presenter.onEndCountChanged("12") // Changed it because invalid sets to 1 and it's already 1.
+        presenter.onEndCountChanged("12") // Change it because invalid count sets to 1 and it's
+        // already 1 by default, so it wouldn't be updated otherwise.
         clearInvocations(view)
         presenter.onEndCountChanged("foo")
         verify(view).setEndCountLabels(any(), any())
     }
 
     @Test
-    fun onEndCountChanged_tooBig() {
+    fun `should update end count views with max end count when setting end count above max`() {
         presenter.onEndCountClicked()
         clearInvocations(view)
         presenter.onEndCountChanged("120")
@@ -280,7 +283,7 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun onEndCountChanged_tooSmall() {
+    fun `should update end count views with end count 1 when setting zero end count`() {
         presenter.onEndCountClicked()
         clearInvocations(view)
         presenter.onEndCountChanged("0")
@@ -289,13 +292,13 @@ internal class RecurrencePickerPresenterTest {
     }
 
     @Test
-    fun createRecurrence_weekly_sameDayAsStartDate() {
+    fun `should create default weekly recurrence if only day of week checked is the same as start date's`() {
         presenter.onPeriodItemSelected(1)
-        assertEquals(1, createRecurrence().byDay)
+        assertEquals(0x01, createRecurrence().byDay)
     }
 
     @Test
-    fun createRecurrence_weekly_notSameDayAsStartDate() {
+    fun `should create weekly recurrence with correct days of week set`() {
         presenter.onPeriodItemSelected(1)
         presenter.onWeekBtnChecked(Calendar.THURSDAY, false)
         presenter.onWeekBtnChecked(Calendar.MONDAY, true)

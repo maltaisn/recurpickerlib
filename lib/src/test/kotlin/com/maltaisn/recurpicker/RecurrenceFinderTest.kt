@@ -14,39 +14,46 @@
  * limitations under the License.
  */
 
+@file:Suppress("MaxLineLength")
+
 package com.maltaisn.recurpicker
 
 import com.maltaisn.recurpicker.Recurrence.Period
 import org.junit.Test
 import java.util.TimeZone
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 internal class RecurrenceFinderTest {
 
-    // To confirm events with RRule: http://jakubroztocil.github.io/rrule/
+    // To validate events with RRule: http://jakubroztocil.github.io/rrule/
 
     private val finder = RecurrenceFinder()
 
-    @Test(expected = IllegalArgumentException::class)
-    fun wrongAmount() {
+    @Test
+    fun `should fail to find events with negative max amount`() {
         val r = Recurrence(Period.DAILY)
-        finder.find(r, dateFor("2019-01-01"), -1)
-    }
-
-    @Test(expected = IllegalArgumentException::class)
-    fun noStartDate() {
-        val r = Recurrence(Period.DAILY)
-        finder.find(r, Recurrence.DATE_NONE, 1)
+        assertFailsWith<IllegalArgumentException> {
+            finder.find(r, dateFor("2019-01-01"), -1)
+        }
     }
 
     @Test
-    fun zeroAmount() {
+    fun `should fail to find events given no start date`() {
+        val r = Recurrence(Period.DAILY)
+        assertFailsWith<IllegalArgumentException> {
+            finder.find(r, Recurrence.DATE_NONE, 1)
+        }
+    }
+
+    @Test
+    fun `should return empty list with amount set to zero`() {
         val r = Recurrence(Period.DAILY)
         assertEquals(emptyList<Long>(), finder.find(r, dateFor("2019-01-01"), 0))
     }
 
     @Test
-    fun none() {
+    fun `should only find start date for 'does not repeat' recurrence`() {
         val r = Recurrence.DOES_NOT_REPEAT
         assertEquals(listOf(
             dateFor("2019-01-01")
@@ -54,26 +61,29 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun none_fromDate() {
+    fun `should only find start date for 'does not repeat' recurrence given a from date before start`() {
         val r1 = Recurrence.DOES_NOT_REPEAT
         assertEquals(listOf(
             dateFor("2019-01-01")
         ), finder.find(r1, dateFor("2019-01-01"), 10, dateFor("2019-01-01")))
+    }
 
+    @Test
+    fun `should find no events for 'does not repeat' recurrence given a from date after start`() {
         val r2 = Recurrence.DOES_NOT_REPEAT
         assertEquals(emptyList<Long>(), finder.find(r2,
             dateFor("2019-01-01"), 10, dateFor("2019-01-02")))
     }
 
     @Test
-    fun none_fromDate_excludeStart() {
+    fun `should find no events for 'does not repeat' recurrence if start is excluded`() {
         val r = Recurrence.DOES_NOT_REPEAT
         assertEquals(emptyList<Long>(), finder.find(r,
             dateFor("2019-01-01"), 10, dateFor("2019-01-01"), includeStart = false))
     }
 
     @Test
-    fun daily() {
+    fun `should find events for daily recurrence`() {
         val r = Recurrence(Period.DAILY)
         assertEquals(listOf(
             dateFor("2019-01-01"),
@@ -85,7 +95,17 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun daily_frequency3() {
+    fun `should find events for daily recurrence from a specific date`() {
+        val r = Recurrence(Period.DAILY)
+        assertEquals(listOf(
+            dateFor("2019-01-03"),
+            dateFor("2019-01-04"),
+            dateFor("2019-01-05")
+        ), finder.find(r, dateFor("2019-01-01"), 3, dateFor("2019-01-03")))
+    }
+
+    @Test
+    fun `should find events for daily recurrence with frequency 3`() {
         val r = Recurrence(Period.DAILY) {
             frequency = 3
         }
@@ -99,7 +119,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun daily_endDate() {
+    fun `should find events for daily recurrence stoppping at end date`() {
         val r = Recurrence(Period.DAILY) {
             endDate = dateFor("2019-01-03")
         }
@@ -111,7 +131,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun daily_endCount() {
+    fun `should find events for daily recurrence stopping at end count`() {
         val r = Recurrence(Period.DAILY) {
             endCount = 5
         }
@@ -125,7 +145,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun daily_basedOn() {
+    fun `should find events for daily recurrence based on previous event (with end count)`() {
         val r = Recurrence(Period.DAILY) {
             endCount = 5
         }
@@ -137,7 +157,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun daily_basedOn_fromDate() {
+    fun `should find events for daily recurrence based on previous event (with end count and from date)`() {
         val r = Recurrence(Period.DAILY) {
             endCount = 6
         }
@@ -148,7 +168,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun daily_excludeStart() {
+    fun `should find events for daily recurrence excluding start date`() {
         val r = Recurrence(Period.DAILY)
         assertEquals(listOf(
             dateFor("2019-01-02"),
@@ -157,7 +177,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun weekly_default() {
+    fun `should find events for weekly recurrence (on the same day of the week as start date)`() {
         val r = Recurrence(Period.WEEKLY)
         assertEquals(listOf(
             dateFor("2019-01-01"),
@@ -169,7 +189,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun weekly_sun_mon_wed() {
+    fun `should find events for weekly recurrence (on set days of the week)`() {
         val r = Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.SUNDAY, Recurrence.MONDAY, Recurrence.WEDNESDAY)
         }
@@ -183,7 +203,19 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun weekly_all_days() {
+    fun `should find events for weekly recurrence from a specific date`() {
+        val r = Recurrence(Period.WEEKLY) {
+            setDaysOfWeek(Recurrence.SUNDAY)
+        }
+        assertEquals(listOf(
+            dateFor("2019-01-06"),
+            dateFor("2019-01-13"),
+            dateFor("2019-01-20")
+        ), finder.find(r, dateFor("2019-01-01"), 3, dateFor("2019-01-05")))
+    }
+
+    @Test
+    fun `should find events on every day of the week for weekly recurrence (frequency 2)`() {
         val r = Recurrence(Period.WEEKLY) {
             frequency = 2
             setDaysOfWeek(Recurrence.EVERY_DAY_OF_WEEK)
@@ -201,7 +233,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun weekly_frequency3() {
+    fun `should find events for weekly recurrence with frequency 3`() {
         val r = Recurrence(Period.WEEKLY) {
             frequency = 3
         }
@@ -215,7 +247,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun weekly_endDate() {
+    fun `should find events for weekly recurrence stopping at end date`() {
         val r = Recurrence(Period.WEEKLY) {
             endDate = dateFor("2019-01-15")
         }
@@ -227,7 +259,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun weekly_endCount() {
+    fun `should find events for weekly recurrence stopping at end count`() {
         val r = Recurrence(Period.WEEKLY) {
             endCount = 4
         }
@@ -240,7 +272,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun weekly_basedOn() {
+    fun `should find events for weekly recurrence based on previous event (with end count)`() {
         val r = Recurrence(Period.WEEKLY) {
             endCount = 5
         }
@@ -252,18 +284,19 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun weekly_basedOn_fromDate() {
+    fun `should find events for weekly recurrence based on previous event (with end count and from date)`() {
         val r = Recurrence(Period.WEEKLY) {
             endCount = 5
         }
         assertEquals(listOf(
             dateFor("2019-01-22"),
             dateFor("2019-01-29")
-        ), finder.findBasedOn(r, dateFor("2019-01-01"), dateFor("2019-01-15"), 3, 1000, dateFor("2019-01-22")))
+        ), finder.findBasedOn(r, dateFor("2019-01-01"), dateFor("2019-01-15"),
+            3, 1000, dateFor("2019-01-22")))
     }
 
     @Test
-    fun weekly_excludeStart() {
+    fun `should find events for weekly recurrence excluding start date`() {
         val r = Recurrence(Period.WEEKLY)
         assertEquals(listOf(
             dateFor("2019-01-08"),
@@ -272,7 +305,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun weekly_excludeStart_noEventOnStart() {
+    fun `should find events for weekly recurrence excluding start (with start date not being an event)`() {
         val r = Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.WEDNESDAY, Recurrence.THURSDAY)
         }
@@ -283,7 +316,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_sameDay() {
+    fun `should find events for monthly recurrence`() {
         val r = Recurrence(Period.MONTHLY)
         assertEquals(listOf(
             dateFor("2019-01-01"),
@@ -295,7 +328,17 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_sameDay_31() {
+    fun `should find events for monthly recurrence from a specific date`() {
+        val r = Recurrence(Period.MONTHLY)
+        assertEquals(listOf(
+            dateFor("2020-06-01"),
+            dateFor("2020-07-01"),
+            dateFor("2020-08-01")
+        ), finder.find(r, dateFor("2019-01-01"), 3, dateFor("2020-05-05")))
+    }
+
+    @Test
+    fun `should find events for monthly recurrence (on the 31st day)`() {
         val r = Recurrence(Period.MONTHLY) {
             frequency = 3
         }
@@ -308,17 +351,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_sameDay_fromDate() {
-        val r = Recurrence(Period.MONTHLY)
-        assertEquals(listOf(
-            dateFor("2020-06-01"),
-            dateFor("2020-07-01"),
-            dateFor("2020-08-01")
-        ), finder.find(r, dateFor("2019-01-01"), 3, dateFor("2020-05-05")))
-    }
-
-    @Test
-    fun monthly_sameWeek_third() {
+    fun `should find events for monthly recurrence (on the third tuesday)`() {
         val r = Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.TUESDAY, 3)
         }
@@ -332,7 +365,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_lastDay() {
+    fun `should find events for monthly recurrence (on the last day)`() {
         val r = Recurrence(Period.MONTHLY) {
             dayInMonth = -1
         }
@@ -346,7 +379,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_15toLastDay() {
+    fun `should find events for monthly recurrence (on the 15th to last day)`() {
         val r = Recurrence(Period.MONTHLY) {
             dayInMonth = -15
         }
@@ -360,7 +393,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_sameWeek_last() {
+    fun `should find events for monthly recurrence (on the last thursday)`() {
         val r = Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.THURSDAY, -1)
         }
@@ -374,7 +407,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_frequency3() {
+    fun `should find events for monthly recurrence with frequency 3`() {
         val r = Recurrence(Period.MONTHLY) {
             frequency = 3
         }
@@ -388,7 +421,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_endDate() {
+    fun `should find events for monthly recurrence stopping at end date`() {
         val r = Recurrence(Period.MONTHLY) {
             endDate = dateFor("2019-03-01")
         }
@@ -400,7 +433,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_endCount() {
+    fun `should find events for monthly recurrence stopping at end count`() {
         val r = Recurrence(Period.MONTHLY) {
             endCount = 5
         }
@@ -414,7 +447,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_basedOn() {
+    fun `should find events for monthly recurrence based on previous event (with end count)`() {
         val r = Recurrence(Period.MONTHLY) {
             endCount = 5
         }
@@ -427,7 +460,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_basedOn_fromDate() {
+    fun `should find events for monthly recurrence based on previous event (with end count and from date)`() {
         val r = Recurrence(Period.MONTHLY) {
             endCount = 6
         }
@@ -439,7 +472,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_fromDate_lastDayOfMonth() {
+    fun `should find events for monthly recurrence on last day, starting from over one month after 1st event, but before 2nd`() {
         val r = Recurrence(Period.MONTHLY) {
             endCount = 6
             byMonthDay = -1
@@ -452,7 +485,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun monthly_excludeStart() {
+    fun `should find events for monthly recurrence excluding start`() {
         val r = Recurrence(Period.MONTHLY)
         assertEquals(listOf(
             dateFor("2019-02-01"),
@@ -461,7 +494,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun yearly() {
+    fun `should find events for yearly recurrence`() {
         val r = Recurrence(Period.YEARLY)
         assertEquals(listOf(
             dateFor("2019-03-23"),
@@ -473,7 +506,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun yearly_frequency3() {
+    fun `should find events for yearly recurrence with frequency 3`() {
         val r = Recurrence(Period.YEARLY) {
             frequency = 3
         }
@@ -487,7 +520,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun yearly_endDate() {
+    fun `should find events for yearly recurrence stopping at end date`() {
         val r = Recurrence(Period.YEARLY) {
             endDate = dateFor("2021-01-01")
         }
@@ -499,7 +532,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun yearly_endCount() {
+    fun `should find events for yearly recurrence stopping at end count`() {
         val r = Recurrence(Period.YEARLY) {
             endCount = 5
         }
@@ -513,7 +546,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun yearly_basedOn() {
+    fun `should find events for yearly recurrence based on previous event (with end count)`() {
         val r = Recurrence(Period.YEARLY) {
             endCount = 5
         }
@@ -526,7 +559,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun yearly_basedOn_fromDate() {
+    fun `should find events for yearly recurrence based on previous event (with end count and from date)`() {
         val r = Recurrence(Period.YEARLY) {
             endCount = 5
         }
@@ -538,7 +571,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun yearly_excludeStart() {
+    fun `should find events for yearly recurrence excluding start`() {
         val r = Recurrence(Period.YEARLY)
         assertEquals(listOf(
             dateFor("2020-01-01"),
@@ -547,7 +580,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun yearly_basedOn_excludeStart() {
+    fun `should find events for yearly recurrence excluding start and based on previous event`() {
         val r = Recurrence(Period.YEARLY)
         assertEquals(listOf(
             dateFor("2022-01-01"),
@@ -557,7 +590,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun yearly_feb29() {
+    fun `should find events for yearly recurrence on feb 29`() {
         val r = Recurrence(Period.YEARLY)
         assertEquals(listOf(
             dateFor("2096-02-29"),
@@ -568,7 +601,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun findBetween() {
+    fun `should find events between two dates (daily recurrence)`() {
         val r = Recurrence(Period.DAILY)
         assertEquals(listOf(
             dateFor("2019-01-27"),
@@ -579,7 +612,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun findBetween_endCount() {
+    fun `should find events between two dates (recurrence with end count)`() {
         val r = Recurrence(Period.DAILY) {
             endCount = 7
         }
@@ -593,7 +626,8 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun timeZone() {
+    fun `should find events for recurrence using non-default timezone`() {
+        // This test should fail if not setting the timezone.
         finder.timeZone = TimeZone.getTimeZone("GMT+07:00")
         val r = Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.THURSDAY)
@@ -605,7 +639,7 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
-    fun find_keep_original_time_of_day() {
+    fun `should find events for recurrence, keeping original time of the day`() {
         val r = Recurrence(Period.DAILY)
         assertEquals(listOf(
             dateFor("2020-07-29T07:34:12.001"),

@@ -36,6 +36,7 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 @RunWith(MockitoJUnitRunner::class)
 class RecurrenceFormatTest {
@@ -51,6 +52,7 @@ class RecurrenceFormatTest {
         whenever(context.resources).thenReturn(resources)
 
         // Mock all format strings, plurals and arrays used.
+        // Note that plurals are ignored so test assert for values like "Every 1 days".
         whenever(resources.getStringArray(R.array.rp_days_of_week_abbr3)).thenReturn(
             arrayOf("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
         whenever(resources.getString(R.string.rp_format_none)).thenReturn("Does not repeat")
@@ -79,43 +81,43 @@ class RecurrenceFormatTest {
     }
 
     @Test
-    fun format_doesNotRepeat() {
+    fun `should format 'does not repeat' recurrence`() {
         val r = Recurrence.DOES_NOT_REPEAT
         assertEquals("Does not repeat", recurFormat.format(context, r))
     }
 
     @Test
-    fun format_daily() {
+    fun `should format daily recurrence`() {
         val r = Recurrence(Period.DAILY)
         assertEquals("Every 1 days", recurFormat.format(context, r))
     }
 
     @Test
-    fun format_weekly() {
+    fun `should format default weekly recurrence`() {
         val r = Recurrence(Period.WEEKLY)
         assertEquals("Every 1 weeks", recurFormat.format(context, r))
     }
 
     @Test
-    fun format_weekly_withDays() {
+    fun `should format weekly recurrence with specific days set`() {
         val r = Recurrence(Period.WEEKLY) { setDaysOfWeek(Recurrence.SUNDAY, Recurrence.SATURDAY) }
         assertEquals("Every 1 weeks on Sun, Sat", recurFormat.format(context, r))
     }
 
     @Test
-    fun format_weekly_withDayOnStartDate() {
+    fun `should format weekly recurrence with single day same as start date's`() {
         val r = Recurrence(Period.WEEKLY) { setDaysOfWeek(Recurrence.SATURDAY) }
         assertEquals("Every 1 weeks", recurFormat.format(context, r, dateFor("2019-10-12")))
     }
 
     @Test
-    fun format_weekly_withDayNotOnStartDate() {
+    fun `should format weekly recurrence with single day not same as start date's`() {
         val r = Recurrence(Period.WEEKLY) { setDaysOfWeek(Recurrence.SATURDAY) }
         assertEquals("Every 1 weeks on Sat", recurFormat.format(context, r, dateFor("2019-10-13")))
     }
 
     @Test
-    fun format_weekly_everyDay() {
+    fun `should format weekly recurrence with all days of the week set`() {
         val r = Recurrence(Period.WEEKLY) {
             frequency = 2
             setDaysOfWeek(Recurrence.EVERY_DAY_OF_WEEK)
@@ -124,32 +126,34 @@ class RecurrenceFormatTest {
     }
 
     @Test
-    fun format_monthly() {
+    fun `should format monthly recurrence`() {
         val r = Recurrence(Period.MONTHLY)
         assertEquals("Every 1 months", recurFormat.format(context, r))
     }
 
     @Test
-    fun format_monthly_specificDay_withStartDate() {
+    fun `should format monthly recurrence with specific day of month (with start date)`() {
         val r = Recurrence(Period.MONTHLY) { dayInMonth = 12 }
         assertEquals("Every 1 months (on the same day each month)",
             recurFormat.format(context, r, dateFor("2019-10-12")))
     }
 
-    @Test(expected = IllegalArgumentException::class)
-    fun format_monthly_specificDay_withoutStartDate() {
+    @Test
+    fun `should fail to format monthly recurrence with specific day of month (without start date)`() {
         val r = Recurrence(Period.MONTHLY) { dayInMonth = 12 }
-        recurFormat.format(context, r)
+        assertFailsWith<IllegalArgumentException> {
+            recurFormat.format(context, r)
+        }
     }
 
     @Test
-    fun format_monthly_lastDay() {
+    fun `should format monthly recurrence on the last day of month`() {
         val r = Recurrence(Period.MONTHLY) { dayInMonth = -1 }
         assertEquals("Every 1 months (on the last day of the month)", recurFormat.format(context, r))
     }
 
     @Test
-    fun format_monthly_dayOfWeekInMonth() {
+    fun `should format monthly recurrence on a day in a week of month`() {
         val r1 = Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.SUNDAY, 2) }
         assertEquals("Every 1 months (on every second Sunday)", recurFormat.format(context, r1))
 
@@ -161,19 +165,19 @@ class RecurrenceFormatTest {
     }
 
     @Test
-    fun format_yearly() {
+    fun `should format yearly recurrence`() {
         val r = Recurrence(Period.YEARLY)
         assertEquals("Every 1 years", recurFormat.format(context, r))
     }
 
     @Test
-    fun format_end_date() {
+    fun `should format recurrence with end date`() {
         val r = Recurrence(Period.YEARLY) { endDate = dateFor("2020-01-01") }
         assertEquals("Every 1 years; until Jan 1, 2020", recurFormat.format(context, r))
     }
 
     @Test
-    fun format_end_count() {
+    fun `should format recurrence with end count`() {
         val r = Recurrence(Period.YEARLY) { endCount = 30 }
         assertEquals("Every 1 years; for 30 events", recurFormat.format(context, r))
     }
