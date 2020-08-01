@@ -20,7 +20,6 @@ import android.os.Bundle
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerFragment
 
-
 internal interface BaseContract {
 
     interface View {
@@ -39,7 +38,6 @@ internal interface BaseContract {
          */
         val selectedRecurrence: Recurrence?
 
-
         fun exit()
     }
 
@@ -51,5 +49,4 @@ internal interface BaseContract {
 
         fun onCancel()
     }
-
 }

@@ -18,6 +18,7 @@ package com.maltaisn.recurpicker.list
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -38,7 +39,6 @@ import com.maltaisn.recurpicker.list.RecurrenceListContract.ItemView
 import com.maltaisn.recurpicker.list.RecurrenceListContract.Presenter
 import com.maltaisn.recurpicker.picker.RecurrencePickerDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerFragment
-
 
 /**
  * Dialog fragment displaying a list of recurrence presets. This aims to provide
@@ -72,7 +72,6 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
      */
     override var selectedRecurrence: Recurrence? = null
 
-
     @SuppressLint("InflateParams")
     override fun onCreateDialog(state: Bundle?): Dialog {
         if (state != null) {
@@ -88,21 +87,25 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
         val contextWrapper = ContextThemeWrapper(context, style)
         val localInflater = LayoutInflater.from(contextWrapper)
 
+        val view = localInflater.inflate(R.layout.rp_dialog_list, null, false)
+        setupViews(contextWrapper, view)
+
         // Create the dialog
         val builder = MaterialAlertDialogBuilder(contextWrapper)
-        val view = localInflater.inflate(R.layout.rp_dialog_list, null, false)
         builder.setView(view)
-
-        // Recurrence list
-        val rcv: RecyclerView = view.findViewById(R.id.rp_list_rcv)
-        rcv.layoutManager = LinearLayoutManager(contextWrapper)
-        rcv.adapter = Adapter()
 
         // Attach the presenter
         presenter = RecurrenceListPresenter()
         presenter?.attach(this, state)
 
         return builder.create()
+    }
+
+    private fun setupViews(context: Context, view: View) {
+        // Recurrence list
+        val rcv: RecyclerView = view.findViewById(R.id.rp_list_rcv)
+        rcv.layoutManager = LinearLayoutManager(context)
+        rcv.adapter = Adapter()
     }
 
     override fun onSaveInstanceState(state: Bundle) {
@@ -127,12 +130,11 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
         presenter?.onCancel()
     }
 
-
     private inner class Adapter : RecyclerView.Adapter<ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-                ViewHolder(LayoutInflater.from(parent.context)
-                        .inflate(R.layout.rp_item_list, parent, false))
+            ViewHolder(LayoutInflater.from(parent.context)
+                .inflate(R.layout.rp_item_list, parent, false))
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             presenter?.onBindItemView(holder, position)
@@ -141,8 +143,7 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
         override fun getItemCount() = presenter?.itemCount ?: 0
     }
 
-    private inner class ViewHolder(view: View)
-        : RecyclerView.ViewHolder(view), ItemView {
+    private inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view), ItemView {
 
         val label: RadioButton = view.findViewById(R.id.rp_list_item_label)
 
@@ -152,10 +153,12 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
             }
         }
 
-        override fun bindRecurrenceView(formatter: RecurrenceFormatter,
-                                        recurrence: Recurrence,
-                                        startDate: Long,
-                                        checked: Boolean) {
+        override fun bindRecurrenceView(
+            formatter: RecurrenceFormatter,
+            recurrence: Recurrence,
+            startDate: Long,
+            checked: Boolean
+        ) {
             label.text = formatter.format(requireContext(), recurrence, startDate)
             label.isChecked = checked
         }
@@ -181,7 +184,6 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
         getCallback<RecurrenceListCallback>()?.onRecurrenceListDialogCancelled()
     }
 
-
     companion object {
         /**
          * Create a new instance of the dialog with [settings].
@@ -194,5 +196,4 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
             return dialog
         }
     }
-
 }

@@ -35,25 +35,25 @@
             android:id="@+id/options_subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/subtitle_options"
-            android:textAppearance="@style/SubtitleTextAppearance"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/subtitle_options"
+            android:textAppearance="@style/SubtitleTextAppearance"
             />
 
         <TextView
             android:id="@+id/start_date_label"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:gravity="center_vertical"
-            android:text="@string/option_start_date"
-            android:textAppearance="?textAppearanceBody1"
             app:layout_constraintBottom_toBottomOf="@id/start_date_input_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/start_date_input_layout"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center_vertical"
+            android:text="@string/option_start_date"
+            android:textAppearance="?textAppearanceBody1"
             />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -61,11 +61,11 @@
             style="@style/InputLayoutStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintStart_toEndOf="@id/start_date_label"
             app:layout_constraintTop_toBottomOf="@id/options_subtitle"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -85,47 +85,47 @@
             android:id="@+id/enable_list_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/start_date_input_layout"
             android:layout_marginTop="8dp"
             android:checked="true"
             android:minHeight="0dp"
             android:text="@string/option_show_list"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/start_date_input_layout"
             />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/enable_picker_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:minHeight="0dp"
-            android:text="@string/option_show_picker"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enable_list_check"
+            android:checked="true"
+            android:minHeight="0dp"
+            android:text="@string/option_show_picker"
             />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/use_picker_dialog_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="0dp"
-            android:text="@string/option_picker_dialog"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/enable_picker_check"
+            android:minHeight="0dp"
+            android:text="@string/option_picker_dialog"
             />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/enable_dark_theme_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="0dp"
-            android:text="@string/option_dark_theme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/use_picker_dialog_check"
+            android:minHeight="0dp"
+            android:text="@string/option_dark_theme"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

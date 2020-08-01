@@ -18,11 +18,10 @@ package com.maltaisn.recurpicker
 
 import androidx.fragment.app.Fragment
 
-
 /**
  * Returns a callback of type [T] for a fragment.
  */
 internal inline fun <reified T> Fragment.getCallback(): T? =
-        (parentFragment as? T)
-                ?: (targetFragment as? T)
-                ?: (activity as? T)
+    (parentFragment as? T)
+        ?: (targetFragment as? T)
+        ?: (activity as? T)

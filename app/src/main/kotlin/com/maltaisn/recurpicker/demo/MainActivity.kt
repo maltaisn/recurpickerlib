@@ -20,7 +20,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.maltaisn.recurpicker.demo.databinding.ActivityMainBinding
 
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(state: Bundle?) {
@@ -31,14 +30,13 @@ class MainActivity : AppCompatActivity() {
 
         if (supportFragmentManager.findFragmentByTag(MAIN_FRAGMENT_TAG) == null) {
             supportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.fragment_container, MainFragment(), MAIN_FRAGMENT_TAG)
-                    .commit()
+                .beginTransaction()
+                .add(R.id.fragment_container, MainFragment(), MAIN_FRAGMENT_TAG)
+                .commit()
         }
     }
 
     companion object {
         private const val MAIN_FRAGMENT_TAG = "main_fragment"
     }
-
 }

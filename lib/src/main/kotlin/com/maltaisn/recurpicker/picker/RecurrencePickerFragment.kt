@@ -17,6 +17,7 @@
 package com.maltaisn.recurpicker.picker
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.LayoutInflater
@@ -24,7 +25,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
@@ -41,7 +46,6 @@ import com.maltaisn.recurpicker.getCallback
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
 
-
 /**
  * Fragment used to create a custom recurrence with nearly all available options.
  * Only some options of monthly recurrences are not available, like recurring on a day other than start date.
@@ -49,7 +53,7 @@ import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
  * Note: due to the MVP architecture, some interface methods are public but shouldn't be used.
  */
 class RecurrencePickerFragment : Fragment(),
-        RecurrencePickerContract.View, DateDialogFragment.Callback {
+    RecurrencePickerContract.View, DateDialogFragment.Callback {
 
     private var presenter: Presenter? = null
 
@@ -104,9 +108,7 @@ class RecurrencePickerFragment : Fragment(),
      */
     override var selectedRecurrence: Recurrence? = null
 
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?, state: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, state: Bundle?): View? {
         if (state != null) {
             settings = state.getParcelable("settings")!!
             startDate = state.getLong("startDate")
@@ -123,7 +125,20 @@ class RecurrencePickerFragment : Fragment(),
 
         // Inflate layout
         val view = localInflater.inflate(R.layout.rp_fragment_picker, container, false)
+        setupViews(contextWrapper, view)
 
+        // Back press callback
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    exit()
+                }
+            })
+
+        return view
+    }
+
+    private fun setupViews(context: Context, view: View) {
         // Toolbar
         toolbar = view.findViewById(R.id.rp_toolbar)
         toolbar.setOnMenuItemClickListener {
@@ -146,13 +161,18 @@ class RecurrencePickerFragment : Fragment(),
 
         // Period
         periodDropdown = view.findViewById(R.id.rp_picker_period_dropdown)
-        periodAdapter = DropdownAdapter(contextWrapper)
+        periodAdapter = DropdownAdapter(context)
         periodDropdown.setAdapter(periodAdapter)
         periodDropdown.setOnItemClickListener { _, _, position, _ ->
             presenter?.onPeriodItemSelected(position)
-            periodDropdown.requestLayout()  // Force view to wrap width to new text
+            periodDropdown.requestLayout() // Force view to wrap width to new text
         }
 
+        setupPeriodRelatedViews(context, view)
+        setupEndViews(context, view)
+    }
+
+    private fun setupPeriodRelatedViews(context: Context, view: View) {
         // Days of the week
         weeklyGroup = view.findViewById(R.id.rp_picker_weekly_group)
         val weekBtnTa = resources.obtainTypedArray(R.array.rp_picker_week_btn_ids)
@@ -168,12 +188,14 @@ class RecurrencePickerFragment : Fragment(),
         // Monthly setting
         monthlyGroup = view.findViewById(R.id.rp_picker_monthly_group)
         monthlyDropdown = view.findViewById(R.id.rp_picker_monthly_dropdown)
-        monthlyAdapter = DropdownAdapter(contextWrapper)
+        monthlyAdapter = DropdownAdapter(context)
         monthlyDropdown.setAdapter(monthlyAdapter)
         monthlyDropdown.setOnItemClickListener { _, _, position, _ ->
             presenter?.onMonthlySettingItemSelected(position)
         }
+    }
 
+    private fun setupEndViews(context: Context, view: View) {
         // End never
         endNeverView = view.findViewById(R.id.rp_picker_end_never_view)
         endNeverRadio = view.findViewById(R.id.rp_picker_end_never_radio)
@@ -208,16 +230,6 @@ class RecurrencePickerFragment : Fragment(),
             if (actionId == EditorInfo.IME_ACTION_DONE) endCountInput.clearFocus()
             false
         }
-
-        // Back press callback
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-                object : OnBackPressedCallback(true) {
-                    override fun handleOnBackPressed() {
-                        exit()
-                    }
-                })
-
-        return view
     }
 
     override fun clearFocus() {
@@ -264,8 +276,7 @@ class RecurrencePickerFragment : Fragment(),
         get() = requireContext().getString(R.string.rp_picker_end_date)
 
     override fun getEndCountTextFor(count: Int) =
-            resources.getQuantityString(R.plurals.rp_picker_end_count, count)
-
+        resources.getQuantityString(R.plurals.rp_picker_end_count, count)
 
     override fun exit() {
         fragmentManager?.popBackStack()
@@ -294,7 +305,7 @@ class RecurrencePickerFragment : Fragment(),
 
     override fun setSelectedPeriodItem(index: Int) {
         periodDropdown.setText(periodAdapter.getItem(index))
-        periodDropdown.requestLayout()  // Force view to wrap width to new text
+        periodDropdown.requestLayout() // Force view to wrap width to new text
     }
 
     override fun setWeekBtnsShown(shown: Boolean) {
@@ -313,9 +324,12 @@ class RecurrencePickerFragment : Fragment(),
         monthlyAdapter.clear()
 
         val res = resources
-        monthlyAdapter.add(res.getString(R.string.rp_format_monthly_same_day))  // on the same day each month
-        monthlyAdapter.add(RecurrenceFormatter.getDayOfWeekInMonthText(res, dayOfWeekInMonth, weekInMonth))  // on every <first> <Sunday>
-        if (showLastDay) monthlyAdapter.add(res.getString(R.string.rp_format_monthly_last_day))  // on the last day of the month
+        monthlyAdapter.add(res.getString(R.string.rp_format_monthly_same_day)) // on the same day each month
+        monthlyAdapter.add(RecurrenceFormatter.getDayOfWeekInMonthText(
+            res, dayOfWeekInMonth, weekInMonth)) // on every <first> <Sunday>
+        if (showLastDay) {
+            monthlyAdapter.add(res.getString(R.string.rp_format_monthly_last_day))
+        } // on the last day of the month
     }
 
     override fun setSelectedMonthlySettingItem(index: Int) {
@@ -333,7 +347,7 @@ class RecurrencePickerFragment : Fragment(),
 
     override fun setEndDateView(date: String) {
         endDateInput.setText(date)
-        endDateInput.requestLayout()  // Force view to wrap width to new text
+        endDateInput.requestLayout() // Force view to wrap width to new text
     }
 
     override fun setEndDateViewEnabled(enabled: Boolean) {
@@ -385,7 +399,6 @@ class RecurrencePickerFragment : Fragment(),
         getCallback<RecurrencePickerCallback>()?.onRecurrenceCreated(recurrence)
     }
 
-
     companion object {
         /**
          * Create a new instance of the fragment with [settings].
@@ -398,5 +411,4 @@ class RecurrencePickerFragment : Fragment(),
             return dialog
         }
     }
-
 }

@@ -16,10 +16,11 @@
 
 package com.maltaisn.recurpicker
 
-import com.maltaisn.recurpicker.Recurrence.*
+import com.maltaisn.recurpicker.Recurrence.Builder
+import com.maltaisn.recurpicker.Recurrence.EndType
+import com.maltaisn.recurpicker.Recurrence.Period
 import kotlin.test.Test
 import kotlin.test.assertEquals
-
 
 internal class RecurrenceBuilderTest {
 
@@ -234,5 +235,4 @@ internal class RecurrenceBuilderTest {
         assertEquals(1 or Recurrence.SUNDAY or Recurrence.MONDAY or Recurrence.TUESDAY or Recurrence.WEDNESDAY or
                 Recurrence.THURSDAY or Recurrence.FRIDAY or Recurrence.SATURDAY, Recurrence.EVERY_DAY_OF_WEEK)
     }
-
 }

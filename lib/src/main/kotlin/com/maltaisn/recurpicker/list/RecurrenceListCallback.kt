@@ -18,7 +18,6 @@ package com.maltaisn.recurpicker.list
 
 import com.maltaisn.recurpicker.Recurrence
 
-
 /**
  * Call back for the [RecurrenceListDialog].
  * Interface to be implemented by either the parent fragment of the dialog, the target fragment

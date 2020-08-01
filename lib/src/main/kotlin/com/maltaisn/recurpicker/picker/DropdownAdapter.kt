@@ -21,16 +21,14 @@ import android.widget.ArrayAdapter
 import android.widget.Filter
 import com.maltaisn.recurpicker.R
 
-
 /**
  * Custom AutoCompleteTextView adapter to disable filtering since we want it to act like a spinner.
  */
 internal class DropdownAdapter(context: Context, items: List<String> = mutableListOf()) :
-        ArrayAdapter<String>(context, R.layout.rp_item_dropdown, items) {
-    override fun getFilter(): Filter {
-        return object : Filter() {
-            override fun performFiltering(constraint: CharSequence?) = null
-            override fun publishResults(constraint: CharSequence?, results: FilterResults?) = Unit
-        }
+    ArrayAdapter<String>(context, R.layout.rp_item_dropdown, items) {
+
+    override fun getFilter() = object : Filter() {
+        override fun performFiltering(constraint: CharSequence?) = null
+        override fun publishResults(constraint: CharSequence?, results: FilterResults?) = Unit
     }
 }

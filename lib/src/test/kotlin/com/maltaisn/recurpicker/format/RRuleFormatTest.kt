@@ -22,7 +22,6 @@ import com.maltaisn.recurpicker.dateFor
 import org.junit.Test
 import kotlin.test.assertEquals
 
-
 internal class RRuleFormatTest {
 
     private val formatter = RRuleFormatter()
@@ -158,10 +157,8 @@ internal class RRuleFormatTest {
         formatter.parse("RRULE:FREQ=MONTHLY;BYDAY=-1FRI")
     }
 
-
     private fun testRRule(r: Recurrence, rrule: String) {
         assertEquals(rrule, formatter.format(r))
         assertEquals(r, formatter.parse(rrule))
     }
-
 }

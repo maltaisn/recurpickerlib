@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("MagicNumber")
+
 package com.maltaisn.recurpicker
 
 import android.os.Bundle
@@ -25,40 +27,40 @@ import com.maltaisn.recurpicker.RecurrencePickerSettings.Builder
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.*
-
+import java.util.ArrayList
+import java.util.Locale
 
 /**
  * A class for configuring the behavior of the recurrence list and picker dialogs.
  * The class is immutable, use the [Builder] to create it.
  */
 class RecurrencePickerSettings private constructor(
-        /**
-         * The recurrence formatter used to format the recurrences shown in the recurrence list dialog.
-         * The date format is also used to format the end dates in the recurrence picker.
-         */
-        val formatter: RecurrenceFormatter,
+    /**
+     * The recurrence formatter used to format the recurrences shown in the recurrence list dialog.
+     * The date format is also used to format the end dates in the recurrence picker.
+     */
+    val formatter: RecurrenceFormatter,
 
-        /**
-         * List of recurrence presets displayed in the recurrence list dialog.
-         * A `null` recurrence will be replaced by a "Custom..." item to customize recurrence.
-         * Hence, to disable the custom recurrence picker, set no `null` items.
-         * The default is a list of recurrences equivalent to "Does not repeat", "Daily",
-         * "Weekly", "Monthly", "Yearly", null ("Custom...").
-         */
-        val presets: List<Recurrence?>,
+    /**
+     * List of recurrence presets displayed in the recurrence list dialog.
+     * A `null` recurrence will be replaced by a "Custom..." item to customize recurrence.
+     * Hence, to disable the custom recurrence picker, set no `null` items.
+     * The default is a list of recurrences equivalent to "Does not repeat", "Daily",
+     * "Weekly", "Monthly", "Yearly", null ("Custom...").
+     */
+    val presets: List<Recurrence?>,
 
-        /**
-         * The recurrence shown by default in the recurrence picker.
-         * This is shown when no recurrence or a "Does not repeat" recurrence is selected.
-         */
-        val defaultPickerRecurrence: Recurrence,
+    /**
+     * The recurrence shown by default in the recurrence picker.
+     * This is shown when no recurrence or a "Does not repeat" recurrence is selected.
+     */
+    val defaultPickerRecurrence: Recurrence,
 
-        /** The maximum frequency that can be entered in the picker. Must be at least 1. */
-        val maxFrequency: Int,
+    /** The maximum frequency that can be entered in the picker. Must be at least 1. */
+    val maxFrequency: Int,
 
-        /** The maximum end count that can be entered in the picker. Must be at least 1. */
-        val maxEndCount: Int
+    /** The maximum end count that can be entered in the picker. Must be at least 1. */
+    val maxEndCount: Int
 ) : Parcelable {
 
     class Builder {
@@ -68,12 +70,12 @@ class RecurrencePickerSettings private constructor(
 
         /** @see RecurrencePickerSettings.presets */
         var presets: List<Recurrence?> = arrayListOf(
-                Recurrence.DOES_NOT_REPEAT,
-                Recurrence(Period.DAILY),
-                Recurrence(Period.WEEKLY),
-                Recurrence(Period.MONTHLY),
-                Recurrence(Period.YEARLY),
-                null)
+            Recurrence.DOES_NOT_REPEAT,
+            Recurrence(Period.DAILY),
+            Recurrence(Period.WEEKLY),
+            Recurrence(Period.MONTHLY),
+            Recurrence(Period.YEARLY),
+            null)
 
         /** @see RecurrencePickerSettings.defaultPickerRecurrence */
         var defaultPickerRecurrence: Recurrence = Recurrence(Period.DAILY)
@@ -93,7 +95,7 @@ class RecurrencePickerSettings private constructor(
             }
 
         fun build() = RecurrencePickerSettings(formatter, presets,
-                defaultPickerRecurrence, maxFrequency, maxEndCount)
+            defaultPickerRecurrence, maxFrequency, maxEndCount)
     }
 
     // Parcelable stuff
@@ -128,7 +130,6 @@ class RecurrencePickerSettings private constructor(
          * Utility function to create settings using constructor-like syntax.
          */
         inline operator fun invoke(init: Builder.() -> Unit = {}) = Builder().apply(init).build()
-
 
         private fun Bundle.getRecurrenceFormatter(): RecurrenceFormatter {
             val dateFormat = try {

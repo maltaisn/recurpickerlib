@@ -21,9 +21,9 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.maltaisn.recurpicker.Recurrence.Period
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.*
+import java.util.Calendar
+import java.util.GregorianCalendar
 import kotlin.test.assertEquals
-
 
 @RunWith(AndroidJUnit4::class)
 internal class RecurrenceParcelTest {
@@ -53,6 +53,4 @@ internal class RecurrenceParcelTest {
         val r2 = Recurrence.CREATOR.createFromParcel(parcel)
         assertEquals(r, r2)
     }
-
-
 }

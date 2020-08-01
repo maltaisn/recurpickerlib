@@ -22,7 +22,6 @@ import com.maltaisn.recurpicker.dateFor
 import org.junit.Test
 import kotlin.test.assertEquals
 
-
 @Suppress("DEPRECATION")
 class RecurrenceSerializerTest {
 
@@ -32,28 +31,33 @@ class RecurrenceSerializerTest {
     fun read_version1() {
         // Used to convert byte[] to hex string: https://stackoverflow.com/a/9855338/5288316
 
-        val a1 = hexStringToByteArray("00000064010000016D6BB9C60000000000000000010000000000000000000000000000000000000000")
+        val a1 = hexStringToByteArray("00000064010000016D6BB9C600000000000000000" +
+                "10000000000000000000000000000000000000000")
         assertEquals(Recurrence(Period.DAILY), serializer.read(a1))
 
-        val a2 = hexStringToByteArray("0000006400000000E8DF6BDA0000000001000000050000009400000000000000000000000000000000")
+        val a2 = hexStringToByteArray("0000006400000000E8DF6BDA00000000010000000" +
+                "50000009400000000000000000000000000000000")
         assertEquals(Recurrence(Period.WEEKLY) {
             frequency = 5
             setDaysOfWeek(Recurrence.MONDAY, Recurrence.WEDNESDAY, Recurrence.SATURDAY)
         }, serializer.read(a2))
 
-        val a3 = hexStringToByteArray("000000640000000176B72ABC800000000200000002000000020000000100000000000001941B15C880")
+        val a3 = hexStringToByteArray("000000640000000176B72ABC80000000020000000" +
+                "2000000020000000100000000000001941B15C880")
         assertEquals(Recurrence(Period.MONTHLY) {
             frequency = 2
             dayInMonth = -1
             endDate = dateFor("2024-12-31")
         }, serializer.read(a3))
 
-        val a4 = hexStringToByteArray("000000640000000176B72ABC80000000030000000100000000000000020000000C0000000000000000")
+        val a4 = hexStringToByteArray("000000640000000176B72ABC80000000030000000" +
+                "100000000000000020000000C0000000000000000")
         assertEquals(Recurrence(Period.YEARLY) {
             endCount = 12
         }, serializer.read(a4))
 
-        val a5 = hexStringToByteArray("00000064000000016941EC508000000002000000010000000100000000000000000000000000000000")
+        val a5 = hexStringToByteArray("00000064000000016941EC5080000000020000000" +
+                "10000000100000000000000000000000000000000")
         assertEquals(Recurrence(Period.MONTHLY) {
             setDayOfWeekInMonth(Recurrence.SUNDAY, 1)
         }, serializer.read(a5))
@@ -85,7 +89,8 @@ class RecurrenceSerializerTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun read_unknownVersion() {
-        serializer.read(hexStringToByteArray("00000000000000016941EC508000000002000000010000000100000000000000000000000000000000"))
+        serializer.read(hexStringToByteArray("00000000000000016941EC5080000000020000000" +
+                "10000000100000000000000000000000000000000"))
     }
 
     @Test(expected = IllegalArgumentException::class)
@@ -103,11 +108,9 @@ class RecurrenceSerializerTest {
         val data = ByteArray(len / 2)
         var i = 0
         while (i < len) {
-            data[i / 2] = ((Character.digit(s[i], 16) shl 4)
-                    + Character.digit(s[i + 1], 16)).toByte()
+            data[i / 2] = ((Character.digit(s[i], 16) shl 4) + Character.digit(s[i + 1], 16)).toByte()
             i += 2
         }
         return data
     }
-
 }

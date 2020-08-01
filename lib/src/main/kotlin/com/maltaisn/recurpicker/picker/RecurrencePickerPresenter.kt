@@ -17,6 +17,7 @@
 package com.maltaisn.recurpicker.picker
 
 import android.os.Bundle
+import com.maltaisn.recurpicker.CALENDAR_LAST_WEEK_IN_MONTH
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.EndType
 import com.maltaisn.recurpicker.Recurrence.Period
@@ -24,8 +25,7 @@ import com.maltaisn.recurpicker.RecurrencePickerSettings
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.View
-import java.util.*
-
+import java.util.Calendar
 
 /**
  * Fragment used to create a custom recurrence with nearly all available options.
@@ -39,7 +39,6 @@ internal class RecurrencePickerPresenter : Presenter {
     private val settings: RecurrencePickerSettings
         get() = view!!.settings
 
-
     private var period = Period.NONE
     private var frequency = 0
     private var daysOfWeek = 0
@@ -49,7 +48,6 @@ internal class RecurrencePickerPresenter : Presenter {
     private var endCount = 0
 
     private val startDateCal = Calendar.getInstance()
-
 
     override fun attach(view: View, state: Bundle?) {
         check(this.view == null) { "Presenter already attached." }
@@ -74,7 +72,6 @@ internal class RecurrencePickerPresenter : Presenter {
             endDate = r.endDate
             endCount = r.endCountOrDefault
             setDefaultEndDate()
-
         } else {
             // Read saved state.
             period = state.getSerializable("period") as Period
@@ -320,7 +317,7 @@ internal class RecurrencePickerPresenter : Presenter {
     private val startWeekInMonth: Int
         get() {
             val weekInMonth = startDateCal[Calendar.DAY_OF_WEEK_IN_MONTH]
-            return if (weekInMonth == 5) -1 else weekInMonth
+            return if (weekInMonth == CALENDAR_LAST_WEEK_IN_MONTH) -1 else weekInMonth
         }
 
     private val startDayOfWeek: Int
@@ -362,7 +359,6 @@ internal class RecurrencePickerPresenter : Presenter {
     private val Recurrence.endCountOrDefault: Int
         get() = if (this.endCount == 0) 1 else this.endCount
 
-
     /**
      * Build the recurrence described by the user.
      */
@@ -375,7 +371,6 @@ internal class RecurrencePickerPresenter : Presenter {
         if (period == Period.WEEKLY && daysOfWeek != (1 shl startDateCal[Calendar.DAY_OF_WEEK])) {
             // If recurring on the same day of the week as start date's, leave default value.
             setDaysOfWeek(daysOfWeek)
-
         } else if (period == Period.MONTHLY) {
             when (monthlySettingIndex) {
                 1 -> setDayOfWeekInMonth(1 shl startDayOfWeek, startWeekInMonth)
@@ -384,5 +379,4 @@ internal class RecurrencePickerPresenter : Presenter {
             }
         }
     }
-
 }

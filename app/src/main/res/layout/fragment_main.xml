@@ -33,9 +33,9 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/toolbar_layout"
+            android:theme="?toolbarThemeOverlay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="?toolbarThemeOverlay"
             >
 
             <com.google.android.material.appbar.MaterialToolbar

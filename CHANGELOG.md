@@ -1,3 +1,7 @@
+### v2.1.2
+- Added support for changing time zone in `RecurrenceFinder`.
+- `RecurrenceFinder` now returns an empty list instead of an exception when trying to find 0 events.
+
 ### v2.1.1
 - `RecurrencePickerFragment` now handles back press by itself.
 

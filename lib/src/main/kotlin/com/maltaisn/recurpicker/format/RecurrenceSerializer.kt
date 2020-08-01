@@ -16,12 +16,12 @@
 
 package com.maltaisn.recurpicker.format
 
+import com.maltaisn.recurpicker.CALENDAR_LAST_WEEK_IN_MONTH
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.EndType
 import com.maltaisn.recurpicker.Recurrence.Period
 import java.nio.ByteBuffer
-import java.util.*
-
+import java.util.Calendar
 
 /**
  * Utility class to write a [Recurrence] as a byte array and read it back.
@@ -43,7 +43,7 @@ class RecurrenceSerializer {
         return when (bb.int) {
             VERSION_1 -> {
                 require(bb.remaining() >= VERSION_1_LENGTH) { "Invalid length." }
-                bb.get()  // Discard default flag byte
+                bb.get() // Discard default flag byte
                 val startDate = bb.long
 
                 Recurrence(Period.values()[bb.int + 1]) {
@@ -58,7 +58,7 @@ class RecurrenceSerializer {
                             1 -> {
                                 calendar.timeInMillis = startDate
                                 var weekInMonth = calendar[Calendar.DAY_OF_WEEK_IN_MONTH]
-                                if (weekInMonth == 5) weekInMonth = -1
+                                if (weekInMonth == CALENDAR_LAST_WEEK_IN_MONTH) weekInMonth = -1
                                 setDayOfWeekInMonth(1 shl calendar[Calendar.DAY_OF_WEEK], weekInMonth)
                             }
                             2 -> dayInMonth = -1
@@ -94,7 +94,7 @@ class RecurrenceSerializer {
     /**
      * Write a [recurrence][r] to a byte array and return it.
      */
-    fun write(r: Recurrence): ByteArray = ByteBuffer.allocate(25).apply {
+    fun write(r: Recurrence): ByteArray = ByteBuffer.allocate(VERSION_2_LENGTH_TOTAL).apply {
         putInt(VERSION)
         put(r.period.ordinal.toByte())
         putInt(r.frequency)
@@ -104,7 +104,6 @@ class RecurrenceSerializer {
         putInt(r.endCount)
         putLong(r.endDate)
     }.array()
-
 
     companion object {
         /**
@@ -138,8 +137,8 @@ class RecurrenceSerializer {
          */
         private const val VERSION_2 = 101
         private const val VERSION_2_LENGTH = 21
+        private const val VERSION_2_LENGTH_TOTAL = 25
 
         private const val VERSION = VERSION_2
     }
-
 }

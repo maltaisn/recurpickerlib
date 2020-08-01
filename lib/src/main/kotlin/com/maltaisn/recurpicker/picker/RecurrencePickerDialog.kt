@@ -19,10 +19,12 @@ package com.maltaisn.recurpicker.picker
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.LayoutInflater
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
@@ -43,14 +45,13 @@ import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import com.maltaisn.recurpicker.getCallback
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
 
-
 /**
  * Dialog fragment used to create a custom recurrence with nearly all available options.
  * Provides all the options available in [RecurrencePickerFragment], only in a more compact way.
  * Note: due to the MVP architecture, some interface methods are public but shouldn't be used.
  */
 class RecurrencePickerDialog : DialogFragment(),
-        RecurrencePickerContract.View, DateDialogFragment.Callback {
+    RecurrencePickerContract.View, DateDialogFragment.Callback {
 
     private var presenter: Presenter? = null
 
@@ -106,7 +107,6 @@ class RecurrencePickerDialog : DialogFragment(),
      */
     var showTitle = false
 
-
     @SuppressLint("InflateParams")
     override fun onCreateDialog(state: Bundle?): Dialog {
         if (state != null) {
@@ -124,9 +124,22 @@ class RecurrencePickerDialog : DialogFragment(),
         val contextWrapper = ContextThemeWrapper(context, style)
         val localInflater = LayoutInflater.from(contextWrapper)
 
-        // Inflate layout
         val view = localInflater.inflate(R.layout.rp_dialog_picker, null, false)
+        setupViews(contextWrapper, view)
 
+        // Attach the presenter
+        presenter = RecurrencePickerPresenter()
+        presenter?.attach(this, state)
+
+        return MaterialAlertDialogBuilder(contextWrapper)
+            .setView(view)
+            .setTitle(if (showTitle) getString(R.string.rp_picker_title) else null)
+            .setPositiveButton(R.string.rp_picker_done) { _, _ -> presenter?.onConfirm() }
+            .setNegativeButton(R.string.rp_picker_cancel) { _, _ -> presenter?.onCancel() }
+            .create()
+    }
+
+    private fun setupViews(context: Context, view: View) {
         // Frequency
         frequencyInput = view.findViewById(R.id.rp_picker_freq_input)
         frequencyInput.addTextChangedListener {
@@ -139,13 +152,18 @@ class RecurrencePickerDialog : DialogFragment(),
 
         // Period
         periodDropdown = view.findViewById(R.id.rp_picker_period_dropdown)
-        periodAdapter = DropdownAdapter(contextWrapper)
+        periodAdapter = DropdownAdapter(context)
         periodDropdown.setAdapter(periodAdapter)
         periodDropdown.setOnItemClickListener { _, _, position, _ ->
             presenter?.onPeriodItemSelected(position)
-            periodDropdown.requestLayout()  // Force view to wrap width to new text
+            periodDropdown.requestLayout() // Force view to wrap width to new text
         }
 
+        setupPeriodRelatedViews(context, view)
+        setupEndViews(context, view)
+    }
+
+    private fun setupPeriodRelatedViews(context: Context, view: View) {
         // Days of the week
         weeklyGroup = view.findViewById(R.id.rp_picker_weekly_group)
         val weekBtnTa = resources.obtainTypedArray(R.array.rp_picker_week_btn_ids)
@@ -161,19 +179,21 @@ class RecurrencePickerDialog : DialogFragment(),
         // Monthly setting
         monthlyGroup = view.findViewById(R.id.rp_picker_monthly_group)
         monthlyDropdown = view.findViewById(R.id.rp_picker_monthly_dropdown)
-        monthlyAdapter = DropdownAdapter(contextWrapper)
+        monthlyAdapter = DropdownAdapter(context)
         monthlyDropdown.setAdapter(monthlyAdapter)
         monthlyDropdown.setOnItemClickListener { _, _, position, _ ->
             presenter?.onMonthlySettingItemSelected(position)
         }
+    }
 
+    private fun setupEndViews(context: Context, view: View) {
         // End dropdown
         endDropdown = view.findViewById(R.id.rp_picker_end_dropdown)
         endAdapterList = mutableListOf(
-                getString(R.string.rp_picker_end_never),
-                getString(R.string.rp_picker_end_date_prefix_fallback),
-                getString(R.string.rp_picker_end_count_prefix_fallback))
-        endAdapter = DropdownAdapter(contextWrapper, endAdapterList)
+            getString(R.string.rp_picker_end_never),
+            getString(R.string.rp_picker_end_date_prefix_fallback),
+            getString(R.string.rp_picker_end_count_prefix_fallback))
+        endAdapter = DropdownAdapter(context, endAdapterList)
         endDropdown.setAdapter(endAdapter)
         endDropdown.setOnItemClickListener { _, _, position, _ ->
             when (position) {
@@ -200,17 +220,6 @@ class RecurrencePickerDialog : DialogFragment(),
             if (actionId == EditorInfo.IME_ACTION_DONE) endCountInput.clearFocus()
             false
         }
-
-        // Attach the presenter
-        presenter = RecurrencePickerPresenter()
-        presenter?.attach(this, state)
-
-        return MaterialAlertDialogBuilder(contextWrapper)
-                .setView(view)
-                .setTitle(if (showTitle) getString(R.string.rp_picker_title) else null)
-                .setPositiveButton(R.string.rp_picker_done) { _, _ -> presenter?.onConfirm() }
-                .setNegativeButton(R.string.rp_picker_cancel) { _, _ -> presenter?.onCancel() }
-                .create()
     }
 
     override fun onCancel(dialog: DialogInterface) {
@@ -254,8 +263,7 @@ class RecurrencePickerDialog : DialogFragment(),
         get() = requireContext().getString(R.string.rp_picker_end_date)
 
     override fun getEndCountTextFor(count: Int) =
-            resources.getQuantityString(R.plurals.rp_picker_end_count, count)
-
+        resources.getQuantityString(R.plurals.rp_picker_end_count, count)
 
     override fun exit() {
         dismiss()
@@ -284,7 +292,7 @@ class RecurrencePickerDialog : DialogFragment(),
 
     override fun setSelectedPeriodItem(index: Int) {
         periodDropdown.setText(periodAdapter.getItem(index))
-        periodDropdown.requestLayout()  // Force view to wrap width to new text
+        periodDropdown.requestLayout() // Force view to wrap width to new text
     }
 
     override fun setWeekBtnsShown(shown: Boolean) {
@@ -303,9 +311,13 @@ class RecurrencePickerDialog : DialogFragment(),
         monthlyAdapter.clear()
 
         val res = resources
-        monthlyAdapter.add(res.getString(R.string.rp_format_monthly_same_day))  // on the same day each month
-        monthlyAdapter.add(RecurrenceFormatter.getDayOfWeekInMonthText(res, dayOfWeekInMonth, weekInMonth))  // on every <first> <Sunday>
-        if (showLastDay) monthlyAdapter.add(res.getString(R.string.rp_format_monthly_last_day))  // on the last day of the month
+        monthlyAdapter.add(res.getString(R.string.rp_format_monthly_same_day)) // on the same day each month
+        monthlyAdapter.add(RecurrenceFormatter.getDayOfWeekInMonthText(
+            res, dayOfWeekInMonth, weekInMonth)) // on every <first> <Sunday>
+        if (showLastDay) {
+            // on the last day of the month
+            monthlyAdapter.add(res.getString(R.string.rp_format_monthly_last_day))
+        }
     }
 
     override fun setSelectedMonthlySettingItem(index: Int) {
@@ -322,7 +334,7 @@ class RecurrencePickerDialog : DialogFragment(),
 
     override fun setEndDateView(date: String) {
         endDateInput.setText(date)
-        endDateInput.requestLayout()  // Force view to wrap width to new text
+        endDateInput.requestLayout() // Force view to wrap width to new text
     }
 
     override fun setEndDateViewEnabled(enabled: Boolean) {
@@ -380,7 +392,7 @@ class RecurrencePickerDialog : DialogFragment(),
     private fun setEndDropdownItemChecked(index: Int, checked: Boolean) {
         if (checked) {
             endDropdown.setText(endAdapterList[index])
-            endDropdown.requestLayout()  // Force view to wrap width to new text
+            endDropdown.requestLayout() // Force view to wrap width to new text
             endDateGroup.isVisible = (index == 1)
             endCountGroup.isVisible = (index == 2)
         }
@@ -398,5 +410,4 @@ class RecurrencePickerDialog : DialogFragment(),
             return dialog
         }
     }
-
 }

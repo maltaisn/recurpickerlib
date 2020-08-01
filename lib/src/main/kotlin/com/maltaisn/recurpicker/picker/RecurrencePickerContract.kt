@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
+@file:Suppress("TooManyFunctions")
+
 package com.maltaisn.recurpicker.picker
 
 import com.maltaisn.recurpicker.BaseContract
 import com.maltaisn.recurpicker.Recurrence
-
 
 internal interface RecurrencePickerContract {
 
@@ -74,5 +75,4 @@ internal interface RecurrencePickerContract {
         fun onEndDateEntered(date: Long)
         fun onEndCountChanged(endCountStr: String)
     }
-
 }

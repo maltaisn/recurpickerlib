@@ -30,8 +30,7 @@ import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.junit.MockitoJUnitRunner
 import java.text.SimpleDateFormat
-import java.util.*
-
+import java.util.Calendar
 
 @RunWith(MockitoJUnitRunner::class)
 internal class RecurrencePickerPresenterAttachTest {
@@ -318,5 +317,4 @@ internal class RecurrencePickerPresenterAttachTest {
             verify(view).setWeekBtnChecked(day, (daysBf and (1 shl day)) != 0)
         }
     }
-
 }

@@ -19,8 +19,9 @@ package com.maltaisn.recurpicker.list
 import android.os.Bundle
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.RecurrencePickerSettings
-import com.maltaisn.recurpicker.list.RecurrenceListContract.*
-
+import com.maltaisn.recurpicker.list.RecurrenceListContract.ItemView
+import com.maltaisn.recurpicker.list.RecurrenceListContract.Presenter
+import com.maltaisn.recurpicker.list.RecurrenceListContract.View
 
 internal open class RecurrenceListPresenter : Presenter {
 
@@ -32,7 +33,6 @@ internal open class RecurrenceListPresenter : Presenter {
     private val recurrences = mutableListOf<Recurrence?>()
     private var checkedPos = -1
 
-
     override fun attach(view: View, state: Bundle?) {
         check(this.view == null) { "Presenter already attached." }
         this.view = view
@@ -41,13 +41,7 @@ internal open class RecurrenceListPresenter : Presenter {
             val selected = view.selectedRecurrence
             if (selected != null) {
                 // Check if selected recurrence matches any of the presets.
-                checkedPos = -1
-                for ((i, preset) in settings.presets.withIndex()) {
-                    if (selected == preset) {
-                        checkedPos = i
-                        break
-                    }
-                }
+                checkedPos = settings.presets.indexOf(selected)
 
                 // No match found, add recurrence as top item.
                 if (checkedPos == -1) {
@@ -58,7 +52,6 @@ internal open class RecurrenceListPresenter : Presenter {
 
             // Add presets to the list.
             recurrences += settings.presets
-
         } else {
             checkedPos = state.getInt("checkedPos")
             recurrences += state.getParcelableArrayList<Recurrence?>("recurrences")!!
@@ -100,9 +93,7 @@ internal open class RecurrenceListPresenter : Presenter {
         if (recurrence == null) {
             itemView.bindCustomView()
         } else {
-            itemView.bindRecurrenceView(settings.formatter, recurrence,
-                    view!!.startDate, pos == checkedPos)
+            itemView.bindRecurrenceView(settings.formatter, recurrence, view!!.startDate, pos == checkedPos)
         }
     }
-
 }

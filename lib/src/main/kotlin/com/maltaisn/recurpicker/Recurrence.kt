@@ -16,18 +16,26 @@
 
 package com.maltaisn.recurpicker
 
-
+import android.annotation.SuppressLint
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.IntDef
-import com.maltaisn.recurpicker.Recurrence.*
 import com.maltaisn.recurpicker.Recurrence.Companion.DATE_NONE
-import com.maltaisn.recurpicker.Recurrence.Period.*
+import com.maltaisn.recurpicker.Recurrence.DaysOfWeek
+import com.maltaisn.recurpicker.Recurrence.EndType
+import com.maltaisn.recurpicker.Recurrence.Period
+import com.maltaisn.recurpicker.Recurrence.Period.DAILY
+import com.maltaisn.recurpicker.Recurrence.Period.MONTHLY
+import com.maltaisn.recurpicker.Recurrence.Period.NONE
+import com.maltaisn.recurpicker.Recurrence.Period.WEEKLY
+import com.maltaisn.recurpicker.Recurrence.Period.YEARLY
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 import kotlin.math.abs
+import kotlin.math.absoluteValue
 
 /**
  * An object describing a recurrence rule.
@@ -39,7 +47,7 @@ import kotlin.math.abs
  * For example, if period is daily and frequency is 2, events will happen every 2 days.
  * Frequency of [Period.NONE] recurrences is always 1.
  *
- * @property byDay First bit is `1` if the value is used, `0` otherwise.
+ * @property byDay Least-significant bit is `1` if the value is used, `0` otherwise.
  *
  * If period is [WEEKLY], this value is a bit field of the days of the week on which
  * a weekly recurrence occurs. Bit field valid flags are the [DaysOfWeek] constants.
@@ -50,9 +58,12 @@ import kotlin.math.abs
  * indicating on which week of the month that the events happen, to which 4 is added.
  * Negative values start counting from the end of the month.
  *
+ * `week in month = (byDay >>> 8) - 4`: between -4 and 4.
+ *
  * @property byMonthDay If period is [MONTHLY], the day of the month on which the events happen.
  * The number must be between -31 and 31. If the value is `0` (the default),
  * the events will happen on the same day of the month as the start date's.
+ * The value can also be `0` if [byDay] determines the day of the month instead.
  * Negative numbers start counting from the end of the month.
  *
  * @property endType The rule for the recurrence end, see [EndType].
@@ -65,14 +76,15 @@ import kotlin.math.abs
  * the number of events never includes the start date event.
  */
 class Recurrence private constructor(
-        val period: Period,
-        val frequency: Int,
-        val byDay: Int,
-        val byMonthDay: Int,
-        val endType: EndType,
-        val endDate: Long,
-        val endCount: Int,
-        private val calendar: Calendar) : Parcelable {
+    val period: Period,
+    val frequency: Int,
+    val byDay: Int,
+    val byMonthDay: Int,
+    val endType: EndType,
+    val endDate: Long,
+    val endCount: Int,
+    private val calendar: Calendar
+) : Parcelable {
 
     /**
      * If period is [MONTHLY], get the week of the month on which the events happen.
@@ -81,7 +93,7 @@ class Recurrence private constructor(
     val weekInMonth: Int
         get() {
             check(period == MONTHLY) { "Week in month is a monthly recurrence property." }
-            return (byDay shr 8) - 4
+            return (byDay ushr Byte.SIZE_BITS) - MAX_WEEKS_IN_MONTH
         }
 
     /**
@@ -118,109 +130,112 @@ class Recurrence private constructor(
     override fun equals(other: Any?): Boolean {
         if (other === this) return true
         if (other !is Recurrence) return false
-        return period == other.period
-                && frequency == other.frequency
-                && byDay == other.byDay
-                && byMonthDay == other.byMonthDay
-                && endType == other.endType
-                && endCount == other.endCount
-                && getDaysInDate(endDate, calendar) == getDaysInDate(other.endDate, calendar)
+        return period == other.period &&
+                frequency == other.frequency &&
+                byDay == other.byDay &&
+                byMonthDay == other.byMonthDay &&
+                endType == other.endType &&
+                endCount == other.endCount &&
+                getDaysInDate(endDate, calendar) == getDaysInDate(other.endDate, calendar)
     }
 
     override fun hashCode(): Int = arrayOf(period, frequency, byDay, byMonthDay,
-            endType, getDaysInDate(endDate, calendar), endCount).contentHashCode()
+        endType, getDaysInDate(endDate, calendar), endCount).contentHashCode()
 
     /**
      * Return a human readable string representation of the recurrence.
      * This is only for debug purposes and will not even work on release builds.
      * [RecurrenceFormatter] should be used instead.
      */
-    override fun toString(): String {
-        if (BuildConfig.DEBUG) {
-            val dfs = DateFormatSymbols.getInstance(Locale.ENGLISH)
+    override fun toString() = if (BuildConfig.DEBUG) {
+        val sb = StringBuilder()
+        sb.append("Recurrence{ ")
 
-            val sb = StringBuilder()
-            sb.append("Recurrence{ ")
-
-            when (period) {
-                NONE -> {
-                    sb.append("Does not repeat")
-                }
-                DAILY -> {
-                    sb.append("Every ")
-                    sb.append(toStringPlural("day", frequency, false))
-                }
-                WEEKLY -> {
-                    sb.append("Every ")
-                    sb.append(toStringPlural("week", frequency, false))
-
-                    // Append a list of days of week
-                    sb.append(" on ")
-                    if (byDay == EVERY_DAY_OF_WEEK) {
-                        // on every day of the week
-                        sb.append("every day of the week")
-                    } else {
-                        // on [Sun, Mon, Wed, ...]
-                        for (day in Calendar.SUNDAY..Calendar.SATURDAY) {
-                            if (isRecurringOnDaysOfWeek(1 shl day)) {
-                                sb.append(dfs.shortWeekdays[day])
-                                sb.append(", ")
-                            }
-                        }
-                        sb.delete(sb.length - 2, sb.length)  // Remove extra separator
-                    }
-                }
-                MONTHLY -> {
-                    sb.append("Every ")
-                    sb.append(toStringPlural("month", frequency, false))
-
-                    // Append additional monthly setting
-                    sb.append(" (on ")
-                    sb.append(when {
-                        byDay != 0 -> {
-                            val ordinals = arrayOf("first", "second", "third", "fourth")
-                            dfs.weekdays[dayOfWeekInMonth] + " of the " + when {
-                                weekInMonth == -1 -> "last"
-                                weekInMonth < 0 -> ordinals[abs(weekInMonth) - 1] + " to last"
-                                else -> ordinals[weekInMonth - 1]
-                            } + " week"
-                        }
-                        byMonthDay == 0 -> {
-                            "the same day each month"
-                        }
-                        byMonthDay == -1 -> {
-                            "the last day of the month"
-                        }
-                        byMonthDay < 0 -> {
-                            "${-byMonthDay} days before the end of the month"
-                        }
-                        else -> {
-                            "the $byMonthDay of each month"
-                        }
-                    })
-                    sb.append(')')
-                }
-                YEARLY -> {
-                    sb.append("Every ")
-                    sb.append(toStringPlural("year", frequency, false))
-                }
-            }
-
-            if (endType != EndType.NEVER) {
-                sb.append("; ")
-                if (endType == EndType.BY_DATE) {
-                    val df = SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH)
-                    sb.append("until ")
-                    sb.append(df.format(endDate))
-                } else {
-                    sb.append("for ")
-                    sb.append(toStringPlural("event", endCount, true))
-                }
-            }
-            sb.append(" }")
-            return sb.toString()
+        when (period) {
+            NONE -> sb.append("Does not repeat")
+            DAILY -> appendPeriodDetails(sb, "day")
+            WEEKLY -> appendWeeklyDetails(sb)
+            MONTHLY -> appendMonthlyDetails(sb)
+            YEARLY -> appendPeriodDetails(sb, "year")
         }
-        return super.toString()
+
+        appendEndTypeDetails(sb)
+
+        sb.append(" }")
+        sb.toString()
+    } else {
+        super.toString()
+    }
+
+    private fun appendPeriodDetails(sb: StringBuilder, name: String) {
+        sb.append("Every ")
+        sb.append(toStringPlural(name, frequency, false))
+    }
+
+    private fun appendWeeklyDetails(sb: StringBuilder) {
+        appendPeriodDetails(sb, "week")
+
+        // Append a list of days of week
+        sb.append(" on ")
+        if (byDay == EVERY_DAY_OF_WEEK) {
+            // on every day of the week
+            sb.append("every day of the week")
+        } else {
+            // on [Sun, Mon, Wed, ...]
+            val dfs = DateFormatSymbols.getInstance(Locale.ENGLISH)
+            for (day in Calendar.SUNDAY..Calendar.SATURDAY) {
+                if (isRecurringOnDaysOfWeek(1 shl day)) {
+                    sb.append(dfs.shortWeekdays[day])
+                    sb.append(", ")
+                }
+            }
+            sb.delete(sb.length - 2, sb.length) // Remove extra separator
+        }
+    }
+
+    private fun appendMonthlyDetails(sb: StringBuilder) {
+        appendPeriodDetails(sb, "month")
+
+        // Append additional monthly setting
+        sb.append(" (on ")
+        sb.append(when {
+            byDay != 0 -> {
+                val dfs = DateFormatSymbols.getInstance(Locale.ENGLISH)
+                val ordinals = arrayOf("first", "second", "third", "fourth")
+                dfs.weekdays[dayOfWeekInMonth] + " of the " + when {
+                    weekInMonth == -1 -> "last"
+                    weekInMonth < 0 -> ordinals[abs(weekInMonth) - 1] + " to last"
+                    else -> ordinals[weekInMonth - 1]
+                } + " week"
+            }
+            byMonthDay == 0 -> {
+                "the same day each month"
+            }
+            byMonthDay == -1 -> {
+                "the last day of the month"
+            }
+            byMonthDay < 0 -> {
+                "${-byMonthDay} days before the end of the month"
+            }
+            else -> {
+                "the $byMonthDay of each month"
+            }
+        })
+        sb.append(')')
+    }
+
+    private fun appendEndTypeDetails(sb: StringBuilder) {
+        if (endType != EndType.NEVER) {
+            sb.append("; ")
+            if (endType == EndType.BY_DATE) {
+                val df = SimpleDateFormat("MMM d, yyyy", Locale.ENGLISH)
+                sb.append("until ")
+                sb.append(df.format(endDate))
+            } else {
+                sb.append("for ")
+                sb.append(toStringPlural("event", endCount, true))
+            }
+        }
     }
 
     private fun toStringPlural(text: String, quantity: Int, alwaysIncludeQuantity: Boolean): String {
@@ -230,7 +245,6 @@ class Recurrence private constructor(
             quantity.toString() + " " + text + "s"
         }
     }
-
 
     /**
      * Builder for recurrence.
@@ -322,6 +336,7 @@ class Recurrence private constructor(
         fun setDaysOfWeek(@DaysOfWeek vararg days: Int) {
             check(period == WEEKLY) { "Period must be weekly to set the list of days of the week." }
             byDay = 1
+            @SuppressLint("WrongConstant")
             for (day in days) {
                 require(day in 0..EVERY_DAY_OF_WEEK) { "Day of the week flag is invalid." }
                 byDay = byDay or day
@@ -336,7 +351,7 @@ class Recurrence private constructor(
             get() = byMonthDay
             set(value) {
                 check(period == MONTHLY) { "Period must be monthly to set the day in month." }
-                require(value in -31..31) { "Day in month must be between -31 and 31." }
+                require(value.absoluteValue <= MAX_DAYS_IN_MONTH) { "Day in month must be between -31 and 31." }
                 byDay = 0
                 byMonthDay = value
             }
@@ -352,8 +367,8 @@ class Recurrence private constructor(
         fun setDayOfWeekInMonth(day: Int, week: Int) {
             check(period == MONTHLY) { "Period must be monthly to set the day of week in month." }
             require(Integer.bitCount(day) == 1 && day in SUNDAY..SATURDAY) { "Day of the week flag is invalid." }
-            require(week in -4..4 && week != 0) { "Week of the month is invalid." }
-            byDay = 0x01 or day or ((week + 4) shl 8)
+            require(week.absoluteValue <= MAX_WEEKS_IN_MONTH && week != 0) { "Week of the month is invalid." }
+            byDay = 0x01 or day or ((week + MAX_WEEKS_IN_MONTH) shl Byte.SIZE_BITS)
             byMonthDay = 0
         }
 
@@ -371,7 +386,6 @@ class Recurrence private constructor(
             if (period == NONE || endType == EndType.BY_DATE && endDate == DATE_NONE) {
                 // Does not repeat or end by date set but no end date set.
                 endType = EndType.NEVER
-
             } else if (endType == EndType.BY_COUNT && endCount < 1) {
                 // Recurrence ends after less than one event so make it non-recurring.
                 period = NONE
@@ -387,7 +401,6 @@ class Recurrence private constructor(
             return Recurrence(period, frequency, byDay, byMonthDay, endType, endDate, endCount, calendar)
         }
     }
-
 
     enum class Period {
         /**
@@ -418,7 +431,6 @@ class Recurrence private constructor(
         YEARLY
     }
 
-
     /**
      * Int def for the [byDay] bit field property.
      */
@@ -426,16 +438,16 @@ class Recurrence private constructor(
     @Retention(AnnotationRetention.SOURCE)
     annotation class DaysOfWeek
 
-
     enum class EndType {
         /** Recurrence will never end. */
         NEVER,
+
         /** Recurrence will end on a date. */
         BY_DATE,
+
         /** Recurrence will end after a number of events. */
         BY_COUNT
     }
-
 
     companion object {
         // Bit flags for days of the week bit field
@@ -459,6 +471,10 @@ class Recurrence private constructor(
         @JvmField
         val DOES_NOT_REPEAT = Recurrence(NONE)
 
+        private const val MAX_DAYS_IN_YEAR = 366
+        private const val MAX_DAYS_IN_MONTH = 31
+        private const val MAX_WEEKS_IN_MONTH = 4
+
         /**
          * Inline factory function to create a [Recurrence] without directly using the builder.
          */
@@ -477,40 +493,10 @@ class Recurrence private constructor(
             return builder.build()
         }
 
-        /**
-         * Compare [this] date with another [date], ignoring time of the day.
-         * Returns `-1` if [this] is on a day before [date].
-         * Returns `0` if [this] is on same day as [date].
-         * Returns `1` if [this] is on a day after [date].
-         */
-        internal fun Long.compareDay(date: Long, calendar: Calendar): Int {
-            // Special cases since DATE_NONE makes calendar overflow.
-            when {
-                date == DATE_NONE && this == DATE_NONE -> return 0
-                date == DATE_NONE || this == DATE_NONE -> throw IllegalArgumentException("Cannot compare dates.")
-            }
-
-            calendar.timeInMillis = this
-            val year1 = calendar[Calendar.YEAR]
-            val day1 = calendar[Calendar.DAY_OF_YEAR]
-
-            calendar.timeInMillis = date
-            val year2 = calendar[Calendar.YEAR]
-            val day2 = calendar[Calendar.DAY_OF_YEAR]
-
-            return when {
-                year1 > year2 -> 1
-                year1 < year2 -> -1
-                day1 > day2 -> 1
-                day1 < day2 -> -1
-                else -> 0
-            }
-        }
-
         private fun getDaysInDate(date: Long, calendar: Calendar): Int {
             if (date == DATE_NONE) return 0
             calendar.timeInMillis = date
-            return calendar[Calendar.YEAR] * 366 + calendar[Calendar.DAY_OF_YEAR]
+            return calendar[Calendar.YEAR] * MAX_DAYS_IN_YEAR + calendar[Calendar.DAY_OF_YEAR]
         }
 
         @JvmField
@@ -522,14 +508,14 @@ class Recurrence private constructor(
 
     // Parcelable stuff
     private constructor(parcel: Parcel) : this(
-            parcel.readSerializable() as Period,
-            parcel.readInt(),
-            parcel.readInt(),
-            parcel.readInt(),
-            parcel.readSerializable() as EndType,
-            parcel.readLong(),
-            parcel.readInt(),
-            Calendar.getInstance())
+        parcel.readSerializable() as Period,
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readInt(),
+        parcel.readSerializable() as EndType,
+        parcel.readLong(),
+        parcel.readInt(),
+        Calendar.getInstance())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.apply {
@@ -544,5 +530,4 @@ class Recurrence private constructor(
     }
 
     override fun describeContents() = 0
-
 }

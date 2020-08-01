@@ -18,7 +18,6 @@ package com.maltaisn.recurpicker.picker
 
 import com.maltaisn.recurpicker.Recurrence
 
-
 /**
  * Interface to be implemented by either the parent fragment of this fragment, the target fragment
  * or the parent activity. If none of these implements it, there won't be any callback.
@@ -35,5 +34,4 @@ interface RecurrencePickerCallback {
      * or if the recurrence picker dialog is cancelled by click outside or "Cancel" button.
      */
     fun onRecurrencePickerCancelled() = Unit
-
 }

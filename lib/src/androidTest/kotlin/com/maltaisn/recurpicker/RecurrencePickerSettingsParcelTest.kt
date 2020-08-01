@@ -23,9 +23,9 @@ import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.text.DateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.GregorianCalendar
 import kotlin.test.assertEquals
-
 
 @RunWith(AndroidJUnit4::class)
 internal class RecurrencePickerSettingsParcelTest {
@@ -55,5 +55,4 @@ internal class RecurrencePickerSettingsParcelTest {
         assertEquals(settings.maxEndCount, settings2.maxEndCount)
         assertEquals(settings.maxFrequency, settings2.maxFrequency)
     }
-
 }

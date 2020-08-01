@@ -18,7 +18,11 @@ package com.maltaisn.recurpicker.list
 
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.RecurrencePickerSettings
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,7 +30,6 @@ import org.mockito.ArgumentMatchers.anyBoolean
 import org.mockito.ArgumentMatchers.anyLong
 import org.mockito.junit.MockitoJUnitRunner
 import kotlin.test.assertEquals
-
 
 @RunWith(MockitoJUnitRunner::class)
 internal class RecurrenceListPresenterTest {
@@ -37,9 +40,9 @@ internal class RecurrenceListPresenterTest {
     private val presenter = RecurrenceListPresenter()
     private val settings = RecurrencePickerSettings {
         presets = listOf(
-                Recurrence(Recurrence.Period.NONE),
-                Recurrence(Recurrence.Period.DAILY),
-                null)
+            Recurrence(Recurrence.Period.NONE),
+            Recurrence(Recurrence.Period.DAILY),
+            null)
     }
 
     @Before
@@ -120,6 +123,4 @@ internal class RecurrenceListPresenterTest {
         verify(view).setCancelResult()
         verify(view).exit()
     }
-
-
 }

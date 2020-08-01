@@ -39,7 +39,6 @@ import com.maltaisn.recurpicker.picker.RecurrencePickerDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerFragment
 import java.text.DateFormat
 
-
 /**
  * The main fragment.
  *
@@ -47,7 +46,7 @@ import java.text.DateFormat
  * This way, callbacks are retained across configuration changes without memory leaks.
  */
 class MainFragment : Fragment(), DateDialogFragment.Callback,
-        RecurrenceListCallback, RecurrencePickerCallback {
+    RecurrenceListCallback, RecurrencePickerCallback {
 
     // Recurrence list and picker fragments
     private val listDialog by lazy { RecurrenceListDialog.newInstance(settings) }
@@ -64,12 +63,12 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
 
     // Recurrence presets used in the recurrence list dialog.
     private val recurrencePresets = mutableListOf(
-            Recurrence.DOES_NOT_REPEAT,
-            Recurrence(Period.DAILY),
-            Recurrence(Period.WEEKLY),
-            Recurrence(Period.MONTHLY),
-            Recurrence(Period.YEARLY),
-            null)
+        Recurrence.DOES_NOT_REPEAT,
+        Recurrence(Period.DAILY),
+        Recurrence(Period.WEEKLY),
+        Recurrence(Period.MONTHLY),
+        Recurrence(Period.YEARLY),
+        null)
 
     // Settings used by both recurrence fragments.
     private val settings = RecurrencePickerSettings {
@@ -95,11 +94,13 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
     // Whether the list of events is complete or more events could be found.
     private var isDoneFinding = false
 
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?, state: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        state: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
-        _binding = FragmentMainBinding.bind(view)  // Note: inflate doesn't work here?
+        _binding = FragmentMainBinding.bind(view) // Note: inflate doesn't work here?
         return view
     }
 
@@ -149,7 +150,9 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         eventsRcv.adapter = eventsAdapter
         eventsRcv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (!isDoneFinding && layoutManager.findLastCompletelyVisibleItemPosition() > recurrenceEvents.size - 4) {
+                if (!isDoneFinding && layoutManager.findLastCompletelyVisibleItemPosition() >
+                    recurrenceEvents.size - LOAD_MORE_TRIGGER
+                ) {
                     // When almost scrolled to the end of the list, find more events.
                     findMoreRecurrenceEvents()
                 }
@@ -188,7 +191,6 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         _binding = null
         eventsAdapter = null
     }
-
 
     override fun onDateDialogConfirmed(date: Long) {
         // Start date has been selected. Update it and its view.
@@ -252,16 +254,15 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
             pickerDialog.startDate = startDate
             pickerDialog.showTitle = true
             pickerDialog.show(childFragmentManager, "recurrence_picker_dialog")
-
         } else {
             // Use the fragment picker.
             pickerFragment.selectedRecurrence = selectedRecurrence
             pickerFragment.startDate = startDate
             childFragmentManager.beginTransaction()
-                    .add(R.id.picker_fragment_container, pickerFragment, "recurrence_picker_fragment")
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .addToBackStack(null)
-                    .commit()
+                .add(R.id.picker_fragment_container, pickerFragment, "recurrence_picker_fragment")
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .addToBackStack(null)
+                .commit()
         }
     }
 
@@ -291,7 +292,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
             // Since the last event is already in the list, we don't want to include it.
             val baseDate = recurrenceEvents.last()
             recurrenceFinder.findBasedOn(selectedRecurrence, startDate,
-                    baseDate, sizeBefore, LOAD_BATCH_SIZE, includeStart = false)
+                baseDate, sizeBefore, LOAD_BATCH_SIZE, includeStart = false)
         })
 
         // If less items were found than the number queried, all events have been found.
@@ -313,7 +314,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
     private fun updateSelectedLabel() {
         // Use the RecurrenceFormatter specified in the settings to format the selected recurrence and display it.
         selectedBinding.selectedLabel.text = settings.formatter
-                .format(requireContext(), selectedRecurrence, startDate)
+            .format(requireContext(), selectedRecurrence, startDate)
     }
 
     private fun updateStartDateInput() {
@@ -323,7 +324,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
 
     // View holder used to display a recurrence event item in the recycler view.
     private class EventViewHolder(private val binding: ItemEventBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(number: String, date: String) {
             binding.eventNumberLabel.text = number
@@ -335,18 +336,20 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         override fun getItemCount() = recurrenceEvents.size
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-                EventViewHolder(ItemEventBinding.inflate(layoutInflater, parent, false))
+            EventViewHolder(ItemEventBinding.inflate(layoutInflater, parent, false))
 
         override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
             // Bind view holder with the event number and date.
             holder.bind(requireContext().getString(R.string.event_number, position + 1),
-                    eventDateFormat.format(recurrenceEvents[position]))
+                eventDateFormat.format(recurrenceEvents[position]))
         }
     }
 
     companion object {
         /** The number of items loaded at once when user scrolls to the end of the list. */
         private const val LOAD_BATCH_SIZE = 20
-    }
 
+        /** The number of items left to show until the end of the list at which more events are found. */
+        private const val LOAD_MORE_TRIGGER = 4
+    }
 }

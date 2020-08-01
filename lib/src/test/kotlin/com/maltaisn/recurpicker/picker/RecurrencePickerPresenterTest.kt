@@ -21,18 +21,23 @@ import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.RecurrencePickerSettings
 import com.maltaisn.recurpicker.dateFor
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.argumentCaptor
+import com.nhaarman.mockitokotlin2.clearInvocations
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.junit.MockitoJUnitRunner
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-
 
 @RunWith(MockitoJUnitRunner::class)
 internal class RecurrencePickerPresenterTest {
@@ -168,7 +173,7 @@ internal class RecurrencePickerPresenterTest {
 
     @Test
     fun onWeekBtnsChecked() {
-        presenter.onPeriodItemSelected(1)  // Set period to weekly
+        presenter.onPeriodItemSelected(1) // Set period to weekly
         presenter.onWeekBtnChecked(Calendar.TUESDAY, true)
         presenter.onWeekBtnChecked(Calendar.THURSDAY, false)
         presenter.onWeekBtnChecked(Calendar.FRIDAY, true)
@@ -181,14 +186,14 @@ internal class RecurrencePickerPresenterTest {
 
     @Test
     fun onMonthlySettingSelected_sameDay() {
-        presenter.onPeriodItemSelected(2)  // Set period to monthly
+        presenter.onPeriodItemSelected(2) // Set period to monthly
         presenter.onMonthlySettingItemSelected(0)
         assertEquals(0, createRecurrence().byMonthDay)
     }
 
     @Test
     fun onMonthlySettingSelected_sameWeek() {
-        presenter.onPeriodItemSelected(2)  // Set period to monthly
+        presenter.onPeriodItemSelected(2) // Set period to monthly
         presenter.onMonthlySettingItemSelected(1)
 
         val r = createRecurrence()
@@ -198,7 +203,7 @@ internal class RecurrencePickerPresenterTest {
 
     @Test
     fun onMonthlySettingSelected_lastDay() {
-        presenter.onPeriodItemSelected(2)  // Set period to monthly
+        presenter.onPeriodItemSelected(2) // Set period to monthly
         presenter.onMonthlySettingItemSelected(2)
         assertEquals(-1, createRecurrence().byMonthDay)
     }
@@ -212,7 +217,7 @@ internal class RecurrencePickerPresenterTest {
 
     @Test
     fun onEndDateClicked() {
-        presenter.onEndNeverClicked()  // Set to never, because already set to end by date.
+        presenter.onEndNeverClicked() // Set to never, because already set to end by date.
         presenter.onEndDateClicked()
         verify(view).setEndDateChecked(true)
         verify(view).setEndDateViewEnabled(true)
@@ -259,7 +264,7 @@ internal class RecurrencePickerPresenterTest {
     @Test
     fun onEndCountChanged_invalid() {
         presenter.onEndCountClicked()
-        presenter.onEndCountChanged("12")  // Changed it because invalid sets to 1 and it's already 1.
+        presenter.onEndCountChanged("12") // Changed it because invalid sets to 1 and it's already 1.
         clearInvocations(view)
         presenter.onEndCountChanged("foo")
         verify(view).setEndCountLabels(any(), any())
@@ -305,5 +310,4 @@ internal class RecurrencePickerPresenterTest {
             return allValues.first()
         }
     }
-
 }

@@ -27,8 +27,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.maltaisn.recurpicker.R
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.getCallback
-import java.util.*
-
+import java.util.Calendar
 
 /**
  * Dialog used to select a date.
@@ -50,12 +49,10 @@ internal class DateDialogFragment : DialogFragment() {
      */
     var maxDate: Long = Recurrence.DATE_NONE
 
-
     private var _datePicker: DatePicker? = null
     private val datePicker get() = _datePicker!!
 
     private val calendar = Calendar.getInstance()
-
 
     @SuppressLint("InflateParams")
     override fun onCreateDialog(state: Bundle?): Dialog {
@@ -77,7 +74,7 @@ internal class DateDialogFragment : DialogFragment() {
         val view = LayoutInflater.from(context).inflate(R.layout.rp_dialog_date, null, false)
         _datePicker = view.findViewById(R.id.rp_date_picker)
         datePicker.init(calendar[Calendar.YEAR], calendar[Calendar.MONTH],
-                calendar[Calendar.DATE], null)
+            calendar[Calendar.DATE], null)
         // Note: onDateChangedListener is not used here since it doesn't work on API 21. Since we don't
         // need to know exactly when the user changed the date, the date is just read afterwards.
 
@@ -99,6 +96,7 @@ internal class DateDialogFragment : DialogFragment() {
             val cal = datePicker.calendarView
             if (cal != null) {
                 // Add approximatively 1 day (arbitrary).
+                @Suppress("MagicNumber")
                 cal.setDate(date + 100000000, false, true)
                 // Note that min and max date were set to a time at the start of the day earlier because
                 // date picker considers time of the day when checking if time millis is within bounds.
@@ -109,14 +107,14 @@ internal class DateDialogFragment : DialogFragment() {
         }
 
         return MaterialAlertDialogBuilder(context)
-                .setView(datePicker)
-                .setPositiveButton(android.R.string.ok) { _, _ ->
-                    calendar.set(datePicker.year, datePicker.month, datePicker.dayOfMonth)
-                    calendar.setToStartOfDay()
-                    getCallback<Callback>()?.onDateDialogConfirmed(calendar.timeInMillis)
-                }
-                .setNegativeButton(android.R.string.cancel) { dialog, _ -> onCancel(dialog) }
-                .create()
+            .setView(datePicker)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
+                calendar.set(datePicker.year, datePicker.month, datePicker.dayOfMonth)
+                calendar.setToStartOfDay()
+                getCallback<Callback>()?.onDateDialogConfirmed(calendar.timeInMillis)
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, _ -> onCancel(dialog) }
+            .create()
     }
 
     private fun Calendar.setToStartOfDay() {
@@ -149,5 +147,4 @@ internal class DateDialogFragment : DialogFragment() {
         fun onDateDialogConfirmed(date: Long)
         fun onDateDialogCancelled() = Unit
     }
-
 }

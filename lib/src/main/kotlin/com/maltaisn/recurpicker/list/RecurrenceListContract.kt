@@ -20,7 +20,6 @@ import com.maltaisn.recurpicker.BaseContract
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
 
-
 internal interface RecurrenceListContract {
 
     interface View : BaseContract.View {
@@ -30,8 +29,12 @@ internal interface RecurrenceListContract {
     }
 
     interface ItemView {
-        fun bindRecurrenceView(formatter: RecurrenceFormatter, recurrence: Recurrence,
-                               startDate: Long, checked: Boolean)
+        fun bindRecurrenceView(
+            formatter: RecurrenceFormatter,
+            recurrence: Recurrence,
+            startDate: Long,
+            checked: Boolean
+        )
 
         fun bindCustomView()
     }
@@ -41,5 +44,4 @@ internal interface RecurrenceListContract {
         fun onItemClicked(pos: Int)
         fun onBindItemView(itemView: ItemView, pos: Int)
     }
-
 }
