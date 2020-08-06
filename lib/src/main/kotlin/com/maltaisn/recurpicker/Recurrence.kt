@@ -29,6 +29,7 @@ import com.maltaisn.recurpicker.Recurrence.Period.MONTHLY
 import com.maltaisn.recurpicker.Recurrence.Period.NONE
 import com.maltaisn.recurpicker.Recurrence.Period.WEEKLY
 import com.maltaisn.recurpicker.Recurrence.Period.YEARLY
+import com.maltaisn.recurpicker.format.RRuleFormatter
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import java.text.DateFormatSymbols
 import java.text.SimpleDateFormat
@@ -70,6 +71,8 @@ import kotlin.math.absoluteValue
  *
  * @property endDate The end date if end type is [EndType.BY_DATE]. If not, end date is
  * always [DATE_NONE]. The end date is inclusive so the last event might be on the end date.
+ * The date is given in UTC milliseconds since epoch time. The time of the day has no importance.
+ * To account for time zones, use [RecurrenceFinder.timeZone] and [RRuleFormatter.timeZone].
  *
  * @property endCount The number of events before the end of the recurrence if end type is
  * [EndType.BY_COUNT]. If not, end count is always `0`. Since the start date is exclusive,

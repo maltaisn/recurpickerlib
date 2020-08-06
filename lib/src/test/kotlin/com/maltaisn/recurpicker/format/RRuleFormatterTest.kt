@@ -20,10 +20,11 @@ import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.dateFor
 import org.junit.Test
+import java.util.TimeZone
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-internal class RRuleFormatTest {
+internal class RRuleFormatterTest {
 
     private val formatter = RRuleFormatter()
 
@@ -113,11 +114,21 @@ internal class RRuleFormatTest {
     }
 
     @Test
-    fun `should test daily recurrence with end date`() {
+    fun `should test daily recurrence with end date, default timezone`() {
         val r = Recurrence(Period.DAILY) {
-            endDate = dateFor("2020-01-01")
+            endDate = dateFor("2020-01-01T00:00:00.000")
         }
-        testRRule(r, "RRULE:FREQ=DAILY;UNTIL=20200101T000000")
+        formatter.timeZone = TimeZone.getDefault()
+        testRRule(r, "RRULE:FREQ=DAILY;UNTIL=20200101")
+    }
+
+    @Test
+    fun `should test daily recurrence with end date, GMT timezone`() {
+        val r = Recurrence(Period.DAILY) {
+            endDate = dateFor("2020-01-01T00:00:00.000Z")
+        }
+        formatter.timeZone = TimeZone.getTimeZone("GMT")
+        testRRule(r, "RRULE:FREQ=DAILY;UNTIL=20200101")
     }
 
     @Test
@@ -129,44 +140,75 @@ internal class RRuleFormatTest {
     }
 
     @Test
+    fun `should parse end date (date only)`() {
+        val r = Recurrence(Period.DAILY) {
+            endDate = dateFor("2020-01-01")
+        }
+        assertEquals(r, formatter.parse("RRULE:FREQ=DAILY;UNTIL=20200101"))
+    }
+
+    @Test
+    fun `should parse end date (date time)`() {
+        val r = Recurrence(Period.DAILY) {
+            endDate = dateFor("2020-01-01T10:11:12.000")
+        }
+        assertEquals(r, formatter.parse("RRULE:FREQ=DAILY;UNTIL=20200101T101112"))
+    }
+
+    @Test
+    fun `should parse end date (UTC date time)`() {
+        val r = Recurrence(Period.DAILY) {
+            endDate = dateFor("2020-01-01T10:11:12.000Z")
+        }
+        assertEquals(r, formatter.parse("RRULE:FREQ=DAILY;UNTIL=20200101T101112Z"))
+    }
+
+    @Test
     fun `should fail to parse rrule with missing signature`() {
-        assertFailsWith<IllegalArgumentException> {
+        assertFailsWith<RRuleParseException> {
             formatter.parse("FREQ=DAILY")
         }
     }
 
     @Test
     fun `should fail to parse rrule with no FREQ attribute set`() {
-        assertFailsWith<IllegalArgumentException> {
+        assertFailsWith<RRuleParseException> {
             formatter.parse("RRULE:BYDAY=FR,SA")
         }
     }
 
     @Test
     fun `should fail to parse rrule with invalid end date format`() {
-        assertFailsWith<IllegalArgumentException> {
+        assertFailsWith<RRuleParseException> {
             formatter.parse("RRULE:UNTIL=2020-01-01")
         }
     }
 
     @Test
     fun `should fail to parse rrule with unsupported FREQ attribute value`() {
-        assertFailsWith<IllegalArgumentException> {
+        assertFailsWith<RRuleParseException> {
             formatter.parse("RRULE:FREQ=HOURLY")
         }
     }
 
     @Test
     fun `should fail to parse rrule with invalid day of the week literals`() {
-        assertFailsWith<IllegalArgumentException> {
+        assertFailsWith<RRuleParseException> {
             formatter.parse("RRULE:FREQ=WEEKLY;BYDAY=SUN,MON,TUE")
         }
     }
 
     @Test
     fun `should fail to parse rrule with invalid BYDAY value`() {
-        assertFailsWith<IllegalArgumentException> {
+        assertFailsWith<RRuleParseException> {
             formatter.parse("RRULE:FREQ=MONTHLY;BYDAY=-1FRI")
+        }
+    }
+
+    @Test
+    fun `should fail to parse rrule with invalid number format`() {
+        assertFailsWith<RRuleParseException> {
+            formatter.parse("RRULE:FREQ=DAILY;INTERVAL=foo")
         }
     }
 

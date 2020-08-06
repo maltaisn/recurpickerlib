@@ -1,9 +1,12 @@
 ### v2.1.2
-- Added support for changing time zone in `RecurrenceFinder`.
+- Added support for changing time zone in `RecurrenceFinder` and `RRuleFormatter`.
 - `RecurrenceFinder` now returns an empty list instead of an exception when trying to find 0 events.
 - Better `Recurrence.Builder` syntax when used from Java.
+- Changed date pattern for RRule to date only.
+
 - Fixed recurrence builder allowing creation of non-equal recurrences of period `NONE`, leading to equality issues.
 All recurrences built with `NONE` period now return the same `Recurrence.DOES_NOT_REPEAT` instance.
+- Fixed `RRuleFormatter` not thread-safe due to use of static date format for formatting and parsing.
 
 ### v2.1.1
 - `RecurrencePickerFragment` now handles back press by itself.

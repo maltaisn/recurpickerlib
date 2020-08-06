@@ -626,6 +626,13 @@ internal class RecurrenceFinderTest {
     }
 
     @Test
+    fun `should find events between two dates (no events)`() {
+        val r = Recurrence(Period.MONTHLY)
+        assertEquals(emptyList<Long>(), finder.findBetween(r, dateFor("2019-01-01"),
+            dateFor("2019-01-04"), dateFor("2019-01-10")))
+    }
+
+    @Test
     fun `should find events for recurrence using non-default timezone`() {
         // This test should fail if not setting the timezone.
         finder.timeZone = TimeZone.getTimeZone("GMT+07:00")
@@ -636,6 +643,19 @@ internal class RecurrenceFinderTest {
             dateFor("2020-07-30T00:00:00.000+07:00"),
             dateFor("2020-08-06T00:00:00.000+07:00")
         ), finder.find(r, dateFor("2020-07-29T00:00:00.000+07:00"), 2))
+    }
+
+    @Test
+    fun `should find events for recurrence until date with timezone`() {
+        finder.timeZone = TimeZone.getTimeZone("GMT-04:00")
+        val r = Recurrence(Period.DAILY) {
+            endDate = dateFor("2020-08-08T00:00:00.000+04:00")
+        }
+        assertEquals(listOf(
+            dateFor("2020-08-06T00:00:00.000+04:00"),
+            dateFor("2020-08-07T00:00:00.000+04:00"),
+            dateFor("2020-08-08T00:00:00.000+04:00")
+        ), finder.find(r, dateFor("2020-08-06T00:00:00.000+04:00"), 1000))
     }
 
     @Test
