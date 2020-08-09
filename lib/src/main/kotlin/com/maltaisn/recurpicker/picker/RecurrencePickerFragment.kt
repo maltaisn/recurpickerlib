@@ -169,7 +169,7 @@ class RecurrencePickerFragment : Fragment(),
         }
 
         setupPeriodRelatedViews(context, view)
-        setupEndViews(context, view)
+        setupEndViews(view)
     }
 
     private fun setupPeriodRelatedViews(context: Context, view: View) {
@@ -195,7 +195,7 @@ class RecurrencePickerFragment : Fragment(),
         }
     }
 
-    private fun setupEndViews(context: Context, view: View) {
+    private fun setupEndViews(view: View) {
         // End never
         endNeverView = view.findViewById(R.id.rp_picker_end_never_view)
         endNeverRadio = view.findViewById(R.id.rp_picker_end_never_radio)
