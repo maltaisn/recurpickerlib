@@ -3,6 +3,7 @@
 screen. Previously dialogs used at least 65% width in portrait and 100% in landscape which resulted in very wide dialogs
 on large screens. Maximum widths are set to 500dp for both by default.
 - `Recurrence.toString()` now returns the same output in release builds.
+- Day of week buttons in picker dialog are now bigger on larger screens.
 - Fixed `RecurrenceFormatter` not adding days of the week for a weekly recurrence recurring on multiple days of which
 one is the same as start date's.
 

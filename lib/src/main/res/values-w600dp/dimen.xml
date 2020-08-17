@@ -17,4 +17,6 @@
 <resources>
     <dimen name="rp_week_btn_size">48dp</dimen>
     <dimen name="rp_week_btn_margin">14dp</dimen>
+    <dimen name="rp_week_btn_size_dialog">40dp</dimen>
+    <dimen name="rp_week_btn_margin_dialog">12dp</dimen>
 </resources>
