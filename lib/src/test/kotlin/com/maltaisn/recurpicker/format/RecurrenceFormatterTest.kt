@@ -105,6 +105,12 @@ class RecurrenceFormatTest {
     }
 
     @Test
+    fun `should format weekly recurrence with specific days set and recurring on start date`() {
+        val r = Recurrence(Period.WEEKLY) { setDaysOfWeek(Recurrence.SUNDAY, Recurrence.SATURDAY) }
+        assertEquals("Every 1 weeks on Sun, Sat", recurFormat.format(context, r, dateFor("2019-10-12")))
+    }
+
+    @Test
     fun `should format weekly recurrence with single day same as start date's`() {
         val r = Recurrence(Period.WEEKLY) { setDaysOfWeek(Recurrence.SATURDAY) }
         assertEquals("Every 1 weeks", recurFormat.format(context, r, dateFor("2019-10-12")))

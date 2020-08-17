@@ -86,10 +86,8 @@ class RecurrenceFormatter(val dateFormat: DateFormat) {
 
     private fun appendWeeklyRecurrenceDetails(sb: StringBuilder, r: Recurrence, startDate: Long, res: Resources) {
         val weekOptionStr = StringBuilder()
-        val isRecurringOnDefaultDay = r.byDay == 1
-        val isRecurringOnStartDay = (r.byDay and (1 shl calendar[Calendar.DAY_OF_WEEK])) != 0
-        if (!isRecurringOnDefaultDay && (startDate == Recurrence.DATE_NONE || !isRecurringOnStartDay)) {
-            // If events happen on the same day of the week as start date's, don't specify the day.
+        if (r.byDay.countOneBits() > 2) {
+            // Multiple days set, they are always appended.
             if (r.byDay == Recurrence.EVERY_DAY_OF_WEEK) {
                 // on every day of the week
                 weekOptionStr.append(res.getString(R.string.rp_format_weekly_all))
@@ -97,6 +95,18 @@ class RecurrenceFormatter(val dateFormat: DateFormat) {
                 // on [Sun, Mon, Wed, ...]
                 appendDaysOfWeekList(weekOptionStr, r, res)
             }
+        } else {
+            // No day set or single day set, may or may not append it. If events happen on the default day
+            // or on the same day of the week as start date's, don't specify the day.
+            val isRecurringOnDefaultDay = r.byDay == 1
+            val isRecurringOnStartDay = startDate != Recurrence.DATE_NONE &&
+                    r.isRecurringOnDaysOfWeek(1 shl calendar[Calendar.DAY_OF_WEEK])
+            if (!isRecurringOnDefaultDay && !isRecurringOnStartDay) {
+                // Append single day.
+                appendDaysOfWeekList(weekOptionStr, r, res)
+            }
+        }
+        if (weekOptionStr.isNotEmpty()) {
             sb.append(' ')
             sb.append(res.getString(R.string.rp_format_weekly_option, weekOptionStr.toString()))
         }
