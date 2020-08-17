@@ -20,12 +20,15 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.RadioButton
 import androidx.appcompat.view.ContextThemeWrapper
+import androidx.core.content.res.use
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -91,14 +94,33 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
         setupViews(contextWrapper, view)
 
         // Create the dialog
-        val builder = MaterialAlertDialogBuilder(contextWrapper)
-        builder.setView(view)
+        val dialog = MaterialAlertDialogBuilder(contextWrapper)
+            .setView(view)
+            .create()
+        dialog.setOnShowListener {
+            // Get dialog's width and padding.
+            val fgPadding = Rect()
+            val window = dialog.window!!
+            window.decorView.background.getPadding(fgPadding)
+            val padding = fgPadding.left + fgPadding.right
+            var width = context.resources.displayMetrics.widthPixels - padding
+
+            // Set dialog's dimensions, with maximum width.
+            val dialogMaxWidth = contextWrapper.obtainStyledAttributes(R.styleable.RecurrencePicker).use {
+                it.getDimensionPixelSize(R.styleable.RecurrencePicker_rpListDialogMaxWidth, -1)
+            }
+            if (width > dialogMaxWidth) {
+                width = dialogMaxWidth
+            }
+            window.setLayout(width + padding, ViewGroup.LayoutParams.WRAP_CONTENT)
+            view.layoutParams = FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
 
         // Attach the presenter
         presenter = RecurrenceListPresenter()
         presenter?.attach(this, state)
 
-        return builder.create()
+        return dialog
     }
 
     private fun setupViews(context: Context, view: View) {

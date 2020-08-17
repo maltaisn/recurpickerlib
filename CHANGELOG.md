@@ -1,9 +1,13 @@
+### v2.1.3
+- Introduced `rpListDialogMaxWidth` and `rpPickerDialogMaxWidth` attributes to limit the maximum size of dialogs on
+screen. Previously dialogs used at least 65% width in portrait and 100% in landscape which resulted in very wide dialogs
+on large screens. Maximum widths are set to 500dp for both by default.
+
 ### v2.1.2
 - Added support for changing time zone in `RecurrenceFinder` and `RRuleFormatter`.
 - `RecurrenceFinder` now returns an empty list instead of an exception when trying to find 0 events.
 - Better `Recurrence.Builder` syntax when used from Java.
-- Changed date pattern for RRule to date only.
-
+- Changed date pattern for RRule to date only `yyyyMMdd` instead of date and time `yyyyMMddT000000`.
 - Fixed recurrence builder allowing creation of non-equal recurrences of period `NONE`, leading to equality issues.
 All recurrences built with `NONE` period now return the same `Recurrence.DOES_NOT_REPEAT` instance.
 - Fixed `RRuleFormatter` not thread-safe due to use of static date format for formatting and parsing.

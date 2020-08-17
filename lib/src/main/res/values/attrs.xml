@@ -18,6 +18,11 @@
     <attr name="recurrencePickerStyle" format="reference" />
 
     <declare-styleable name="RecurrencePicker">
+        <!-- Maximum width for the recurrence list dialog. -->
+        <attr name="rpListDialogMaxWidth" format="dimension|reference"/>
+
+        <!-- Maximum width for the recurrence picker dialog. -->
+        <attr name="rpPickerDialogMaxWidth" format="dimension|reference"/>
 
         <!-- Text appearance used for most views in the fragments. -->
         <attr name="rpTextAppearance" format="reference" />

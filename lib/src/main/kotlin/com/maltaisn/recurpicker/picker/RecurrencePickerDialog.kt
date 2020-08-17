@@ -21,18 +21,22 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.graphics.Rect
 import android.os.Bundle
 import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.constraintlayout.widget.Group
+import androidx.core.content.res.use
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
@@ -127,16 +131,37 @@ class RecurrencePickerDialog : DialogFragment(),
         val view = localInflater.inflate(R.layout.rp_dialog_picker, null, false)
         setupViews(contextWrapper, view)
 
-        // Attach the presenter
-        presenter = RecurrencePickerPresenter()
-        presenter?.attach(this, state)
-
-        return MaterialAlertDialogBuilder(contextWrapper)
+        // Create the dialog
+        val dialog = MaterialAlertDialogBuilder(contextWrapper)
             .setView(view)
             .setTitle(if (showTitle) getString(R.string.rp_picker_title) else null)
             .setPositiveButton(R.string.rp_picker_done) { _, _ -> presenter?.onConfirm() }
             .setNegativeButton(R.string.rp_picker_cancel) { _, _ -> presenter?.onCancel() }
             .create()
+        dialog.setOnShowListener {
+            // Get dialog's width and padding
+            val fgPadding = Rect()
+            val window = dialog.window!!
+            window.decorView.background.getPadding(fgPadding)
+            val padding = fgPadding.left + fgPadding.right
+            var width = context.resources.displayMetrics.widthPixels - padding
+
+            // Set dialog's dimensions, with maximum width.
+            val dialogMaxWidth = contextWrapper.obtainStyledAttributes(R.styleable.RecurrencePicker).use {
+                it.getDimensionPixelSize(R.styleable.RecurrencePicker_rpPickerDialogMaxWidth, -1)
+            }
+            if (width > dialogMaxWidth) {
+                width = dialogMaxWidth
+            }
+            window.setLayout(width + padding, ViewGroup.LayoutParams.WRAP_CONTENT)
+            view.layoutParams = FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+        }
+
+        // Attach the presenter
+        presenter = RecurrencePickerPresenter()
+        presenter?.attach(this, state)
+
+        return dialog
     }
 
     private fun setupViews(context: Context, view: View) {
