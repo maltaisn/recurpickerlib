@@ -6,6 +6,7 @@ on large screens. Maximum widths are set to 500dp for both by default.
 - Day of week buttons in picker dialog are now bigger on larger screens.
 - Fixed `RecurrenceFormatter` not adding days of the week for a weekly recurrence recurring on multiple days of which
 one is the same as start date's.
+- Fixed end date dialog layout on larger screens.
 
 ### v2.1.2
 - Added support for changing time zone in `RecurrenceFinder` and `RRuleFormatter`.

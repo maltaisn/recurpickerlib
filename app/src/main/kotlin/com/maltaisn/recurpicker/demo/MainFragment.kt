@@ -112,10 +112,8 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
 
         // Set up options views
         val startDateInput = optionsBinding.startDateInput
-        val startDateDialog by lazy { DateDialogFragment() }
         startDateInput.setOnClickListener {
-            startDateDialog.date = startDate
-            startDateDialog.show(childFragmentManager, "start_date_dialog")
+            DateDialogFragment.newInstance(startDate).show(childFragmentManager, "start_date_dialog")
         }
 
         val enableListCheck = optionsBinding.enableListCheck

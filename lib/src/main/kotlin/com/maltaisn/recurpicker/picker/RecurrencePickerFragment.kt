@@ -57,8 +57,6 @@ class RecurrencePickerFragment : Fragment(),
 
     private var presenter: Presenter? = null
 
-    private val dateDialog by lazy { DateDialogFragment() }
-
     private lateinit var toolbar: Toolbar
     private lateinit var frequencyInput: EditText
 
@@ -361,10 +359,8 @@ class RecurrencePickerFragment : Fragment(),
     }
 
     override fun showEndDateDialog(date: Long, minDate: Long) {
-        dateDialog.date = date
-        dateDialog.minDate = minDate
-        dateDialog.maxDate = Recurrence.DATE_NONE
-        dateDialog.show(childFragmentManager, "recurrence_end_date_dialog")
+        DateDialogFragment.newInstance(date, minDate)
+            .show(childFragmentManager, "recurrence_end_date_dialog")
     }
 
     override fun setEndCountChecked(checked: Boolean) {
