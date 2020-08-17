@@ -151,7 +151,7 @@ class Recurrence private constructor(
      * This is only for debug purposes and will not even work on release builds.
      * [RecurrenceFormatter] should be used instead.
      */
-    override fun toString() = if (BuildConfig.DEBUG) {
+    override fun toString(): String {
         val sb = StringBuilder()
         sb.append("Recurrence{ ")
 
@@ -166,9 +166,7 @@ class Recurrence private constructor(
         appendEndTypeDetails(sb)
 
         sb.append(" }")
-        sb.toString()
-    } else {
-        super.toString()
+        return sb.toString()
     }
 
     private fun appendPeriodDetails(sb: StringBuilder, name: String) {

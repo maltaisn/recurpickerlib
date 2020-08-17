@@ -2,6 +2,7 @@
 - Introduced `rpListDialogMaxWidth` and `rpPickerDialogMaxWidth` attributes to limit the maximum size of dialogs on
 screen. Previously dialogs used at least 65% width in portrait and 100% in landscape which resulted in very wide dialogs
 on large screens. Maximum widths are set to 500dp for both by default.
+- `Recurrence.toString()` now returns the same output in release builds.
 
 ### v2.1.2
 - Added support for changing time zone in `RecurrenceFinder` and `RRuleFormatter`.
