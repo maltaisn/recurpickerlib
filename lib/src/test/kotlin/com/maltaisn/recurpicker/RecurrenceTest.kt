@@ -124,7 +124,7 @@ internal class RecurrenceTest {
         assertEquals(Calendar.SATURDAY, r.dayOfWeekInMonth)
         assertEquals(-2, r.weekInMonth)
     }
-    
+
     @Test
     fun `should have frequency set to 1 for 'does not repeat' recurrence`() {
         assertEquals(1, Recurrence.DOES_NOT_REPEAT.frequency)

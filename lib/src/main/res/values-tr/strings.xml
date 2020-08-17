@@ -15,94 +15,94 @@
   -->
 
 <resources>
-	<string name="rp_list_custom">Özel…</string>
+    <string name="rp_list_custom">Özel…</string>
 
-	<string name="rp_picker_done">Bitti</string>
+    <string name="rp_picker_done">Bitti</string>
     <string name="rp_picker_cancel">İptal</string>
-	<string name="rp_picker_title">Özel yineleme</string>
-	<string name="rp_picker_subtitle_period">Yînelenme sikliği</string>
-	<string name="rp_picker_subtitle_setting">Tekrarlama</string>
-	<string name="rp_picker_subtitle_end">Bîtîş zamani</string>
-	<string name="rp_picker_end_never">Hiçbir zaman</string>
-	<string name="rp_picker_end_date">| tarihinde</string>
-	<plurals name="rp_picker_end_count">
-		<item quantity="one">| yinelemeden sonra</item>
-		<item quantity="other">| yinelemeden sonra</item>
-	</plurals>
+    <string name="rp_picker_title">Özel yineleme</string>
+    <string name="rp_picker_subtitle_period">Yînelenme sikliği</string>
+    <string name="rp_picker_subtitle_setting">Tekrarlama</string>
+    <string name="rp_picker_subtitle_end">Bîtîş zamani</string>
+    <string name="rp_picker_end_never">Hiçbir zaman</string>
+    <string name="rp_picker_end_date">| tarihinde</string>
+    <plurals name="rp_picker_end_count">
+        <item quantity="one">| yinelemeden sonra</item>
+        <item quantity="other">| yinelemeden sonra</item>
+    </plurals>
     <string name="rp_picker_end_count_prefix_fallback">Sayısı</string>
     <string name="rp_picker_end_date_prefix_fallback">Tarih</string>
-	<plurals name="rp_picker_period_day">
-		<item quantity="one">gün</item>
-		<item quantity="other">günler</item>
-	</plurals>
-	<plurals name="rp_picker_period_week">
-		<item quantity="one">hafta</item>
-		<item quantity="other">haftalar</item>
-	</plurals>
-	<plurals name="rp_picker_period_month">
-		<item quantity="one">ay</item>
-		<item quantity="other">aylar</item>
-	</plurals>
-	<plurals name="rp_picker_period_year">
-		<item quantity="one">sene</item>
-		<item quantity="other">seneler</item>
-	</plurals>
-	<string name="rp_day_of_week_abbr1_sun">P</string>
-	<string name="rp_day_of_week_abbr1_mon">P</string>
-	<string name="rp_day_of_week_abbr1_tue">S</string>
-	<string name="rp_day_of_week_abbr1_wed">Ç</string>
-	<string name="rp_day_of_week_abbr1_thu">P</string>
-	<string name="rp_day_of_week_abbr1_fri">C</string>
-	<string name="rp_day_of_week_abbr1_sat">C</string>
+    <plurals name="rp_picker_period_day">
+        <item quantity="one">gün</item>
+        <item quantity="other">günler</item>
+    </plurals>
+    <plurals name="rp_picker_period_week">
+        <item quantity="one">hafta</item>
+        <item quantity="other">haftalar</item>
+    </plurals>
+    <plurals name="rp_picker_period_month">
+        <item quantity="one">ay</item>
+        <item quantity="other">aylar</item>
+    </plurals>
+    <plurals name="rp_picker_period_year">
+        <item quantity="one">sene</item>
+        <item quantity="other">seneler</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun">P</string>
+    <string name="rp_day_of_week_abbr1_mon">P</string>
+    <string name="rp_day_of_week_abbr1_tue">S</string>
+    <string name="rp_day_of_week_abbr1_wed">Ç</string>
+    <string name="rp_day_of_week_abbr1_thu">P</string>
+    <string name="rp_day_of_week_abbr1_fri">C</string>
+    <string name="rp_day_of_week_abbr1_sat">C</string>
 
-	<string-array name="rp_days_of_week_abbr3">
-		<item>Paz</item>
-		<item>Pzt</item>
-		<item>Sal</item>
-		<item>Çar</item>
-		<item>Per</item>
-		<item>Cum</item>
-		<item>Cmt</item>
-	</string-array>
-	<string name="rp_format_none">Tekrarlanmaz</string>
-	<plurals name="rp_format_day">
-		<item quantity="one">Her gün</item>
-		<item quantity="other">Her %d günler</item>
-	</plurals>
-	<plurals name="rp_format_week">
-		<item quantity="one">Her hafta</item>
-		<item quantity="other">Her %d haftalar</item>
-	</plurals>
-	<plurals name="rp_format_month">
-		<item quantity="one">Her ay</item>
-		<item quantity="other">Her %d aylar</item>
-	</plurals>
-	<plurals name="rp_format_year">
-		<item quantity="one">Her sene</item>
-		<item quantity="other">Her %d seneler</item>
-	</plurals>
-	<string name="rp_format_weekly_option">üzerinde %s</string>
-	<string name="rp_format_weekly_all">haftanın her günü</string>
-	<string name="rp_format_monthly_same_day">her ay aynı günde</string>
-	<string name="rp_format_monthly_last_day">Her ayın son gününde</string>
-	<string name="rp_format_monthly_sun">her %s Pazar günü</string>
-	<string name="rp_format_monthly_mon">her %s Pazartesi</string>
-	<string name="rp_format_monthly_tue">her %s Salı</string>
-	<string name="rp_format_monthly_wed">her %s Çarşamba</string>
-	<string name="rp_format_monthly_thu">her %s Perşembe</string>
-	<string name="rp_format_monthly_fri">her %s Cuma</string>
-	<string name="rp_format_monthly_sat">her %s Cumartesi</string>
-	<string-array name="rp_format_monthly_ordinal">
-		<item>birinci</item>
-		<item>ikinci</item>
-		<item>üçüncü</item>
-		<item>dördüncü</item>
-		<item>son</item>
-	</string-array>
-	<string name="rp_format_end_date">kadar %s</string>
-	<plurals name="rp_format_end_count">
-		<item quantity="one">için %d etkinlik</item>
-		<item quantity="other">için %d etkinlikler</item>
-	</plurals>
+    <string-array name="rp_days_of_week_abbr3">
+        <item>Paz</item>
+        <item>Pzt</item>
+        <item>Sal</item>
+        <item>Çar</item>
+        <item>Per</item>
+        <item>Cum</item>
+        <item>Cmt</item>
+    </string-array>
+    <string name="rp_format_none">Tekrarlanmaz</string>
+    <plurals name="rp_format_day">
+        <item quantity="one">Her gün</item>
+        <item quantity="other">Her %d günler</item>
+    </plurals>
+    <plurals name="rp_format_week">
+        <item quantity="one">Her hafta</item>
+        <item quantity="other">Her %d haftalar</item>
+    </plurals>
+    <plurals name="rp_format_month">
+        <item quantity="one">Her ay</item>
+        <item quantity="other">Her %d aylar</item>
+    </plurals>
+    <plurals name="rp_format_year">
+        <item quantity="one">Her sene</item>
+        <item quantity="other">Her %d seneler</item>
+    </plurals>
+    <string name="rp_format_weekly_option">üzerinde %s</string>
+    <string name="rp_format_weekly_all">haftanın her günü</string>
+    <string name="rp_format_monthly_same_day">her ay aynı günde</string>
+    <string name="rp_format_monthly_last_day">Her ayın son gününde</string>
+    <string name="rp_format_monthly_sun">her %s Pazar günü</string>
+    <string name="rp_format_monthly_mon">her %s Pazartesi</string>
+    <string name="rp_format_monthly_tue">her %s Salı</string>
+    <string name="rp_format_monthly_wed">her %s Çarşamba</string>
+    <string name="rp_format_monthly_thu">her %s Perşembe</string>
+    <string name="rp_format_monthly_fri">her %s Cuma</string>
+    <string name="rp_format_monthly_sat">her %s Cumartesi</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item>birinci</item>
+        <item>ikinci</item>
+        <item>üçüncü</item>
+        <item>dördüncü</item>
+        <item>son</item>
+    </string-array>
+    <string name="rp_format_end_date">kadar %s</string>
+    <plurals name="rp_format_end_count">
+        <item quantity="one">için %d etkinlik</item>
+        <item quantity="other">için %d etkinlikler</item>
+    </plurals>
 
 </resources>

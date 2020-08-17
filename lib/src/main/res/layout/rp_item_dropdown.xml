@@ -20,9 +20,9 @@
     android:id="@+id/rp_dropdown_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="16dp"
     android:maxLines="1"
     android:textAppearance="?rpTextAppearance"
-    android:padding="16dp"
-    tools:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
     tools:text="on the same day each month"
+    tools:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
     />

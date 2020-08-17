@@ -252,7 +252,6 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
             // Use the dialog picker.
             pickerDialog.selectedRecurrence = selectedRecurrence
             pickerDialog.startDate = startDate
-            pickerDialog.showTitle = true
             pickerDialog.show(childFragmentManager, "recurrence_picker_dialog")
         } else {
             // Use the fragment picker.

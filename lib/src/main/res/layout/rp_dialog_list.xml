@@ -21,8 +21,8 @@
     style="?rpListStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:listitem="@layout/rp_item_list"
     tools:itemCount="5"
+    tools:listitem="@layout/rp_item_list"
     tools:theme="@style/RecurrencePickerStyle"
     />
 

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- @formatter:off -->
+<?xml version="1.0" encoding="utf-8"?><!-- @formatter:off -->
 <resources>
 
     <integer-array name="rp_picker_week_btn_ids">

@@ -14,13 +14,16 @@
   limitations under the License.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <item
         android:id="@+id/rp_picker_done_item"
         android:icon="@null"
         android:title="@string/rp_picker_done"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        />
 
 </menu>
