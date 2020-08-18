@@ -7,6 +7,7 @@ on large screens. Maximum widths are set to 500dp for both by default.
 - Fixed `RecurrenceFormatter` not adding days of the week for a weekly recurrence recurring on multiple days of which
 one is the same as start date's.
 - Fixed end date dialog layout on larger screens.
+- Increased Kotlin version to 1.4.0.
 
 ### v2.1.2
 - Added support for changing time zone in `RecurrenceFinder` and `RRuleFormatter`.
