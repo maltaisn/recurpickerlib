@@ -23,7 +23,10 @@ import com.maltaisn.recurpicker.picker.RecurrencePickerFragment
 internal interface BaseContract {
 
     interface View {
-        val settings: RecurrencePickerSettings
+        /**
+         * The settings defining the behavior and content of the recurrence picker and list fragments .
+         */
+        var settings: RecurrencePickerSettings
 
         /**
          * The start date of the event for which a recurrence is created or edited.
@@ -31,12 +34,14 @@ internal interface BaseContract {
          * It will however provide more consise recurrence formatting to text.
          * - For the [RecurrencePickerFragment], this is a required parameter.
          */
-        val startDate: Long
+        var startDate: Long
 
         /**
-         *
+         * The previously selected recurrence that will be shown initially. Can be set to `null`
+         * if no recurrence was selected previously. In the recurrence picker, the
+         * [RecurrencePickerSettings.defaultPickerRecurrence] will be used if `null` is set.
          */
-        val selectedRecurrence: Recurrence?
+        var selectedRecurrence: Recurrence?
 
         fun exit()
     }

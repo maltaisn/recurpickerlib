@@ -27,7 +27,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.RadioButton
-import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.res.use
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +37,7 @@ import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.RecurrencePickerSettings
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import com.maltaisn.recurpicker.getCallback
+import com.maltaisn.recurpicker.getPickerContextWrapper
 import com.maltaisn.recurpicker.list.RecurrenceListContract.ItemView
 import com.maltaisn.recurpicker.list.RecurrenceListContract.Presenter
 import com.maltaisn.recurpicker.picker.RecurrencePickerDialog
@@ -58,7 +58,6 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
      * The settings defining the recurrence list dialog behavior and content.
      */
     override lateinit var settings: RecurrencePickerSettings
-        private set
 
     /**
      * The start date of the event for which a recurrence is selected.
@@ -82,12 +81,7 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
             selectedRecurrence = state.getParcelable("selectedRecurrence")!!
         }
 
-        // Wrap recurrence picker theme to context
-        val context = requireContext()
-        val ta = context.obtainStyledAttributes(intArrayOf(R.attr.recurrencePickerStyle))
-        val style = ta.getResourceId(0, R.style.RecurrencePickerStyle)
-        ta.recycle()
-        val contextWrapper = ContextThemeWrapper(context, style)
+        val contextWrapper = getPickerContextWrapper()
         val localInflater = LayoutInflater.from(contextWrapper)
 
         val view = localInflater.inflate(R.layout.rp_dialog_list, null, false)
@@ -103,7 +97,7 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
             val window = dialog.window!!
             window.decorView.background.getPadding(fgPadding)
             val padding = fgPadding.left + fgPadding.right
-            var width = context.resources.displayMetrics.widthPixels - padding
+            var width = requireContext().resources.displayMetrics.widthPixels - padding
 
             // Set dialog's dimensions, with maximum width.
             val dialogMaxWidth = contextWrapper.obtainStyledAttributes(R.styleable.RecurrencePicker).use {

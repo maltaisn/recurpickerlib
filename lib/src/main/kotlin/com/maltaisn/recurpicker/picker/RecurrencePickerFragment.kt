@@ -16,33 +16,18 @@
 
 package com.maltaisn.recurpicker.picker
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.EditText
 import android.widget.RadioButton
-import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.Group
-import androidx.core.view.isVisible
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import com.google.android.material.button.MaterialButton
 import com.maltaisn.recurpicker.R
-import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.RecurrencePickerSettings
-import com.maltaisn.recurpicker.format.RecurrenceFormatter
-import com.maltaisn.recurpicker.getCallback
+import com.maltaisn.recurpicker.getPickerContextWrapper
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
 
@@ -52,78 +37,29 @@ import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
  * This fragment can be shown directly or after [RecurrenceListDialog] was shown.
  * Note: due to the MVP architecture, some interface methods are public but shouldn't be used.
  */
-class RecurrencePickerFragment : Fragment(),
-    RecurrencePickerContract.View, DateDialogFragment.Callback {
+class RecurrencePickerFragment private constructor(
+    private val delegate: RecurrencePickerDelegate
+) : Fragment(),
+    RecurrencePickerContract.View by delegate,
+    DateDialogFragment.Callback by delegate {
+
+    constructor() : this(RecurrencePickerDelegate())
 
     private var presenter: Presenter? = null
 
-    private lateinit var toolbar: Toolbar
-    private lateinit var frequencyInput: EditText
+    private var contextWrapper: Context? = null
 
-    private lateinit var periodDropdown: AutoCompleteTextView
-    private lateinit var periodAdapter: ArrayAdapter<String>
-
-    private lateinit var weeklyGroup: Group
-    private lateinit var weekBtns: List<MaterialButton>
-
-    private lateinit var monthlyGroup: Group
-    private lateinit var monthlyDropdown: AutoCompleteTextView
-    private lateinit var monthlyAdapter: ArrayAdapter<String>
-
-    private lateinit var endNeverView: View
-    private lateinit var endNeverRadio: RadioButton
-
-    private lateinit var endDateView: View
-    private lateinit var endDateRadio: RadioButton
-    private lateinit var endDatePrefixLabel: TextView
-    private lateinit var endDateSuffixLabel: TextView
-    private lateinit var endDateInput: EditText
-
-    private lateinit var endCountView: View
-    private lateinit var endCountRadio: RadioButton
-    private lateinit var endCountPrefixLabel: TextView
-    private lateinit var endCountSuffixLabel: TextView
-    private lateinit var endCountInput: EditText
-
-    /**
-     * The settings defining the recurrence picker fragment behavior and content.
-     */
-    override lateinit var settings: RecurrencePickerSettings
-        private set
-
-    /**
-     * The start date of the event for which a recurrence is created.
-     * This is a required parameter and cannot be set to [Recurrence.DATE_NONE].
-     * The date is used to know on which day of the week and on which week of the month
-     * the events will happen. It's also the minimum date for the end date.
-     */
-    override var startDate = Recurrence.DATE_NONE
-
-    /**
-     * The previously selected recurrence that will be shown initially. Can be set to `null`
-     * if no recurrence was selected previously. In this case, a simple daily recurrence will
-     * be shown.
-     */
-    override var selectedRecurrence: Recurrence? = null
+    private var _binding: Binding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, state: Bundle?): View? {
-        if (state != null) {
-            settings = state.getParcelable("settings")!!
-            startDate = state.getLong("startDate")
-            selectedRecurrence = state.getParcelable("selectedRecurrence")!!
-        }
-
         // Wrap recurrence picker theme to context
-        val context = requireContext()
-        val ta = context.obtainStyledAttributes(intArrayOf(R.attr.recurrencePickerStyle))
-        val style = ta.getResourceId(0, R.style.RecurrencePickerStyle)
-        ta.recycle()
-        val contextWrapper = ContextThemeWrapper(context, style)
+        contextWrapper = getPickerContextWrapper()
         val localInflater = inflater.cloneInContext(contextWrapper)
 
         // Inflate layout
-        val view = localInflater.inflate(R.layout.rp_fragment_picker, container, false)
-        setupViews(contextWrapper, view)
+        _binding = Binding(localInflater.inflate(R.layout.rp_fragment_picker, container, false))
+        setupViews()
 
         // Back press callback
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
@@ -133,266 +69,98 @@ class RecurrencePickerFragment : Fragment(),
                 }
             })
 
-        return view
+        return binding.root
     }
 
-    private fun setupViews(context: Context, view: View) {
+    private fun setupViews() {
         // Toolbar
-        toolbar = view.findViewById(R.id.rp_toolbar)
-        toolbar.setOnMenuItemClickListener {
+        binding.toolbar.setOnMenuItemClickListener {
             presenter?.onConfirm()
             true
         }
-        toolbar.setNavigationOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             presenter?.onCancel()
         }
 
-        // Frequency
-        frequencyInput = view.findViewById(R.id.rp_picker_freq_input)
-        frequencyInput.addTextChangedListener {
-            presenter?.onFrequencyChanged(it.toString())
-        }
-        frequencyInput.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) frequencyInput.clearFocus()
-            false
-        }
-
-        // Period
-        periodDropdown = view.findViewById(R.id.rp_picker_period_dropdown)
-        periodAdapter = DropdownAdapter(context)
-        periodDropdown.setAdapter(periodAdapter)
-        periodDropdown.setOnItemClickListener { _, _, position, _ ->
-            presenter?.onPeriodItemSelected(position)
-            periodDropdown.requestLayout() // Force view to wrap width to new text
-        }
-
-        setupPeriodRelatedViews(context, view)
-        setupEndViews(view)
+        setupEndViews()
     }
 
-    private fun setupPeriodRelatedViews(context: Context, view: View) {
-        // Days of the week
-        weeklyGroup = view.findViewById(R.id.rp_picker_weekly_group)
-        val weekBtnTa = resources.obtainTypedArray(R.array.rp_picker_week_btn_ids)
-        weekBtns = List(weekBtnTa.length()) {
-            val btn: MaterialButton = view.findViewById(weekBtnTa.getResourceId(it, 0))
-            btn.addOnCheckedChangeListener { _, isChecked ->
-                presenter?.onWeekBtnChecked(it + 1, isChecked)
-            }
-            btn
-        }
-        weekBtnTa.recycle()
-
-        // Monthly setting
-        monthlyGroup = view.findViewById(R.id.rp_picker_monthly_group)
-        monthlyDropdown = view.findViewById(R.id.rp_picker_monthly_dropdown)
-        monthlyAdapter = DropdownAdapter(context)
-        monthlyDropdown.setAdapter(monthlyAdapter)
-        monthlyDropdown.setOnItemClickListener { _, _, position, _ ->
-            presenter?.onMonthlySettingItemSelected(position)
-        }
-    }
-
-    private fun setupEndViews(view: View) {
+    private fun setupEndViews() {
         // End never
-        endNeverView = view.findViewById(R.id.rp_picker_end_never_view)
-        endNeverRadio = view.findViewById(R.id.rp_picker_end_never_radio)
         val endNeverClick = View.OnClickListener { presenter?.onEndNeverClicked() }
-        endNeverView.setOnClickListener(endNeverClick)
-        endNeverRadio.setOnClickListener(endNeverClick)
+        binding.endNeverView.setOnClickListener(endNeverClick)
+        binding.endNeverRadio.setOnClickListener(endNeverClick)
 
         // End by date
-        endDateView = view.findViewById(R.id.rp_picker_end_date_view)
-        endDateRadio = view.findViewById(R.id.rp_picker_end_date_radio)
-        endDateInput = view.findViewById(R.id.rp_picker_end_date_input)
-        endDatePrefixLabel = view.findViewById(R.id.rp_picker_end_date_prefix_label)
-        endDateSuffixLabel = view.findViewById(R.id.rp_picker_end_date_suffix_label)
         val endDateClick = View.OnClickListener { presenter?.onEndDateClicked() }
-        endDateView.setOnClickListener(endDateClick)
-        endDateRadio.setOnClickListener(endDateClick)
-        endDateInput.setOnClickListener { presenter?.onEndDateInputClicked() }
+        binding.endDateView.setOnClickListener(endDateClick)
+        binding.endDateRadio.setOnClickListener(endDateClick)
 
         // End by date
-        endCountView = view.findViewById(R.id.rp_picker_end_count_view)
-        endCountRadio = view.findViewById(R.id.rp_picker_end_count_radio)
-        endCountInput = view.findViewById(R.id.rp_picker_end_count_input)
-        endCountPrefixLabel = view.findViewById(R.id.rp_picker_end_count_prefix_label)
-        endCountSuffixLabel = view.findViewById(R.id.rp_picker_end_count_suffix_label)
         val endCountClick = View.OnClickListener { presenter?.onEndCountClicked() }
-        endCountView.setOnClickListener(endCountClick)
-        endCountRadio.setOnClickListener(endCountClick)
-        endCountInput.addTextChangedListener {
-            presenter?.onEndCountChanged(it.toString())
-        }
-        endCountInput.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) endCountInput.clearFocus()
-            false
-        }
-    }
-
-    override fun clearFocus() {
-        // Clear focus from input fields
-        frequencyInput.clearFocus()
-        endCountInput.clearFocus()
-
-        // Hide keyboard too
-        val imm = requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
+        binding.endCountView.setOnClickListener(endCountClick)
+        binding.endCountRadio.setOnClickListener(endCountClick)
     }
 
     override fun onViewStateRestored(state: Bundle?) {
         super.onViewStateRestored(state)
 
-        // Attach the presenter
-        presenter = RecurrencePickerPresenter()
-        presenter?.attach(this, state)
+        val presenter = RecurrencePickerPresenter()
+        this.presenter = presenter
+
+        delegate.attach(presenter, this, contextWrapper!!, binding.root)
+        delegate.setupViews()
+        if (state != null) {
+            delegate.onRestoreInstanceState(state)
+        }
+
+        presenter.attach(this, state)
     }
 
     override fun onSaveInstanceState(state: Bundle) {
         super.onSaveInstanceState(state)
-
-        state.putParcelable("settings", settings)
-        state.putLong("startDate", startDate)
-        state.putParcelable("selectedRecurrence", selectedRecurrence)
-
-        presenter?.saveState(state)
+        delegate.onSaveInstanceState(state)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
 
+        _binding = null
+        contextWrapper = null
+
         // Detach the presenter
         presenter?.detach()
         presenter = null
+
+        delegate.detach()
     }
-
-    override fun onDateDialogConfirmed(date: Long) {
-        presenter?.onEndDateEntered(date)
-    }
-
-    override val endDateText: String
-        get() = requireContext().getString(R.string.rp_picker_end_date)
-
-    override fun getEndCountTextFor(count: Int) =
-        resources.getQuantityString(R.plurals.rp_picker_end_count, count)
 
     override fun exit() {
         fragmentManager?.popBackStack()
     }
 
-    override fun setFrequencyView(frequency: String) {
-        frequencyInput.setText(frequency)
-        frequencyInput.setSelection(frequency.length)
-    }
-
-    override fun setFrequencyMaxLength(length: Int) {
-        frequencyInput.filters = arrayOf(InputFilter.LengthFilter(length))
-    }
-
-    override fun setPeriodItems(frequency: Int) {
-        periodAdapter.clear()
-
-        val res = resources
-        val periodsTa = res.obtainTypedArray(R.array.rp_picker_periods)
-        periodAdapter.addAll(List(periodsTa.length()) {
-            res.getQuantityString(periodsTa.getResourceId(it, 0), frequency)
-        })
-        periodAdapter.notifyDataSetChanged()
-        periodsTa.recycle()
-    }
-
-    override fun setSelectedPeriodItem(index: Int) {
-        periodDropdown.setText(periodAdapter.getItem(index))
-        periodDropdown.requestLayout() // Force view to wrap width to new text
-    }
-
-    override fun setWeekBtnsShown(shown: Boolean) {
-        weeklyGroup.isVisible = shown
-    }
-
-    override fun setWeekBtnChecked(dayOfWeek: Int, checked: Boolean) {
-        weekBtns[dayOfWeek - 1].isChecked = checked
-    }
-
-    override fun setMonthlySettingShown(shown: Boolean) {
-        monthlyGroup.isVisible = shown
-    }
-
-    override fun setMonthlySettingItems(showLastDay: Boolean, dayOfWeekInMonth: Int, weekInMonth: Int) {
-        monthlyAdapter.clear()
-
-        val res = resources
-        monthlyAdapter.add(res.getString(R.string.rp_format_monthly_same_day)) // on the same day each month
-        monthlyAdapter.add(RecurrenceFormatter.getDayOfWeekInMonthText(
-            res, dayOfWeekInMonth, weekInMonth)) // on every <first> <Sunday>
-        if (showLastDay) {
-            monthlyAdapter.add(res.getString(R.string.rp_format_monthly_last_day))
-        } // on the last day of the month
-    }
-
-    override fun setSelectedMonthlySettingItem(index: Int) {
-        monthlyDropdown.setText(monthlyAdapter.getItem(index))
-    }
-
     override fun setEndNeverChecked(checked: Boolean) {
-        endNeverRadio.isChecked = checked
+        binding.endNeverRadio.isChecked = checked
     }
 
     override fun setEndDateChecked(checked: Boolean) {
-        endDateRadio.isChecked = checked
-        endDateView.visibility = if (checked) View.INVISIBLE else View.VISIBLE
-    }
-
-    override fun setEndDateView(date: String) {
-        endDateInput.setText(date)
-        endDateInput.requestLayout() // Force view to wrap width to new text
-    }
-
-    override fun setEndDateViewEnabled(enabled: Boolean) {
-        endDateInput.isEnabled = enabled
-    }
-
-    override fun setEndDateLabels(prefix: String, suffix: String) {
-        endDatePrefixLabel.text = prefix
-        endDateSuffixLabel.text = suffix
-        endDatePrefixLabel.isVisible = prefix.isNotEmpty()
-    }
-
-    override fun showEndDateDialog(date: Long, minDate: Long) {
-        DateDialogFragment.newInstance(date, minDate)
-            .show(childFragmentManager, "recurrence_end_date_dialog")
+        binding.endDateRadio.isChecked = checked
+        binding.endDateView.visibility = if (checked) View.INVISIBLE else View.VISIBLE
     }
 
     override fun setEndCountChecked(checked: Boolean) {
-        endCountRadio.isChecked = checked
-        endCountView.visibility = if (checked) View.INVISIBLE else View.VISIBLE
+        binding.endCountRadio.isChecked = checked
+        binding.endCountView.visibility = if (checked) View.INVISIBLE else View.VISIBLE
     }
 
-    override fun setEndCountView(count: String) {
-        endCountInput.setText(count)
-        endCountInput.setSelection(count.length)
-    }
-
-    override fun setEndCountViewEnabled(enabled: Boolean) {
-        endCountInput.isEnabled = enabled
-    }
-
-    override fun setEndCountLabels(prefix: String, suffix: String) {
-        endCountPrefixLabel.text = prefix
-        endCountSuffixLabel.text = suffix
-        endCountPrefixLabel.isVisible = prefix.isNotEmpty()
-    }
-
-    override fun setEndCountMaxLength(length: Int) {
-        endCountInput.filters = arrayOf(InputFilter.LengthFilter(length))
-    }
-
-    override fun setCancelResult() {
-        getCallback<RecurrencePickerCallback>()?.onRecurrencePickerCancelled()
-    }
-
-    override fun setConfirmResult(recurrence: Recurrence) {
-        getCallback<RecurrencePickerCallback>()?.onRecurrenceCreated(recurrence)
+    private class Binding(val root: View) {
+        val toolbar: Toolbar = root.findViewById(R.id.rp_toolbar)
+        val endNeverView: View = root.findViewById(R.id.rp_picker_end_never_view)
+        val endNeverRadio: RadioButton = root.findViewById(R.id.rp_picker_end_never_radio)
+        val endDateView: View = root.findViewById(R.id.rp_picker_end_date_view)
+        val endDateRadio: RadioButton = root.findViewById(R.id.rp_picker_end_date_radio)
+        val endCountView: View = root.findViewById(R.id.rp_picker_end_count_view)
+        val endCountRadio: RadioButton = root.findViewById(R.id.rp_picker_end_count_radio)
     }
 
     companion object {

@@ -16,6 +16,9 @@
 
 package com.maltaisn.recurpicker
 
+import android.content.Context
+import androidx.appcompat.view.ContextThemeWrapper
+import androidx.core.content.res.use
 import androidx.fragment.app.Fragment
 
 /**
@@ -25,3 +28,14 @@ internal inline fun <reified T> Fragment.getCallback(): T? =
     (parentFragment as? T)
         ?: (targetFragment as? T)
         ?: (activity as? T)
+
+/**
+ * Get the themed context wrapper for the recurrence picker fragments.
+ */
+internal fun Fragment.getPickerContextWrapper(): Context {
+    val context = requireContext()
+    val style = context.obtainStyledAttributes(intArrayOf(R.attr.recurrencePickerStyle)).use {
+        it.getResourceId(0, R.style.RecurrencePickerStyle)
+    }
+    return ContextThemeWrapper(context, style)
+}
