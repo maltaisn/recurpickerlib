@@ -1,3 +1,7 @@
+### v2.1.4
+- Fixed layout issues with constrained width.
+- Fixed missing left and right margin in recurrence picker dialog for API <= 16.
+
 ### v2.1.3
 - Introduced `rpListDialogMaxWidth` and `rpPickerDialogMaxWidth` attributes to limit the maximum size of dialogs on
 screen. Previously dialogs used at least 65% width in portrait and 100% in landscape which resulted in very wide dialogs
