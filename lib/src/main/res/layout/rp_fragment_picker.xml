@@ -111,12 +111,12 @@
                 android:labelFor="@+id/rp_picker_period_dropdown"
                 >
 
-                <AutoCompleteTextView
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                     android:id="@+id/rp_picker_period_dropdown"
                     style="?rpPickerDropdownStyle"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:dropDownWidth="200dp"
+                    android:dropDownWidth="150dp"
                     tools:ignore="LabelFor"
                     tools:text="weeks"
                     />
@@ -255,7 +255,7 @@
                 app:layout_constrainedWidth="true"
                 >
 
-                <AutoCompleteTextView
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                     android:id="@+id/rp_picker_monthly_dropdown"
                     style="?rpPickerDropdownStyle"
                     android:layout_width="match_parent"

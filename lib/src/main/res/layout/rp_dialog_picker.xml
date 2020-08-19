@@ -84,12 +84,12 @@
             android:labelFor="@+id/rp_picker_period_dropdown"
             >
 
-            <AutoCompleteTextView
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/rp_picker_period_dropdown"
                 style="?rpPickerDropdownStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:dropDownWidth="200dp"
+                android:dropDownWidth="150dp"
                 tools:ignore="LabelFor"
                 tools:text="weeks"
                 />
@@ -227,7 +227,7 @@
             app:layout_constrainedWidth="true"
             >
 
-            <AutoCompleteTextView
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/rp_picker_monthly_dropdown"
                 style="?rpPickerDropdownStyle"
                 android:layout_width="match_parent"
@@ -284,11 +284,12 @@
             android:labelFor="@+id/rp_picker_end_dropdown"
             >
 
-            <AutoCompleteTextView
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                 android:id="@+id/rp_picker_end_dropdown"
                 style="?rpPickerDropdownStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:dropDownWidth="150dp"
                 tools:ignore="LabelFor"
                 tools:text="@string/rp_picker_end_never"
                 />
@@ -375,12 +376,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/rp_picker_end_count_input_layout"
             app:layout_constraintTop_toTopOf="@id/rp_picker_end_dropdown_layout"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:paddingLeft="8dp"
             android:paddingStart="8dp"
             android:paddingRight="0dp"
             android:paddingEnd="0dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginEnd="8dp"
             android:gravity="center_vertical"
             android:labelFor="@+id/rp_picker_end_date_input"
             android:textAppearance="?rpTextAppearance"

@@ -1,6 +1,7 @@
 ### v2.1.4
 - Fixed layout issues with constrained width.
 - Fixed missing left and right margin in recurrence picker dialog for API <= 16.
+- Fixed dropdown widgets not wrapping width to content (introduced in 2.0.2).
 
 ### v2.1.3
 - Introduced `rpListDialogMaxWidth` and `rpPickerDialogMaxWidth` attributes to limit the maximum size of dialogs on

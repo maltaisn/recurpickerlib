@@ -129,6 +129,7 @@ class RecurrencePickerDialog private constructor(
                 1 -> presenter?.onEndDateClicked()
                 2 -> presenter?.onEndCountClicked()
             }
+            binding.endDropdown.requestLayout()
         }
     }
 
