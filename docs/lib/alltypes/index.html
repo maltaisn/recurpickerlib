@@ -16,12 +16,14 @@ All recurrence objects are immutable.</p>
 <tr>
 <h5><a href="../com.maltaisn.recurpicker/-recurrence-finder/index.html">com.maltaisn.recurpicker.RecurrenceFinder</a></h5>
 <p>Utility object to find the dates of the events of a <a href="../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> object.
-All date parameters are given as millis since epoch time.</p>
+All date parameters are given as millis since UTC epoch time.
+This class is not thread-safe.</p>
 </tr>
 <tr>
 <h5><a href="../com.maltaisn.recurpicker.format/-recurrence-formatter/index.html">com.maltaisn.recurpicker.format.RecurrenceFormatter</a></h5>
 <p>Formatter class for converting <a href="../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> objects to a human-readable string represention.
-This is basically a localized version of <a href="../com.maltaisn.recurpicker/-recurrence/to-string.html">Recurrence.toString</a>.</p>
+This is basically a localized version of <a href="../com.maltaisn.recurpicker/-recurrence/to-string.html">Recurrence.toString</a>.
+This class is not thread-safe.</p>
 </tr>
 <tr>
 <h5><a href="../com.maltaisn.recurpicker.list/-recurrence-list-callback/index.html">com.maltaisn.recurpicker.list.RecurrenceListCallback</a></h5>
@@ -52,7 +54,7 @@ Note: due to the MVP architecture, some interface methods are public but shouldn
 <h5><a href="../com.maltaisn.recurpicker.picker/-recurrence-picker-fragment/index.html">com.maltaisn.recurpicker.picker.RecurrencePickerFragment</a></h5>
 <p>Fragment used to create a custom recurrence with nearly all available options.
 Only some options of monthly recurrences are not available, like recurring on a day other than start date.
-This fragment can be shown directly or after <a href="#">RecurrenceListDialog</a> was shown.
+This fragment can be shown directly or after <a href="../com.maltaisn.recurpicker.list/-recurrence-list-dialog/index.html">RecurrenceListDialog</a> was shown.
 Note: due to the MVP architecture, some interface methods are public but shouldn't be used.</p>
 </tr>
 <tr>
@@ -64,7 +66,8 @@ The class is immutable, use the <a href="../com.maltaisn.recurpicker/-recurrence
 <h5><a href="../com.maltaisn.recurpicker.format/-recurrence-serializer/index.html">com.maltaisn.recurpicker.format.RecurrenceSerializer</a></h5>
 <p>Utility class to write a <a href="../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> as a byte array and read it back.
 Read is backward-compatible with previous versions.
-Prefer <a href="../com.maltaisn.recurpicker.format/-r-rule-formatter/index.html">RRuleFormatter</a> to this format for serialization since its more flexible.</p>
+Prefer <a href="../com.maltaisn.recurpicker.format/-r-rule-formatter/index.html">RRuleFormatter</a> to this format for serialization since its more flexible.
+This class is not thread-safe.</p>
 </tr>
 <tr>
 <h5><a href="../com.maltaisn.recurpicker.format/-r-rule-formatter/index.html">com.maltaisn.recurpicker.format.RRuleFormatter</a></h5>
@@ -72,6 +75,10 @@ Prefer <a href="../com.maltaisn.recurpicker.format/-r-rule-formatter/index.html"
 See <a href="https://tools.ietf.org/html/rfc2445#section-4.8.5.4">RFC2445</a> and
 <a href="https://tools.ietf.org/html/rfc5545#section-3.3.10">RFC5545</a>.
 Start dates and end dates are formatted to a local time string.</p>
+</tr>
+<tr>
+<h5><a href="../com.maltaisn.recurpicker.format/-r-rule-parse-exception.html">com.maltaisn.recurpicker.format.RRuleParseException</a></h5>
+<p>Exception thrown by <a href="../com.maltaisn.recurpicker.format/-r-rule-formatter/parse.html">RRuleFormatter.parse</a> when RRule couldn't be parsed.</p>
 </tr>
 </tbody>
 </table>

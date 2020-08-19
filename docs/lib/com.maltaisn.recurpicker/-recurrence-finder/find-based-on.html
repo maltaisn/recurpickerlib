@@ -14,7 +14,8 @@
 same recurrence. If the recurrence has an end by count rule, it's important to also
 supply the <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/baseCount">base count</a> to indicate how many events have happened as of
 the base date so the algorithm knows when to stop. Starting <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">from a date</a>,
-a certain <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</a> of events are found and returned.</p>
+a certain <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</a> of events are found and returned. All events will have the same
+time of the day as the <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/startDate">startDate</a>.</p>
 <p>While using this method is a bit more complicated than using <a href="find.html">find</a>, it will be more
 performant to find a recurrence event if previous event dates are known. For example,
 finding the 1000th event when the first 999 events are known.</p>
@@ -24,15 +25,15 @@ finding the 1000th event when the first 999 events are known.</p>
 <p><a name="startDate"></a>
 <code>startDate</code> - The start date of the recurring event, cannot be <a href="../-recurrence/-d-a-t-e_-n-o-n-e.html">Recurrence.DATE_NONE</a>.</p>
 <p><a name="base"></a>
-<code>base</code> - The base event date. May included in the returned list of events
+<code>base</code> - The base event date. Might get added to the returned list of events
 depending on the <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">fromDate</a> value.</p>
 <p><a name="baseCount"></a>
-<code>baseCount</code> - The number of events that have happened as of the <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/base">base</a> date. This
-is only used if the recurrence has an end by count rule. Any value can safely be used otherwise.
-For example, if the base date is the start date, this should be 1 since only the event on
-the start date has happened.</p>
+<code>baseCount</code> - The number of events that have happened as of the <a href="find-based-on.html#com.maltaisn.recurpicker.RecurrenceFinder$findBasedOn(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Long, kotlin.Int, kotlin.Int, kotlin.Long, kotlin.Boolean)/base">base</a> date.
+If the base date is the start date, this should be 1 since only the event on
+the start date has happened. This value is only used if the recurrence has an end by count rule.
+Any value can safely be used otherwise.</p>
 <p><a name="amount"></a>
-<code>amount</code> - The number of events to find, must be at least 1.</p>
+<code>amount</code> - The maximum number of events to find, must be at least 0.</p>
 <p><a name="fromDate"></a>
 <code>fromDate</code> - The date from which to start finding recurrence events. Can be set
 to <a href="../-recurrence/-d-a-t-e_-n-o-n-e.html">Recurrence.DATE_NONE</a> to find events from the start date of the recurrence.</p>

@@ -17,7 +17,8 @@
 </td>
 <td>
 <p>Formatter class for converting <a href="../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> objects to a human-readable string represention.
-This is basically a localized version of <a href="../com.maltaisn.recurpicker/-recurrence/to-string.html">Recurrence.toString</a>.</p>
+This is basically a localized version of <a href="../com.maltaisn.recurpicker/-recurrence/to-string.html">Recurrence.toString</a>.
+This class is not thread-safe.</p>
 <code><span class="keyword">class </span><span class="identifier">RecurrenceFormatter</span></code></td>
 </tr>
 <tr>
@@ -27,7 +28,8 @@ This is basically a localized version of <a href="../com.maltaisn.recurpicker/-r
 <td>
 <p>Utility class to write a <a href="../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> as a byte array and read it back.
 Read is backward-compatible with previous versions.
-Prefer <a href="-r-rule-formatter/index.html">RRuleFormatter</a> to this format for serialization since its more flexible.</p>
+Prefer <a href="-r-rule-formatter/index.html">RRuleFormatter</a> to this format for serialization since its more flexible.
+This class is not thread-safe.</p>
 <code><span class="keyword">class </span><s><span class="identifier">RecurrenceSerializer</span></s></code></td>
 </tr>
 <tr>
@@ -40,6 +42,19 @@ See <a href="https://tools.ietf.org/html/rfc2445#section-4.8.5.4">RFC2445</a> an
 <a href="https://tools.ietf.org/html/rfc5545#section-3.3.10">RFC5545</a>.
 Start dates and end dates are formatted to a local time string.</p>
 <code><span class="keyword">class </span><span class="identifier">RRuleFormatter</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Exceptions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-r-rule-parse-exception.html">RRuleParseException</a></h4>
+</td>
+<td>
+<p>Exception thrown by <a href="-r-rule-formatter/parse.html">RRuleFormatter.parse</a> when RRule couldn't be parsed.</p>
+<code><span class="keyword">class </span><span class="identifier">RRuleParseException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-illegal-argument-exception/index.html"><span class="identifier">IllegalArgumentException</span></a></code></td>
 </tr>
 </tbody>
 </table>

@@ -10,6 +10,9 @@
 <h1>format</h1>
 <a name="com.maltaisn.recurpicker.format.RRuleFormatter$format(com.maltaisn.recurpicker.Recurrence)"></a>
 <code><span class="keyword">fun </span><span class="identifier">format</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.format.RRuleFormatter$format(com.maltaisn.recurpicker.Recurrence)/r">r</span><span class="symbol">:</span>&nbsp;<a href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>Format a <a href="format.html#com.maltaisn.recurpicker.format.RRuleFormatter$format(com.maltaisn.recurpicker.Recurrence)/r">recurrence</a> to a string recurrence rule and return it.</p>
+<p>Format a <a href="format.html#com.maltaisn.recurpicker.format.RRuleFormatter$format(com.maltaisn.recurpicker.Recurrence)/r">recurrence</a> to a string recurrence rule and return it.
+Note that a valid RRule should technically include the DTSTART attribute, but since this attribute is not
+part of the <a href="../../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> class, it is omitted. This function will also generate the string <code>RRULE:FREQ=NONE</code>
+for recurrence with a period of <a href="../../com.maltaisn.recurpicker/-recurrence/-period/-n-o-n-e.html">Period.NONE</a>, even though this isn't part of the standard.</p>
 </BODY>
 </HTML>

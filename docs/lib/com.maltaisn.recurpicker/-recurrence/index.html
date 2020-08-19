@@ -59,7 +59,7 @@ All recurrence objects are immutable.</p>
 <h4><a href="by-day.html">byDay</a></h4>
 </td>
 <td>
-<p>First bit is <code>1</code> if the value is used, <code>0</code> otherwise.</p>
+<p>Least-significant bit is <code>1</code> if the value is used, <code>0</code> otherwise.</p>
 <code><span class="keyword">val </span><span class="identifier">byDay</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
 </tr>
 <tr>
@@ -70,6 +70,7 @@ All recurrence objects are immutable.</p>
 <p>If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, the day of the month on which the events happen.
 The number must be between -31 and 31. If the value is <code>0</code> (the default),
 the events will happen on the same day of the month as the start date's.
+The value can also be <code>0</code> if <a href="by-day.html">byDay</a> determines the day of the month instead.
 Negative numbers start counting from the end of the month.</p>
 <code><span class="keyword">val </span><span class="identifier">byMonthDay</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
 </tr>
@@ -99,7 +100,9 @@ the number of events never includes the start date event.</p>
 </td>
 <td>
 <p>The end date if end type is <a href="-end-type/-b-y_-d-a-t-e.html">EndType.BY_DATE</a>. If not, end date is
-always <a href="-d-a-t-e_-n-o-n-e.html">DATE_NONE</a>. The end date is inclusive so the last event might be on the end date.</p>
+always <a href="-d-a-t-e_-n-o-n-e.html">DATE_NONE</a>. The end date is inclusive so the last event might be on the end date.
+The date is given in UTC milliseconds since epoch time. The time of the day has no importance.
+To account for time zones, use <a href="../-recurrence-finder/time-zone.html">RecurrenceFinder.timeZone</a> and <a href="../../com.maltaisn.recurpicker.format/-r-rule-formatter/time-zone.html">RRuleFormatter.timeZone</a>.</p>
 <code><span class="keyword">val </span><span class="identifier">endDate</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code></td>
 </tr>
 <tr>
@@ -173,7 +176,8 @@ Same applies for <a href="hash-code.html">hashCode</a>.</p>
 <td>
 <p>If period is <a href="-period/-w-e-e-k-l-y.html">WEEKLY</a>, checks if events happen on certain <a href="is-recurring-on-days-of-week.html#com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</a> of the week.
 Returns true only if recurrence happens on all of these days.
-To get the number of days set use <code>Integer.bitCount(recurrence.byDay)  - 1</code>.
+To get the number of days set use <code>Integer.bitCount(recurrence.byDay)  - 1</code>
+(or <code>recurrence.byDay.countOneBits() - 1</code> in Kotlin).
 If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, checks if events happen on a certain day of the week specified
 by a single flag set in <a href="is-recurring-on-days-of-week.html#com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</a>.</p>
 <code><span class="keyword">fun </span><span class="identifier">isRecurringOnDaysOfWeek</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>

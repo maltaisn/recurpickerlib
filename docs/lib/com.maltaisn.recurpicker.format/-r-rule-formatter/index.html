@@ -13,6 +13,7 @@
 See <a href="https://tools.ietf.org/html/rfc2445#section-4.8.5.4">RFC2445</a> and
 <a href="https://tools.ietf.org/html/rfc5545#section-3.3.10">RFC5545</a>.
 Start dates and end dates are formatted to a local time string.</p>
+<p>This class is thread-safe.</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -29,6 +30,20 @@ Start dates and end dates are formatted to a local time string.</p>
 </tr>
 </tbody>
 </table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="time-zone.html">timeZone</a></h4>
+</td>
+<td>
+<p>The timezone used for formatting and parsing end dates (<code>UNTIL</code> attribute),
+unless the end date uses UTC time (time form #2, section 3.3.5).</p>
+<code><span class="keyword">var </span><span class="identifier">timeZone</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/TimeZone.html"><span class="identifier">TimeZone</span></a></code></td>
+</tr>
+</tbody>
+</table>
 <h3>Functions</h3>
 <table>
 <tbody>
@@ -37,7 +52,10 @@ Start dates and end dates are formatted to a local time string.</p>
 <h4><a href="format.html">format</a></h4>
 </td>
 <td>
-<p>Format a <a href="format.html#com.maltaisn.recurpicker.format.RRuleFormatter$format(com.maltaisn.recurpicker.Recurrence)/r">recurrence</a> to a string recurrence rule and return it.</p>
+<p>Format a <a href="format.html#com.maltaisn.recurpicker.format.RRuleFormatter$format(com.maltaisn.recurpicker.Recurrence)/r">recurrence</a> to a string recurrence rule and return it.
+Note that a valid RRule should technically include the DTSTART attribute, but since this attribute is not
+part of the <a href="../../com.maltaisn.recurpicker/-recurrence/index.html">Recurrence</a> class, it is omitted. This function will also generate the string <code>RRULE:FREQ=NONE</code>
+for recurrence with a period of <a href="../../com.maltaisn.recurpicker/-recurrence/-period/-n-o-n-e.html">Period.NONE</a>, even though this isn't part of the standard.</p>
 <code><span class="keyword">fun </span><span class="identifier">format</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.format.RRuleFormatter$format(com.maltaisn.recurpicker.Recurrence)/r">r</span><span class="symbol">:</span>&nbsp;<a href="../../com.maltaisn.recurpicker/-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 <tr>

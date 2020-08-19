@@ -12,7 +12,8 @@
 <code><span class="keyword">fun </span><span class="identifier">isRecurringOnDaysOfWeek</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
 <p>If period is <a href="-period/-w-e-e-k-l-y.html">WEEKLY</a>, checks if events happen on certain <a href="is-recurring-on-days-of-week.html#com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</a> of the week.
 Returns true only if recurrence happens on all of these days.
-To get the number of days set use <code>Integer.bitCount(recurrence.byDay)  - 1</code>.
+To get the number of days set use <code>Integer.bitCount(recurrence.byDay)  - 1</code>
+(or <code>recurrence.byDay.countOneBits() - 1</code> in Kotlin).
 If period is <a href="-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, checks if events happen on a certain day of the week specified
 by a single flag set in <a href="is-recurring-on-days-of-week.html#com.maltaisn.recurpicker.Recurrence$isRecurringOnDaysOfWeek(kotlin.Int)/days">days</a>.</p>
 <h3>Parameters</h3>

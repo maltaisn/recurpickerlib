@@ -33,7 +33,7 @@
 <h4><a href="day-in-month.html">dayInMonth</a></h4>
 </td>
 <td>
-<p>If period is <a href="../-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, set the <a href="#">day</a> in the month on which events happen.</p>
+<p>If period is <a href="../-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, set the day in the month on which events happen.</p>
 <code><span class="keyword">var </span><span class="identifier">dayInMonth</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
 </tr>
 <tr>
@@ -94,13 +94,20 @@ This validates and normalizes all field values.</p>
 </tr>
 <tr>
 <td>
+<h4><a href="set-day-in-month.html">setDayInMonth</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setDayInMonth</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setDayInMonth(kotlin.Int)/dayInMonth">dayInMonth</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
+</tr>
+<tr>
+<td>
 <h4><a href="set-day-of-week-in-month.html">setDayOfWeekInMonth</a></h4>
 </td>
 <td>
 <p>If period is <a href="../-period/-m-o-n-t-h-l-y.html">MONTHLY</a>, set <a href="#">byDay</a> setting so that the recurrence
 happens on a <a href="set-day-of-week-in-month.html#com.maltaisn.recurpicker.Recurrence.Builder$setDayOfWeekInMonth(kotlin.Int, kotlin.Int)/day">day</a> of a week in the month. If both parameters are <code>0</code>,
 the week number and day of the week will be the same as start date's.</p>
-<code><span class="keyword">fun </span><span class="identifier">setDayOfWeekInMonth</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setDayOfWeekInMonth(kotlin.Int, kotlin.Int)/day">day</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setDayOfWeekInMonth(kotlin.Int, kotlin.Int)/week">week</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">setDayOfWeekInMonth</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setDayOfWeekInMonth(kotlin.Int, kotlin.Int)/day">day</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setDayOfWeekInMonth(kotlin.Int, kotlin.Int)/week">week</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
 </tr>
 <tr>
 <td>
@@ -108,7 +115,35 @@ the week number and day of the week will be the same as start date's.</p>
 </td>
 <td>
 <p>If period is <a href="../-period/-w-e-e-k-l-y.html">WEEKLY</a>, set <a href="#">byDay</a> field to a list of <a href="set-days-of-week.html#com.maltaisn.recurpicker.Recurrence.Builder$setDaysOfWeek(kotlin.IntArray)/days">days</a> of the week.</p>
-<code><span class="keyword">fun </span><span class="identifier">setDaysOfWeek</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setDaysOfWeek(kotlin.IntArray)/days">days</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">setDaysOfWeek</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setDaysOfWeek(kotlin.IntArray)/days">days</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-count.html">setEndCount</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndCount</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setEndCount(kotlin.Int)/endCount">endCount</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-date.html">setEndDate</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndDate</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setEndDate(kotlin.Long)/endDate">endDate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-end-type.html">setEndType</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setEndType</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setEndType(com.maltaisn.recurpicker.Recurrence.EndType)/endType">endType</span><span class="symbol">:</span>&nbsp;<span class="identifier">EndType</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="set-frequency.html">setFrequency</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">setFrequency</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.Recurrence.Builder$setFrequency(kotlin.Int)/frequency">frequency</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code></td>
 </tr>
 </tbody>
 </table>
