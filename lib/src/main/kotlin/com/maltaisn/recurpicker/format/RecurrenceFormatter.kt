@@ -33,7 +33,7 @@ import java.util.Date
  *
  * @property dateFormat Date format used to format end date.
  */
-class RecurrenceFormatter(val dateFormat: DateFormat) {
+public class RecurrenceFormatter(public val dateFormat: DateFormat) {
 
     private val calendar = Calendar.getInstance()
 
@@ -46,7 +46,7 @@ class RecurrenceFormatter(val dateFormat: DateFormat) {
      * allow to avoid repeating information that will be shared by every event of the recurrence.
      */
     @JvmOverloads
-    fun format(context: Context, r: Recurrence, startDate: Long = Recurrence.DATE_NONE): String {
+    public fun format(context: Context, r: Recurrence, startDate: Long = Recurrence.DATE_NONE): String {
         val res = context.resources
 
         if (startDate != Recurrence.DATE_NONE) {
@@ -158,7 +158,7 @@ class RecurrenceFormatter(val dateFormat: DateFormat) {
         }
     }
 
-    companion object {
+    public companion object {
         /**
          * Returns a localized string in the form "on every first Sunday" for monthly recurrences
          * happening on the same day of the same week each month.

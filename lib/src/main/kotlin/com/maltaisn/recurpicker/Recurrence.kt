@@ -78,14 +78,14 @@ import kotlin.math.absoluteValue
  * [EndType.BY_COUNT]. If not, end count is always `0`. Since the start date is exclusive,
  * the number of events never includes the start date event.
  */
-class Recurrence private constructor(
-    val period: Period,
-    val frequency: Int,
-    val byDay: Int,
-    val byMonthDay: Int,
-    val endType: EndType,
-    val endDate: Long,
-    val endCount: Int,
+public class Recurrence private constructor(
+    public val period: Period,
+    public val frequency: Int,
+    public val byDay: Int,
+    public val byMonthDay: Int,
+    public val endType: EndType,
+    public val endDate: Long,
+    public val endCount: Int,
     private val calendar: Calendar
 ) : Parcelable {
 
@@ -93,7 +93,7 @@ class Recurrence private constructor(
      * If period is [MONTHLY], get the week of the month on which the events happen.
      * Returns `0` if undefined or events happen on a particular day of the month instead.
      */
-    val weekInMonth: Int
+    public val weekInMonth: Int
         get() {
             check(period == MONTHLY) { "Week in month is a monthly recurrence property." }
             return (byDay ushr Byte.SIZE_BITS) - MAX_WEEKS_IN_MONTH
@@ -104,7 +104,7 @@ class Recurrence private constructor(
      * Returns `0` if undefined or events happen on a particular day of the month instead.
      * Returns a `Calendar.SUNDAY-SATURDAY` constant otherwise.
      */
-    val dayOfWeekInMonth: Int
+    public val dayOfWeekInMonth: Int
         get() {
             check(period == MONTHLY) { "Day of week in month is a monthly recurrence property." }
             for (day in Calendar.SUNDAY..Calendar.SATURDAY) {
@@ -124,7 +124,7 @@ class Recurrence private constructor(
      * by a single flag set in [days].
      * @param days A bit field of [DaysOfWeek] values.
      */
-    fun isRecurringOnDaysOfWeek(@DaysOfWeek days: Int): Boolean = ((byDay and days) == days)
+    public fun isRecurringOnDaysOfWeek(@DaysOfWeek days: Int): Boolean = ((byDay and days) == days)
 
     /**
      * Note: since two recurrences with dates at different times of the day will produce the same
@@ -251,12 +251,12 @@ class Recurrence private constructor(
     /**
      * Builder for recurrence.
      */
-    class Builder {
+    public class Builder {
 
         private val calendar = Calendar.getInstance()
 
         /** @see Recurrence.frequency */
-        var period: Period = NONE
+        public var period: Period = NONE
             private set
 
         /**
@@ -264,7 +264,7 @@ class Recurrence private constructor(
          * @see Recurrence.frequency
          */
         @set:JvmSynthetic
-        var frequency: Int = 1
+        public var frequency: Int = 1
             set(value) {
                 require(value >= 1) { "Frequency must be 1 or greater." }
                 field = value
@@ -288,7 +288,7 @@ class Recurrence private constructor(
          * @see Recurrence.endType
          */
         @set:JvmSynthetic
-        var endType: EndType = EndType.NEVER
+        public var endType: EndType = EndType.NEVER
 
         /**
          * Setting this value will changing end type to by date.
@@ -296,7 +296,7 @@ class Recurrence private constructor(
          * @see Recurrence.endDate
          */
         @set:JvmSynthetic
-        var endDate: Long = DATE_NONE
+        public var endDate: Long = DATE_NONE
             set(value) {
                 endType = if (value == DATE_NONE) EndType.NEVER else EndType.BY_DATE
                 field = value
@@ -308,7 +308,7 @@ class Recurrence private constructor(
          * @see Recurrence.endCount
          */
         @set:JvmSynthetic
-        var endCount: Int = 0
+        public var endCount: Int = 0
             set(value) {
                 endType = EndType.BY_COUNT
                 field = value
@@ -317,7 +317,7 @@ class Recurrence private constructor(
         /**
          * Create a builder initialized for a recurrence with a [period].
          */
-        constructor(period: Period) {
+        public constructor(period: Period) {
             this.period = period
             if (period == WEEKLY) {
                 byDay = 1
@@ -327,7 +327,7 @@ class Recurrence private constructor(
         /**
          * Create a builder initialized with the values of another [recurrence].
          */
-        constructor(recurrence: Recurrence) : this(recurrence.period) {
+        public constructor(recurrence: Recurrence) : this(recurrence.period) {
             frequency = recurrence.frequency
             byDay = recurrence.byDay
             byMonthDay = recurrence.byMonthDay
@@ -336,15 +336,15 @@ class Recurrence private constructor(
             endType = recurrence.endType
         }
 
-        fun setFrequency(frequency: Int) = apply { this.frequency = frequency }
-        fun setEndType(endType: EndType) = apply { this.endType = endType }
-        fun setEndDate(endDate: Long) = apply { this.endDate = endDate }
-        fun setEndCount(endCount: Int) = apply { this.endCount = endCount }
+        public fun setFrequency(frequency: Int): Builder = apply { this.frequency = frequency }
+        public fun setEndType(endType: EndType): Builder = apply { this.endType = endType }
+        public fun setEndDate(endDate: Long): Builder = apply { this.endDate = endDate }
+        public fun setEndCount(endCount: Int): Builder = apply { this.endCount = endCount }
 
         /**
          * If period is [WEEKLY], set [byDay] field to a list of [days] of the week.
          */
-        fun setDaysOfWeek(@DaysOfWeek vararg days: Int) = apply {
+        public fun setDaysOfWeek(@DaysOfWeek vararg days: Int): Builder = apply {
             check(period == WEEKLY) { "Period must be weekly to set the list of days of the week." }
             byDay = 0x01
             @SuppressLint("WrongConstant")
@@ -359,7 +359,7 @@ class Recurrence private constructor(
          * @see Recurrence.byMonthDay
          */
         @set:JvmSynthetic
-        var dayInMonth: Int
+        public var dayInMonth: Int
             get() = byMonthDay
             set(value) {
                 check(period == MONTHLY) { "Period must be monthly to set the day in month." }
@@ -368,7 +368,7 @@ class Recurrence private constructor(
                 byMonthDay = value
             }
 
-        fun setDayInMonth(dayInMonth: Int) = apply { this.dayInMonth = dayInMonth }
+        public fun setDayInMonth(dayInMonth: Int): Builder = apply { this.dayInMonth = dayInMonth }
 
         /**
          * If period is [MONTHLY], set [byDay] setting so that the recurrence
@@ -378,7 +378,7 @@ class Recurrence private constructor(
          * @param week On which week of the month the events will happen, starting from `1`.
          * From -4 to 4, negative values count the week number from the end of the month.
          */
-        fun setDayOfWeekInMonth(day: Int, week: Int) = apply {
+        public fun setDayOfWeekInMonth(day: Int, week: Int): Builder = apply {
             check(period == MONTHLY) { "Period must be monthly to set the day of week in month." }
             require(day.countOneBits() == 1 && day in SUNDAY..SATURDAY) { "Day of the week flag is invalid." }
             require(week.absoluteValue <= MAX_WEEKS_IN_MONTH && week != 0) { "Week of the month is invalid." }
@@ -390,7 +390,7 @@ class Recurrence private constructor(
          * Build the recurrence object described by the builder.
          * This validates and normalizes all field values.
          */
-        fun build(): Recurrence {
+        public fun build(): Recurrence {
             if (period == WEEKLY && byDay == EVERY_DAY_OF_WEEK && frequency == 1) {
                 // Recurring every week on every day of the week so make it daily.
                 period = DAILY
@@ -419,7 +419,7 @@ class Recurrence private constructor(
         }
     }
 
-    enum class Period {
+    public enum class Period {
         /**
          * Period for a recurrence that does not repeat.
          * Finding events of this recurrence will return none.
@@ -453,9 +453,9 @@ class Recurrence private constructor(
      */
     @IntDef(flag = true, value = [SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY])
     @Retention(AnnotationRetention.SOURCE)
-    annotation class DaysOfWeek
+    public annotation class DaysOfWeek
 
-    enum class EndType {
+    public enum class EndType {
         /** Recurrence will never end. */
         NEVER,
 
@@ -466,27 +466,27 @@ class Recurrence private constructor(
         BY_COUNT
     }
 
-    companion object {
+    public companion object {
         // Bit flags for days of the week bit field
-        const val SUNDAY = 1 shl Calendar.SUNDAY
-        const val MONDAY = 1 shl Calendar.MONDAY
-        const val TUESDAY = 1 shl Calendar.TUESDAY
-        const val WEDNESDAY = 1 shl Calendar.WEDNESDAY
-        const val THURSDAY = 1 shl Calendar.THURSDAY
-        const val FRIDAY = 1 shl Calendar.FRIDAY
-        const val SATURDAY = 1 shl Calendar.SATURDAY
+        public const val SUNDAY: Int = 1 shl Calendar.SUNDAY
+        public const val MONDAY: Int = 1 shl Calendar.MONDAY
+        public const val TUESDAY: Int = 1 shl Calendar.TUESDAY
+        public const val WEDNESDAY: Int = 1 shl Calendar.WEDNESDAY
+        public const val THURSDAY: Int = 1 shl Calendar.THURSDAY
+        public const val FRIDAY: Int = 1 shl Calendar.FRIDAY
+        public const val SATURDAY: Int = 1 shl Calendar.SATURDAY
 
-        const val EVERY_DAY_OF_WEEK = 0b11111111 // LSB is 1 to follow byDay layout so it can be used for comparison.
+        public const val EVERY_DAY_OF_WEEK: Int = 0b11111111 // LSB is 1 to follow byDay layout so it can be used for comparison.
 
         /** Date value used for no end date. */
-        const val DATE_NONE = Long.MIN_VALUE
+        public const val DATE_NONE: Long = Long.MIN_VALUE
 
         /**
          * A recurrence that doesn't repeat. When finding events for this recurrence,
          * only the start date event will be returned.
          */
         @JvmField
-        val DOES_NOT_REPEAT = Recurrence(NONE, 1, 0, 0,
+        public val DOES_NOT_REPEAT: Recurrence = Recurrence(NONE, 1, 0, 0,
             EndType.NEVER, DATE_NONE, 0, Calendar.getInstance())
 
         private const val MAX_DAYS_IN_YEAR = 366
@@ -496,7 +496,7 @@ class Recurrence private constructor(
         /**
          * Inline factory function to create a [Recurrence] without directly using the builder.
          */
-        inline operator fun invoke(period: Period, build: Builder.() -> Unit = {}): Recurrence {
+        public inline operator fun invoke(period: Period, build: Builder.() -> Unit = {}): Recurrence {
             val builder = Builder(period)
             build(builder)
             return builder.build()
@@ -505,7 +505,7 @@ class Recurrence private constructor(
         /**
          * Inline factory function to create a modified copy of a [Recurrence] without directly using the builder.
          */
-        inline operator fun invoke(recurrence: Recurrence, build: Builder.() -> Unit = {}): Recurrence {
+        public inline operator fun invoke(recurrence: Recurrence, build: Builder.() -> Unit = {}): Recurrence {
             val builder = Builder(recurrence)
             build(builder)
             return builder.build()
@@ -518,7 +518,7 @@ class Recurrence private constructor(
         }
 
         @JvmField
-        val CREATOR = object : Parcelable.Creator<Recurrence> {
+        public val CREATOR: Parcelable.Creator<Recurrence> = object : Parcelable.Creator<Recurrence> {
             override fun createFromParcel(parcel: Parcel) = Recurrence(parcel)
             override fun newArray(size: Int) = arrayOfNulls<Recurrence>(size)
         }
@@ -547,5 +547,5 @@ class Recurrence private constructor(
         }
     }
 
-    override fun describeContents() = 0
+    override fun describeContents(): Int = 0
 }

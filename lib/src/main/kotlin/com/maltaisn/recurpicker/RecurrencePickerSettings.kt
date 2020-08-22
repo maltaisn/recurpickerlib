@@ -34,12 +34,12 @@ import java.util.Locale
  * A class for configuring the behavior of the recurrence list and picker dialogs.
  * The class is immutable, use the [Builder] to create it.
  */
-class RecurrencePickerSettings private constructor(
+public class RecurrencePickerSettings private constructor(
     /**
      * The recurrence formatter used to format the recurrences shown in the recurrence list dialog.
      * The date format is also used to format the end dates in the recurrence picker.
      */
-    val formatter: RecurrenceFormatter,
+    public val formatter: RecurrenceFormatter,
 
     /**
      * List of recurrence presets displayed in the recurrence list dialog.
@@ -48,30 +48,30 @@ class RecurrencePickerSettings private constructor(
      * The default is a list of recurrences equivalent to "Does not repeat", "Daily",
      * "Weekly", "Monthly", "Yearly", null ("Custom...").
      */
-    val presets: List<Recurrence?>,
+    public val presets: List<Recurrence?>,
 
     /**
      * The recurrence shown by default in the recurrence picker.
      * This is shown when no recurrence or a "Does not repeat" recurrence is selected.
      */
-    val defaultPickerRecurrence: Recurrence,
+    public val defaultPickerRecurrence: Recurrence,
 
     /** The maximum frequency that can be entered in the picker. Must be at least 1. */
-    val maxFrequency: Int,
+    public val maxFrequency: Int,
 
     /** The maximum end count that can be entered in the picker. Must be at least 1. */
-    val maxEndCount: Int
+    public val maxEndCount: Int
 ) : Parcelable {
 
-    class Builder {
+    public class Builder {
 
         /** @see RecurrencePickerSettings.formatter */
         @set:JvmSynthetic
-        var formatter: RecurrenceFormatter = RecurrenceFormatter(DateFormat.getDateInstance())
+        public var formatter: RecurrenceFormatter = RecurrenceFormatter(DateFormat.getDateInstance())
 
         /** @see RecurrencePickerSettings.presets */
         @set:JvmSynthetic
-        var presets: List<Recurrence?> = mutableListOf(
+        public var presets: List<Recurrence?> = mutableListOf(
             Recurrence.DOES_NOT_REPEAT,
             Recurrence(Period.DAILY),
             Recurrence(Period.WEEKLY),
@@ -81,11 +81,11 @@ class RecurrencePickerSettings private constructor(
 
         /** @see RecurrencePickerSettings.defaultPickerRecurrence */
         @set:JvmSynthetic
-        var defaultPickerRecurrence: Recurrence = Recurrence(Period.DAILY)
+        public var defaultPickerRecurrence: Recurrence = Recurrence(Period.DAILY)
 
         /** @see RecurrencePickerSettings.maxFrequency */
         @set:JvmSynthetic
-        var maxFrequency: Int = 99
+        public var maxFrequency: Int = 99
             set(value) {
                 require(value >= 1) { "Max frequency must be at least 1." }
                 field = value
@@ -93,19 +93,21 @@ class RecurrencePickerSettings private constructor(
 
         /** @see RecurrencePickerSettings.maxEndCount */
         @set:JvmSynthetic
-        var maxEndCount: Int = 999
+        public var maxEndCount: Int = 999
             set(value) {
                 require(value >= 1) { "Max end count must be at least 1." }
                 field = value
             }
 
-        fun setFormatter(formatter: RecurrenceFormatter) = apply { this.formatter = formatter }
-        fun setPresets(presets: List<Recurrence?>) = apply { this.presets = presets }
-        fun setDefaultPickerRecurrence(recurrence: Recurrence) = apply { defaultPickerRecurrence = recurrence }
-        fun setMaxFrequency(frequency: Int) = apply { maxFrequency = frequency }
-        fun setMaxEndCount(count: Int) = apply { maxEndCount = count }
+        public fun setFormatter(formatter: RecurrenceFormatter): Builder = apply { this.formatter = formatter }
+        public fun setPresets(presets: List<Recurrence?>): Builder = apply { this.presets = presets }
+        public fun setDefaultPickerRecurrence(recurrence: Recurrence): Builder =
+            apply { defaultPickerRecurrence = recurrence }
 
-        fun build() = RecurrencePickerSettings(formatter, presets,
+        public fun setMaxFrequency(frequency: Int): Builder = apply { maxFrequency = frequency }
+        public fun setMaxEndCount(count: Int): Builder = apply { maxEndCount = count }
+
+        public fun build(): RecurrencePickerSettings = RecurrencePickerSettings(formatter, presets,
             defaultPickerRecurrence, maxFrequency, maxEndCount)
     }
 
@@ -120,27 +122,29 @@ class RecurrencePickerSettings private constructor(
         parcel.writeBundle(bundle)
     }
 
-    override fun describeContents() = 0
+    override fun describeContents(): Int = 0
 
-    companion object {
+    public companion object {
         @JvmField
-        val CREATOR = object : Parcelable.Creator<RecurrencePickerSettings> {
-            override fun createFromParcel(parcel: Parcel) = RecurrencePickerSettings {
-                val bundle = parcel.readBundle(RecurrencePickerSettings::class.java.classLoader)!!
-                formatter = bundle.getRecurrenceFormatter()
-                presets = bundle.getParcelableArrayList("presets")!!
-                defaultPickerRecurrence = bundle.getParcelable("defaultPickerRecurrence")!!
-                maxFrequency = bundle.getInt("maxFrequency")
-                maxEndCount = bundle.getInt("maxEndCount")
-            }
+        public val CREATOR: Parcelable.Creator<RecurrencePickerSettings> =
+            object : Parcelable.Creator<RecurrencePickerSettings> {
+                override fun createFromParcel(parcel: Parcel) = RecurrencePickerSettings {
+                    val bundle = parcel.readBundle(RecurrencePickerSettings::class.java.classLoader)!!
+                    formatter = bundle.getRecurrenceFormatter()
+                    presets = bundle.getParcelableArrayList("presets")!!
+                    defaultPickerRecurrence = bundle.getParcelable("defaultPickerRecurrence")!!
+                    maxFrequency = bundle.getInt("maxFrequency")
+                    maxEndCount = bundle.getInt("maxEndCount")
+                }
 
-            override fun newArray(size: Int) = arrayOfNulls<RecurrencePickerSettings>(size)
-        }
+                override fun newArray(size: Int) = arrayOfNulls<RecurrencePickerSettings>(size)
+            }
 
         /**
          * Utility function to create settings using constructor-like syntax.
          */
-        inline operator fun invoke(init: Builder.() -> Unit = {}) = Builder().apply(init).build()
+        public inline operator fun invoke(init: Builder.() -> Unit = {}): RecurrencePickerSettings =
+            Builder().apply(init).build()
 
         private fun Bundle.getRecurrenceFormatter(): RecurrenceFormatter {
             val dateFormat = try {

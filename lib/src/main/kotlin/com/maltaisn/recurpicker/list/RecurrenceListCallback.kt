@@ -23,21 +23,21 @@ import com.maltaisn.recurpicker.Recurrence
  * Interface to be implemented by either the parent fragment of the dialog, the target fragment
  * or the parent activity. If none of these implements it, there won't be any callback.
  */
-interface RecurrenceListCallback {
+public interface RecurrenceListCallback {
     /**
      * Called if a [recurrence] preset is selected in the list.
      */
-    fun onRecurrencePresetSelected(recurrence: Recurrence)
+    public fun onRecurrencePresetSelected(recurrence: Recurrence)
 
     /**
      * Called if the "Custom..." item is selected in the list.
      * This is a good place to show the recurrence picker.
      */
-    fun onRecurrenceCustomClicked()
+    public fun onRecurrenceCustomClicked()
 
     /**
      * Called if the recurrence list dialog is cancelled, either by
      * a click outside or by a back press.
      */
-    fun onRecurrenceListDialogCancelled() = Unit
+    public fun onRecurrenceListDialogCancelled() {}
 }

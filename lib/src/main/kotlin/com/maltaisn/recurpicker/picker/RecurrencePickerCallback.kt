@@ -22,16 +22,16 @@ import com.maltaisn.recurpicker.Recurrence
  * Interface to be implemented by either the parent fragment of this fragment, the target fragment
  * or the parent activity. If none of these implements it, there won't be any callback.
  */
-interface RecurrencePickerCallback {
+public interface RecurrencePickerCallback {
 
     /**
      * Called if the "Done" button is clicked and a custom [recurrence] is created.
      */
-    fun onRecurrenceCreated(recurrence: Recurrence)
+    public fun onRecurrenceCreated(recurrence: Recurrence)
 
     /**
      * Called if the recurrence picker fragment back arrow is clicked,
      * or if the recurrence picker dialog is cancelled by click outside or "Cancel" button.
      */
-    fun onRecurrencePickerCancelled() = Unit
+    public fun onRecurrencePickerCancelled() {}
 }

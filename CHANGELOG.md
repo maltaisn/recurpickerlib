@@ -1,4 +1,5 @@
 ### v2.1.4
+- Updated kotlin to 1.4.0.
 - Fixed layout issues with constrained width.
 - Fixed missing left and right margin in recurrence picker dialog for API <= 16.
 - Fixed dropdown widgets not wrapping width to content (introduced in 2.0.2).

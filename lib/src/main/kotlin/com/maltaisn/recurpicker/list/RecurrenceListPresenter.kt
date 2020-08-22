@@ -54,7 +54,7 @@ internal open class RecurrenceListPresenter : Presenter {
             recurrences += settings.presets
         } else {
             checkedPos = state.getInt("checkedPos")
-            recurrences += state.getParcelableArrayList<Recurrence?>("recurrences")!!
+            recurrences += state.getParcelableArrayList("recurrences")!!
         }
     }
 

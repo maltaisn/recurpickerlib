@@ -30,7 +30,7 @@ import java.util.Calendar
  * This class is not thread-safe.
  */
 @Deprecated("Use RRuleFormatter instead.")
-class RecurrenceSerializer {
+public class RecurrenceSerializer {
 
     private val calendar = Calendar.getInstance()
 
@@ -38,7 +38,7 @@ class RecurrenceSerializer {
      * Read a recurrence from a byte [array] and return it.
      * The encoded recurrence object must start at index 0 in the array.
      */
-    fun read(array: ByteArray): Recurrence {
+    public fun read(array: ByteArray): Recurrence {
         val bb = ByteBuffer.wrap(array)
         return when (bb.int) {
             VERSION_1 -> {
@@ -94,7 +94,7 @@ class RecurrenceSerializer {
     /**
      * Write a [recurrence][r] to a byte array and return it.
      */
-    fun write(r: Recurrence): ByteArray = ByteBuffer.allocate(VERSION_2_LENGTH_TOTAL).apply {
+    public fun write(r: Recurrence): ByteArray = ByteBuffer.allocate(VERSION_2_LENGTH_TOTAL).apply {
         putInt(VERSION)
         put(r.period.ordinal.toByte())
         putInt(r.frequency)
@@ -105,7 +105,7 @@ class RecurrenceSerializer {
         putLong(r.endDate)
     }.array()
 
-    companion object {
+    public companion object {
         /**
          * Version 1, from v1.0.0 to v1.6.0
          * - 0: int, version

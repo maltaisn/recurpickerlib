@@ -28,13 +28,13 @@ import kotlin.math.abs
  * All date parameters are given as millis since UTC epoch time.
  * This class is not thread-safe.
  */
-class RecurrenceFinder {
+ public class RecurrenceFinder {
 
     /**
      * The timezone used for finding recurrence events.
      * Note that changing this doesn't change the fact that all date parameters are in **UTC** millis since epoch time.
      */
-    var timeZone: TimeZone = TimeZone.getDefault()
+    public var timeZone: TimeZone = TimeZone.getDefault()
         set(value) {
             field = value
             current.timeZone = timeZone
@@ -78,7 +78,7 @@ class RecurrenceFinder {
      * @param includeStart Whether the [startDate] or [fromDate] should be included in the list of events.
      */
     @JvmOverloads
-    fun findBasedOn(
+    public fun findBasedOn(
         r: Recurrence,
         startDate: Long,
         base: Long,
@@ -134,7 +134,7 @@ class RecurrenceFinder {
      * @param includeStart Whether the [startDate] or [fromDate] should be included in the list of events.
      */
     @JvmOverloads
-    fun find(
+    public fun find(
         r: Recurrence,
         startDate: Long,
         amount: Int,
@@ -149,7 +149,7 @@ class RecurrenceFinder {
      * and an [end date][end] (exclusive).
      * @param startDate The start date of the recurring event, cannot be [Recurrence.DATE_NONE].
      */
-    fun findBetween(r: Recurrence, startDate: Long, start: Long, end: Long): MutableList<Long> {
+    public fun findBetween(r: Recurrence, startDate: Long, start: Long, end: Long): MutableList<Long> {
         val list = mutableListOf<Long>()
         var lastDate = startDate
         var count = 1
@@ -359,10 +359,10 @@ class RecurrenceFinder {
 
     private fun Long.compareDay(date: Long) = this.compareDay(date, temp)
 
-    companion object {
-        private const val FEB_29 = 60
+    private companion object {
+        const val FEB_29 = 60
 
-        private const val DAYS_IN_WEEK = 7
-        private const val MONTH_MIDDLE_DAY = 15
+        const val DAYS_IN_WEEK = 7
+        const val MONTH_MIDDLE_DAY = 15
     }
 }

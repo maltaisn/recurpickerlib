@@ -319,7 +319,7 @@ internal class RecurrencePickerDelegate :
 
         init {
             val ta = root.context.resources.obtainTypedArray(R.array.rp_picker_week_btn_ids)
-            weekBtns = List(ta.length()) { root.findViewById<MaterialButton>(ta.getResourceId(it, 0)) }
+            weekBtns = List(ta.length()) { root.findViewById(ta.getResourceId(it, 0)) }
             ta.recycle()
         }
     }

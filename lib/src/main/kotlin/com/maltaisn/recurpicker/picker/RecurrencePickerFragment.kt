@@ -37,13 +37,13 @@ import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
  * This fragment can be shown directly or after [RecurrenceListDialog] was shown.
  * Note: due to the MVP architecture, some interface methods are public but shouldn't be used.
  */
-class RecurrencePickerFragment private constructor(
+public class RecurrencePickerFragment private constructor(
     private val delegate: RecurrencePickerDelegate
 ) : Fragment(),
     RecurrencePickerContract.View by delegate,
     DateDialogFragment.Callback by delegate {
 
-    constructor() : this(RecurrencePickerDelegate())
+    public constructor() : this(RecurrencePickerDelegate())
 
     private var presenter: Presenter? = null
 
@@ -163,13 +163,13 @@ class RecurrencePickerFragment private constructor(
         val endCountRadio: RadioButton = root.findViewById(R.id.rp_picker_end_count_radio)
     }
 
-    companion object {
+    public companion object {
         /**
          * Create a new instance of the fragment with [settings].
          * More settings can be set with the returned fragment instance later.
          */
         @JvmStatic
-        fun newInstance(settings: RecurrencePickerSettings): RecurrencePickerFragment {
+        public fun newInstance(settings: RecurrencePickerSettings): RecurrencePickerFragment {
             val dialog = RecurrencePickerFragment()
             dialog.settings = settings
             return dialog

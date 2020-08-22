@@ -33,13 +33,13 @@ import kotlin.contracts.contract
  *
  * This class is thread-safe.
  */
-class RRuleFormatter {
+ public class RRuleFormatter {
 
     /**
      * The timezone used for formatting and parsing end dates (`UNTIL` attribute),
      * unless the end date uses UTC time (time form #2, section 3.3.5).
      */
-    var timeZone: TimeZone = TimeZone.getDefault()
+    public var timeZone: TimeZone = TimeZone.getDefault()
 
     private val dateFormat = SimpleDateFormat("", Locale.ROOT)
 
@@ -54,7 +54,7 @@ class RRuleFormatter {
      *
      * @throws RRuleParseException If recurrence rule cannot be parsed.
      */
-    fun parse(rrule: String): Recurrence {
+    public fun parse(rrule: String): Recurrence {
         parseError(rrule.startsWith(RRULE_SIGNATURE)) { "Recurrence rule string is invalid." }
 
         val attrs = rrule.substring(RRULE_SIGNATURE.length).split(';').associate {
@@ -150,7 +150,7 @@ class RRuleFormatter {
      * part of the [Recurrence] class, it is omitted. This function will also generate the string `RRULE:FREQ=NONE`
      * for recurrence with a period of [Period.NONE], even though this isn't part of the standard.
      */
-    fun format(r: Recurrence): String {
+    public fun format(r: Recurrence): String {
         val sb = StringBuilder()
         sb.append(RRULE_SIGNATURE)
 
@@ -236,24 +236,24 @@ class RRuleFormatter {
 
     private data class DatePattern(val pattern: String, val timeZone: TimeZone?, val length: Int)
 
-    companion object {
-        private const val RRULE_SIGNATURE = "RRULE:"
+    private companion object {
+        const val RRULE_SIGNATURE = "RRULE:"
 
-        private val DATE_PATTERNS = listOf(
+        val DATE_PATTERNS = listOf(
             DatePattern("yyyyMMdd", null, 8),
             DatePattern("yyyyMMdd'T'HHmmss", null, 15),
             DatePattern("yyyyMMdd'T'HHmmss'Z'", TimeZone.getTimeZone("GMT"), 16))
 
-        private const val FORMAT_DATE_PATTERN = "yyyyMMdd"
+        const val FORMAT_DATE_PATTERN = "yyyyMMdd"
 
-        private val BYDAY_VALUES = arrayOf("SU", "MO", "TU", "WE", "TH", "FR", "SA")
+        val BYDAY_VALUES = arrayOf("SU", "MO", "TU", "WE", "TH", "FR", "SA")
     }
 }
 
 /**
  * Exception thrown by [RRuleFormatter.parse] when RRule couldn't be parsed.
  */
-class RRuleParseException internal constructor(message: String, cause: Throwable? = null) :
+ public class RRuleParseException internal constructor(message: String, cause: Throwable? = null) :
     IllegalArgumentException(message, cause)
 
 private fun parseError(message: String, cause: Throwable? = null): Nothing =

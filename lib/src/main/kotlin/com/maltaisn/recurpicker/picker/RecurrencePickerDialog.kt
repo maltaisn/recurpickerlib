@@ -43,13 +43,13 @@ import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
  * Provides all the options available in [RecurrencePickerFragment], only in a more compact way.
  * Note: due to the MVP architecture, some interface methods are public but shouldn't be used.
  */
-class RecurrencePickerDialog private constructor(
+public class RecurrencePickerDialog private constructor(
     private val delegate: RecurrencePickerDelegate
 ) : DialogFragment(),
     RecurrencePickerContract.View by delegate,
     DateDialogFragment.Callback by delegate {
 
-    constructor() : this(RecurrencePickerDelegate())
+    public constructor() : this(RecurrencePickerDelegate())
 
     private var presenter: Presenter? = null
 
@@ -62,7 +62,7 @@ class RecurrencePickerDialog private constructor(
     /**
      * Whether to show the dialog title or not.
      */
-    var showTitle = false
+    public var showTitle: Boolean = false
 
     @SuppressLint("InflateParams")
     override fun onCreateDialog(state: Bundle?): Dialog {
@@ -204,13 +204,13 @@ class RecurrencePickerDialog private constructor(
         var endCountGroup: Group = root.findViewById(R.id.rp_picker_end_count_group)
     }
 
-    companion object {
+    public companion object {
         /**
          * Create a new instance of the dialog with [settings].
          * More settings can be set with the returned dialog instance later.
          */
         @JvmStatic
-        fun newInstance(settings: RecurrencePickerSettings): RecurrencePickerDialog {
+        public fun newInstance(settings: RecurrencePickerSettings): RecurrencePickerDialog {
             val dialog = RecurrencePickerDialog()
             dialog.settings = settings
             return dialog

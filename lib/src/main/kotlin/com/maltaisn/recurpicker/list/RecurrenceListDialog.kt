@@ -50,7 +50,7 @@ import com.maltaisn.recurpicker.picker.RecurrencePickerFragment
  * Custom recurrences can be created with either [RecurrencePickerFragment] or [RecurrencePickerDialog].
  * Note: due to the MVP architecture, some interface methods are public but shouldn't be used.
  */
-class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
+public class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
 
     private var presenter: Presenter? = null
 
@@ -200,13 +200,13 @@ class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.View {
         getCallback<RecurrenceListCallback>()?.onRecurrenceListDialogCancelled()
     }
 
-    companion object {
+    public companion object {
         /**
          * Create a new instance of the dialog with [settings].
          * More settings can be set with the returned dialog instance later.
          */
         @JvmStatic
-        fun newInstance(settings: RecurrencePickerSettings): RecurrenceListDialog {
+        public fun newInstance(settings: RecurrencePickerSettings): RecurrenceListDialog {
             val dialog = RecurrenceListDialog()
             dialog.settings = settings
             return dialog
