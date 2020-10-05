@@ -46,6 +46,12 @@ android {
     }
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+    if (!it.name.contains("Test")) {
+        kotlinOptions.freeCompilerArgs += "-Xexplicit-api=strict"
+    }
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
