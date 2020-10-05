@@ -179,19 +179,20 @@ public class Recurrence private constructor(
 
         // Append a list of days of week
         sb.append(" on ")
-        if (byDay == EVERY_DAY_OF_WEEK) {
-            // on every day of the week
-            sb.append("every day of the week")
-        } else {
-            // on [Sun, Mon, Wed, ...]
-            val dfs = DateFormatSymbols.getInstance(Locale.ENGLISH)
-            for (day in Calendar.SUNDAY..Calendar.SATURDAY) {
-                if (isRecurringOnDaysOfWeek(1 shl day)) {
-                    sb.append(dfs.shortWeekdays[day])
-                    sb.append(", ")
+        when (byDay) {
+            1 -> sb.append("the same day as start date")
+            EVERY_DAY_OF_WEEK -> sb.append("every day of the week")
+            else -> {
+                // on [Sun, Mon, Wed, ...]
+                val dfs = DateFormatSymbols.getInstance(Locale.ENGLISH)
+                for (day in Calendar.SUNDAY..Calendar.SATURDAY) {
+                    if (isRecurringOnDaysOfWeek(1 shl day)) {
+                        sb.append(dfs.shortWeekdays[day])
+                        sb.append(", ")
+                    }
                 }
+                sb.delete(sb.length - 2, sb.length) // Remove extra separator
             }
-            sb.delete(sb.length - 2, sb.length) // Remove extra separator
         }
     }
 

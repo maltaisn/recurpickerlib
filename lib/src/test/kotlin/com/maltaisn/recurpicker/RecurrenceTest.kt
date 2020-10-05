@@ -62,7 +62,7 @@ internal class RecurrenceTest {
     }
 
     @Test
-    fun `should create string representation in debug builds`() {
+    fun `should create string representation`() {
         assertEquals("Recurrence{ Does not repeat }",
             Recurrence.DOES_NOT_REPEAT.toString())
         assertEquals("Recurrence{ Every 5 days }",
@@ -71,8 +71,15 @@ internal class RecurrenceTest {
             Recurrence(Period.YEARLY) { endDate = dateFor("2010-12-30") }.toString())
         assertEquals("Recurrence{ Every year; for 12 events }",
             Recurrence(Period.YEARLY) { endCount = 12 }.toString())
+        assertEquals("Recurrence{ Every week on the same day as start date }",
+            Recurrence(Period.WEEKLY).toString())
         assertEquals("Recurrence{ Every week on Sun, Wed }",
             Recurrence(Period.WEEKLY) { setDaysOfWeek(Recurrence.SUNDAY, Recurrence.WEDNESDAY) }.toString())
+        assertEquals("Recurrence{ Every 2 weeks on every day of the week }",
+            Recurrence(Period.WEEKLY) {
+                frequency = 2
+                setDaysOfWeek(Recurrence.EVERY_DAY_OF_WEEK)
+            }.toString())
 
         assertEquals("Recurrence{ Every month (on Monday of the third week) }",
             Recurrence(Period.MONTHLY) { setDayOfWeekInMonth(Recurrence.MONDAY, 3) }.toString())

@@ -43,6 +43,12 @@ internal class RRuleFormatterTest {
     }
 
     @Test
+    fun `should test weekly recurrence with no days set`() {
+        val r = Recurrence(Period.WEEKLY)
+        testRRule(r, "RRULE:FREQ=WEEKLY")
+    }
+
+    @Test
     fun `should test weekly recurrence with days set`() {
         val r = Recurrence(Period.WEEKLY) {
             setDaysOfWeek(Recurrence.MONDAY, Recurrence.TUESDAY, Recurrence.THURSDAY)

@@ -190,15 +190,17 @@ import kotlin.contracts.contract
     }
 
     private fun appendWeeklyDetails(sb: StringBuilder, r: Recurrence) {
-        sb.append("BYDAY=")
-        for (i in Calendar.SUNDAY..Calendar.SATURDAY) {
-            if (r.isRecurringOnDaysOfWeek(1 shl i)) {
-                sb.append(BYDAY_VALUES[i - 1])
-                sb.append(',')
+        if (r.byDay != 1) {
+            sb.append("BYDAY=")
+            for (i in Calendar.SUNDAY..Calendar.SATURDAY) {
+                if (r.isRecurringOnDaysOfWeek(1 shl i)) {
+                    sb.append(BYDAY_VALUES[i - 1])
+                    sb.append(',')
+                }
             }
+            sb.deleteCharAt(sb.length - 1) // Delete extra ","
+            sb.append(';')
         }
-        sb.deleteCharAt(sb.length - 1) // Delete extra ","
-        sb.append(';')
     }
 
     private fun appendMonthlyDetails(sb: StringBuilder, r: Recurrence) {
