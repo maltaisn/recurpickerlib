@@ -120,6 +120,8 @@ public class Recurrence private constructor(
      * Returns true only if recurrence happens on all of these days.
      * To get the number of days set use `Integer.bitCount(recurrence.byDay)  - 1`
      * (or `recurrence.byDay.countOneBits() - 1` in Kotlin).
+     * Note that if the weekly recurrence has no days set, meaning it happens on the same day as
+     * the start date's, this method will always return `false` since this day is unknown.
      * If period is [MONTHLY], checks if events happen on a certain day of the week specified
      * by a single flag set in [days].
      * @param days A bit field of [DaysOfWeek] values.
@@ -477,7 +479,8 @@ public class Recurrence private constructor(
         public const val FRIDAY: Int = 1 shl Calendar.FRIDAY
         public const val SATURDAY: Int = 1 shl Calendar.SATURDAY
 
-        public const val EVERY_DAY_OF_WEEK: Int = 0b11111111 // LSB is 1 to follow byDay layout so it can be used for comparison.
+        // LSB is 1 to follow byDay layout so it can be used for comparison.
+        public const val EVERY_DAY_OF_WEEK: Int = 0b11111111
 
         /** Date value used for no end date. */
         public const val DATE_NONE: Long = Long.MIN_VALUE
