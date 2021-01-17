@@ -22,7 +22,7 @@
     <string name="rp_picker_cancel">Annuler</string>
     <string name="rp_picker_title">Récurrence personnalisée</string>
     <string name="rp_picker_subtitle_period">Se répète tous les</string>
-    <string name="rp_picker_subtitle_setting">Repeats on</string>
+    <string name="rp_picker_subtitle_setting">Se répète le</string>
     <string name="rp_picker_subtitle_end">Prend fin</string>
     <string name="rp_picker_end_never">Jamais</string>
     <string name="rp_picker_end_date">Le</string>
