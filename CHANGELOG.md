@@ -1,11 +1,12 @@
 ### v2.1.4
-- Updated kotlin to 1.4.10.
+- Updated kotlin to 1.4.21.
 - Fixed layout issues with constrained width.
 - Fixed missing left and right margin in recurrence picker dialog for API <= 16.
 - Fixed dropdown widgets not wrapping width to content (introduced in 2.0.2).
 - Fixed some issues with weekly recurrence with no days set (aka on same day as start date).
     - `Recurrence.toString()` now returns "on same day as start date" for this case.
     - `RRuleFormatter` correctly formats this case which otherwise resulted in invalid RRule.
+- Fix untranslated string in French translation.
 
 ### v2.1.3
 - Introduced `rpListDialogMaxWidth` and `rpPickerDialogMaxWidth` attributes to limit the maximum size of dialogs on
