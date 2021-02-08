@@ -1,3 +1,6 @@
+### v2.1.5
+- Fix untranslated string in French translation.
+
 ### v2.1.4
 - Updated kotlin to 1.4.21.
 - Fixed layout issues with constrained width.
