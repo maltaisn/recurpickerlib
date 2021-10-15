@@ -14,7 +14,7 @@ Replace `X.Y.Z` with lastest version number:&nbsp;
          alt="Download"/></a>
 
 ## Documentation
-KDocs is available [here](https://maltaisn.github.io/recurpickerlib/lib/index.html).
+KDocs is available [here](https://maltaisn.github.io/recurpickerlib/docs/index.html).
 More documentation and examples is available on the [wiki](https://github.com/maltaisn/recurpickerlib/wiki)
 - [**Using the library**](https://github.com/maltaisn/recurpickerlib/wiki/Using-the-library)
 - [Building a recurrence](https://github.com/maltaisn/recurpickerlib/wiki/Building-a-recurrence)
