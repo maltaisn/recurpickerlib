@@ -59,7 +59,7 @@ class DateDialogFragment : DialogFragment() {
 
     private val callback: Callback?
         get() = (parentFragment as? Callback)
-            ?: (targetFragment as? Callback)
+            ?: (@Suppress("DEPRECATION") targetFragment as? Callback)
             ?: (activity as? Callback)
 
     interface Callback {

@@ -2,16 +2,15 @@ plugins {
     id "com.android.library"
     id "kotlin-android"
     id "org.jetbrains.dokka"
-    id "com.github.dcendents.android-maven"
-    id "com.jfrog.bintray"
     id "com.github.breadmoirai.github-release"
 }
+
+apply plugin: "com.vanniktech.maven.publish"
 
 ext {
     // Auto generate version code based on version name
     libVersionCode = libVersion.split(/\./).collect { it.padLeft(2, "0") }.sum().toInteger()
 }
-
 
 android {
     compileSdkVersion setup.compileSdk
@@ -70,11 +69,13 @@ dependencies {
     androidTestImplementation "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
 }
 
-dokka {
-    outputFormat = "html"
-    outputDirectory = "${rootProject.projectDir}/docs/"
+dokkaHtml.configure {
+    outputDirectory.set(file("${rootProject.projectDir}/docs/"))
+    dokkaSourceSets {
+        named("main") {
+            noAndroidSdkLink.set(false)
+        }
+    }
 }
 
 tasks.withType(Javadoc).all { enabled = false }
-
-apply from: "publishing.gradle"

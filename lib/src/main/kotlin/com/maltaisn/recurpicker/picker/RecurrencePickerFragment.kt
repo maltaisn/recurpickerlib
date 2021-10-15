@@ -136,7 +136,7 @@ public class RecurrencePickerFragment private constructor(
     }
 
     override fun exit() {
-        fragmentManager?.popBackStack()
+        parentFragmentManager.popBackStack()
     }
 
     override fun setEndNeverChecked(checked: Boolean) {

@@ -4,7 +4,7 @@
 
     <string name="subtitle_selected">Selected recurrence</string>
     <string name="subtitle_options">Options</string>
-    <string name="subtitle_events">Recurrence events (%d%s)</string>
+    <string name="subtitle_events">Recurrence events (%1$d%2$s)</string>
     <string name="option_start_date">Start date:</string>
     <string name="option_show_list">Enable recurrence list</string>
     <string name="option_show_picker">Enable recurrence picker</string>

@@ -1,30 +1,38 @@
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>RecurrenceFinder.find - lib</title>
-<link rel="stylesheet" href="../../../style.css">
-</HEAD>
-<BODY>
-<a href="../../index.html">lib</a>&nbsp;/&nbsp;<a href="../index.html">com.maltaisn.recurpicker</a>&nbsp;/&nbsp;<a href="index.html">RecurrenceFinder</a>&nbsp;/&nbsp;<a href="./find.html">find</a><br/>
-<br/>
-<h1>find</h1>
-<a name="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)"></a>
-<code><span class="identifier">@JvmOverloads</span> <span class="keyword">fun </span><span class="identifier">find</span><span class="symbol">(</span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">r</span><span class="symbol">:</span>&nbsp;<a href="../-recurrence/index.html"><span class="identifier">Recurrence</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/startDate">startDate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">fromDate</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Recurrence.DATE_NONE<span class="symbol">, </span><span class="identifier" id="com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/includeStart">includeStart</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;true<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span></code>
-<p>Get an <a href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/amount">amount</a> of event dates of a <a href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/r">recurrence</a> after a <a href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">date</a>.
-All events will have the same time of the day as the <a href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/startDate">startDate</a>.
-See <a href="find-based-on.html">findBasedOn</a> for more information.</p>
-<h3>Parameters</h3>
-<p><a name="r"></a>
-<code>r</code> - The recurrence.</p>
-<p><a name="startDate"></a>
-<code>startDate</code> - The start date of the recurring event, cannot be <a href="../-recurrence/-d-a-t-e_-n-o-n-e.html">Recurrence.DATE_NONE</a>.</p>
-<p><a name="amount"></a>
-<code>amount</code> - The maximum number of events to find, must be at least 0.</p>
-<p><a name="fromDate"></a>
-<code>fromDate</code> - The date from which to start finding recurrence events. Can be set
-to <a href="../-recurrence/-d-a-t-e_-n-o-n-e.html">Recurrence.DATE_NONE</a> to find events from the start date of the recurrence.
-The date is inclusive meaning an event on this date will be included.</p>
-<p><a name="includeStart"></a>
-<code>includeStart</code> - Whether the <a href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/startDate">startDate</a> or <a href="find.html#com.maltaisn.recurpicker.RecurrenceFinder$find(com.maltaisn.recurpicker.Recurrence, kotlin.Long, kotlin.Int, kotlin.Long, kotlin.Boolean)/fromDate">fromDate</a> should be included in the list of events.</p>
-</BODY>
-</HTML>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>find</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="lib::com.maltaisn.recurpicker/RecurrenceFinder/find/#com.maltaisn.recurpicker.Recurrence#kotlin.Long#kotlin.Int#kotlin.Long#kotlin.Boolean/PointingToDeclaration//1946847589">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">lib</a>/<a href="../index.html">com.maltaisn.recurpicker</a>/<a href="index.html">RecurrenceFinder</a>/<a href="find.html">find</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span><span>find</span></span></h1>
+          </div>
+<div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a></div></div>fun <a href="find.html">find</a>(r: <a href="../-recurrence/index.html">Recurrence</a>, startDate: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a>, amount: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, fromDate: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a> = Recurrence.DATE_NONE, includeStart: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a> = true): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<p class="paragraph">Get an <a href="find.html">amount</a> of event dates of a <a href="find.html">recurrence</a> after a <a href="find.html">date</a>. All events will have the same time of the day as the <a href="find.html">startDate</a>. See <a href="find-based-on.html">findBasedOn</a> for more information.</p><h2 class="">Parameters</h2><div data-togglable="Parameters"><div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span><span>r</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The recurrence.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span>start</span><wbr></wbr><span><span>Date</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The start date of the recurring event, cannot be <a href="../-recurrence/-companion/-d-a-t-e_-n-o-n-e.html">Recurrence.DATE_NONE</a>.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span><span>amount</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The maximum number of events to find, must be at least 0.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span>from</span><wbr></wbr><span><span>Date</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">The date from which to start finding recurrence events. Can be set to <a href="../-recurrence/-companion/-d-a-t-e_-n-o-n-e.html">Recurrence.DATE_NONE</a> to find events from the start date of the recurrence. The date is inclusive meaning an event on this date will be included.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span>include</span><wbr></wbr><span><span>Start</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Whether the <a href="find.html">startDate</a> or <a href="find.html">fromDate</a> should be included in the list of events.</p></div></div></div></div></div></div></div></div></div></div></div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

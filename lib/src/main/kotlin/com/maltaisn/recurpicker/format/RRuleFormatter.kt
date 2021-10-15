@@ -59,7 +59,7 @@ import kotlin.contracts.contract
 
         val attrs = rrule.substring(RRULE_SIGNATURE.length).split(';').associate {
             val pos = it.indexOf('=')
-            it.substring(0, pos).toUpperCase(Locale.ROOT) to it.substring(pos + 1)
+            it.substring(0, pos).uppercase() to it.substring(pos + 1)
         }
 
         val period = parsePeriod(attrs)

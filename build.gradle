@@ -1,22 +1,23 @@
 buildscript {
     ext {
         setup = [
-                compileSdk: 29,
-                buildTools: "29.0.2",
+                compileSdk: 30,
+                buildTools: "30.0.2",
                 minSdk: 14,
-                targetSdk: 29
+                targetSdk: 30
         ]
+        // for maven publishing plugin
+        VERSION_NAME = libVersion
     }
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$androidPluginVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
 
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayPluginVersion"
-        classpath "com.github.dcendents:android-maven-gradle-plugin:$mavenPluginVersion"
+        classpath "com.vanniktech:gradle-maven-publish-plugin:$mavenPluginVersion"
         classpath "com.github.breadmoirai:github-release:$githubReleasePluginVersion"
 
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
@@ -25,7 +26,7 @@ buildscript {
 
 plugins {
     id "base"
-    id "io.gitlab.arturbosch.detekt" version "1.11.1"
+    id "io.gitlab.arturbosch.detekt" version "1.18.1"
 }
 
 allprojects {
@@ -33,7 +34,7 @@ allprojects {
     
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
@@ -42,7 +43,6 @@ clean {
 }
 
 detekt {
-    failFast = true
     buildUponDefaultConfig = true
     parallel = true
     autoCorrect = true

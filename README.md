@@ -33,6 +33,7 @@ See [changelog](CHANGELOG.md) for detailed release notes.
 ## Credits
 - Thanks to [David Vavra](https://github.com/davidvavra) and his translators for translating to 10 languages.
 - Thanks to [bezysoftware](https://github.com/bezysoftware) for translating to 5 languages.
+- Thanks to [afmbsr](https://github.com/afmbsr) for translating to Arabic.
 
 ## Translations
 The library is available in 17 languages. If you make a translation please send a pull request!

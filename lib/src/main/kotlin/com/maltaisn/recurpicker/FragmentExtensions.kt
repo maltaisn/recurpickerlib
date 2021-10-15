@@ -26,7 +26,8 @@ import androidx.fragment.app.Fragment
  */
 internal inline fun <reified T> Fragment.getCallback(): T? =
     (parentFragment as? T)
-        ?: (targetFragment as? T)
+        // Target fragment is deprecated but keep trying to get it for compatibility.
+        ?: (@Suppress("DEPRECATION") targetFragment as? T)
         ?: (activity as? T)
 
 /**

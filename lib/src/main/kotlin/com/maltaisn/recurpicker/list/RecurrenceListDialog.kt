@@ -165,7 +165,7 @@ public class RecurrenceListDialog : DialogFragment(), RecurrenceListContract.Vie
 
         init {
             view.setOnClickListener {
-                presenter?.onItemClicked(adapterPosition)
+                presenter?.onItemClicked(bindingAdapterPosition)
             }
         }
 

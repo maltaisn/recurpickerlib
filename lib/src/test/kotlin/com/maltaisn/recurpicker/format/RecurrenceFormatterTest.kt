@@ -39,7 +39,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
 @RunWith(MockitoJUnitRunner::class)
-class RecurrenceFormatTest {
+class RecurrenceFormatterTest {
 
     @Mock
     private lateinit var context: Context

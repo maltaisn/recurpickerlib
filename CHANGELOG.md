@@ -1,4 +1,5 @@
 ### v2.1.5
+- Add Arabic translation, thanks to @afmbsr.
 - Fix untranslated string in French translation.
 
 ### v2.1.4
