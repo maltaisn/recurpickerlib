@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
+<resources>
+    <!-- RECURRENCE LIST -->
+    <string name="rp_list_custom" comment="The item for creating a customized recurrence">مخصص…</string>
+    <!-- RECURRENCE PICKER -->
+    <string name="rp_picker_done" comment="Title of the button to close the recurrence picker and create the recurrence">تم</string>
+    <string name="rp_picker_cancel" comment="Title of the button to cancel the recurrence picker.">إلغاء</string>
+    <string name="rp_picker_title" comment="Title of the recurrence picker window">تكرار مخصص</string>
+    <string name="rp_picker_subtitle_period" comment="Subtitle for choosing the frequency and period. Eg: 'Repeats every' 1 week">التكرار كل</string>
+    <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">أيام التكرار</string>
+    <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">الانتهاء</string>
+    <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">أبدًا</string>
+    <string name="rp_picker_end_date" comment="Option text for recurrence that ends 'on' a date. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;On&quot; word appears in the first screenshot.">في</string>
+    <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">بعد | تكرار</item>
+        <item quantity="two">بعد | تكرارات</item>
+        <item quantity="few">بعد | تكرارات</item>
+        <item quantity="many">بعد | تكرار</item>
+        <item quantity="other">بعد | تكرار</item>
+    </plurals>
+    <plurals name="rp_picker_period_day" comment="Dropdown item for a daily recurrence [one] [other]">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">يوم</item>
+        <item quantity="two">أيام</item>
+        <item quantity="few">أيام</item>
+        <item quantity="many">يوم</item>
+        <item quantity="other">يوم</item>
+    </plurals>
+    <plurals name="rp_picker_period_week" comment="Dropdown item for a weekly recurrence [one] [other]">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">اسبوع</item>
+        <item quantity="two">أسابيع</item>
+        <item quantity="few">أسابيع</item>
+        <item quantity="many">اسبوع</item>
+        <item quantity="other">اسبوع</item>
+    </plurals>
+    <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">شهر</item>
+        <item quantity="two">أشهر</item>
+        <item quantity="few">أشهر</item>
+        <item quantity="many">شهر</item>
+        <item quantity="other">شهر</item>
+    </plurals>
+    <plurals name="rp_picker_period_year" comment="Dropdown item for a yearly recurrence [one] [other]">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">سنة</item>
+        <item quantity="two">سنين</item>
+        <item quantity="few">سنين</item>
+        <item quantity="many">سنة</item>
+        <item quantity="other">سنة</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun" comment="1-2 letters for a small day of week toggle button. (Sunday)">ح</string>
+    <string name="rp_day_of_week_abbr1_mon" comment="1-2 letters for a small day of week toggle button. (Monday)">ن</string>
+    <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">ث</string>
+    <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">ر</string>
+    <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">خ</string>
+    <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">ج</string>
+    <string name="rp_day_of_week_abbr1_sat" comment="1-2 letters for a small day of week toggle button. (Saturday)">س</string>
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">أحد</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Monday)">إثنـ</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">ثلثـ</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">أربـ</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Thursday)">خميس</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Friday)">جمعة</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Saturday)">سبت</item>
+    </string-array>
+    <!-- FORMATTING -->
+    <string name="rp_format_none" comment="Text for no recurrence.">بدون تكرار</string>
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. [one] [other]">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">كل يوم</item>
+        <item quantity="two">كل %d أيام</item>
+        <item quantity="few">كل %d أيام</item>
+        <item quantity="many">كل %d يوم</item>
+        <item quantity="other">كل %d يوم</item>
+    </plurals>
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">كل اسبوع</item>
+        <item quantity="two">كل %d أسابيع</item>
+        <item quantity="few">كل %d أسابيع</item>
+        <item quantity="many">كل %d اسبوع</item>
+        <item quantity="other">كل %d اسبوع</item>
+    </plurals>
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">كل شهر</item>
+        <item quantity="two">كل %d أشهر</item>
+        <item quantity="few">كل %d أشهر</item>
+        <item quantity="many">كل %d شهر</item>
+        <item quantity="other">كل %d شهر</item>
+    </plurals>
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">كل سنة</item>
+        <item quantity="two">كل %d سنين</item>
+        <item quantity="few">كل %d سنين</item>
+        <item quantity="many">كل %d سنة</item>
+        <item quantity="other">كل %d سنة</item>
+    </plurals>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">في %s</string>
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">كل يوم من الاسبوع</string>
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">في نفس اليوم من الشهر</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">في آخر يوم من الشهر</string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">في %s يوم أحد</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">في %s يوم اثنين</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">في %s يوم ثلاثاء</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">في %s يوم أربعاء</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">في %s يوم خميس</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">في %s يوم جمعة</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">في %s يوم سبت</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">أول</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">ثاني</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">ثالث</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">رابع</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">آخر</item>
+    </string-array>
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">لغاية %s</string>
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
+        <item quantity="zero">لا شيء</item>
+        <item quantity="one">لـ %d حدث</item>
+        <item quantity="two">لـ %d أحداث</item>
+        <item quantity="few">لـ %d أحداث</item>
+        <item quantity="many">لـ %d حدث</item>
+        <item quantity="other">لـ %d حدث</item>
+    </plurals>
+</resources>

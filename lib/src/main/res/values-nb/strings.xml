@@ -1,109 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  Copyright 2019 Nicolas Maltais
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
 <resources>
-
-    <string name="rp_list_custom">Tilpasset…</string>
-
-    <string name="rp_picker_done">Ferdig</string>
-    <string name="rp_picker_cancel">Avbryt</string>
-    <string name="rp_picker_title">Egendefinert gjentakelse</string>
-    <string name="rp_picker_subtitle_period">Gjentas hver(t)</string>
-    <string name="rp_picker_subtitle_setting">Gjentas på</string>
-    <string name="rp_picker_subtitle_end">Slutter</string>
-    <string name="rp_picker_end_never">Aldri</string>
-    <string name="rp_picker_end_date"> </string>
-    <plurals name="rp_picker_end_count">
+    <!-- RECURRENCE LIST -->
+    <string name="rp_list_custom" comment="The item for creating a customized recurrence">Tilpasset…</string>
+    <!-- RECURRENCE PICKER -->
+    <string name="rp_picker_done" comment="Title of the button to close the recurrence picker and create the recurrence">Ferdig</string>
+    <string name="rp_picker_cancel" comment="Title of the button to cancel the recurrence picker.">Avbryt</string>
+    <string name="rp_picker_title" comment="Title of the recurrence picker window">Egendefinert gjentakelse</string>
+    <string name="rp_picker_subtitle_period" comment="Subtitle for choosing the frequency and period. Eg: 'Repeats every' 1 week">Gjentas hver(t)</string>
+    <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">Gjentas på</string>
+    <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">Slutter</string>
+    <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">Aldri</string>
+    <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
         <item quantity="one">Etter | forekomst</item>
         <item quantity="other">Etter | forekomster</item>
     </plurals>
-    <string name="rp_picker_end_count_prefix_fallback"> </string>
-    <string name="rp_picker_end_date_prefix_fallback"> </string>
-    <plurals name="rp_picker_period_day">
+    <plurals name="rp_picker_period_day" comment="Dropdown item for a daily recurrence [one] [other]">
         <item quantity="one">dag</item>
         <item quantity="other">dager</item>
     </plurals>
-    <plurals name="rp_picker_period_week">
+    <plurals name="rp_picker_period_week" comment="Dropdown item for a weekly recurrence [one] [other]">
         <item quantity="one">uke</item>
         <item quantity="other">uker</item>
     </plurals>
-    <plurals name="rp_picker_period_month">
+    <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
         <item quantity="one">måned</item>
         <item quantity="other">måneder</item>
     </plurals>
-    <plurals name="rp_picker_period_year">
+    <plurals name="rp_picker_period_year" comment="Dropdown item for a yearly recurrence [one] [other]">
         <item quantity="one">år</item>
         <item quantity="other">år</item>
     </plurals>
-    <string name="rp_day_of_week_abbr1_sun">S</string>
-    <string name="rp_day_of_week_abbr1_mon">M</string>
-    <string name="rp_day_of_week_abbr1_tue">T</string>
-    <string name="rp_day_of_week_abbr1_wed">O</string>
-    <string name="rp_day_of_week_abbr1_thu">T</string>
-    <string name="rp_day_of_week_abbr1_fri">F</string>
-    <string name="rp_day_of_week_abbr1_sat">L</string>
-
-    <string-array name="rp_days_of_week_abbr3">
-        <item>søn.</item>
-        <item>man.</item>
-        <item>tir.</item>
-        <item>ons.</item>
-        <item>tor.</item>
-        <item>fre.</item>
-        <item>lør.</item>
+    <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">O</string>
+    <string name="rp_day_of_week_abbr1_sat" comment="1-2 letters for a small day of week toggle button. (Saturday)">L</string>
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">søn.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Monday)">man.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">tir.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">ons.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Thursday)">tor.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Friday)">fre.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Saturday)">lør.</item>
     </string-array>
-    <string name="rp_format_none">Gjentar ikke</string>
-    <plurals name="rp_format_day">
+    <!-- FORMATTING -->
+    <string name="rp_format_none" comment="Text for no recurrence.">Gjentar ikke</string>
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. [one] [other]">
         <item quantity="one">Alle dager</item>
         <item quantity="other">Alle %d dager</item>
     </plurals>
-    <plurals name="rp_format_week">
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
         <item quantity="one">Alle uke</item>
         <item quantity="other">Alle %d uker</item>
     </plurals>
-    <plurals name="rp_format_month">
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
         <item quantity="one">Alle måned</item>
         <item quantity="other">Alle %d måneder</item>
     </plurals>
-    <plurals name="rp_format_year">
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
         <item quantity="one">Alle år</item>
         <item quantity="other">Alle %d år</item>
     </plurals>
-    <string name="rp_format_weekly_option">på %s</string>
-    <string name="rp_format_weekly_all">alle dager i uken</string>
-    <string name="rp_format_monthly_same_day">på samme dag hver måned</string>
-    <string name="rp_format_monthly_last_day">på siste dag i hver måneden</string>
-    <string name="rp_format_monthly_sun">på hver %s søndag</string>
-    <string name="rp_format_monthly_mon">på hver %s mandag</string>
-    <string name="rp_format_monthly_tue">på hver %s tirsdag</string>
-    <string name="rp_format_monthly_wed">på hver %s onsdag</string>
-    <string name="rp_format_monthly_thu">på hver %s torsdag</string>
-    <string name="rp_format_monthly_fri">på hver %s fredag</string>
-    <string name="rp_format_monthly_sat">på hver %s lørdag</string>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">på %s</string>
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">alle dager i uken</string>
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">på samme dag hver måned</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">på siste dag i hver måneden</string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">på hver %s søndag</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">på hver %s mandag</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">på hver %s tirsdag</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">på hver %s onsdag</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">på hver %s torsdag</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">på hver %s fredag</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">på hver %s lørdag</string>
     <string-array name="rp_format_monthly_ordinal">
-        <item>først</item>
-        <item>andre</item>
-        <item>tredje</item>
-        <item>fjerde</item>
-        <item>sist</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">først</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">andre</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">tredje</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">fjerde</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">sist</item>
     </string-array>
-    <string name="rp_format_end_date">inntil %s</string>
-    <plurals name="rp_format_end_count">
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">inntil %s</string>
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
         <item quantity="one">til %d event</item>
         <item quantity="other">til %d events</item>
     </plurals>
-
 </resources>

@@ -1,129 +1,111 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  Copyright 2019 Nicolas Maltais
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ImpliedQuantity">
-
-    <string name="rp_list_custom">Дополнительно…</string>
-
-    <string name="rp_picker_done">Готово</string>
-    <string name="rp_picker_cancel">Отмена</string>
-    <string name="rp_picker_title">Повтор мероприятия</string>
-    <string name="rp_picker_subtitle_period">Повторяется раз в</string>
-    <string name="rp_picker_subtitle_setting">Когда повторяется</string>
-    <string name="rp_picker_subtitle_end">Заканчивается</string>
-    <string name="rp_picker_end_never">Никогда</string>
-    <string name="rp_picker_end_date"> </string>
-    <plurals name="rp_picker_end_count">
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
+<resources>
+    <!-- RECURRENCE LIST -->
+    <string name="rp_list_custom" comment="The item for creating a customized recurrence">Дополнительно…</string>
+    <!-- RECURRENCE PICKER -->
+    <string name="rp_picker_done" comment="Title of the button to close the recurrence picker and create the recurrence">Готово</string>
+    <string name="rp_picker_cancel" comment="Title of the button to cancel the recurrence picker.">Отмена</string>
+    <string name="rp_picker_title" comment="Title of the recurrence picker window">Повтор мероприятия</string>
+    <string name="rp_picker_subtitle_period" comment="Subtitle for choosing the frequency and period. Eg: 'Repeats every' 1 week">Повторяется раз в</string>
+    <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">Когда повторяется</string>
+    <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">Заканчивается</string>
+    <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">Никогда</string>
+    <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
         <item quantity="one">После | раза</item>
         <item quantity="few">После | раз</item>
         <item quantity="many">После | раз</item>
         <item quantity="other">После | раз</item>
     </plurals>
-    <string name="rp_picker_end_count_prefix_fallback"> </string>
-    <string name="rp_picker_end_date_prefix_fallback"> </string>
-    <plurals name="rp_picker_period_day">
+    <plurals name="rp_picker_period_day" comment="Dropdown item for a daily recurrence [one] [other]">
         <item quantity="one">день</item>
         <item quantity="few">дня</item>
         <item quantity="many">дней</item>
         <item quantity="other">дней</item>
     </plurals>
-    <plurals name="rp_picker_period_week">
+    <plurals name="rp_picker_period_week" comment="Dropdown item for a weekly recurrence [one] [other]">
         <item quantity="one">неделю</item>
         <item quantity="few">недели</item>
         <item quantity="many">недель</item>
         <item quantity="other">недель</item>
     </plurals>
-    <plurals name="rp_picker_period_month">
+    <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
         <item quantity="one">месяц</item>
         <item quantity="few">месяца</item>
         <item quantity="many">месяцев</item>
         <item quantity="other">месяцев</item>
     </plurals>
-    <plurals name="rp_picker_period_year">
+    <plurals name="rp_picker_period_year" comment="Dropdown item for a yearly recurrence [one] [other]">
         <item quantity="one">год</item>
         <item quantity="few">года</item>
-        <item quantity="other">лет</item>
         <item quantity="many">лет</item>
+        <item quantity="other">лет</item>
     </plurals>
-    <string name="rp_day_of_week_abbr1_sun">вс</string>
-    <string name="rp_day_of_week_abbr1_mon">пн</string>
-    <string name="rp_day_of_week_abbr1_tue">вт</string>
-    <string name="rp_day_of_week_abbr1_wed">ср</string>
-    <string name="rp_day_of_week_abbr1_thu">чт</string>
-    <string name="rp_day_of_week_abbr1_fri">пт</string>
-    <string name="rp_day_of_week_abbr1_sat">сб</string>
-
-    <string-array name="rp_days_of_week_abbr3">
-        <item>вс</item>
-        <item>пн</item>
-        <item>вт</item>
-        <item>ср</item>
-        <item>чт</item>
-        <item>пт</item>
-        <item>сб</item>
+    <string name="rp_day_of_week_abbr1_sun" comment="1-2 letters for a small day of week toggle button. (Sunday)">вс</string>
+    <string name="rp_day_of_week_abbr1_mon" comment="1-2 letters for a small day of week toggle button. (Monday)">пн</string>
+    <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">вт</string>
+    <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">ср</string>
+    <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">чт</string>
+    <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">пт</string>
+    <string name="rp_day_of_week_abbr1_sat" comment="1-2 letters for a small day of week toggle button. (Saturday)">сб</string>
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">вс</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Monday)">пн</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">вт</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">ср</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Thursday)">чт</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Friday)">пт</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Saturday)">сб</item>
     </string-array>
-    <string name="rp_format_none">Не повторяется</string>
-    <plurals name="rp_format_day">
+    <!-- FORMATTING -->
+    <string name="rp_format_none" comment="Text for no recurrence.">Не повторяется</string>
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. [one] [other]">
         <item quantity="one">Каждый %d день</item>
         <item quantity="few">Каждые %d дня</item>
         <item quantity="many">Каждые %d дней</item>
         <item quantity="other">Каждые %d дней</item>
     </plurals>
-    <plurals name="rp_format_week">
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
         <item quantity="one">Каждую %d неделю</item>
         <item quantity="few">Каждые %d недели</item>
         <item quantity="many">Каждые %d недель</item>
         <item quantity="other">Каждые %d недель</item>
     </plurals>
-    <plurals name="rp_format_month">
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
         <item quantity="one">Каждый %d месяц</item>
         <item quantity="few">Каждые %d месяца</item>
         <item quantity="many">Каждые %d месяцев</item>
         <item quantity="other">Каждые %d месяцев</item>
     </plurals>
-    <plurals name="rp_format_year">
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
         <item quantity="one">Каждый %d год</item>
         <item quantity="few">Каждые %d года</item>
-        <item quantity="other">Каждые %d лет</item>
         <item quantity="many">Каждые %d лет</item>
+        <item quantity="other">Каждые %d лет</item>
     </plurals>
-    <string name="rp_format_weekly_option">в %s</string>
-    <string name="rp_format_weekly_all">все дни недели</string>
-    <string name="rp_format_monthly_same_day">в определенный день каждого месяца</string>
-    <string name="rp_format_monthly_last_day">каждый последний день месяца</string>
-    <string name="rp_format_monthly_sun">каждое %s-е воскресенье</string>
-    <string name="rp_format_monthly_mon">каждый %s-й понедельник</string>
-    <string name="rp_format_monthly_tue">каждый %s-й вторник</string>
-    <string name="rp_format_monthly_wed">каждую %s-ю среду</string>
-    <string name="rp_format_monthly_thu">каждый %s-й четверг</string>
-    <string name="rp_format_monthly_fri">каждую %s-ю пятницу</string>
-    <string name="rp_format_monthly_sat">каждую %s-ю субботу</string>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">в %s</string>
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">все дни недели</string>
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">в определенный день каждого месяца</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">каждый последний день месяца</string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">каждое %s-е воскресенье</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">каждый %s-й понедельник</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">каждый %s-й вторник</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">каждую %s-ю среду</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">каждый %s-й четверг</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">каждую %s-ю пятницу</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">каждую %s-ю субботу</string>
     <string-array name="rp_format_monthly_ordinal">
-        <item>1-й</item>
-        <item>2-й</item>
-        <item>3-й</item>
-        <item>4-й</item>
-        <item>последний</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">1-й</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">2-й</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">3-й</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">4-й</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">последний</item>
     </string-array>
-    <string name="rp_format_end_date">по %s</string>
-    <plurals name="rp_format_end_count">
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">по %s</string>
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
         <item quantity="one">для %d события</item>
         <item quantity="few">для %d событий</item>
         <item quantity="many">для %d событий</item>
         <item quantity="other">для %d событий</item>
     </plurals>
-
 </resources>

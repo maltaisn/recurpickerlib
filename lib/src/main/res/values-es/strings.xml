@@ -1,108 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  Copyright 2019 Nicolas Maltais
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
 <resources>
-    <string name="rp_list_custom">Personalizar…</string>
-
-    <string name="rp_picker_done">Hecho</string>
-    <string name="rp_picker_cancel">Cancelar</string>
-    <string name="rp_picker_title">Periodicidad personalizada</string>
-    <string name="rp_picker_subtitle_period">Se repite cada</string>
-    <string name="rp_picker_subtitle_setting">Se repite el</string>
-    <string name="rp_picker_subtitle_end">Termina</string>
-    <string name="rp_picker_end_never">Nunca</string>
-    <string name="rp_picker_end_date">El</string>
-    <plurals name="rp_picker_end_count">
+    <!-- RECURRENCE LIST -->
+    <string name="rp_list_custom" comment="The item for creating a customized recurrence">Personalizar…</string>
+    <!-- RECURRENCE PICKER -->
+    <string name="rp_picker_done" comment="Title of the button to close the recurrence picker and create the recurrence">Hecho</string>
+    <string name="rp_picker_cancel" comment="Title of the button to cancel the recurrence picker.">Cancelar</string>
+    <string name="rp_picker_title" comment="Title of the recurrence picker window">Periodicidad personalizada</string>
+    <string name="rp_picker_subtitle_period" comment="Subtitle for choosing the frequency and period. Eg: 'Repeats every' 1 week">Se repite cada</string>
+    <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">Se repite el</string>
+    <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">Termina</string>
+    <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">Nunca</string>
+    <string name="rp_picker_end_date" comment="Option text for recurrence that ends 'on' a date. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;On&quot; word appears in the first screenshot.">El</string>
+    <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
         <item quantity="one">Después de | ocurrencia</item>
         <item quantity="other">Después de | ocurrencias</item>
     </plurals>
-    <string name="rp_picker_end_count_prefix_fallback"> </string>
-    <string name="rp_picker_end_date_prefix_fallback"> </string>
-    <plurals name="rp_picker_period_day">
+    <plurals name="rp_picker_period_day" comment="Dropdown item for a daily recurrence [one] [other]">
         <item quantity="one">día</item>
         <item quantity="other">días</item>
     </plurals>
-    <plurals name="rp_picker_period_week">
+    <plurals name="rp_picker_period_week" comment="Dropdown item for a weekly recurrence [one] [other]">
         <item quantity="one">semana</item>
         <item quantity="other">semanas</item>
     </plurals>
-    <plurals name="rp_picker_period_month">
+    <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
         <item quantity="one">mes</item>
         <item quantity="other">meses</item>
     </plurals>
-    <plurals name="rp_picker_period_year">
+    <plurals name="rp_picker_period_year" comment="Dropdown item for a yearly recurrence [one] [other]">
         <item quantity="one">año</item>
         <item quantity="other">años</item>
     </plurals>
-    <string name="rp_day_of_week_abbr1_sun">D</string>
-    <string name="rp_day_of_week_abbr1_mon">L</string>
-    <string name="rp_day_of_week_abbr1_tue">M</string>
-    <string name="rp_day_of_week_abbr1_wed">X</string>
-    <string name="rp_day_of_week_abbr1_thu">J</string>
-    <string name="rp_day_of_week_abbr1_fri">V</string>
-    <string name="rp_day_of_week_abbr1_sat">S</string>
-
-    <string-array name="rp_days_of_week_abbr3">
-        <item>dom.</item>
-        <item>lun.</item>
-        <item>mar.</item>
-        <item>mié.</item>
-        <item>jue.</item>
-        <item>vie.</item>
-        <item>sáb.</item>
+    <string name="rp_day_of_week_abbr1_sun" comment="1-2 letters for a small day of week toggle button. (Sunday)">D</string>
+    <string name="rp_day_of_week_abbr1_mon" comment="1-2 letters for a small day of week toggle button. (Monday)">L</string>
+    <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">M</string>
+    <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">X</string>
+    <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">J</string>
+    <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">V</string>
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">dom.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Monday)">lun.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">mar.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">mié.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Thursday)">jue.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Friday)">vie.</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Saturday)">sáb.</item>
     </string-array>
-    <string name="rp_format_none">No se repite</string>
-    <plurals name="rp_format_day">
+    <!-- FORMATTING -->
+    <string name="rp_format_none" comment="Text for no recurrence.">No se repite</string>
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. [one] [other]">
         <item quantity="one">Cada día</item>
         <item quantity="other">Cada %d días</item>
     </plurals>
-    <plurals name="rp_format_week">
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
         <item quantity="one">Cada semana</item>
         <item quantity="other">Cada %d semanas</item>
     </plurals>
-    <plurals name="rp_format_month">
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
         <item quantity="one">Cada mes</item>
         <item quantity="other">Cada %d meses</item>
     </plurals>
-    <plurals name="rp_format_year">
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
         <item quantity="one">Cada año</item>
         <item quantity="other">Cada %d años</item>
     </plurals>
-    <string name="rp_format_weekly_option">el %s</string>
-    <string name="rp_format_weekly_all">Todos los días de la semana </string>
-    <string name="rp_format_monthly_same_day">En le mismo día de cada mes </string>
-    <string name="rp_format_monthly_last_day">En cada último día del mes </string>
-    <string name="rp_format_monthly_sun">En cada %s domingo</string>
-    <string name="rp_format_monthly_mon">cada %s lunes</string>
-    <string name="rp_format_monthly_tue">cada %s martes</string>
-    <string name="rp_format_monthly_wed">cada %s miércoles</string>
-    <string name="rp_format_monthly_thu">cada %s jueves</string>
-    <string name="rp_format_monthly_fri">cada %s viernes</string>
-    <string name="rp_format_monthly_sat">cada %s sábado</string>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">el %s</string>
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">Todos los días de la semana </string>
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">En le mismo día de cada mes </string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">En cada último día del mes </string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">En cada %s domingo</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">cada %s lunes</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">cada %s martes</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">cada %s miércoles</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">cada %s jueves</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">cada %s viernes</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">cada %s sábado</string>
     <string-array name="rp_format_monthly_ordinal">
-        <item>primer</item>
-        <item>segundo</item>
-        <item>tercero</item>
-        <item>cuarto</item>
-        <item>último</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">primer</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">segundo</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">tercero</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">cuarto</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">último</item>
     </string-array>
-    <string name="rp_format_end_date">hasta %s</string>
-    <plurals name="rp_format_end_count">
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">hasta %s</string>
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
         <item quantity="one">por %d ocurrencia</item>
         <item quantity="other">por %d ocurrencias</item>
     </plurals>
-
 </resources>

@@ -1,108 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  Copyright 2019 Nicolas Maltais
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
 <resources>
-    <string name="rp_list_custom">Özel…</string>
-
-    <string name="rp_picker_done">Bitti</string>
-    <string name="rp_picker_cancel">İptal</string>
-    <string name="rp_picker_title">Özel yineleme</string>
-    <string name="rp_picker_subtitle_period">Yînelenme sikliği</string>
-    <string name="rp_picker_subtitle_setting">Tekrarlama</string>
-    <string name="rp_picker_subtitle_end">Bîtîş zamani</string>
-    <string name="rp_picker_end_never">Hiçbir zaman</string>
-    <string name="rp_picker_end_date">| tarihinde</string>
-    <plurals name="rp_picker_end_count">
+    <!-- RECURRENCE LIST -->
+    <string name="rp_list_custom" comment="The item for creating a customized recurrence">Özel…</string>
+    <!-- RECURRENCE PICKER -->
+    <string name="rp_picker_done" comment="Title of the button to close the recurrence picker and create the recurrence">Bitti</string>
+    <string name="rp_picker_cancel" comment="Title of the button to cancel the recurrence picker.">İptal</string>
+    <string name="rp_picker_title" comment="Title of the recurrence picker window">Özel yineleme</string>
+    <string name="rp_picker_subtitle_period" comment="Subtitle for choosing the frequency and period. Eg: 'Repeats every' 1 week">Yînelenme sikliği</string>
+    <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">Tekrarlama</string>
+    <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">Bîtîş zamani</string>
+    <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">Hiçbir zaman</string>
+    <string name="rp_picker_end_date" comment="Option text for recurrence that ends 'on' a date. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;On&quot; word appears in the first screenshot.">| tarihinde</string>
+    <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
         <item quantity="one">| yinelemeden sonra</item>
         <item quantity="other">| yinelemeden sonra</item>
     </plurals>
-    <string name="rp_picker_end_count_prefix_fallback">Sayısı</string>
-    <string name="rp_picker_end_date_prefix_fallback">Tarih</string>
-    <plurals name="rp_picker_period_day">
+    <plurals name="rp_picker_period_day" comment="Dropdown item for a daily recurrence [one] [other]">
         <item quantity="one">gün</item>
         <item quantity="other">günler</item>
     </plurals>
-    <plurals name="rp_picker_period_week">
+    <plurals name="rp_picker_period_week" comment="Dropdown item for a weekly recurrence [one] [other]">
         <item quantity="one">hafta</item>
         <item quantity="other">haftalar</item>
     </plurals>
-    <plurals name="rp_picker_period_month">
+    <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
         <item quantity="one">ay</item>
         <item quantity="other">aylar</item>
     </plurals>
-    <plurals name="rp_picker_period_year">
+    <plurals name="rp_picker_period_year" comment="Dropdown item for a yearly recurrence [one] [other]">
         <item quantity="one">sene</item>
         <item quantity="other">seneler</item>
     </plurals>
-    <string name="rp_day_of_week_abbr1_sun">P</string>
-    <string name="rp_day_of_week_abbr1_mon">P</string>
-    <string name="rp_day_of_week_abbr1_tue">S</string>
-    <string name="rp_day_of_week_abbr1_wed">Ç</string>
-    <string name="rp_day_of_week_abbr1_thu">P</string>
-    <string name="rp_day_of_week_abbr1_fri">C</string>
-    <string name="rp_day_of_week_abbr1_sat">C</string>
-
-    <string-array name="rp_days_of_week_abbr3">
-        <item>Paz</item>
-        <item>Pzt</item>
-        <item>Sal</item>
-        <item>Çar</item>
-        <item>Per</item>
-        <item>Cum</item>
-        <item>Cmt</item>
+    <string name="rp_day_of_week_abbr1_sun" comment="1-2 letters for a small day of week toggle button. (Sunday)">P</string>
+    <string name="rp_day_of_week_abbr1_mon" comment="1-2 letters for a small day of week toggle button. (Monday)">P</string>
+    <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">S</string>
+    <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">Ç</string>
+    <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">P</string>
+    <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">C</string>
+    <string name="rp_day_of_week_abbr1_sat" comment="1-2 letters for a small day of week toggle button. (Saturday)">C</string>
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">Paz</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Monday)">Pzt</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">Sal</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">Çar</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Thursday)">Per</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Friday)">Cum</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Saturday)">Cmt</item>
     </string-array>
-    <string name="rp_format_none">Tekrarlanmaz</string>
-    <plurals name="rp_format_day">
+    <!-- FORMATTING -->
+    <string name="rp_format_none" comment="Text for no recurrence.">Tekrarlanmaz</string>
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. [one] [other]">
         <item quantity="one">Her gün</item>
         <item quantity="other">Her %d günler</item>
     </plurals>
-    <plurals name="rp_format_week">
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
         <item quantity="one">Her hafta</item>
         <item quantity="other">Her %d haftalar</item>
     </plurals>
-    <plurals name="rp_format_month">
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
         <item quantity="one">Her ay</item>
         <item quantity="other">Her %d aylar</item>
     </plurals>
-    <plurals name="rp_format_year">
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
         <item quantity="one">Her sene</item>
         <item quantity="other">Her %d seneler</item>
     </plurals>
-    <string name="rp_format_weekly_option">üzerinde %s</string>
-    <string name="rp_format_weekly_all">haftanın her günü</string>
-    <string name="rp_format_monthly_same_day">her ay aynı günde</string>
-    <string name="rp_format_monthly_last_day">Her ayın son gününde</string>
-    <string name="rp_format_monthly_sun">her %s Pazar günü</string>
-    <string name="rp_format_monthly_mon">her %s Pazartesi</string>
-    <string name="rp_format_monthly_tue">her %s Salı</string>
-    <string name="rp_format_monthly_wed">her %s Çarşamba</string>
-    <string name="rp_format_monthly_thu">her %s Perşembe</string>
-    <string name="rp_format_monthly_fri">her %s Cuma</string>
-    <string name="rp_format_monthly_sat">her %s Cumartesi</string>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">üzerinde %s</string>
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">haftanın her günü</string>
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">her ay aynı günde</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">Her ayın son gününde</string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">her %s Pazar günü</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">her %s Pazartesi</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">her %s Salı</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">her %s Çarşamba</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">her %s Perşembe</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">her %s Cuma</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">her %s Cumartesi</string>
     <string-array name="rp_format_monthly_ordinal">
-        <item>birinci</item>
-        <item>ikinci</item>
-        <item>üçüncü</item>
-        <item>dördüncü</item>
-        <item>son</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">birinci</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">ikinci</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">üçüncü</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">dördüncü</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">son</item>
     </string-array>
-    <string name="rp_format_end_date">kadar %s</string>
-    <plurals name="rp_format_end_count">
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">kadar %s</string>
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
         <item quantity="one">için %d etkinlik</item>
         <item quantity="other">için %d etkinlikler</item>
     </plurals>
-
 </resources>

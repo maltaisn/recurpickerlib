@@ -1,119 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  Copyright 2019 Nicolas Maltais
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ImpliedQuantity">
-
-    <string name="rp_list_custom">Nustatymai…</string>
-
-    <string name="rp_picker_done">Atlikta</string>
-    <string name="rp_picker_cancel">Atšaukti</string>
-    <string name="rp_picker_title">Tinkintas pasikartojimas</string>
-    <string name="rp_picker_subtitle_period">Pasikartoja kas</string>
-    <string name="rp_picker_subtitle_setting">Pasikartoja</string>
-    <string name="rp_picker_subtitle_end">Baigiasi</string>
-    <string name="rp_picker_end_never">Niekada</string>
-    <string name="rp_picker_end_date"> </string>
-    <plurals name="rp_picker_end_count">
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
+<resources>
+    <!-- RECURRENCE LIST -->
+    <string name="rp_list_custom" comment="The item for creating a customized recurrence">Nustatymai…</string>
+    <!-- RECURRENCE PICKER -->
+    <string name="rp_picker_done" comment="Title of the button to close the recurrence picker and create the recurrence">Atlikta</string>
+    <string name="rp_picker_cancel" comment="Title of the button to cancel the recurrence picker.">Atšaukti</string>
+    <string name="rp_picker_title" comment="Title of the recurrence picker window">Tinkintas pasikartojimas</string>
+    <string name="rp_picker_subtitle_period" comment="Subtitle for choosing the frequency and period. Eg: 'Repeats every' 1 week">Pasikartoja kas</string>
+    <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">Pasikartoja</string>
+    <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">Baigiasi</string>
+    <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">Niekada</string>
+    <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
         <item quantity="one">Po | įvykio</item>
         <item quantity="few">Po | įvykių</item>
+        <item quantity="many">Po | įvykių</item>
         <item quantity="other">Po | įvykių</item>
     </plurals>
-    <string name="rp_picker_end_count_prefix_fallback"> </string>
-    <string name="rp_picker_end_date_prefix_fallback"> </string>
-    <plurals name="rp_picker_period_day">
+    <plurals name="rp_picker_period_day" comment="Dropdown item for a daily recurrence [one] [other]">
         <item quantity="one">dien</item>
         <item quantity="few">dienas</item>
+        <item quantity="many">dienų</item>
         <item quantity="other">dienų</item>
     </plurals>
-    <plurals name="rp_picker_period_week">
+    <plurals name="rp_picker_period_week" comment="Dropdown item for a weekly recurrence [one] [other]">
         <item quantity="one">savaitę</item>
         <item quantity="few">savaites</item>
+        <item quantity="many">savaičių</item>
         <item quantity="other">savaičių</item>
     </plurals>
-    <plurals name="rp_picker_period_month">
+    <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
         <item quantity="one">mėnesį</item>
         <item quantity="few">mėnesius</item>
+        <item quantity="many">mėnesių</item>
         <item quantity="other">mėnesių</item>
     </plurals>
-    <plurals name="rp_picker_period_year">
+    <plurals name="rp_picker_period_year" comment="Dropdown item for a yearly recurrence [one] [other]">
         <item quantity="one">metais</item>
         <item quantity="few">metai</item>
+        <item quantity="many">metų</item>
         <item quantity="other">metų</item>
     </plurals>
-    <string name="rp_day_of_week_abbr1_sun">S</string>
-    <string name="rp_day_of_week_abbr1_mon">P</string>
-    <string name="rp_day_of_week_abbr1_tue">A</string>
-    <string name="rp_day_of_week_abbr1_wed">T</string>
-    <string name="rp_day_of_week_abbr1_thu">K</string>
-    <string name="rp_day_of_week_abbr1_fri">P</string>
-    <string name="rp_day_of_week_abbr1_sat">Š</string>
-
-    <string-array name="rp_days_of_week_abbr3">
-        <item>sek</item>
-        <item>pir</item>
-        <item>ant</item>
-        <item>tre</item>
-        <item>ket</item>
-        <item>pen</item>
-        <item>šeš</item>
+    <string name="rp_day_of_week_abbr1_mon" comment="1-2 letters for a small day of week toggle button. (Monday)">P</string>
+    <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">A</string>
+    <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">T</string>
+    <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">K</string>
+    <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">P</string>
+    <string name="rp_day_of_week_abbr1_sat" comment="1-2 letters for a small day of week toggle button. (Saturday)">Š</string>
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">sek</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Monday)">pir</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">ant</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">tre</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Thursday)">ket</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Friday)">pen</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Saturday)">šeš</item>
     </string-array>
-    <string name="rp_format_none">Nesikartoja</string>
-    <plurals name="rp_format_day">
+    <!-- FORMATTING -->
+    <string name="rp_format_none" comment="Text for no recurrence.">Nesikartoja</string>
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. [one] [other]">
         <item quantity="one">Kas dien</item>
         <item quantity="few">Kas %d dienas</item>
+        <item quantity="many">Kas %d dienų</item>
         <item quantity="other">Kas %d dienų</item>
     </plurals>
-    <plurals name="rp_format_week">
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
         <item quantity="one">Kas savaitę</item>
         <item quantity="few">Kas %d savaites</item>
+        <item quantity="many">Kas %d savaičių</item>
         <item quantity="other">Kas %d savaičių</item>
     </plurals>
-    <plurals name="rp_format_month">
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
         <item quantity="one">Kiekvieną mėnesį</item>
         <item quantity="few">Kas %d mėnesius</item>
+        <item quantity="many">Kas %d mėnesių</item>
         <item quantity="other">Kas %d mėnesių</item>
     </plurals>
-    <plurals name="rp_format_year">
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
         <item quantity="one">Kiekvienais metais</item>
         <item quantity="few">Kas %d metai</item>
+        <item quantity="many">Kas %d metų</item>
         <item quantity="other">Kas %d metų</item>
     </plurals>
-    <string name="rp_format_weekly_option">%s</string>
-    <string name="rp_format_weekly_all">kiekvieną savaitės dieną</string>
-    <string name="rp_format_monthly_same_day">tą pačią mėnesio dieną</string>
-    <string name="rp_format_monthly_last_day">paskutinę mėnesio dieną</string>
-    <string name="rp_format_monthly_sun">kiekvieną %s sekmadienį</string>
-    <string name="rp_format_monthly_mon">kiekvieną %s pirmadienį</string>
-    <string name="rp_format_monthly_tue">kiekvieną %s antradienį</string>
-    <string name="rp_format_monthly_wed">kiekvieną %s trečiadienį</string>
-    <string name="rp_format_monthly_thu">kiekvieną %s ketvirtadienį</string>
-    <string name="rp_format_monthly_fri">kiekvieną %s penktadienį</string>
-    <string name="rp_format_monthly_sat">kiekvieną %s šeštadienį</string>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">%s</string>
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">kiekvieną savaitės dieną</string>
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">tą pačią mėnesio dieną</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">paskutinę mėnesio dieną</string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">kiekvieną %s sekmadienį</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">kiekvieną %s pirmadienį</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">kiekvieną %s antradienį</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">kiekvieną %s trečiadienį</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">kiekvieną %s ketvirtadienį</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">kiekvieną %s penktadienį</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">kiekvieną %s šeštadienį</string>
     <string-array name="rp_format_monthly_ordinal">
-        <item>pirmas</item>
-        <item>antras</item>
-        <item>trečias</item>
-        <item>ketvirtas</item>
-        <item>paskutinis</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">pirmas</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">antras</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">trečias</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">ketvirtas</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">paskutinis</item>
     </string-array>
-    <string name="rp_format_end_date">iki %s</string>
-    <plurals name="rp_format_end_count">
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">iki %s</string>
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
         <item quantity="one">%d kartą</item>
         <item quantity="few">%d kartus</item>
+        <item quantity="many">%d kartų</item>
         <item quantity="other">%d kartų</item>
     </plurals>
-
 </resources>

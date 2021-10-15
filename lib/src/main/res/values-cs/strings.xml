@@ -1,119 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  Copyright 2019 Nicolas Maltais
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
 <resources>
-
-    <string name="rp_list_custom">Vlastní…</string>
-
-    <string name="rp_picker_done">Done</string>
-    <string name="rp_picker_cancel">Storno</string>
-    <string name="rp_picker_title">Vlastní opakování</string>
-    <string name="rp_picker_subtitle_period">Opakuje se po</string>
-    <string name="rp_picker_subtitle_setting">Opakuje se dne</string>
-    <string name="rp_picker_subtitle_end">Končí</string>
-    <string name="rp_picker_end_never">Nikdy</string>
-    <string name="rp_picker_end_date">Dne</string>
-    <plurals name="rp_picker_end_count">
+    <!-- RECURRENCE LIST -->
+    <string name="rp_list_custom" comment="The item for creating a customized recurrence">Vlastní…</string>
+    <!-- RECURRENCE PICKER -->
+    <string name="rp_picker_cancel" comment="Title of the button to cancel the recurrence picker.">Storno</string>
+    <string name="rp_picker_title" comment="Title of the recurrence picker window">Vlastní opakování</string>
+    <string name="rp_picker_subtitle_period" comment="Subtitle for choosing the frequency and period. Eg: 'Repeats every' 1 week">Opakuje se po</string>
+    <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">Opakuje se dne</string>
+    <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">Končí</string>
+    <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">Nikdy</string>
+    <string name="rp_picker_end_date" comment="Option text for recurrence that ends 'on' a date. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;On&quot; word appears in the first screenshot.">Dne</string>
+    <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
         <item quantity="one">Po | výskytu</item>
         <item quantity="few">Po | výskytech</item>
+        <item quantity="many">Po | výskytech</item>
         <item quantity="other">Po | výskytech</item>
     </plurals>
-    <string name="rp_picker_end_count_prefix_fallback"> </string>
-    <string name="rp_picker_end_date_prefix_fallback"> </string>
-    <plurals name="rp_picker_period_day">
+    <plurals name="rp_picker_period_day" comment="Dropdown item for a daily recurrence [one] [other]">
         <item quantity="one">den</item>
         <item quantity="few">dny</item>
+        <item quantity="many">dní</item>
         <item quantity="other">dní</item>
     </plurals>
-    <plurals name="rp_picker_period_week">
+    <plurals name="rp_picker_period_week" comment="Dropdown item for a weekly recurrence [one] [other]">
         <item quantity="one">týden</item>
         <item quantity="few">týdny</item>
+        <item quantity="many">týdnů</item>
         <item quantity="other">týdnů</item>
     </plurals>
-    <plurals name="rp_picker_period_month">
+    <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
         <item quantity="one">měsíc</item>
         <item quantity="few">měsíce</item>
+        <item quantity="many">měsíců</item>
         <item quantity="other">měsíců</item>
     </plurals>
-    <plurals name="rp_picker_period_year">
+    <plurals name="rp_picker_period_year" comment="Dropdown item for a yearly recurrence [one] [other]">
         <item quantity="one">rok</item>
         <item quantity="few">roky</item>
+        <item quantity="many">let</item>
         <item quantity="other">let</item>
     </plurals>
-    <string name="rp_day_of_week_abbr1_sun">N</string>
-    <string name="rp_day_of_week_abbr1_mon">P</string>
-    <string name="rp_day_of_week_abbr1_tue">Ú</string>
-    <string name="rp_day_of_week_abbr1_wed">S</string>
-    <string name="rp_day_of_week_abbr1_thu">Č</string>
-    <string name="rp_day_of_week_abbr1_fri">P</string>
-    <string name="rp_day_of_week_abbr1_sat">S</string>
-
-    <string-array name="rp_days_of_week_abbr3">
-        <item>Ne</item>
-        <item>Po</item>
-        <item>Út</item>
-        <item>St</item>
-        <item>Čt</item>
-        <item>Pá</item>
-        <item>So</item>
+    <string name="rp_day_of_week_abbr1_sun" comment="1-2 letters for a small day of week toggle button. (Sunday)">N</string>
+    <string name="rp_day_of_week_abbr1_mon" comment="1-2 letters for a small day of week toggle button. (Monday)">P</string>
+    <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">Ú</string>
+    <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">S</string>
+    <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">Č</string>
+    <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">P</string>
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">Ne</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Monday)">Po</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">Út</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">St</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Thursday)">Čt</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Friday)">Pá</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Saturday)">So</item>
     </string-array>
-    <string name="rp_format_none">Neopakuje se</string>
-    <plurals name="rp_format_day">
+    <!-- FORMATTING -->
+    <string name="rp_format_none" comment="Text for no recurrence.">Neopakuje se</string>
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. [one] [other]">
         <item quantity="one">Každý den</item>
         <item quantity="few">Každé %d dny</item>
+        <item quantity="many">Každých %d dní</item>
         <item quantity="other">Každých %d dní</item>
     </plurals>
-    <plurals name="rp_format_week">
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
         <item quantity="one">Každý týden</item>
         <item quantity="few">Každé %d týdny</item>
+        <item quantity="many">Každých %d týdnů</item>
         <item quantity="other">Každých %d týdnů</item>
     </plurals>
-    <plurals name="rp_format_month">
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
         <item quantity="one">Každý měsíc</item>
         <item quantity="few">Každé %d měsíce</item>
+        <item quantity="many">Každých %d měsíců</item>
         <item quantity="other">Každých %d měsíců</item>
     </plurals>
-    <plurals name="rp_format_year">
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
         <item quantity="one">Každý rok</item>
         <item quantity="few">Každé %d roky</item>
+        <item quantity="many">Každých %d let</item>
         <item quantity="other">Každých %d let</item>
     </plurals>
-    <string name="rp_format_weekly_option">v %s</string>
-    <string name="rp_format_weekly_all">každý den týdne</string>
-    <string name="rp_format_monthly_same_day">stejný den každý měsíc</string>
-    <string name="rp_format_monthly_last_day">každý poslední den měsíce</string>
-    <string name="rp_format_monthly_sun">každou %s neděli</string>
-    <string name="rp_format_monthly_mon">každé %s pondělí</string>
-    <string name="rp_format_monthly_tue">každé %s úterý</string>
-    <string name="rp_format_monthly_wed">každou %s středu</string>
-    <string name="rp_format_monthly_thu">každý %s čtvrtek</string>
-    <string name="rp_format_monthly_fri">každý %s pátek</string>
-    <string name="rp_format_monthly_sat">každou %s sobotu</string>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">v %s</string>
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">každý den týdne</string>
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">stejný den každý měsíc</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">každý poslední den měsíce</string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">každou %s neděli</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">každé %s pondělí</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">každé %s úterý</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">každou %s středu</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">každý %s čtvrtek</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">každý %s pátek</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">každou %s sobotu</string>
     <string-array name="rp_format_monthly_ordinal">
-        <item>první</item>
-        <item>druhý</item>
-        <item>třetí</item>
-        <item>čtvrtý</item>
-        <item>poslední</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">první</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">druhý</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">třetí</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">čtvrtý</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">poslední</item>
     </string-array>
-    <string name="rp_format_end_date">do %s</string>
-    <plurals name="rp_format_end_count">
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">do %s</string>
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
         <item quantity="one">do %d opakování</item>
         <item quantity="few">do %d opakování</item>
+        <item quantity="many">do %d opakování</item>
         <item quantity="other">do %d opakování</item>
     </plurals>
-
 </resources>

@@ -1,108 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  Copyright 2019 Nicolas Maltais
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
 <resources>
-    <string name="rp_list_custom">Aangepast…</string>
-
-    <string name="rp_picker_done">Gereed</string>
-    <string name="rp_picker_cancel">Annuleren</string>
-    <string name="rp_picker_title">Herhaling aanpassen</string>
-    <string name="rp_picker_subtitle_period">Wordt herhaald voor elke</string>
-    <string name="rp_picker_subtitle_setting">Wordt herhaald op</string>
-    <string name="rp_picker_subtitle_end">Eindigt</string>
-    <string name="rp_picker_end_never">Nooit</string>
-    <string name="rp_picker_end_date">Op</string>
-    <plurals name="rp_picker_end_count">
+    <!-- RECURRENCE LIST -->
+    <string name="rp_list_custom" comment="The item for creating a customized recurrence">Aangepast…</string>
+    <!-- RECURRENCE PICKER -->
+    <string name="rp_picker_done" comment="Title of the button to close the recurrence picker and create the recurrence">Gereed</string>
+    <string name="rp_picker_cancel" comment="Title of the button to cancel the recurrence picker.">Annuleren</string>
+    <string name="rp_picker_title" comment="Title of the recurrence picker window">Herhaling aanpassen</string>
+    <string name="rp_picker_subtitle_period" comment="Subtitle for choosing the frequency and period. Eg: 'Repeats every' 1 week">Wordt herhaald voor elke</string>
+    <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">Wordt herhaald op</string>
+    <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">Eindigt</string>
+    <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">Nooit</string>
+    <string name="rp_picker_end_date" comment="Option text for recurrence that ends 'on' a date. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;On&quot; word appears in the first screenshot.">Op</string>
+    <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
         <item quantity="one">Na | keer</item>
         <item quantity="other">Na | keer</item>
     </plurals>
-    <string name="rp_picker_end_count_prefix_fallback"> </string>
-    <string name="rp_picker_end_date_prefix_fallback"> </string>
-    <plurals name="rp_picker_period_day">
+    <plurals name="rp_picker_period_day" comment="Dropdown item for a daily recurrence [one] [other]">
         <item quantity="one">dag</item>
         <item quantity="other">dagen</item>
     </plurals>
-    <plurals name="rp_picker_period_week">
-        <item quantity="one">week</item>
-        <item quantity="other">weken</item>
-    </plurals>
-    <plurals name="rp_picker_period_month">
+    <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
         <item quantity="one">maand</item>
         <item quantity="other">maanden</item>
     </plurals>
-    <plurals name="rp_picker_period_year">
+    <plurals name="rp_picker_period_year" comment="Dropdown item for a yearly recurrence [one] [other]">
         <item quantity="one">jaar</item>
         <item quantity="other">jaar</item>
     </plurals>
-    <string name="rp_day_of_week_abbr1_sun">Z</string>
-    <string name="rp_day_of_week_abbr1_mon">M</string>
-    <string name="rp_day_of_week_abbr1_tue">D</string>
-    <string name="rp_day_of_week_abbr1_wed">W</string>
-    <string name="rp_day_of_week_abbr1_thu">D</string>
-    <string name="rp_day_of_week_abbr1_fri">V</string>
-    <string name="rp_day_of_week_abbr1_sat">Z</string>
-
-    <string-array name="rp_days_of_week_abbr3">
-        <item>zo</item>
-        <item>ma</item>
-        <item>di</item>
-        <item>wo</item>
-        <item>do</item>
-        <item>vr</item>
-        <item>za</item>
+    <string name="rp_day_of_week_abbr1_sun" comment="1-2 letters for a small day of week toggle button. (Sunday)">Z</string>
+    <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">D</string>
+    <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">D</string>
+    <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">V</string>
+    <string name="rp_day_of_week_abbr1_sat" comment="1-2 letters for a small day of week toggle button. (Saturday)">Z</string>
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">zo</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Monday)">ma</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">di</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">wo</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Thursday)">do</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Friday)">vr</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Saturday)">za</item>
     </string-array>
-    <string name="rp_format_none">Niet herhaald</string>
-    <plurals name="rp_format_day">
+    <!-- FORMATTING -->
+    <string name="rp_format_none" comment="Text for no recurrence.">Niet herhaald</string>
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. [one] [other]">
         <item quantity="one">Elke dag</item>
         <item quantity="other">Elke %d dagen</item>
     </plurals>
-    <plurals name="rp_format_week">
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
         <item quantity="one">Elke week</item>
         <item quantity="other">Elke %d weken</item>
     </plurals>
-    <plurals name="rp_format_month">
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
         <item quantity="one">Elke maand</item>
         <item quantity="other">Elke %d maanden</item>
     </plurals>
-    <plurals name="rp_format_year">
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
         <item quantity="one">Elk jaar</item>
         <item quantity="other">Elk %d jaar</item>
     </plurals>
-    <string name="rp_format_weekly_option">op %s</string>
-    <string name="rp_format_weekly_all">iedere dag van de week</string>
-    <string name="rp_format_monthly_same_day">op dezelfde dag iedere maand</string>
-    <string name="rp_format_monthly_last_day">op de laatste dag van de maand</string>
-    <string name="rp_format_monthly_sun">op iedere %s zondag</string>
-    <string name="rp_format_monthly_mon">op iedere %s maandag</string>
-    <string name="rp_format_monthly_tue">op iedere %s dinsdag</string>
-    <string name="rp_format_monthly_wed">op iedere %s woensdag</string>
-    <string name="rp_format_monthly_thu">op iedere %s donderdag</string>
-    <string name="rp_format_monthly_fri">op iedere %s vrijdag</string>
-    <string name="rp_format_monthly_sat">op iedere %s zaterdag</string>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">op %s</string>
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">iedere dag van de week</string>
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">op dezelfde dag iedere maand</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">op de laatste dag van de maand</string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">op iedere %s zondag</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">op iedere %s maandag</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">op iedere %s dinsdag</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">op iedere %s woensdag</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">op iedere %s donderdag</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">op iedere %s vrijdag</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">op iedere %s zaterdag</string>
     <string-array name="rp_format_monthly_ordinal">
-        <item>eerste</item>
-        <item>tweede</item>
-        <item>derde</item>
-        <item>vierde</item>
-        <item>laatste</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">eerste</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">tweede</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">derde</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">vierde</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">laatste</item>
     </string-array>
-    <string name="rp_format_end_date">tot %s</string>
-    <plurals name="rp_format_end_count">
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">tot %s</string>
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
         <item quantity="one">voor %d gebeurtenis</item>
         <item quantity="other">voor %d gebeurtenissen</item>
     </plurals>
-
 </resources>
