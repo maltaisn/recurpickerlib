@@ -1,6 +1,11 @@
+### v2.1.6
+- Fixed layout issue in 2.1.5.
+
 ### v2.1.5
 - Add Arabic translation, thanks to @afmbsr.
 - Fix untranslated string in French translation.
+- Mostly a test release for new publishing script.
+- There a major layout issue in this version! Please use 2.1.6.
 
 ### v2.1.4
 - Updated kotlin to 1.4.21.

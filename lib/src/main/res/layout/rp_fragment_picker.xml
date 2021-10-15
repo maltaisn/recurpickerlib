@@ -465,7 +465,6 @@
                 style="?attr/rpPickerInputLayoutStyle"
                 android:layout_width="56dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_view"
                 app:layout_constraintStart_toEndOf="@id/rp_picker_end_count_prefix_label"
                 app:layout_constraintTop_toTopOf="@id/rp_picker_end_count_view"
                 android:layout_marginTop="8dp"
@@ -505,10 +504,10 @@
                 android:id="@+id/rp_picker_end_count_view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="@id/rp_picker_end_count_input_layout"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/rp_picker_end_count_input_layout"
                 app:layout_constraintTop_toTopOf="@id/rp_picker_end_date_div"
                 />
 
