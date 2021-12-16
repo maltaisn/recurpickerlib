@@ -11,6 +11,7 @@
     <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">Gjentas på</string>
     <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">Slutter</string>
     <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">Aldri</string>
+    <string name="rp_picker_end_date" comment="Option text for recurrence that ends 'on' a date. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;On&quot; word appears in the first screenshot.">På</string>
     <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
         <item quantity="one">Etter | forekomst</item>
         <item quantity="other">Etter | forekomster</item>
@@ -31,7 +32,12 @@
         <item quantity="one">år</item>
         <item quantity="other">år</item>
     </plurals>
+    <string name="rp_day_of_week_abbr1_sun" comment="1-2 letters for a small day of week toggle button. (Sunday)">S</string>
+    <string name="rp_day_of_week_abbr1_mon" comment="1-2 letters for a small day of week toggle button. (Monday)">M</string>
+    <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">T</string>
     <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">O</string>
+    <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">T</string>
+    <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">F</string>
     <string name="rp_day_of_week_abbr1_sat" comment="1-2 letters for a small day of week toggle button. (Saturday)">L</string>
     <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
         <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">søn.</item>

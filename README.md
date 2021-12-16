@@ -36,7 +36,7 @@ See [changelog](CHANGELOG.md) for detailed release notes.
 - Thanks to [afmbsr](https://github.com/afmbsr) for translating to Arabic.
 
 ## Translations
-The library is available in 17 languages. If you make a translation please send a pull request!
+The library is available in 19 languages. If you make a translation please send a pull request!
 The library can also be translated via the [project on Crowdin](https://crowdin.com/project/recurpickerlib).
 There are comments in the default strings.xml to help with specific translation requirements.
 Note that v2 introduced some strings and current translations may not be 100% accurate.
