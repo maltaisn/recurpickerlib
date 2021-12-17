@@ -8,10 +8,9 @@ Several settings are available to change the picker interface and behavior.
 #### Gradle dependency
 `implementation 'com.maltaisn:recurpicker:X.Y.Z'`
 
-Replace `X.Y.Z` with lastest version number:&nbsp;
-<a href="https://bintray.com/maltaisn/recurrence-picker/recurrence-picker/_latestVersion">
-    <img src="https://api.bintray.com/packages/maltaisn/recurrence-picker/recurrence-picker/images/download.svg"
-         alt="Download"/></a>
+Replace `X.Y.Z` with lastest version number:&nbsp; [![Download](https://img.shields.io/maven-central/v/com.maltaisn/recurpicker)](https://search.maven.org/artifact/com.maltaisn/recurpicker)
+
+The `mavenCentral()` repository is required.
 
 ## Documentation
 KDocs is available [here](https://maltaisn.github.io/recurpickerlib/docs/index.html).
@@ -31,9 +30,10 @@ Major changes are as follows:
 See [changelog](CHANGELOG.md) for detailed release notes.
 
 ## Credits
-- Thanks to [David Vavra](https://github.com/davidvavra) and his translators for translating to 10 languages.
-- Thanks to [bezysoftware](https://github.com/bezysoftware) for translating to 5 languages.
-- Thanks to [afmbsr](https://github.com/afmbsr) for translating to Arabic.
+- [David Vavra](https://github.com/davidvavra) and his translators for translating to 10 languages.
+- [bezysoftware](https://github.com/bezysoftware) for translating to 5 languages.
+- [afmbsr](https://github.com/afmbsr) for translating to Arabic.
+- [Сергей В.](https://crowdin.com/profile/serhii_ka) for translating to Ukrainian.
 
 ## Translations
 The library is available in 19 languages. If you make a translation please send a pull request!
