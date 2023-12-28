@@ -1,6 +1,6 @@
 ### v2.1.8
 - Updated dependencies.
-- Updated translations (added Chinese).
+- Updated translations.
 
 ### v2.1.7
 - Added Ukrainian translation, thanks to @Serhii_Ka.
