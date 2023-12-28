@@ -1,348 +1,397 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html class="no-js">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Recurrence</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
-  <body>
-    <div id="container">
-      <div id="leftColumn"><a href="../../../index.html">
-          <div id="logo"></div>
-        </a>
-        <div id="paneSearch"></div>
-        <div id="sideMenu"></div>
-      </div>
-      <div id="main">
-        <div id="leftToggler"><span class="icon-toggler"></span></div>
-<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="lib::com.maltaisn.recurpicker/Recurrence///PointingToDeclaration//1946847589">
-          <div class="navigation-wrapper" id="navigation-wrapper">
-            <div class="breadcrumbs"><a href="../../../index.html">lib</a>/<a href="../index.html">com.maltaisn.recurpicker</a>/<a href="index.html">Recurrence</a></div>
-            <div class="pull-right d-flex">
-              <div id="searchBar"></div>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            lib
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":lib:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="lib::com.maltaisn.recurpicker/Recurrence///PointingToDeclaration//1946847589">
+  <div class="breadcrumbs"><a href="../../../index.html">lib</a><span class="delimiter">/</span><a href="../index.html">com.maltaisn.recurpicker</a><span class="delimiter">/</span><span class="current">Recurrence</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Recurrence</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="index.html">Recurrence</a> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a></div><p class="paragraph">An object describing a recurrence rule. All recurrence objects are immutable.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="-1183398306%2FClasslikes%2F1946847589" anchor-label="Builder" id="-1183398306%2FClasslikes%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-builder/index.html"><span><span>Builder</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1183398306%2FClasslikes%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">class </span><a href="-builder/index.html">Builder</a></div><div class="brief "><p class="paragraph">Builder for recurrence.</p></div></div></div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="cover ">
-            <h1 class="cover"><span><span>Recurrence</span></span></h1>
-            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">class <a href="index.html">Recurrence</a> : <a href="https://developer.android.com/reference/kotlin/android/os/Parcelable.html">Parcelable</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">An object describing a recurrence rule. All recurrence objects are immutable.</p></div></div>
-          </div>
-          <div class="tabbedcontent">
-            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
-            <div class="tabs-section-body">
-              <h2 class="">Types</h2>
-              <div class="table" data-togglable="Types"><a data-name="-1183398306%2FClasslikes%2F1946847589" anchor-label="Builder" id="-1183398306%2FClasslikes%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-builder/index.html"><span><span>Builder</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1183398306%2FClasslikes%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">class <a href="-builder/index.html">Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Builder for recurrence.</p></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
 <a data-name="1720232461%2FClasslikes%2F1946847589" anchor-label="Companion" id="1720232461%2FClasslikes%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-companion/index.html"><span><span>Companion</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1720232461%2FClasslikes%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">object <a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1720232461%2FClasslikes%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="324038247%2FClasslikes%2F1946847589" anchor-label="DaysOfWeek" id="324038247%2FClasslikes%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-days-of-week/index.html"><span>Days</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Week</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="324038247%2FClasslikes%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">annotation class <a href="-days-of-week/index.html">DaysOfWeek</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Int def for the <a href="by-day.html">byDay</a> bit field property.</p></div></div>
-</div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-days-of-week/index.html"><span>Days</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Week</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="324038247%2FClasslikes%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">annotation class </span><a href="-days-of-week/index.html">DaysOfWeek</a></div><div class="brief "><p class="paragraph">Int def for the <a href="by-day.html">byDay</a> bit field property.</p></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-60465020%2FClasslikes%2F1946847589" anchor-label="EndType" id="-60465020%2FClasslikes%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-end-type/index.html"><span>End</span><wbr></wbr><span><span>Type</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-60465020%2FClasslikes%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">enum <a href="-end-type/index.html">EndType</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a>&lt;<a href="-end-type/index.html">Recurrence.EndType</a>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-end-type/index.html"><span>End</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-60465020%2FClasslikes%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-end-type/index.html">EndType</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-end-type/index.html">Recurrence.EndType</a><span class="token operator">&gt; </span></div></div></div>
                 </div>
+              </div>
+            </div>
+          </div>
 <a data-name="76870440%2FClasslikes%2F1946847589" anchor-label="Period" id="76870440%2FClasslikes%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="-period/index.html"><span><span>Period</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="76870440%2FClasslikes%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">enum <a href="-period/index.html">Period</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a>&lt;<a href="-period/index.html">Recurrence.Period</a>&gt; <span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="">Functions</h2>
-              <div class="table" data-togglable="Functions"><a data-name="-912333009%2FFunctions%2F1946847589" anchor-label="describeContents" id="-912333009%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="describe-contents.html"><span>describe</span><wbr></wbr><span><span>Contents</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-912333009%2FFunctions%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">open override fun <a href="describe-contents.html">describeContents</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="508151917%2FFunctions%2F1946847589" anchor-label="equals" id="508151917%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="equals.html"><span><span>equals</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="508151917%2FFunctions%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">open operator override fun <a href="equals.html">equals</a>(other: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>?): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Note: since two recurrences with dates at different times of the day will produce the same events, they are considered equal, even though the dates may not have the same value. Same applies for <a href="hash-code.html">hashCode</a>.</p></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1899249191%2FFunctions%2F1946847589" anchor-label="hashCode" id="-1899249191%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="hash-code.html"><span>hash</span><wbr></wbr><span><span>Code</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1899249191%2FFunctions%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">open override fun <a href="hash-code.html">hashCode</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1226276528%2FFunctions%2F1946847589" anchor-label="isRecurringOnDaysOfWeek" id="-1226276528%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="is-recurring-on-days-of-week.html"><span>is</span><wbr></wbr><span>Recurring</span><wbr></wbr><span>On</span><wbr></wbr><span>Days</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Week</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1226276528%2FFunctions%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">fun <a href="is-recurring-on-days-of-week.html">isRecurringOnDaysOfWeek</a>(days: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">If period is <a href="-period/-w-e-e-k-l-y/index.html">WEEKLY</a>, checks if events happen on certain <a href="is-recurring-on-days-of-week.html">days</a> of the week. Returns true only if recurrence happens on all of these days. To get the number of days set use <code>Integer.bitCount(recurrence.byDay)  - 1</code> (or <code>recurrence.byDay.countOneBits() - 1</code> in Kotlin). Note that if the weekly recurrence has no days set, meaning it happens on the same day as the start date's, this method will always return <code>false</code> since this day is unknown. If period is <a href="-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, checks if events happen on a certain day of the week specified by a single flag set in <a href="is-recurring-on-days-of-week.html">days</a>.</p></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-2077415256%2FFunctions%2F1946847589" anchor-label="toString" id="-2077415256%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="to-string.html"><span>to</span><wbr></wbr><span><span>String</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2077415256%2FFunctions%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">open override fun <a href="to-string.html">toString</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">Return a human readable string representation of the recurrence. This is only for debug purposes and will not even work on release builds. <a href="../../com.maltaisn.recurpicker.format/-recurrence-formatter/index.html">RecurrenceFormatter</a> should be used instead.</p></div></div>
-</div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="905762194%2FFunctions%2F1946847589" anchor-label="writeToParcel" id="905762194%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="write-to-parcel.html"><span>write</span><wbr></wbr><span>To</span><wbr></wbr><span><span>Parcel</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="905762194%2FFunctions%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">open override fun <a href="write-to-parcel.html">writeToParcel</a>(parcel: <a href="https://developer.android.com/reference/kotlin/android/os/Parcel.html">Parcel</a>, flags: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="">Properties</h2>
-              <div class="table" data-togglable="Properties"><a data-name="2118914337%2FProperties%2F1946847589" anchor-label="byDay" id="2118914337%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="by-day.html">byDay</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2118914337%2FProperties%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><a data-name="2118914337%2FProperties%2F1946847589" anchor-label="byDay" id="2118914337%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><div class="symbol monospace">val <a href="by-day.html">byDay</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="2118914337%2FProperties%2F1946847589" anchor-label="byDay" id="2118914337%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><p class="paragraph">Least-significant bit is <code>1</code> if the value is used, <code>0</code> otherwise.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="933536961%2FProperties%2F1946847589" anchor-label="byMonthDay" id="933536961%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="by-month-day.html">byMonthDay</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="933536961%2FProperties%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><a data-name="933536961%2FProperties%2F1946847589" anchor-label="byMonthDay" id="933536961%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><div class="symbol monospace">val <a href="by-month-day.html">byMonthDay</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="933536961%2FProperties%2F1946847589" anchor-label="byMonthDay" id="933536961%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><p class="paragraph">If period is <a href="-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, the day of the month on which the events happen. The number must be between -31 and 31. If the value is <code>0</code> (the default), the events will happen on the same day of the month as the start date's. The value can also be <code>0</code> if <a href="by-day.html">byDay</a> determines the day of the month instead. Negative numbers start counting from the end of the month.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-2047267872%2FProperties%2F1946847589" anchor-label="dayOfWeekInMonth" id="-2047267872%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="day-of-week-in-month.html">dayOfWeekInMonth</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2047267872%2FProperties%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><a data-name="-2047267872%2FProperties%2F1946847589" anchor-label="dayOfWeekInMonth" id="-2047267872%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><div class="symbol monospace">val <a href="day-of-week-in-month.html">dayOfWeekInMonth</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-2047267872%2FProperties%2F1946847589" anchor-label="dayOfWeekInMonth" id="-2047267872%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><p class="paragraph">If period is <a href="-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, get the day of the week on which the events happen. Returns <code>0</code> if undefined or events happen on a particular day of the month instead. Returns a <code>Calendar.SUNDAY-SATURDAY</code> constant otherwise.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-995673312%2FProperties%2F1946847589" anchor-label="endCount" id="-995673312%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="end-count.html">endCount</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-995673312%2FProperties%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><a data-name="-995673312%2FProperties%2F1946847589" anchor-label="endCount" id="-995673312%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><div class="symbol monospace">val <a href="end-count.html">endCount</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-995673312%2FProperties%2F1946847589" anchor-label="endCount" id="-995673312%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><p class="paragraph">The number of events before the end of the recurrence if end type is <a href="-end-type/-b-y_-c-o-u-n-t/index.html">EndType.BY_COUNT</a>. If not, end count is always <code>0</code>. Since the start date is exclusive, the number of events never includes the start date event.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1826598909%2FProperties%2F1946847589" anchor-label="endDate" id="1826598909%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="end-date.html">endDate</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1826598909%2FProperties%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><a data-name="1826598909%2FProperties%2F1946847589" anchor-label="endDate" id="1826598909%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><div class="symbol monospace">val <a href="end-date.html">endDate</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1826598909%2FProperties%2F1946847589" anchor-label="endDate" id="1826598909%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><p class="paragraph">The end date if end type is <a href="-end-type/-b-y_-d-a-t-e/index.html">EndType.BY_DATE</a>. If not, end date is always <a href="-companion/-d-a-t-e_-n-o-n-e.html">DATE_NONE</a>. The end date is inclusive so the last event might be on the end date. The date is given in UTC milliseconds since epoch time. The time of the day has no importance. To account for time zones, use <a href="../-recurrence-finder/time-zone.html">RecurrenceFinder.timeZone</a> and <a href="../../com.maltaisn.recurpicker.format/-r-rule-formatter/time-zone.html">RRuleFormatter.timeZone</a>.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1338874383%2FProperties%2F1946847589" anchor-label="endType" id="-1338874383%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="end-type.html">endType</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1338874383%2FProperties%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><a data-name="-1338874383%2FProperties%2F1946847589" anchor-label="endType" id="-1338874383%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><div class="symbol monospace">val <a href="end-type.html">endType</a>: <a href="-end-type/index.html">Recurrence.EndType</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1338874383%2FProperties%2F1946847589" anchor-label="endType" id="-1338874383%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><p class="paragraph">The rule for the recurrence end, see <a href="-end-type/index.html">EndType</a>.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1474417386%2FProperties%2F1946847589" anchor-label="frequency" id="1474417386%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="frequency.html">frequency</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1474417386%2FProperties%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><a data-name="1474417386%2FProperties%2F1946847589" anchor-label="frequency" id="1474417386%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><div class="symbol monospace">val <a href="frequency.html">frequency</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1474417386%2FProperties%2F1946847589" anchor-label="frequency" id="1474417386%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><p class="paragraph">The recurrence frequency i.e after how many periods to repeat the event. For example, if period is daily and frequency is 2, events will happen every 2 days. Frequency of <a href="-period/-n-o-n-e/index.html">Period.NONE</a> recurrences is always 1.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1506511027%2FProperties%2F1946847589" anchor-label="period" id="1506511027%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="period.html">period</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1506511027%2FProperties%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><a data-name="1506511027%2FProperties%2F1946847589" anchor-label="period" id="1506511027%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><div class="symbol monospace">val <a href="period.html">period</a>: <a href="-period/index.html">Recurrence.Period</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1506511027%2FProperties%2F1946847589" anchor-label="period" id="1506511027%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><p class="paragraph">The time period over which the recurrence happens.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="396363423%2FProperties%2F1946847589" anchor-label="weekInMonth" id="396363423%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="week-in-month.html">weekInMonth</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="396363423%2FProperties%2F1946847589"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><a data-name="396363423%2FProperties%2F1946847589" anchor-label="weekInMonth" id="396363423%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><div class="symbol monospace">val <a href="week-in-month.html">weekInMonth</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="396363423%2FProperties%2F1946847589" anchor-label="weekInMonth" id="396363423%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a><p class="paragraph">If period is <a href="-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, get the week of the month on which the events happen. Returns <code>0</code> if undefined or events happen on a particular day of the month instead.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-period/index.html"><span><span>Period</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="76870440%2FClasslikes%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-period/index.html">Period</a> : <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-enum/index.html">Enum</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-period/index.html">Recurrence.Period</a><span class="token operator">&gt; </span></div></div></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="2118914337%2FProperties%2F1946847589" anchor-label="byDay" id="2118914337%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="by-day.html"><span>by</span><wbr></wbr><span><span>Day</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2118914337%2FProperties%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="by-day.html">byDay</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">Least-significant bit is <code class="lang-kotlin">1</code> if the value is used, <code class="lang-kotlin">0</code> otherwise.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="933536961%2FProperties%2F1946847589" anchor-label="byMonthDay" id="933536961%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="by-month-day.html"><span>by</span><wbr></wbr><span>Month</span><wbr></wbr><span><span>Day</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="933536961%2FProperties%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="by-month-day.html">byMonthDay</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">If period is <a href="-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, the day of the month on which the events happen. The number must be between -31 and 31. If the value is <code class="lang-kotlin">0</code> (the default), the events will happen on the same day of the month as the start date's. The value can also be <code class="lang-kotlin">0</code> if <a href="by-day.html">byDay</a> determines the day of the month instead. Negative numbers start counting from the end of the month.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2047267872%2FProperties%2F1946847589" anchor-label="dayOfWeekInMonth" id="-2047267872%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="day-of-week-in-month.html"><span>day</span><wbr></wbr><span>Of</span><wbr></wbr><span>Week</span><wbr></wbr><span>In</span><wbr></wbr><span><span>Month</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2047267872%2FProperties%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="day-of-week-in-month.html">dayOfWeekInMonth</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">If period is <a href="-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, get the day of the week on which the events happen. Returns <code class="lang-kotlin">0</code> if undefined or events happen on a particular day of the month instead. Returns a <code class="lang-kotlin">Calendar.SUNDAY-SATURDAY</code> constant otherwise.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-995673312%2FProperties%2F1946847589" anchor-label="endCount" id="-995673312%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="end-count.html"><span>end</span><wbr></wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-995673312%2FProperties%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="end-count.html">endCount</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">The number of events before the end of the recurrence if end type is <a href="-end-type/-b-y_-c-o-u-n-t/index.html">EndType.BY_COUNT</a>. If not, end count is always <code class="lang-kotlin">0</code>. Since the start date is exclusive, the number of events never includes the start date event.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1826598909%2FProperties%2F1946847589" anchor-label="endDate" id="1826598909%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="end-date.html"><span>end</span><wbr></wbr><span><span>Date</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1826598909%2FProperties%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="end-date.html">endDate</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a></div><div class="brief "><p class="paragraph">The end date if end type is <a href="-end-type/-b-y_-d-a-t-e/index.html">EndType.BY_DATE</a>. If not, end date is always <a href="-companion/-d-a-t-e_-n-o-n-e.html">DATE_NONE</a>. The end date is inclusive so the last event might be on the end date. The date is given in UTC milliseconds since epoch time. The time of the day has no importance. To account for time zones, use <a href="../-recurrence-finder/time-zone.html">RecurrenceFinder.timeZone</a> and <a href="../../com.maltaisn.recurpicker.format/-r-rule-formatter/time-zone.html">RRuleFormatter.timeZone</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1338874383%2FProperties%2F1946847589" anchor-label="endType" id="-1338874383%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="end-type.html"><span>end</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1338874383%2FProperties%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="end-type.html">endType</a><span class="token operator">: </span><a href="-end-type/index.html">Recurrence.EndType</a></div><div class="brief "><p class="paragraph">The rule for the recurrence end, see <a href="-end-type/index.html">EndType</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1474417386%2FProperties%2F1946847589" anchor-label="frequency" id="1474417386%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="frequency.html"><span><span>frequency</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1474417386%2FProperties%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="frequency.html">frequency</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">The recurrence frequency i.e after how many periods to repeat the event. For example, if period is daily and frequency is 2, events will happen every 2 days. Frequency of <a href="-period/-n-o-n-e/index.html">Period.NONE</a> recurrences is always 1.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1506511027%2FProperties%2F1946847589" anchor-label="period" id="1506511027%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="period.html"><span><span>period</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1506511027%2FProperties%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="period.html">period</a><span class="token operator">: </span><a href="-period/index.html">Recurrence.Period</a></div><div class="brief "><p class="paragraph">The time period over which the recurrence happens.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="396363423%2FProperties%2F1946847589" anchor-label="weekInMonth" id="396363423%2FProperties%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="week-in-month.html"><span>week</span><wbr></wbr><span>In</span><wbr></wbr><span><span>Month</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="396363423%2FProperties%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="week-in-month.html">weekInMonth</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">If period is <a href="-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, get the week of the month on which the events happen. Returns <code class="lang-kotlin">0</code> if undefined or events happen on a particular day of the month instead.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-912333009%2FFunctions%2F1946847589" anchor-label="describeContents" id="-912333009%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="describe-contents.html"><span>describe</span><wbr></wbr><span><span>Contents</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-912333009%2FFunctions%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="describe-contents.html"><span class="token function">describeContents</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="508151917%2FFunctions%2F1946847589" anchor-label="equals" id="508151917%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="equals.html"><span><span>equals</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="508151917%2FFunctions%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="equals.html"><span class="token function">equals</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Note: since two recurrences with dates at different times of the day will produce the same events, they are considered equal, even though the dates may not have the same value. Same applies for <a href="hash-code.html">hashCode</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1899249191%2FFunctions%2F1946847589" anchor-label="hashCode" id="-1899249191%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="hash-code.html"><span>hash</span><wbr></wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1899249191%2FFunctions%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="hash-code.html"><span class="token function">hashCode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1226276528%2FFunctions%2F1946847589" anchor-label="isRecurringOnDaysOfWeek" id="-1226276528%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-recurring-on-days-of-week.html"><span>is</span><wbr></wbr><span>Recurring</span><wbr></wbr><span>On</span><wbr></wbr><span>Days</span><wbr></wbr><span>Of</span><wbr></wbr><span><span>Week</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1226276528%2FFunctions%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="is-recurring-on-days-of-week.html"><span class="token function">isRecurringOnDaysOfWeek</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">days<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">If period is <a href="-period/-w-e-e-k-l-y/index.html">WEEKLY</a>, checks if events happen on certain <a href="is-recurring-on-days-of-week.html">days</a> of the week. Returns true only if recurrence happens on all of these days. To get the number of days set use <code class="lang-kotlin">Integer.bitCount(recurrence.byDay)  - 1</code> (or <code class="lang-kotlin">recurrence.byDay.countOneBits() - 1</code> in Kotlin). Note that if the weekly recurrence has no days set, meaning it happens on the same day as the start date's, this method will always return <code class="lang-kotlin">false</code> since this day is unknown. If period is <a href="-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, checks if events happen on a certain day of the week specified by a single flag set in <a href="is-recurring-on-days-of-week.html">days</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2077415256%2FFunctions%2F1946847589" anchor-label="toString" id="-2077415256%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-string.html"><span>to</span><wbr></wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2077415256%2FFunctions%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Return a human readable string representation of the recurrence. This is only for debug purposes and will not even work on release builds. <a href="../../com.maltaisn.recurpicker.format/-recurrence-formatter/index.html">RecurrenceFormatter</a> should be used instead.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="905762194%2FFunctions%2F1946847589" anchor-label="writeToParcel" id="905762194%2FFunctions%2F1946847589" data-filterable-set=":lib:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="write-to-parcel.html"><span>write</span><wbr></wbr><span>To</span><wbr></wbr><span><span>Parcel</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="905762194%2FFunctions%2F1946847589"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="write-to-parcel.html"><span class="token function">writeToParcel</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">parcel<span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/android/os/Parcel.html">Parcel</a><span class="token punctuation">, </span></span><span class="parameter ">flags<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
-

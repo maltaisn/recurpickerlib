@@ -16,6 +16,7 @@
 
 package com.maltaisn.recurpicker.format
 
+import android.annotation.SuppressLint
 import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.EndType
 import com.maltaisn.recurpicker.Recurrence.Period
@@ -92,6 +93,7 @@ import kotlin.contracts.contract
         }
     }
 
+    @SuppressLint("WrongConstant")
     private fun Recurrence.Builder.parseWeeklyDetails(attrs: Map<String, String>) {
         // Days of the week
         var days = 0

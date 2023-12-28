@@ -1,38 +1,80 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html class="no-js">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>setDayOfWeekInMonth</title>
-<link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../../";</script><script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../../styles/style.css" rel="Stylesheet"><link href="../../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../../scripts/main.js" async="async"></script>  </head>
-  <body>
-    <div id="container">
-      <div id="leftColumn"><a href="../../../../index.html">
-          <div id="logo"></div>
-        </a>
-        <div id="paneSearch"></div>
-        <div id="sideMenu"></div>
-      </div>
-      <div id="main">
-        <div id="leftToggler"><span class="icon-toggler"></span></div>
-<script type="text/javascript" src="../../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="lib::com.maltaisn.recurpicker/Recurrence.Builder/setDayOfWeekInMonth/#kotlin.Int#kotlin.Int/PointingToDeclaration//1946847589">
-          <div class="navigation-wrapper" id="navigation-wrapper">
-            <div class="breadcrumbs"><a href="../../../../index.html">lib</a>/<a href="../../index.html">com.maltaisn.recurpicker</a>/<a href="../index.html">Recurrence</a>/<a href="index.html">Builder</a>/<a href="set-day-of-week-in-month.html">setDayOfWeekInMonth</a></div>
-            <div class="pull-right d-flex">
-              <div id="searchBar"></div>
+    <link href="../../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../../styles/style.css" rel="Stylesheet">
+<link href="../../../../styles/main.css" rel="Stylesheet">
+<link href="../../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../../index.html">
+                            lib
+                    </a>
             </div>
-          </div>
-          <div class="cover ">
-            <h1 class="cover"><span>set</span><wbr></wbr><span>Day</span><wbr></wbr><span>Of</span><wbr></wbr><span>Week</span><wbr></wbr><span>In</span><wbr></wbr><span><span>Month</span></span></h1>
-          </div>
-<div class="divergent-group" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace">fun <a href="set-day-of-week-in-month.html">setDayOfWeekInMonth</a>(day: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>, week: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <a href="index.html">Recurrence.Builder</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<p class="paragraph">If period is <a href="../-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, set <span data-unresolved-link="com.maltaisn.recurpicker/Recurrence.Builder/byDay/#/PointingToDeclaration/">byDay</span> setting so that the recurrence happens on a <a href="set-day-of-week-in-month.html">day</a> of a week in the month. If both parameters are <code>0</code>, the week number and day of the week will be the same as start date's.</p><h2 class="">Parameters</h2><div data-togglable="Parameters"><div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span><span>day</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">Day of the week, use <a href="../-days-of-week/index.html">DaysOfWeek</a> constants.</p></div></div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><span><span>week</span></span></span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">On which week of the month the events will happen, starting from <code>1</code>. From -4 to 4, negative values count the week number from the end of the month.</p></div></div></div></div></div></div></div></div></div></div></div>
+            <div class="library-version">
+            </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
-      </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":lib:dokkaHtml/release">androidJvm</button>
+        </div>
     </div>
-  </body>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="member" id="content" pageIds="lib::com.maltaisn.recurpicker/Recurrence.Builder/setDayOfWeekInMonth/#kotlin.Int#kotlin.Int/PointingToDeclaration//1946847589">
+  <div class="breadcrumbs"><a href="../../../../index.html">lib</a><span class="delimiter">/</span><a href="../../index.html">com.maltaisn.recurpicker</a><span class="delimiter">/</span><a href="../index.html">Recurrence</a><span class="delimiter">/</span><a href="index.html">Builder</a><span class="delimiter">/</span><span class="current">setDayOfWeekInMonth</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>set</span><wbr></wbr><span>Day</span><wbr></wbr><span>Of</span><wbr></wbr><span>Week</span><wbr></wbr><span>In</span><wbr></wbr><span><span>Month</span></span></h1>
+  </div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="set-day-of-week-in-month.html"><span class="token function">setDayOfWeekInMonth</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">day<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">week<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="index.html">Recurrence.Builder</a></div><p class="paragraph">If period is <a href="../-period/-m-o-n-t-h-l-y/index.html">MONTHLY</a>, set <span data-unresolved-link="com.maltaisn.recurpicker/Recurrence.Builder/byDay/#/PointingToDeclaration/">byDay</span> setting so that the recurrence happens on a <a href="set-day-of-week-in-month.html">day</a> of a week in the month. If both parameters are <code class="lang-kotlin">0</code>, the week number and day of the week will be the same as start date's.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>day</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Day of the week, use <a href="../-days-of-week/index.html">DaysOfWeek</a> constants.</p></div></div></div></div><div class="table-row" data-filterable-current=":lib:dokkaHtml/release" data-filterable-set=":lib:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>week</span></span></u></div></span></div><div><div class="title"><p class="paragraph">On which week of the month the events will happen, starting from <code class="lang-kotlin">1</code>. From -4 to 4, negative values count the week number from the end of the month.</p></div></div></div></div></div></div></div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
-

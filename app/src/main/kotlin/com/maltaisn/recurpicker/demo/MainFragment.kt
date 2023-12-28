@@ -22,6 +22,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.BundleCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -160,7 +161,7 @@ class MainFragment : Fragment(), DateDialogFragment.Callback,
         if (state != null) {
             // Restore saved state
             startDate = state.getLong("startDate")
-            selectedRecurrence = state.getParcelable("selectedRecurrence")!!
+            selectedRecurrence = BundleCompat.getParcelable(state, "selectedRecurrence", Recurrence::class.java)!!
             recurrenceEvents = state.getLongArray("recurrenceEvents")!!.toMutableList()
             isDoneFinding = state.getBoolean("isDoneFinding")
         } else {

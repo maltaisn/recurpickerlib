@@ -1,10 +1,10 @@
 buildscript {
     ext {
         setup = [
-                compileSdk: 30,
-                buildTools: "30.0.2",
+                compileSdk: 34,
+                buildTools: "34.0.0",
                 minSdk: 14,
-                targetSdk: 30
+                targetSdk: 34
         ]
         // for maven publishing plugin
         VERSION_NAME = libVersion
@@ -26,7 +26,7 @@ buildscript {
 
 plugins {
     id "base"
-    id "io.gitlab.arturbosch.detekt" version "1.18.1"
+    id "io.gitlab.arturbosch.detekt" version "1.23.4"
 }
 
 allprojects {
@@ -46,7 +46,6 @@ detekt {
     buildUponDefaultConfig = true
     parallel = true
     autoCorrect = true
-    config = rootProject.files("config/detekt/detekt.yml")
 }
 
 tasks.detekt.jvmTarget = "1.8"

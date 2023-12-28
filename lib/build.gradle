@@ -1,11 +1,12 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id "com.android.library"
     id "kotlin-android"
     id "org.jetbrains.dokka"
     id "com.github.breadmoirai.github-release"
+    id "com.vanniktech.maven.publish"
 }
-
-apply plugin: "com.vanniktech.maven.publish"
 
 ext {
     // Auto generate version code based on version name
@@ -13,6 +14,8 @@ ext {
 }
 
 android {
+    namespace "com.maltaisn.recurpicker"
+
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
     defaultConfig {
@@ -20,6 +23,8 @@ android {
         targetSdkVersion setup.targetSdk
         versionCode libVersionCode
         versionName libVersion
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     sourceSets {
         main.java.srcDirs += "src/main/kotlin"
@@ -34,18 +39,15 @@ android {
         jvmTarget = "1.8"
         freeCompilerArgs += [
                 "-Xopt-in=kotlin.ExperimentalStdlibApi",
-                "-Xuse-experimental=kotlin.contracts.ExperimentalContracts",
+                "-Xopt-in=kotlin.contracts.ExperimentalContracts",
         ]
-    }
-    defaultConfig {
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     lintOptions {
         abortOnError false
     }
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
+tasks.withType(KotlinCompile).configureEach {
     if (!it.name.contains("UnitTest")) {
         kotlinOptions.freeCompilerArgs += "-Xexplicit-api=strict"
     }
@@ -62,7 +64,7 @@ dependencies {
 
     testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$kotlinMockitoVersion"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$kotlinMockitoVersion"
 
     androidTestImplementation "androidx.test:runner:$androidxTestRunnerVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
@@ -78,4 +80,6 @@ dokkaHtml.configure {
     }
 }
 
-tasks.withType(Javadoc).all { enabled = false }
+tasks.withType(Javadoc).configureEach { enabled = false }
+
+apply from: "publishing.gradle"

@@ -22,6 +22,7 @@ import com.maltaisn.recurpicker.Recurrence
 import com.maltaisn.recurpicker.Recurrence.EndType
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.RecurrencePickerSettings
+import com.maltaisn.recurpicker.getSerializableCompat
 import com.maltaisn.recurpicker.list.RecurrenceListDialog
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.Presenter
 import com.maltaisn.recurpicker.picker.RecurrencePickerContract.View
@@ -74,11 +75,11 @@ internal class RecurrencePickerPresenter : Presenter {
             setDefaultEndDate()
         } else {
             // Read saved state.
-            period = state.getSerializable("period") as Period
+            period = state.getSerializableCompat("period")!!
             frequency = state.getInt("frequency")
             daysOfWeek = state.getInt("daysOfWeek")
             monthlySettingIndex = state.getInt("monthlySettingIndex")
-            endType = state.getSerializable("endType") as EndType
+            endType = state.getSerializableCompat("endType")!!
             endDate = state.getLong("endDate")
             endCount = state.getInt("endCount")
         }

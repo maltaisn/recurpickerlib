@@ -20,6 +20,10 @@
         <item quantity="one">dag</item>
         <item quantity="other">dagen</item>
     </plurals>
+    <plurals name="rp_picker_period_week" comment="Dropdown item for a weekly recurrence [one] [other]">
+        <item quantity="one">week</item>
+        <item quantity="other">weken</item>
+    </plurals>
     <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
         <item quantity="one">maand</item>
         <item quantity="other">maanden</item>
@@ -29,7 +33,9 @@
         <item quantity="other">jaar</item>
     </plurals>
     <string name="rp_day_of_week_abbr1_sun" comment="1-2 letters for a small day of week toggle button. (Sunday)">Z</string>
+    <string name="rp_day_of_week_abbr1_mon" comment="1-2 letters for a small day of week toggle button. (Monday)">M</string>
     <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">D</string>
+    <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">W</string>
     <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">D</string>
     <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">V</string>
     <string name="rp_day_of_week_abbr1_sat" comment="1-2 letters for a small day of week toggle button. (Saturday)">Z</string>

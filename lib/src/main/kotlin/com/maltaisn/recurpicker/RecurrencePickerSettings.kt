@@ -22,12 +22,12 @@ import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
 import android.util.Log
+import androidx.core.os.BundleCompat
 import com.maltaisn.recurpicker.Recurrence.Period
 import com.maltaisn.recurpicker.RecurrencePickerSettings.Builder
 import com.maltaisn.recurpicker.format.RecurrenceFormatter
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.ArrayList
 import java.util.Locale
 
 /**
@@ -131,8 +131,9 @@ public class RecurrencePickerSettings private constructor(
                 override fun createFromParcel(parcel: Parcel) = RecurrencePickerSettings {
                     val bundle = parcel.readBundle(RecurrencePickerSettings::class.java.classLoader)!!
                     formatter = bundle.getRecurrenceFormatter()
-                    presets = bundle.getParcelableArrayList("presets")!!
-                    defaultPickerRecurrence = bundle.getParcelable("defaultPickerRecurrence")!!
+                    presets = BundleCompat.getParcelableArrayList(bundle, "presets", Recurrence::class.java)!!
+                    defaultPickerRecurrence = BundleCompat.getParcelable(
+                        bundle, "defaultPickerRecurrence", Recurrence::class.java)!!
                     maxFrequency = bundle.getInt("maxFrequency")
                     maxEndCount = bundle.getInt("maxEndCount")
                 }
@@ -148,7 +149,7 @@ public class RecurrencePickerSettings private constructor(
 
         private fun Bundle.getRecurrenceFormatter(): RecurrenceFormatter {
             val dateFormat = try {
-                this.getSerializable("dateFormat") as DateFormat
+                this.getSerializableCompat<DateFormat>("dateFormat")!!
             } catch (e: Exception) {
                 // Very rarely and on API >= 28, Bundle will fail to get serialized DateFormat.
                 // This issue is related to: https://stackoverflow.com/a/54155356/5288316.

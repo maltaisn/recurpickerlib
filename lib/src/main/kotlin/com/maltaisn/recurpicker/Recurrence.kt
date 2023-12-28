@@ -20,6 +20,7 @@ import android.annotation.SuppressLint
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.IntDef
+import androidx.core.os.ParcelCompat
 import com.maltaisn.recurpicker.Recurrence.Companion.DATE_NONE
 import com.maltaisn.recurpicker.Recurrence.DaysOfWeek
 import com.maltaisn.recurpicker.Recurrence.EndType
@@ -105,6 +106,7 @@ public class Recurrence private constructor(
      * Returns a `Calendar.SUNDAY-SATURDAY` constant otherwise.
      */
     public val dayOfWeekInMonth: Int
+        @SuppressLint("WrongConstant")
         get() {
             check(period == MONTHLY) { "Day of week in month is a monthly recurrence property." }
             for (day in Calendar.SUNDAY..Calendar.SATURDAY) {
@@ -126,7 +128,7 @@ public class Recurrence private constructor(
      * by a single flag set in [days].
      * @param days A bit field of [DaysOfWeek] values.
      */
-    public fun isRecurringOnDaysOfWeek(@DaysOfWeek days: Int): Boolean = ((byDay and days) == days)
+    public fun isRecurringOnDaysOfWeek(days: Int): Boolean = ((byDay and days) == days)
 
     /**
      * Note: since two recurrences with dates at different times of the day will produce the same
@@ -530,11 +532,11 @@ public class Recurrence private constructor(
 
     // Parcelable stuff
     private constructor(parcel: Parcel) : this(
-        parcel.readSerializable() as Period,
+        ParcelCompat.readSerializable(parcel, ClassLoader.getSystemClassLoader(), Period::class.java)!!,
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
-        parcel.readSerializable() as EndType,
+        ParcelCompat.readSerializable(parcel, ClassLoader.getSystemClassLoader(), EndType::class.java)!!,
         parcel.readLong(),
         parcel.readInt(),
         Calendar.getInstance())

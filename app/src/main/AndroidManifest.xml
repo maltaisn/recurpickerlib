@@ -17,7 +17,6 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.maltaisn.recurpicker.demo"
     >
 
     <application
@@ -31,6 +30,7 @@
         <activity
             android:name="com.maltaisn.recurpicker.demo.MainActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
+            android:exported="true"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

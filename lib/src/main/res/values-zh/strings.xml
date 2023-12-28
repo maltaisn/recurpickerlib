@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- @formatter:off -->
+<resources>
+    <!-- RECURRENCE LIST -->
+    <string name="rp_list_custom" comment="The item for creating a customized recurrence">自訂…</string>
+    <!-- RECURRENCE PICKER -->
+    <string name="rp_picker_done" comment="Title of the button to close the recurrence picker and create the recurrence">完成</string>
+    <string name="rp_picker_cancel" comment="Title of the button to cancel the recurrence picker.">取消</string>
+    <string name="rp_picker_title" comment="Title of the recurrence picker window">目订笛期</string>
+    <string name="rp_picker_subtitle_period" comment="Subtitle for choosing the frequency and period. Eg: 'Repeats every' 1 week">重复过期</string>
+    <string name="rp_picker_subtitle_setting" comment="Subtitle for choosing additional setting for weekly and monthly periods. Eg: 'Repeats on' the same day each month">在這幾天重複</string>
+    <string name="rp_picker_subtitle_end" comment="Subtitle for choosing the end type. Eg: 'Ends' never, 'Ends' on date, 'Ends' after 1 occurence">結束</string>
+    <string name="rp_picker_end_never" comment="Option text for recurrence that never ends">水不</string>
+    <string name="rp_picker_end_date" comment="Option text for recurrence that ends 'on' a date. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;On&quot; word appears in the first screenshot.">日期</string>
+    <plurals name="rp_picker_end_count" comment="Option text for recurrence that ends 'after X occurences'. Use the | character to indicate where the input is placed, optional if no text after input.&#10;&#10;IMPORTANT: if the language has no prefix, i.e. the vertical bar is at the start of the text, then please leave a comment. There's an extra string needed to specify the entry in the recurrence picker *dialog* dropdown, which doesn't appear in Crowdin. This string will appear where the &quot;After&quot; word appears in the first three screenshots.">
+        <item quantity="other">發生 | 次後</item>
+    </plurals>
+    <plurals name="rp_picker_period_day" comment="Dropdown item for a daily recurrence [one] [other]">
+        <item quantity="other">天</item>
+    </plurals>
+    <plurals name="rp_picker_period_week" comment="Dropdown item for a weekly recurrence [one] [other]">
+        <item quantity="other">週</item>
+    </plurals>
+    <plurals name="rp_picker_period_month" comment="Dropdown item for a monthly recurrence [one] [other]">
+        <item quantity="other">月</item>
+    </plurals>
+    <plurals name="rp_picker_period_year" comment="Dropdown item for a yearly recurrence [one] [other]">
+        <item quantity="other">年</item>
+    </plurals>
+    <string name="rp_day_of_week_abbr1_sun" comment="1-2 letters for a small day of week toggle button. (Sunday)">日</string>
+    <string name="rp_day_of_week_abbr1_mon" comment="1-2 letters for a small day of week toggle button. (Monday)">一</string>
+    <string name="rp_day_of_week_abbr1_tue" comment="1-2 letters for a small day of week toggle button. (Tuesday)">二</string>
+    <string name="rp_day_of_week_abbr1_wed" comment="1-2 letters for a small day of week toggle button. (Wednesday)">三</string>
+    <string name="rp_day_of_week_abbr1_thu" comment="1-2 letters for a small day of week toggle button. (Thursday)">四</string>
+    <string name="rp_day_of_week_abbr1_fri" comment="1-2 letters for a small day of week toggle button. (Friday)">五</string>
+    <string name="rp_day_of_week_abbr1_sat" comment="1-2 letters for a small day of week toggle button. (Saturday)">六</string>
+    <string-array name="rp_days_of_week_abbr3" comment="Use in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.">
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Sunday)">星期日</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Monday)">星期一</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Tuesday)">星期二</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Wednesday)">星期三</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Thursday)">星期四</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Friday)">星期五</item>
+        <item comment="Used in days of week enumeration, eg: weekly on 'Sun', 'Mon', etc.&#10;2-4 letters for enumerating days of the week. Use correct case. (Saturday)">星期六</item>
+    </string-array>
+    <!-- FORMATTING -->
+    <string name="rp_format_none" comment="Text for no recurrence.">不重複</string>
+    <plurals name="rp_format_day" comment="Text for a daily recurrence. The number argument is the frequency. [one] [other]">
+        <item quantity="other">每 %d 天</item>
+    </plurals>
+    <plurals name="rp_format_week" comment="Text for a weekly recurrence. The number argument is the frequency.">
+        <item quantity="other">每 %d 週</item>
+    </plurals>
+    <plurals name="rp_format_month" comment="Text for a monthly recurrence. The number argument is the frequency.">
+        <item quantity="other">每 %d 月</item>
+    </plurals>
+    <plurals name="rp_format_year" comment="Text for a yearly recurrence. The number argument is the frequency.">
+        <item quantity="other">每 %d 年</item>
+    </plurals>
+    <string name="rp_format_weekly_option" comment="The string argument is replaced with a list of days of week.">在 %s</string>
+    <string name="rp_format_weekly_all" comment="Used for a weekly recurrence that happens on every day of the week instead of a list of days.">當週的每一天</string>
+    <string name="rp_format_monthly_same_day" comment="Used for a monthly recurrence that happens on the same day of each month">每月的同一天</string>
+    <string name="rp_format_monthly_last_day" comment="Used for a monthly recurrence that happens on the last day of each month">每月的倒數某天</string>
+    <string name="rp_format_monthly_sun" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Sunday)">在每月的第 %s 個星期日</string>
+    <string name="rp_format_monthly_mon" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Monday)">在每月的第 %s 個星期一</string>
+    <string name="rp_format_monthly_tue" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Tuesday)">在每月的第 %s 個星期二</string>
+    <string name="rp_format_monthly_wed" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Wednesday)">在每月的第 %s 個星期三</string>
+    <string name="rp_format_monthly_thu" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Thursday)">在每月的第 %s 個星期四</string>
+    <string name="rp_format_monthly_fri" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Friday)">在每月的第 %s 個星期五</string>
+    <string name="rp_format_monthly_sat" comment="Used for a monthly recurrence that happens on the same day of the same week of each month. String argument is replaced by an ordinal number eg: 'third'. (Saturday)">在每月的第 %s 個星期六</string>
+    <string-array name="rp_format_monthly_ordinal">
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">第一</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">第二</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">第三</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">第四</item>
+        <item comment="Used with strings rp_format_monthly_*. Use correct case and plural.">最後</item>
+    </string-array>
+    <string name="rp_format_end_date" comment="Goes after a recurrence that ends on a date. The string argument specifies this date.">直到 %s</string>
+    <plurals name="rp_format_end_count" comment="Goes after a recurrence that ends after a number of events. The number argument specifies this number.">
+        <item quantity="other">為了 %d 事件</item>
+    </plurals>
+</resources>

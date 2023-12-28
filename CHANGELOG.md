@@ -1,5 +1,9 @@
+### v2.1.8
+- Updated dependencies.
+- Updated translations (added Chinese).
+
 ### v2.1.7
-- Add Ukrainian translation, thanks to @Serhii_Ka.
+- Added Ukrainian translation, thanks to @Serhii_Ka.
 
 ### v2.1.6
 - Fixed layout issue in 2.1.5.

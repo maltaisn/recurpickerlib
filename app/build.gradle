@@ -4,6 +4,8 @@ plugins {
 }
 
 android {
+    namespace "com.maltaisn.recurpicker.demo"
+
     compileSdkVersion setup.compileSdk
     buildToolsVersion setup.buildTools
     defaultConfig {
@@ -12,6 +14,7 @@ android {
         targetSdkVersion setup.targetSdk
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     sourceSets {
         main.java.srcDirs += "src/main/kotlin"
