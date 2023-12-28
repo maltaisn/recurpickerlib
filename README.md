@@ -13,7 +13,7 @@ Replace `X.Y.Z` with lastest version number:&nbsp; [![Download](https://img.shie
 The `mavenCentral()` repository is required.
 
 ## Documentation
-KDocs is available [here](https://maltaisn.github.io/recurpickerlib/docs/index.html).
+KDocs is available [here](https://maltaisn.github.io/recurpickerlib).
 More documentation and examples is available on the [wiki](https://github.com/maltaisn/recurpickerlib/wiki)
 - [**Using the library**](https://github.com/maltaisn/recurpickerlib/wiki/Using-the-library)
 - [Building a recurrence](https://github.com/maltaisn/recurpickerlib/wiki/Building-a-recurrence)
